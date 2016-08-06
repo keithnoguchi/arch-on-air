@@ -5,10 +5,10 @@ Yet another note on *Let's make ArchLinux up and running on MacBook Air!*
 Thie is my way of running *Arch* on *Air*, based on the official
 [ArchLinux on MacBook(Air)](https://wiki.archlinux.org/index.php/MacBook) wiki.
 
-1. [Spec](#spec)
-2. [Pre-installation](#pre-installation)
-3. [Installation](#installation)
-4. [Post-installation](#post-installation)
+- [Spec](#spec)
+- [Pre-installation](#pre-installation)
+- [Installation](#installation)
+- [Post-installation](#post-installation)
 
 ## Spec
 
@@ -27,8 +27,8 @@ Memory:			8 GB
 ```
 
 Let's roll [pre](#pre-installation), [in](#installation),
-and [post](#post-installation) installation actions, as
-[Arch Installation guide](https://wiki.archlinux.org/index.php/installation_guide).
+and [post](#post-installation) installation actions, just like
+[Arch Installation guide](https://wiki.archlinux.org/index.php/installation_guide)!
 
 ## Pre-installation
 
