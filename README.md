@@ -5,7 +5,7 @@ Yet another notes on `Let's make ArchLinux up and running on MacBook Air!`
 Thie is my way of running *Arch* on *Air*, based on the official
 [ArchLinux on MacBook(Air)](https://wiki.archlinux.org/index.php/MacBook) wiki.
 
-## Hardware
+## Spec
 
 Her is my air:
 
