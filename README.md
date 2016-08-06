@@ -251,6 +251,38 @@ Devices:
    1    64.00GiB  /dev/vg0/var
 ```
 
+### Mount the partitions
+
+Mount all those LVM based partitions, in addition to the EFI system partition
+as below:
+
+```
+root@archiso ~ # mount /dev/vg0/root /mnt
+root@archiso ~ # for i in home var
+\`for> do
+\`for> mkdir /mnt/$i
+\`for> mount /dev/vg0/$i /mnt/$i
+\`for> done
+root@archiso ~ # mount /dev/sda1 /mnt/boot
+root@archiso ~ # df -k
+Filesystem           1K-blocks   Used Available Use% Mounted on
+dev                    4025808      0   4025808   0% /dev
+run                    4040120  46588   3993532   2% /run
+/dev/sdb1               759808 759808         0 100% /run/archiso/bootmnt
+cowspace                262144   7244    254900   3% /run/archiso/cowspace
+/dev/loop0              328704 328704         0 100% /run/archiso/sfs/airootfs
+airootfs                262144   7244    254900   3% /
+tmpfs                  4040120      0   4040120   0% /dev/shm
+tmpfs                  4040120      0   4040120   0% /sys/fs/cgroup
+tmpfs                  4040120      0   4040120   0% /tmp
+tmpfs                  4040120   1200   4038920   1% /etc/pacman.d/gnupg
+tmpfs                   808024      0    808024   0% /run/user/0
+/dev/mapper/vg0-root  33554432  16576  33278912   1% /mnt
+/dev/mapper/vg0-home  67108864  16768  66046720   1% /mnt/home
+/dev/mapper/vg0-var   67104768  16768  66042624   1% /mnt/var
+/dev/sda1               201633 129864     71770  65% /mnt/boot
+```
+
 ## Installation
 
 ### Configure the system
