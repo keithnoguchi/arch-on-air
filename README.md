@@ -616,6 +616,9 @@ root@archiso ~ # reboot
 - [Video](#video)
 - [X](#x)
 - [WindowManager](#window-manager)
+- [KeyMapping](#key-mapping)
+- [Fonts](#fonts)
+- [Web](#web-browser)
 - [Touchpad](#touchpad)
 - [Scrolling](#natural-scrolling)
 - [Bluetooth](#bluetooth)
@@ -624,7 +627,6 @@ root@archiso ~ # reboot
 - [Audio](#audio)
 - [Hangouts](#google-hangouts)
 - [Zoom](#zoom)
-- [Apps](#apps)
 
 ### Console
 
@@ -872,7 +874,23 @@ air$ make && sudo make install
 I do, too, for [st](http://st.suckless.org), [dmenu](http://dmenu.suckless.org),
 and [surf](http://surf.suckless.org) apps from [suckless](http://suckless.org).
 
-### Web
+### Key mapping
+
+I can't live without this on X
+
+```
+air$ cat /etc/X11/xorg.conf.d/00-keyboard.conf
+Section "InputClass"
+        Identifier "system-keyboard"
+	MatchIsKeyboard "on"
+	# Left caps lock to ctrl key.
+	Option "XkbOptions" "ctrl:nocaps,altwin:swap_alt_win"
+EndSection
+```
+
+### Fonts
+
+### Web browser
 
 I'm big fun of [surf](http://surf.suckless.org) but am forced to use
 chromium these days...
@@ -881,8 +899,13 @@ chromium these days...
 
 Install gtk and
 
-
 #### chromium
+
+I'm just lazy that I usually use `pacman` for `chromium`
+
+```
+air$ sudo pacman -S chromium
+```
 
 ### Touchpad
 
