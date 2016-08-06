@@ -649,7 +649,7 @@ compile,
 ```
 air$ tar xfJ linux-4.7.tar.xz
 air$ cd linux-4.7
-air$ zcat /proc/config.gz > .config
+air$ zcat /proc/config.gz > [.config](kernel/dot.config)
 air$ make oldconfig
 ...
 air$ make
