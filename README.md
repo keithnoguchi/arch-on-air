@@ -611,15 +611,15 @@ root@archiso ~ # reboot
 ## Post-installation
 
 - [Console](#console)
-- [X](#x)
 - [WiFi](#wifi)
-- [Audio](#audio)
 - [Video](#video)
+- [X](#x)
 - [Bluetooth](#bluetooth)
 - [Touchpad](#touchpad)
 - [Scrolling](#natural-scrolling)
 - [KVM](#kvm)
 - [Slack](#slack)
+- [Audio](#audio)
 - [Hangouts](#google-hangouts)
 - [Zoom](#zoom)
 
@@ -631,7 +631,10 @@ Let's disable caps-lock on the console
 air$ cat /etc/vconsole.conf
 KEYMAP=emacs2
 ```
-### X
+
+### WiFi
+
+### Video
 
 Let's install `xf86-video-intel`, as we have Intel GPU
 
@@ -644,11 +647,7 @@ air$ lspci | grep VGA
 air$ sudo pacman -S xf86-video-intel
 ```
 
-### WiFi
-
-### Audio
-
-### Video
+### X
 
 ### Bluetooth
 
@@ -659,6 +658,8 @@ air$ sudo pacman -S xf86-video-intel
 ### KVM
 
 ### Slack
+
+### Audio
 
 ### Google hangouts
 
