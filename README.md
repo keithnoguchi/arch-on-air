@@ -662,7 +662,7 @@ air$ sudo cp ./arch/x86_64
 air$
 ```
 
-Update the boot loader config and reboot!
+Update the boot loader and reboot!
 
 ### WiFi
 
