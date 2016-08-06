@@ -174,6 +174,77 @@ var  vg0 -wi-a----- 64.00g
 
 ### Format the partitions
 
+Let's format those three logical volumes as *btrfs* file systems:
+
+```
+root@archiso ~ # mkfs.btrfs /dev/vg0/root
+btrfs-progs v4.6.1
+See http://btrfs.wiki.kernel.org for more information.
+
+Detected a SSD, turning off metadata duplication.  Mkfs with -m dup if you want to forc
+e metadata duplication.
+Performing full device TRIM (32.00GiB) ...
+Label:              (null)
+UUID:               7a0d3277-5c30-4576-a269-f9aa7fff2e1e
+Node size:          16384
+Sector size:        4096
+Filesystem size:    32.00GiB
+Block group profiles:
+  Data:             single            8.00MiB
+  Metadata:         single            8.00MiB
+  System:           single            4.00MiB
+SSD detected:       yes
+Incompat features:  extref, skinny-metadata
+Number of devices:  1
+Devices:
+  ID        SIZE  PATH
+   1    32.00GiB  /dev/vg0/root
+
+root@archiso ~ # mkfs.btrfs /dev/vg0/home
+btrfs-progs v4.6.1
+See http://btrfs.wiki.kernel.org for more information.
+
+Detected a SSD, turning off metadata duplication.  Mkfs with -m dup if you want to force metadata duplication.
+Performing full device TRIM (64.00GiB) ...
+Label:              (null)
+UUID:               4d9072c7-8ebf-4208-9603-a447c77e0321
+Node size:          16384
+Sector size:        4096
+Filesystem size:    64.00GiB
+Block group profiles:
+  Data:             single            8.00MiB
+  Metadata:         single            8.00MiB
+  System:           single            4.00MiB
+SSD detected:       yes
+Incompat features:  extref, skinny-metadata
+Number of devices:  1
+Devices:
+  ID        SIZE  PATH
+   1    64.00GiB  /dev/vg0/home
+
+root@archiso ~ # mkfs.btrfs /dev/vg0/var
+btrfs-progs v4.6.1
+See http://btrfs.wiki.kernel.org for more information.
+
+Detected a SSD, turning off metadata duplication.  Mkfs with -m dup if you want to force metadata duplication.
+Performing full device TRIM (64.00GiB) ...
+Label:              (null)
+UUID:               305f28f3-edfd-4656-8ba3-36dad6703d64
+Node size:          16384
+Sector size:        4096
+Filesystem size:    64.00GiB
+Block group profiles:
+  Data:             single            8.00MiB
+  Metadata:         single            8.00MiB
+  System:           single            4.00MiB
+SSD detected:       yes
+Incompat features:  extref, skinny-metadata
+Number of devices:  1
+Devices:
+  ID        SIZE  PATH
+   1    64.00GiB  /dev/vg0/var
+```
+
 ## Installation
 
 ### Configure the system
