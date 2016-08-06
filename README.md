@@ -624,6 +624,7 @@ root@archiso ~ # reboot
 - [Audio](#audio)
 - [Hangouts](#google-hangouts)
 - [Zoom](#zoom)
+- [Apps](#apps)
 
 ### Console
 
@@ -856,3 +857,13 @@ these days, for their simplicity and custmizability.
 ### Google hangouts
 
 ### Zoom
+
+### Apps
+
+Just install whatever you want through `pacman` as:
+
+```
+air$ sudo pacman -S vim tmux
+```
+
+Happy Hacking!
