@@ -5,10 +5,10 @@ Yet another note on *Let's make ArchLinux up and running on MacBook Air!*
 Thie is my way of running *Arch* on *Air*, based on the official
 [ArchLinux on MacBook(Air)](https://wiki.archlinux.org/index.php/MacBook) wiki.
 
-[Spec](#spec)
-[Pre-installation](#pre-installation)
-[Installation](#installation)
-[Post-installation](#post-installation)
+- [Spec](#spec)
+- [Pre-installation](#pre-installation)
+- [Installation](#installation)
+- [Post-installation](#post-installation)
 
 ## Spec
 
