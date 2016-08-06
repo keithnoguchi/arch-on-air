@@ -21,7 +21,7 @@ L3 Cache:		4 MB
 Memory:			8 GB
 ```
 
-I follow the officieal [Arch Installation guide](https://wiki.archlinux.org/index.php/installation_guide) section format, so that, I hope, it's easy to follow.
+I follow the officieal [Arch Installation guide](https://wiki.archlinux.org/index.php/installation_guide) section format, so that I don't have to think about the order. :)
 
 ## Pre-installation
 
