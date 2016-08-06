@@ -842,6 +842,25 @@ As WM is more of based on the personal preference, please skip this
 section if you use something different.  I use [dwm](http://dwm.suckless.org/)
 these days, for their simplicity and custmizability.
 
+Install some of the X libraries, first
+
+```
+air$ sudo pacman -S libxft libxinerama
+```
+
+then, clone the latest `dwm`
+
+```
+air$ git clone http://git.suckless.org/dwm
+```
+
+and `make && sudo make install`
+
+```
+air$ cd dwm
+air$ make && sudo make install
+```
+
 ### Touchpad
 
 ### Natural Scrolling
