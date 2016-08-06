@@ -659,11 +659,29 @@ and, install!
 
 ```
 air$ sudo make modules_install
-air$ sudo cp ./arch/x86_64
-air$
+air$ sudo cp ./arch/x86_64/boot/bzImage /boot/vmlinuz-4.7.0.1
+air$ sudo mkinitcpio -k 4.7.0.1 -g /boot/initramfs-4.7.0.1.img
 ```
 
-Update the boot loader and reboot!
+Create new boot loader entries under `/boot/loader/entries`
+
+```
+air$ cat /boot/loader/entries/4.7.0.conf
+title   4.7.0 train
+linux   /vmlinuz-4.7.0
+initrd  /initramfs-4.7.0.img
+options root=/dev/mapper/vg0-root rw
+```
+make the new one as a default kernel
+
+```
+air$ sudo sed -i.old -e "s/arch/4.7.0/"  /boot/loader/loader.conf
+air$ cat /boot/loader/loader.conf
+default 4.7.0
+timeout 4
+editor  0
+```
+and `reboot`!
 
 ### WiFi
 
