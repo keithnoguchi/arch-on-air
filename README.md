@@ -72,6 +72,12 @@ and then, run *dhcp* on top of it:
 root@archiso ~ # systemctl start dhcpcd@ens9
 ```
 
+### Update the system clock
+
+```
+root@archiso ~ # timedatectl set-ntp true
+```
+
 ### Partition the disks
 
 #### gdisk
