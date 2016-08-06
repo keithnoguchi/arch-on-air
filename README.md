@@ -615,9 +615,9 @@ root@archiso ~ # reboot
 - [WiFi](#wifi)
 - [Video](#video)
 - [X](#x)
-- [Bluetooth](#bluetooth)
 - [Touchpad](#touchpad)
 - [Scrolling](#natural-scrolling)
+- [Bluetooth](#bluetooth)
 - [KVM](#kvm)
 - [Slack](#slack)
 - [Audio](#audio)
@@ -666,8 +666,9 @@ Update the boot loader and reboot!
 
 ### WiFi
 
-As explained [Arch MacBook wiki](https://wiki.archlinux.org/index.php/MacBook#WiFi),
-we need to use [broadcom-wl-dkms AUR](https://aur.archlinux.org/packages/broadcom-wl-dkms/) for `wl` driver.
+As explained in [Arch MacBook wiki](https://wiki.archlinux.org/index.php/MacBook#WiFi),
+there is [broadcom-wl-dkms AUR](https://aur.archlinux.org/packages/broadcom-wl-dkms/)
+for `wl` driver.
 
 Let's first get `dkms` and `fakeroot` through pacman
 
@@ -675,7 +676,7 @@ Let's first get `dkms` and `fakeroot` through pacman
 air$ sudo pacman -S dkms fakeroot
 ```
 
-then clone the `broadcom-wl-dkms` repo and `makepkg`
+clone the `broadcom-wl-dkms` repo and `makepkg`
 
 ```
 air$ git clone https://aur.archlinux.org/broadcom-wl-dkms
@@ -709,11 +710,11 @@ air$ sudo pacman -S xf86-video-intel
 
 ### X
 
-### Bluetooth
-
 ### Touchpad
 
 ### Natural Scrolling
+
+### Bluetooth
 
 ### KVM
 
