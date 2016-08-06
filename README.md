@@ -610,6 +610,7 @@ root@archiso ~ # reboot
 
 ## Post-installation
 
+- [Console](#console)
 - [X](#x)
 - [WiFi](#wifi)
 - [Audio](#audio)
@@ -621,6 +622,17 @@ root@archiso ~ # reboot
 - [Slack](#slack)
 - [Hangouts](#google-hangouts)
 - [Zoom](#zoom)
+
+### Console
+
+Let's disable caps-lock on the console
+
+```
+air# cat /etc/vconsole.conf
+KEYMAP=emacs2
+```
+
+### X
 
 ### WiFi
 
