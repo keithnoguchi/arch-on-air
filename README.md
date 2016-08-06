@@ -304,7 +304,7 @@ tmpfs                   808024      0    808024   0% /run/user/0
 - [Packages](#install-the-base-packages)
 - [Configuration](#configure-the-system)
 - [Bootloader](#install-the-boot-loader)
-- [Reboot](#reboot-the-system)
+- [Reboot!](#reboot-the-system)
 
 ### Pacman mirror
 
