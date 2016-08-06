@@ -710,10 +710,52 @@ air$ makepkg -f
 Then, just install the self-build package with `pacman`
 
 ```
-air$ sudo pacman -U  broadcom-wl-dkms-6.30.223.271-8-x86_64.pkg.tar.xz
+air$ sudo pacman -U broadcom-wl-dkms-6.30.223.271-8-x86_64.pkg.tar.xz
 loading packages...
+warning: broadcom-wl-dkms-6.30.223.271-8 is up to date -- reinstalling
 resolving dependencies...
 looking for conflicting packages...
+
+Packages (1) broadcom-wl-dkms-6.30.223.271-8
+
+Total Installed Size:  7.66 MiB
+Net Upgrade Size:      0.00 MiB
+
+:: Proceed with installation? [Y/n] y
+(1/1) checking keys in keyring                       [###########################] 100%
+(1/1) checking package integrity                     [###########################] 100%
+(1/1) loading package files                          [###########################] 100%
+(1/1) checking for file conflicts                    [###########################] 100%
+(1/1) checking available disk space                  [###########################] 100%
+:: Running pre-transaction hooks...
+(1/1) Remove DKMS modules
+==> No kernel 4.6.4-1-ARCH headers. You must install them to use DKMS!
+==> dkms remove -m broadcom-wl -v 6.30.223.271 -k 4.7.0.1
+Error! There are no instances of module: broadcom-wl
+6.30.223.271 located in the DKMS tree.
+:: Processing package changes...
+(1/1) reinstalling broadcom-wl-dkms                  [###########################] 100%
+
+To load the new module, run as root:
+
+  rmmod b43 b43legacy ssb bcm43xx brcm80211 brcmfmac brcmsmac bcma wl
+  modprobe wl
+
+or just reboot the system.
+
+:: Running post-transaction hooks...
+(1/1) Install DKMS modules
+==> No kernel 4.6.4-1-ARCH headers. You must install them to use DKMS!
+==> dkms install -m broadcom-wl -v 6.30.223.271 -k 4.7.0.1
+```
+
+Just do `sudo modprobe wl` then boom, you have `wlp3s0` on air!
+
+```
+air$ sudo modprobe wl
+air$ ip l show wlp3s0
+3: wlp3s0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether 08:6d:41:bc:2d:1c brd ff:ff:ff:ff:ff:ff
 ```
 
 ### Video
