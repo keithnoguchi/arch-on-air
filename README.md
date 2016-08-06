@@ -667,9 +667,9 @@ Create new boot loader entries under `/boot/loader/entries`
 
 ```
 air$ cat /boot/loader/entries/4.7.0.conf
-title   4.7.0 train
-linux   /vmlinuz-4.7.0
-initrd  /initramfs-4.7.0.img
+title   4.7.0.1 train
+linux   /vmlinuz-4.7.0.1
+initrd  /initramfs-4.7.0.1.img
 options root=/dev/mapper/vg0-root rw
 ```
 make the new one as a default kernel
