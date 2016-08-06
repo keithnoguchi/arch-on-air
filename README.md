@@ -620,7 +620,6 @@ root@archiso ~ # reboot
 - [Fonts](#fonts)
 - [Web](#browser)
 - [Poser](#power)
-- [Touchpad](#touchpad)
 - [Scrolling](#natural-scrolling)
 - [Bluetooth](#bluetooth)
 - [KVM](#kvm)
@@ -837,7 +836,7 @@ resolving dependencies...
    Enter a number (default=1): 1
 ```
 pick the option #2, `xf86-input-libinput`.  This is needed for the natural
-scrolling configuration, mentioned below:
+scrolling, which I touch up on later.
 
 ```
 :: There are 2 providers available for xf86-input-driver:
@@ -938,9 +937,31 @@ do
 done &
 ```
 
-### Touchpad
-
 ### Natural Scrolling
+
+#### USB mouse
+
+I don't think I can go back to the old way anymore.
+
+Let's install `xinput` through `pacman`
+
+```
+air$ sudo pacman -S xorg-xinput
+```
+
+and then, find the mouse, get the propety number and set
+
+
+```
+air$ xinput | grep -i mouse
+_   _ Mitsumi Electric Apple Optical USB Mouse  id=12   [slave  pointer  (2)]
+air$ xinput list-props 12 | grep -i natural
+	libinput Natural Scrolling Enabled (283):       0
+	libinput Natural Scrolling Enabled Default (284):       0
+air$ xinput set-prop 12 283 1
+```
+
+#### Touchpad
 
 ### Bluetooth
 
