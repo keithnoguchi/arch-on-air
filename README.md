@@ -890,6 +890,12 @@ EndSection
 
 ### Fonts
 
+At this point, I'm with `ttf-freefont`, as it's simple and clean, and have `free` in the name.
+
+```
+air$ sudo pacman -S ttf-freefont
+```
+
 ### Web browser
 
 I'm big fun of [surf](http://surf.suckless.org) but am forced to use
