@@ -133,7 +133,7 @@ __sda4   8:4    0   160G  0 part
 __sda5   8:5    0 125.7G  0 part
 ```
 
-##### Phisical volumes
+##### Physical volumes
 
 Initialize those two partitions as a LVM physical volumes with `pvcreate`:
 
