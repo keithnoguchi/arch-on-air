@@ -45,12 +45,12 @@ sda            8:0    0 465.9G  0 disk
 └─sda5         8:5    0 133.9G  0 part
 ```
 
-Here, *sda2* for OSX, *sda4* for the base Linux, and *sda5* for the libvirt
-storage pool.
+Here, *sda1* for the EFI system partition, *sda2* for OSX, *sda4* for the base Linux,
+and *sda5* for the libvirt storage pool.
 
 ### Set the keyboard layout
 
-Load _emacs key binding_, as usual:
+Load *emacs key binding*, as usual:
 
 ```
 root@archiso ~ # loadkeys /usr/share/kbd/keymaps/i386/qwerty/emacs2.map.gz
@@ -58,7 +58,20 @@ root@archiso ~ # loadkeys /usr/share/kbd/keymaps/i386/qwerty/emacs2.map.gz
 
 ### Connect to the Internet
 
+As default wifi doesn't work out of the box, I just connect TP-Link power over
+ether adapter and hook into the thunderbolt port:
 
+```
+root@archiso ~ # ip l
+2: ens9: <BROADCAST,MULTICAST>
+  link/ether 38:...
+```
+
+and then, run *dhcp* on top of it:
+
+```
+root@archiso ~ # systemctl start dhcpcd@ens9
+```
 
 ### Partition the disks
 
