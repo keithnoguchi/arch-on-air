@@ -80,6 +80,30 @@ root@archiso ~ # systemctl start dhcpcd@ens9
 
 Make both *sda4* and *sda5* as Linux LVM partition through `fdisk` as:
 
+### Format the partitions
+
 ## Installation
 
+### Configure the system
+
+### Install the base packages
+
+### Configure the system
+
+### Install the boot loader
+
 ## Post-installation
+
+### Video
+
+### Audio
+
+### Bluetooth
+
+### WiFi
+
+### X
+
+### Touchpad
+
+### Natural Scrolling
