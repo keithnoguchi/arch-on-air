@@ -649,7 +649,7 @@ compile,
 ```
 air$ tar xfJ linux-4.7.tar.xz
 air$ cd linux-4.7
-air$ zcat /proc/config.gz > [.config](kernel/dot.config)
+air$ zcat /proc/config.gz > .config
 air$ make oldconfig
 ...
 air$ make
@@ -682,6 +682,8 @@ timeout 4
 editor  0
 ```
 and `reboot`!
+
+Here is the current [.config](kernel/dot.config) file I use for your reference.
 
 ### WiFi
 
