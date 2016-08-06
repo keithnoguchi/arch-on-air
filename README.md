@@ -2,8 +2,13 @@
 
 Yet another note on *Let's make ArchLinux up and running on MacBook Air!*
 
-Thie is my way of running *Arch* on *Air*, based on the official
-[ArchLinux on MacBook(Air)](https://wiki.archlinux.org/index.php/MacBook) wiki.
+Thie is one way, or I would say, *my way* of running *Arch* on *Air*,
+based on the official
+[ArchLinux on MacBook(Air)](https://wiki.archlinux.org/index.php/MacBook) wiki
+and
+[Arch Installation guide](https://wiki.archlinux.org/index.php/installation_guide).
+
+Buckle up and let's roll!
 
 - [Spec](#spec)
 - [Pre-installation](#pre-installation)
@@ -25,10 +30,6 @@ L2 Cache (per Core):	256 KB
 L3 Cache:		4 MB
 Memory:			8 GB
 ```
-
-Let's roll [pre](#pre-installation), [in](#installation),
-and [post](#post-installation) installation actions, just like
-[Arch Installation guide](https://wiki.archlinux.org/index.php/installation_guide)!
 
 ## Pre-installation
 
