@@ -32,7 +32,15 @@ and [post](#post-installation) installation actions, just like
 
 ## Pre-installation
 
-## Dual booting
+- [Dualboot](#dual-booting)
+- [Keyboard](#set-the-keyboard-layout)
+- [Network](#connect-to-the-internet)
+- [Clock](#update-the-system-clock)
+- [Partition](#partition-the-disks)
+- [Format](#format-the-partitions)
+- [Mount](#mount-the-partitions)
+
+### Dual booting
 
 As I use OSX ocasionally, I dual boot the air with OSX.  As recommended on
 [Arch on MacBook(Air) wiki](https://wiki.archlinux.org/index.php/MacBook#OS_X_with_Arch_Linux),
