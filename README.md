@@ -35,7 +35,7 @@ recommendation, I create a dedicated partition for the libvirt storage pool,
 which ended up like this:
 
 ```
-$ lsblk
+root@archiso ~ # lsblk
 NAME         MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
 sda            8:0    0 465.9G  0 disk
 ├─sda1         8:1    0   200M  0 part
@@ -50,7 +50,15 @@ storage pool.
 
 ### Set the keyboard layout
 
+Load _emacs key binding_, as usual:
+
+```
+root@archiso ~ # loadkeys /usr/share/kbd/keymaps/i386/qwerty/emacs2.map.gz
+```
+
 ### Connect to the Internet
+
+
 
 ### Partition the disks
 
