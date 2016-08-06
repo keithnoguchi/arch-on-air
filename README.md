@@ -635,6 +635,14 @@ air$ cat /etc/vconsole.conf
 KEYMAP=emacs2
 ```
 
+#### Console apps
+
+I install those for console fun
+
+```
+air$ sudo pacman -S vim tmux irssi mutt cscope
+```
+
 ### Kernel
 
 Let's build the kernel(TM)
@@ -808,10 +816,10 @@ air$ sudo pacman -S xf86-video-intel
 
 ### X
 
-Install `xorg` related packages
+Install X server and related packages
 
 ```
-air$ sudo pacman -S xorg-server xorg-xinit
+air$ sudo pacman -S xorg-server xorg-xinit xorg-xsetroot
 ...
 ```
 
@@ -840,12 +848,12 @@ scrolling configuration, mentioned below:
 
 As WM is more of based on the personal preference, please skip this
 section if you use something different.  I use [dwm](http://dwm.suckless.org/)
-these days, for their simplicity and custmizability.
+these days, for their simplicity and the ease of use.
 
-Install some of the X libraries, first
+Install some X libraries and the stuff, first
 
 ```
-air$ sudo pacman -S libxft libxinerama
+air$ sudo pacman -S libxft libxinerama pkg-config
 ```
 
 then, clone the latest `dwm`
@@ -860,6 +868,21 @@ and `make && sudo make install`
 air$ cd dwm
 air$ make && sudo make install
 ```
+
+I do, too, for [st](http://st.suckless.org), [dmenu](http://dmenu.suckless.org),
+and [surf](http://surf.suckless.org) apps from [suckless](http://suckless.org).
+
+### Web
+
+I'm big fun of [surf](http://surf.suckless.org) but am forced to use
+chromium these days...
+
+#### surf
+
+Install gtk and
+
+
+#### chromium
 
 ### Touchpad
 
@@ -876,13 +899,5 @@ air$ make && sudo make install
 ### Google hangouts
 
 ### Zoom
-
-### Apps
-
-Just install whatever you want through `pacman` as:
-
-```
-air$ sudo pacman -S vim tmux
-```
 
 Happy Hacking!
