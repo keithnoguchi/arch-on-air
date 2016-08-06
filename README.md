@@ -628,11 +628,21 @@ root@archiso ~ # reboot
 Let's disable caps-lock on the console
 
 ```
-air# cat /etc/vconsole.conf
+air$ cat /etc/vconsole.conf
 KEYMAP=emacs2
 ```
-
 ### X
+
+Let's install `xf86-video-intel`, as we have Intel GPU
+
+```
+air$ lspci | grep VGA
+00:02.0 VGA compatible controller: Intel Corporation HD Graphics 6000 (rev 09)
+```
+
+```
+air$ sudo pacman -S xf86-video-intel
+```
 
 ### WiFi
 
