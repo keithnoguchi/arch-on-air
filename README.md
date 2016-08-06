@@ -322,15 +322,186 @@ root@archiso ~ # pacstrap /mnt base
 
 #### /etc/fstab
 
+Run `genfstab`
+
+```
+root@archiso ~ # genfstab -p /mnt >> /mnt/etc/fstab
+```
+
+and here you are:
+
+```
+root@archiso ~ # cat /mnt/etc/fstab
+#
+# /etc/fstab: static file system information
+#
+# <file system> <dir>   <type>  <options>       <dump>  <pass>
+# UUID=7a0d3277-5c30-4576-a269-f9aa7fff2e1e
+/dev/mapper/vg0-root    /               btrfs           rw,relatime,ssd,space_cache,subvolid=5,subvol=/        0 0
+
+# UUID=4d9072c7-8ebf-4208-9603-a447c77e0321
+/dev/mapper/vg0-home    /home           btrfs           rw,relatime,ssd,space_cache,subvolid=5,subvol=/        0 0
+
+# UUID=305f28f3-edfd-4656-8ba3-36dad6703d64
+/dev/mapper/vg0-var     /var            btrfs           rw,relatime,ssd,space_cache,subvolid=5,subvol=/        0 0
+
+# UUID=67E3-17ED LABEL=EFI
+/dev/sda1               /boot           vfat            rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro   0 2
+
+```
+
 #### chroot
+
+You do `arch-chroot`
+
+```
+root@archiso ~ # arch-chroot /mnt
+```
+
+and will be in the sandbox:
+
+```
+[root@archiso /]# df -k
+Filesystem           1K-blocks   Used Available Use% Mounted on
+/dev/mapper/vg0-root  33554432 697848  32629464   3% /
+/dev/mapper/vg0-home  67108864  16768  66046720   1% /home
+/dev/mapper/vg0-var   67104768 227932  65832356   1% /var
+/dev/sda1               201633  53823    147811  27% /boot
+udev                   4025808      0   4025808   0% /dev
+shm                    4040120      0   4040120   0% /dev/shm
+run                    4040120      0   4040120   0% /run
+tmp                    4040120      0   4040120   0% /tmp
+airootfs                262144   7280    254864   3% /etc/resolv.conf
+[root@archiso /]#
+```
 
 #### timezone
 
+Link the `zoneinfo` file
+
+```
+[root@archiso /]# ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+```
+
+to get your local time.
+
+```
+[root@archiso /]# date
+Fri Aug  5 23:15:10 PDT 2016
+```
+
 #### locale
 
-#### Initial kernel
+Uncomment *UTF-8*
+
+```
+[root@archiso /]# grep -v "^#" /etc/locale.gen
+en_US.UTF-8 UTF-8
+```
+
+and run `locale-gen`
+
+```
+[root@archiso /]# locale-gen
+Generating locales...
+  en_US.UTF-8... done
+Generation complete.
+```
+
+#### Hostname
+
+Of course, it will be called *air*:)
+
+```
+[root@archiso /]# echo air > /etc/hostname
+```
+
+```
+root@archiso /]# sed -i.orig -e "s/localhost$/localhost air/" /etc/hosts
+```
+
+#### Initial ramdisk
+
+Install `btrfs-progs`
+
+```
+[root@archiso /]# pacman -S btrfs-progs
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) btrfs-progs-4.6.1-1
+
+Total Download Size:   0.56 MiB
+Total Installed Size:  3.97 MiB
+
+:: Proceed with installation? [Y/n] y
+:: Retrieving packages...
+ btrfs-progs-4.6.1-1-x...   571.1 KiB   159K/s 00:04 [###########################] 100%
+ (1/1) checking keys in keyring                       [###########################] 100%
+ (1/1) checking package integrity                     [###########################] 100%
+ (1/1) loading package files                          [###########################] 100%
+ (1/1) checking for file conflicts                    [###########################] 100%
+ (1/1) checking available disk space                  [###########################] 100%
+ :: Processing package changes...
+ (1/1) installing btrfs-progs                         [###########################] 100%
+ :: Running post-transaction hooks...
+ (1/1) Updating manpage index...
+```
+
+enable *LVM*
+
+```
+[root@archiso /]# grep '^HOOKS' /etc/mkinitcpio.conf
+HOOKS="base udev autodetect modconf block lvm2 filesystems keyboard fsck"
+```
+
+and create an initial RAM disk with `mkinitcpio`
+
+```
+[root@archiso /]# mkinitcpio -p linux
+==> Building image from preset: /etc/mkinitcpio.d/linux.preset: 'default'
+ -> -k /boot/vmlinuz-linux -c /etc/mkinitcpio.conf -g /boot/initramfs-linux.img
+==> Starting build: 4.6.4-1-ARCH
+ -> Running build hook: [base]
+ -> Running build hook: [udev]
+ -> Running build hook: [autodetect]
+ -> Running build hook: [modconf]
+ -> Running build hook: [block]
+ -> Running build hook: [lvm2]
+ -> Running build hook: [filesystems]
+ -> Running build hook: [keyboard]
+ -> Running build hook: [fsck]
+==> Generating module dependencies
+==> Creating gzip-compressed initcpio image: /boot/initramfs-linux.img
+==> Image generation successful
+==> Building image from preset: /etc/mkinitcpio.d/linux.preset: 'fallback'
+ -> -k /boot/vmlinuz-linux -c /etc/mkinitcpio.conf -g /boot/initramfs-linux-fallback.img -S autodetect
+==> Starting build: 4.6.4-1-ARCH
+ -> Running build hook: [base]
+ -> Running build hook: [udev]
+ -> Running build hook: [modconf]
+ -> Running build hook: [block]
+==> WARNING: Possibly missing firmware for module: wd719x
+==> WARNING: Possibly missing firmware for module: aic94xx
+ -> Running build hook: [lvm2]
+ -> Running build hook: [filesystems]
+ -> Running build hook: [keyboard]
+ -> Running build hook: [fsck]
+==> Generating module dependencies
+==> Creating gzip-compressed initcpio image: /boot/initramfs-linux-fallback.img
+==> Image generation successful
+```
 
 #### root password
+
+Do it before forget:
+
+```
+[root@archiso /]# passwd root
+New password:
+Retype new password:
+passwd: password updated successfully
+```
 
 ### Install the boot loader
 
