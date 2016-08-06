@@ -710,6 +710,34 @@ air$ sudo pacman -S xf86-video-intel
 
 ### X
 
+Install `xorg` related packages
+
+```
+air$ sudo pacman -S xorg-server xorg-xinit
+...
+```
+
+pick mesa-libgl, as a LibGL library
+
+```
+resolving dependencies...
+:: There are 4 providers available for libgl:
+:: Repository extra
+   1) mesa-libgl  2) nvidia-304xx-libgl  3) nvidia-340xx-libgl  4) nvidia-libgl
+
+   Enter a number (default=1): 1
+```
+pick the option #2, `xf86-input-libinput`.  This is needed for the natural
+scrolling configuration, mentioned below:
+
+```
+:: There are 2 providers available for xf86-input-driver:
+:: Repository extra
+   1) xf86-input-evdev  2) xf86-input-libinput
+
+   Enter a number (default=1): 2
+```
+
 ### Touchpad
 
 ### Natural Scrolling
