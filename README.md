@@ -687,6 +687,8 @@ Here is the current [.config](kernel/dot.config) file I use for your reference.
 
 ### WiFi
 
+#### wlp3s0
+
 As explained in [Arch MacBook wiki](https://wiki.archlinux.org/index.php/MacBook#WiFi),
 there is [broadcom-wl-dkms AUR](https://aur.archlinux.org/packages/broadcom-wl-dkms/)
 for `wl` driver.
@@ -757,6 +759,38 @@ air$ ip l show wlp3s0
 3: wlp3s0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
     link/ether 08:6d:41:bc:2d:1c brd ff:ff:ff:ff:ff:ff
 ```
+
+#### WPA
+
+Install `wpa_supplicant` with `pacman`
+
+```
+air$ sudo pacman -S wpa_supplicant
+```
+
+and run it with your config, say
+
+```
+air$ sudo wpa_supplicant -B -c your_wpa_config -i wlp3s0
+```
+
+and you get the link up!
+
+```
+air$ ip a show wlp3s0
+3: wlp3s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:6d:41:bc:2d:1c brd ff:ff:ff:ff:ff:ff
+    inet6 fe80::a6d:41ff:febc:2d1c/64 scope link
+       valid_lft forever preferred_lft forever
+```
+
+You run DHCP on it, say with `systemctl`
+
+```
+air$ sudo systemctl start dhcpcd@wlp3s0
+```
+
+and you got the IP!
 
 ### Video
 
