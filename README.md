@@ -287,9 +287,27 @@ tmpfs                   808024      0    808024   0% /run/user/0
 
 ## Installation
 
+### Pacman mirror
+
+Bring the `kernel.org` to the top.
+
+```
+root@archiso ~ # head -10 /etc/pacman.d/mirrorlist
+##
+## Arch Linux repository mirrorlist
+## Sorted by mirror score from mirror status page
+## Generated on 2016-08-01
+##
+
+Server = http://mirrors.kernel.org/archlinux/$repo/os/$arch
+## Score: 0.2, France
+Server = http://archlinux.polymorf.fr/$repo/os/$arch
+## Score: 0.3, France
+```
+
 ### Install the base packages
 
-Just install the *base* package with `pacstrap`:
+Install the *base* package with `pacstrap`:
 
 ```
 root@archiso ~ # pacstrap /mnt base
@@ -297,20 +315,40 @@ root@archiso ~ # pacstrap /mnt base
 
 ### Configure the system
 
+#### /etc/fstab
+
+#### chroot
+
+#### timezone
+
+#### locale
+
+#### Initial kernel
+
+#### root password
+
 ### Install the boot loader
 
 ## Post-installation
 
-### Video
-
-### Audio
-
-### Bluetooth
+### X
 
 ### WiFi
 
-### X
+### Audio
+
+### Video
+
+### Bluetooth
 
 ### Touchpad
 
 ### Natural Scrolling
+
+### KVM
+
+### Slack
+
+### Google hangout
+
+### Zoom
