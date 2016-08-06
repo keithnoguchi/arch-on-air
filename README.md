@@ -899,7 +899,7 @@ air$ sudo pacman -S ttf-freefont
 
 ### Browser
 
-I'm big fun of [surf](http://surf.suckless.org) but am forced to use
+I'm big fan of [surf](http://surf.suckless.org) but am forced to use
 chromium these days...
 
 #### surf
