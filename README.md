@@ -871,8 +871,8 @@ air$ cd dwm
 air$ make && sudo make install
 ```
 
-I do, too, for [st](http://st.suckless.org), [dmenu](http://dmenu.suckless.org),
-and [surf](http://surf.suckless.org) apps from [suckless](http://suckless.org).
+I do the same, too, for [st](http://st.suckless.org) and
+[dmenu](http://dmenu.suckless.org) from [suckless](http://suckless.org).
 
 ### Key mapping
 
@@ -890,7 +890,8 @@ EndSection
 
 ### Fonts
 
-At this point, I'm with `ttf-freefont`, as it's simple and clean, and have `free` in the name.
+At this point, I'm with `ttf-freefont`, as it's simple and clean, and have
+`free` in the name.
 
 ```
 air$ sudo pacman -S ttf-freefont
@@ -903,7 +904,11 @@ chromium these days...
 
 #### surf
 
-Install gtk and
+Install `gtk2` and `webkitgtk2` with `pacman`
+
+```
+air$ sudo pacman -S gtk2 webkitgtk2
+```
 
 #### chromium
 
