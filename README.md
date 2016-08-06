@@ -29,7 +29,24 @@ I follow the officieal [Arch Installation guide](https://wiki.archlinux.org/inde
 
 As I use OSX ocasionally, I dual boot the air with OSX.  As recommended on
 [Arch on MacBook(Air) wiki](https://wiki.archlinux.org/index.php/MacBook#OS_X_with_Arch_Linux),
-I use the Apple partition tool to make the SSD half-and-half(TM):
+I use the Apple partition tool to shrink the OSX partition to
+around 180GB to make enough space for linux.  And based on the libvirt
+recommendation, I create a dedicated partition for the libvirt storage pool,
+which ended up like this:
+
+```
+$ lsblk
+NAME         MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+sda            8:0    0 465.9G  0 disk
+├─sda1         8:1    0   200M  0 part
+├─sda2         8:2    0 179.2G  0 part
+├─sda3         8:3    0 619.9M  0 part
+├─sda4         8:4    0   152G  0 part
+└─sda5         8:5    0 133.9G  0 part
+```
+
+Here, *sda2* for OSX, *sda4* for the base Linux, and *sda5* for the libvirt
+storage pool.
 
 ### Set the keyboard layout
 
