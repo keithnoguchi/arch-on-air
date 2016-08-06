@@ -8,12 +8,12 @@ based on the official
 and
 [Arch Installation guide](https://wiki.archlinux.org/index.php/installation_guide).
 
-Buckle up and let's roll!
-
 - [Spec](#spec)
 - [Pre-installation](#pre-installation)
 - [Installation](#installation)
 - [Post-installation](#post-installation)
+
+Buckle up and let's roll!
 
 ## Spec
 
@@ -30,6 +30,8 @@ L2 Cache (per Core):	256 KB
 L3 Cache:		4 MB
 Memory:			8 GB
 ```
+
+I wish it's a quad core with 16GB of memory, but hey, it does a decent job! :)
 
 ## Pre-installation
 
