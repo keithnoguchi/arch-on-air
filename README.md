@@ -22,7 +22,7 @@ Memory:			8 GB
 ```
 
 Let's roll [pre](#pre-installation), [in](#installation),
-and [post](#post-installation) installation steps, as
+and [post](#post-installation) installation actions, as
 [Arch Installation guide](https://wiki.archlinux.org/index.php/installation_guide).
 
 ## Pre-installation
