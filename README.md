@@ -618,7 +618,8 @@ root@archiso ~ # reboot
 - [WindowManager](#window-manager)
 - [KeyMapping](#key-mapping)
 - [Fonts](#fonts)
-- [Web](#web-browser)
+- [Web](#browser)
+- [Poser](#power)
 - [Touchpad](#touchpad)
 - [Scrolling](#natural-scrolling)
 - [Bluetooth](#bluetooth)
@@ -897,7 +898,7 @@ At this point, I'm with `ttf-freefont`, as it's simple and clean, and have
 air$ sudo pacman -S ttf-freefont
 ```
 
-### Web browser
+### Browser
 
 I'm big fun of [surf](http://surf.suckless.org) but am forced to use
 chromium these days...
@@ -916,6 +917,25 @@ I'm just lazy that I usually use `pacman` for `chromium`
 
 ```
 air$ sudo pacman -S chromium
+```
+
+### Power
+
+Install `acpi` ACPI client package to retrieve a current battery life
+
+```
+air$ sudo pacman -S acpi
+```
+
+You can get the current buttery status with `acpi -b`.  I set it up
+in `.xinitrc` to periodically check the status
+
+```
+while true
+do
+  xsetroot -name "$(acpi -b),$(date +%l:%M%P)"
+  sleep 1m
+done &
 ```
 
 ### Touchpad
