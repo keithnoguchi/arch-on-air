@@ -285,9 +285,13 @@ tmpfs                   808024      0    808024   0% /run/user/0
 
 ## Installation
 
-### Configure the system
-
 ### Install the base packages
+
+Just install the *base* package with `pacstrap`:
+
+```
+root@archiso ~ # pacstrap /mnt base
+```
 
 ### Configure the system
 
