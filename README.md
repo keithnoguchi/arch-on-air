@@ -611,6 +611,7 @@ root@archiso ~ # reboot
 ## Post-installation
 
 - [Console](#console)
+- [Kernel](#kernel)
 - [WiFi](#wifi)
 - [Video](#video)
 - [X](#x)
@@ -632,7 +633,66 @@ air$ cat /etc/vconsole.conf
 KEYMAP=emacs2
 ```
 
+### Kernel
+
+Let's build the kernel(TM)
+
+First get the toolkit,
+
+```
+air$ sudo pacman -S gcc make bc
+```
+
+compile,
+
+```
+air$ tar xfJ linux-4.7.tar.xz
+air$ cd linux-4.7
+air$ zcat /proc/config.gz > .config
+air$ make oldconfig
+...
+air$ make
+```
+
+and, install!
+
+```
+air$ sudo make modules_install
+air$ sudo cp ./arch/x86_64
+air$
+```
+
+Update the boot loader config and reboot!
+
 ### WiFi
+
+As explained [Arch MacBook wiki](https://wiki.archlinux.org/index.php/MacBook#WiFi),
+we need to use [broadcom-wl-dkms AUR](https://aur.archlinux.org/packages/broadcom-wl-dkms/) for `wl` driver.
+
+Let's first get `dkms` and `fakeroot` through pacman
+
+```
+air$ sudo pacman -S dkms fakeroot
+```
+
+then clone the `broadcom-wl-dkms` repo and `makepkg`
+
+```
+air$ git clone https://aur.archlinux.org/broadcom-wl-dkms
+```
+```
+air$ cd broadcom-wl-dkms/
+air$ makepkg -f
+```
+
+Then, just install the self-build package with `pacman`
+
+```
+air$ sudo pacman -U  broadcom-wl-dkms-6.30.223.271-8-x86_64.pkg.tar.xz
+loading packages...
+resolving dependencies...
+looking for conflicting packages...
+```
 
 ### Video
 
