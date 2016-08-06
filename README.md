@@ -74,16 +74,100 @@ root@archiso ~ # systemctl start dhcpcd@ens9
 
 ### Partition the disks
 
-Create two LVM partitions, one for the base Linux OS and the other for the libvirt
-storage pool.  As pointed out by [ArchWiki](https://wiki.archlinux.org/index.php/MacBook#Option_1:_EFI), use *+128MiB* as the starting point, to make a gap after OSX
-partition:
+#### gdisk
+
+Create two LVM partitions by `gdisk`, one for the base Linux OS and the other
+for the libvirt storage pool.  As mentioned in
+[ArchWiki](https://wiki.archlinux.org/index.php/MacBook#Option_1:_EFI), use
+*+128M* as the starting point to make a gap after OSX partition:
 
 ```
-sda4 160G
- vg0-root 32G
- vg0-home 64G
- vg0-var 64G
-sda5 125.9G
+root@archiso ~ # gdisk /dev/sda
+GPT fdisk (gdisk) version 1.0.1
+
+Partition table scan:
+MBR: protective
+BSD: not present
+APM: not present
+GPT: present
+
+Found valid GPT with protective MBR; using GPT.
+
+Command (? for help): p
+Disk /dev/sda: 977105060 sectors, 465.9 GiB
+Logical sector size: 512 bytes
+Disk identifier (GUID): D05045F2-0A79-46AD-B240-1E67BE21E787
+Partition table holds up to 128 entries
+First usable sector is 34, last usable sector is 977105026
+Partitions will be aligned on 8-sector boundaries
+Total free space is 524294 sectors (256.0 MiB)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+1              40          409639   200.0 MiB   EF00  EFI System Partition
+2          409640       376118559   179.2 GiB   AF05  Customer
+3       376118560       377388095   619.9 MiB   AB00  Recovery HD
+4       377650240       713194559   160.0 GiB   8E00  Linux LVM
+5       713456704       977105026   125.7 GiB   8E00  Linux LVM
+
+Command (? for help): q
+```
+
+#### LVM
+
+Let's create LVM logical volumes on *sda4* and *sda5*:
+
+```
+root@archiso ~ # lsblk
+NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+sda      8:0    0 465.9G  0 disk
+__sda1   8:1    0   200M  0 part
+__sda2   8:2    0 179.2G  0 part
+__sda3   8:3    0 619.9M  0 part
+__sda4   8:4    0   160G  0 part
+__sda5   8:5    0 125.7G  0 part
+```
+
+##### Phisical volumes
+
+```
+root@archiso ~ # pvcreate /dev/sda4
+Physical volume "/dev/sda4" successfully created.
+root@archiso ~ # pvcreate -ff /dev/sda5
+Physical volume "/dev/sda5" successfully created.
+root@archiso ~ # pvs
+PV         VG Fmt  Attr PSize   PFree
+/dev/sda4     lvm2 ---  160.00g 160.00g
+/dev/sda5     lvm2 ---  125.72g 125.72g
+```
+
+##### Logical groups
+
+Create a logical groups, one for base OS, *vg0*, and the other for the the
+libvirt storage pool, *vg1*:
+
+```
+root@archiso ~ # vgcreate vg0 /dev/sda4
+Volume group "vg0" successfully created
+root@archiso ~ # vgcreate vg1 /dev/sda5
+Volume group "vg1" successfully created
+```
+
+##### Logical volumes
+
+Create logical volumes for the base OS:
+
+```
+root@archiso ~ # lvcreate -L 32G -n root vg0
+Logical volume "root" created.
+root@archiso ~ # lvcreate -L 64G -n home vg0
+Logical volume "home" created.
+root@archiso ~ # lvcreate -l 100%FREE -n var vg0
+Logical volume "var" created.
+root@archiso ~ # lvs
+LV   VG  Attr       LSize  Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+home vg0 -wi-a----- 64.00g
+root vg0 -wi-a----- 32.00g
+var  vg0 -wi-a----- 64.00g
 ```
 
 ### Format the partitions
