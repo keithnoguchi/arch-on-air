@@ -300,6 +300,11 @@ tmpfs                   808024      0    808024   0% /run/user/0
 
 ## Installation
 
+- [Pacman](#pacman-mirror)
+- [Packages](#install-the-base-packages)
+- [Configuration](#configure-the-system)
+- [Bootloader](#install-the-boot-loader)
+
 ### Pacman mirror
 
 Bring the `kernel.org` to the top.
