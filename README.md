@@ -63,8 +63,11 @@ ether adapter and hook into the thunderbolt port:
 
 ```
 root@archiso ~ # ip l
-2: ens9: <BROADCAST,MULTICAST>
-  link/ether 38:...
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group
+default qlen 1
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: ens9: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 1000
+    link/ether 38:c9:86:04:85:78 brd ff:ff:ff:ff:ff:ff
 ```
 
 and then, run *dhcp* on top of it:
@@ -75,7 +78,7 @@ root@archiso ~ # systemctl start dhcpcd@ens9
 
 ### Partition the disks
 
-I use OSX disk utilility to make a 
+Make both *sda4* and *sda5* as Linux LVM partition through `fdisk` as:
 
 ## Installation
 
