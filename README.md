@@ -670,10 +670,10 @@ As explained in [Arch MacBook wiki](https://wiki.archlinux.org/index.php/MacBook
 there is [broadcom-wl-dkms AUR](https://aur.archlinux.org/packages/broadcom-wl-dkms/)
 for `wl` driver.
 
-Let's first get `dkms` and `fakeroot` through pacman
+Let's first get `git`, `dkms`, and `fakeroot` through pacman
 
 ```
-air$ sudo pacman -S dkms fakeroot
+air$ sudo pacman -S git dkms fakeroot
 ```
 
 clone the `broadcom-wl-dkms` repo and `makepkg`
