@@ -783,7 +783,7 @@ and run it with your config, say
 air$ sudo wpa_supplicant -B -c your_wpa_config -i wlp3s0
 ```
 
-and you get the link up!
+then you get the link up!
 
 ```
 air$ ip a show wlp3s0
@@ -793,13 +793,13 @@ air$ ip a show wlp3s0
        valid_lft forever preferred_lft forever
 ```
 
-You run DHCP on it, say with `systemctl`
+Run DHCP, say with `systemctl`
 
 ```
 air$ sudo systemctl start dhcpcd@wlp3s0
 ```
 
-and you got the IP!
+and you got the IP over the air!
 
 ### Video
 
