@@ -114,7 +114,7 @@ Command (? for help): q
 
 #### LVM
 
-Let's create LVM logical volumes on *sda4* and *sda5*:
+Let's create LVM logical volumes on partition *sda4* for the base OS installation:
 
 ```
 root@archiso ~ # lsblk
@@ -128,6 +128,8 @@ __sda5   8:5    0 125.7G  0 part
 ```
 
 ##### Phisical volumes
+
+Initialize those two partitions as a LVM physical volumes with `pvcreate`:
 
 ```
 root@archiso ~ # pvcreate /dev/sda4
@@ -143,7 +145,7 @@ PV         VG Fmt  Attr PSize   PFree
 ##### Logical groups
 
 Create a logical groups, one for base OS, *vg0*, and the other for the the
-libvirt storage pool, *vg1*:
+libvirt storage pool, *vg1*, with `vgcreate`:
 
 ```
 root@archiso ~ # vgcreate vg0 /dev/sda4
@@ -154,7 +156,7 @@ Volume group "vg1" successfully created
 
 ##### Logical volumes
 
-Create logical volumes for the base OS:
+Create logical volumes for the base OS with `lvcreate`:
 
 ```
 root@archiso ~ # lvcreate -L 32G -n root vg0
