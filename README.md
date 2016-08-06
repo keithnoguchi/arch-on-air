@@ -29,20 +29,16 @@ I follow the officieal [Arch Installation guide](https://wiki.archlinux.org/inde
 
 As I use OSX ocasionally, I dual boot the air with OSX.  As recommended on
 [Arch on MacBook(Air) wiki](https://wiki.archlinux.org/index.php/MacBook#OS_X_with_Arch_Linux),
-I use the Apple partition tool to shrink the OSX partition to
-around 180GB to make enough space for linux.  And based on the libvirt
-recommendation, I create a dedicated partition for the libvirt storage pool,
-which ended up like this:
+I use the Apple partition tool to shrink the OSX partition to around 180GB to
+make enough space for linux.
 
 ```
 root@archiso ~ # lsblk
-NAME         MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
-sda            8:0    0 465.9G  0 disk
-├─sda1         8:1    0   200M  0 part
-├─sda2         8:2    0 179.2G  0 part
-├─sda3         8:3    0 619.9M  0 part
-├─sda4         8:4    0   152G  0 part
-└─sda5         8:5    0 133.9G  0 part
+NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+sda      8:0    0 465.9G  0 disk
+__sda1   8:1    0   200M  0 part
+__sda2   8:2    0 179.2G  0 part
+__sda3   8:3    0 619.9M  0 part
 ```
 
 Here, *sda1* for the EFI system partition, *sda2* for OSX, *sda4* for the base Linux,
@@ -78,7 +74,17 @@ root@archiso ~ # systemctl start dhcpcd@ens9
 
 ### Partition the disks
 
-Make both *sda4* and *sda5* as Linux LVM partition through `fdisk` as:
+Create two LVM partitions, one for the base Linux OS and the other for the libvirt
+storage pool.  As pointed out by [ArchWiki](https://wiki.archlinux.org/index.php/MacBook#Option_1:_EFI), use *+128MiB* as the starting point, to make a gap after OSX
+partition:
+
+```
+sda4 160G
+ vg0-root 32G
+ vg0-home 64G
+ vg0-var 64G
+sda5 125.9G
+```
 
 ### Format the partitions
 
