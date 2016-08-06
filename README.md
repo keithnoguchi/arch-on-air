@@ -615,6 +615,7 @@ root@archiso ~ # reboot
 - [WiFi](#wifi)
 - [Video](#video)
 - [X](#x)
+- [WindowManager](#window-manager)
 - [Touchpad](#touchpad)
 - [Scrolling](#natural-scrolling)
 - [Bluetooth](#bluetooth)
@@ -737,6 +738,12 @@ scrolling configuration, mentioned below:
 
    Enter a number (default=1): 2
 ```
+
+### Window manager
+
+As WM is more of based on the personal preference, please skip this
+section if you use something different.  I use [dwm](http://dwm.suckless.org/)
+these days, for their simplicity and custmizability.
 
 ### Touchpad
 
