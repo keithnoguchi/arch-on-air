@@ -610,7 +610,17 @@ root@archiso ~ # reboot
 
 ## Post-installation
 
-### X
+- [X](#x)
+- [WiFi](#wifi)
+- [Audio](#audio)
+- [Video](#video)
+- [Bluetooth](#bluetooth)
+- [Touchpad](#touchpad)
+- [Scrolling](#natural-scrolling)
+- [KVM](#kvm)
+- [Slack](#slack)
+- [Hangouts](#google-hangouts)
+- [Zoom](#zoom)
 
 ### WiFi
 
@@ -628,6 +638,6 @@ root@archiso ~ # reboot
 
 ### Slack
 
-### Google hangout
+### Google hangouts
 
 ### Zoom
