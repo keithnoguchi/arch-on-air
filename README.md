@@ -494,7 +494,7 @@ and create an initial RAM disk with `mkinitcpio`
 
 #### root password
 
-Do it before forget:
+Do it before you forget:
 
 ```
 [root@archiso /]# passwd root
@@ -504,6 +504,36 @@ passwd: password updated successfully
 ```
 
 ### Install the boot loader
+
+Let's go with [systemd-boot](https://wiki.archlinux.org/index.php/Systemd-boot)
+with `bootctl`, as we're [UEFI](https://en.wikipedia.org/wiki/Unified_Extensible_Firmware_Interface)!
+
+```
+[root@archiso /]# bootctl --path=/boot install
+Created "/boot/EFI/systemd".
+Created "/boot/EFI/BOOT".
+Copied "/usr/lib/systemd/boot/efi/systemd-bootx64.efi" to "/boot/EFI/systemd/systemd-bootx64.efi".
+Copied "/usr/lib/systemd/boot/efi/systemd-bootx64.efi" to "/boot/EFI/BOOT/BOOTX64.EFI".
+Created EFI boot entry "Linux Boot Manager".
+```
+
+and edit `/boot/loader/loader.conf` and `/boot/loader/entries/arch.conf`:
+
+```
+[root@archiso /]# cat /boot/loader/loader.conf
+default arch
+timeout 4
+editor  0
+```
+```
+[root@archiso /]# cat /boot/loader/entries/arch.conf
+title   Arch Linux
+linux   /vmlinuz-linux
+initrd  /initramfs-linux.img
+options root=/dev/mapper/vg0-root rw
+```
+
+Cool, let's reboot!
 
 ## Post-installation
 
