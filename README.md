@@ -304,6 +304,7 @@ tmpfs                   808024      0    808024   0% /run/user/0
 - [Packages](#install-the-base-packages)
 - [Configuration](#configure-the-system)
 - [Bootloader](#install-the-boot-loader)
+- [Reboot](#reboot-the-system)
 
 ### Pacman mirror
 
@@ -546,7 +547,63 @@ initrd  /initramfs-linux.img
 options root=/dev/mapper/vg0-root rw
 ```
 
+### Reboot the system
+
+Before reboot, let's exit from the *chroot* and unmount all the partition:
+
+```
+[root@archiso /]# exit
+exit
+arch-chroot /mnt  15.90s user 2.04s system 0% cpu 48:35.87 total
+```
+
+```
+root@archiso ~ # df -k
+Filesystem           1K-blocks   Used Available Use% Mounted on
+dev                    4025808      0   4025808   0% /dev
+run                    4040120  46596   3993524   2% /run
+/dev/sdb1               759808 759808         0 100% /run/archiso/bootmnt
+cowspace                262144   7280    254864   3% /run/archiso/cowspace
+/dev/loop0              328704 328704         0 100% /run/archiso/sfs/airootfs
+airootfs                262144   7280    254864   3% /
+tmpfs                  4040120      0   4040120   0% /dev/shm
+tmpfs                  4040120      0   4040120   0% /sys/fs/cgroup
+tmpfs                  4040120      0   4040120   0% /tmp
+tmpfs                  4040120   1200   4038920   1% /etc/pacman.d/gnupg
+tmpfs                   808024      0    808024   0% /run/user/0
+/dev/mapper/vg0-root  33554432 703604  32623804   3% /mnt
+/dev/mapper/vg0-home  67108864  16768  66046720   1% /mnt/home
+/dev/mapper/vg0-var   67104768 225852  65834468   1% /mnt/var
+/dev/sda1               201633  65311    136323  33% /mnt/boot
+```
+
+Unmount all those four partitions:
+
+```
+root@archiso ~ # umount /mnt/{boot,home,var,}
+```
+
+```
+root@archiso ~ # df -k
+Filesystem     1K-blocks   Used Available Use% Mounted on
+dev              4025808      0   4025808   0% /dev
+run              4040120  46596   3993524   2% /run
+/dev/sdb1         759808 759808         0 100% /run/archiso/bootmnt
+cowspace          262144   7280    254864   3% /run/archiso/cowspace
+/dev/loop0        328704 328704         0 100% /run/archiso/sfs/airootfs
+airootfs          262144   7280    254864   3% /
+tmpfs            4040120      0   4040120   0% /dev/shm
+tmpfs            4040120      0   4040120   0% /sys/fs/cgroup
+tmpfs            4040120      0   4040120   0% /tmp
+tmpfs            4040120   1200   4038920   1% /etc/pacman.d/gnupg
+tmpfs             808024      0    808024   0% /run/user/0
+```
+
 Cool, let's reboot!
+
+```
+root@archiso ~ # reboot
+```
 
 ## Post-installation
 
