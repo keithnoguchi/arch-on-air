@@ -803,6 +803,18 @@ air$ sudo systemctl start dhcpcd@wlp3s0
 
 and you got the IP over the air!
 
+#### wifi-menu
+
+`wifi-menu` is a good to have app, to automatically look for the available
+wifi, which helps especially at public WiFi.  The main app is available
+but you need to install `dialog` package to make it work.
+
+```
+air$ sudo pacman -S dialog
+```
+
+Then, you just run `air$ sudo wifi-menu` to look for the available wireless.
+
 ### Video
 
 Let's install `xf86-video-intel`, as we have Intel GPU
