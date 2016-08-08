@@ -930,6 +930,9 @@ I'm just lazy that I usually use `pacman` for `chromium`
 air$ sudo pacman -S chromium
 ```
 
+And I usually install [Vimium](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en)
+extension for Vim key binding.
+
 ### Power
 
 Install `acpi` ACPI client package to retrieve a current battery life
