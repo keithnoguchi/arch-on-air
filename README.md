@@ -997,6 +997,9 @@ Section "InputClass"
 EndSection
 ```
 
+Here is the [one](https://github.com/keinohguchi/arch-on-air/blob/master/xorg.conf.d/70-synaptics.conf)
+ I use for synaptics.
+
 ### Bluetooth
 
 ### KVM
