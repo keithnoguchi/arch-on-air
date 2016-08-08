@@ -978,6 +978,25 @@ air$ xinput set-prop 12 283 1
 
 #### Touchpad
 
+Let's install synaptics, just for the natural scrolling.
+
+```
+air$ sudo pacman -S xf86-input-synaptics
+```
+
+and put the following file under `/etc/X11/xorg.conf.d`
+
+```
+air$ cat /etc/X11/xorg.conf.d/70-synaptics.conf
+Section "InputClass"
+        Identifier "touchpad"
+	Driver "synaptics"
+	MatchIsTouchpad "on"
+		Option "VertScrollDelta" "-111"
+		Option "HorizScrollDelta" "-111"
+EndSection
+```
+
 ### Bluetooth
 
 ### KVM
