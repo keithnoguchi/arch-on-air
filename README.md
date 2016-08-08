@@ -619,7 +619,7 @@ root@archiso ~ # reboot
 - [KeyMapping](#key-mapping)
 - [Fonts](#fonts)
 - [Web](#browser)
-- [Poser](#power)
+- [Power](#power)
 - [Scrolling](#natural-scrolling)
 - [Bluetooth](#bluetooth)
 - [KVM](#kvm)
