@@ -1300,8 +1300,6 @@ and then run the `ovs-vswitchd`
 air$ sudo ovs-vswitchd --pidfile
 ```
 
-### Bluetooth
-
 ### Slack
 
 ### Audio
@@ -1309,5 +1307,7 @@ air$ sudo ovs-vswitchd --pidfile
 ### Google hangouts
 
 ### Zoom
+
+### Bluetooth
 
 Happy Hacking!
