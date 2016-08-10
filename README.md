@@ -1099,6 +1099,34 @@ Now, make it run by default.
 air$ sudo virsh pool-autostart images
 ```
 
+#### Volumes
+
+As we setup a storage pool, we can finally create a storage volumes
+for the guest OS:
+
+```
+air$ sudo virsh vol-create-as images hv0 20G --format qcow2 --allocation 0
+```
+
+Cool, now let's check it both from `virsh` as well as `lvs`
+
+```
+virsh # vol-info --pool images hv0
+Name:           hv0
+Type:           block
+Capacity:       20.00 GiB
+Allocation:     4.00 MiB
+```
+
+```
+air$ sudo lvs
+  LV   VG  Attr       LSize  Pool Origin        Data%  Meta%  Move Log Cpy%Sync Convert
+  home vg0 -wi-ao---- 64.00g
+  root vg0 -wi-ao---- 32.00g
+  var  vg0 -wi-ao---- 64.00g
+  hv0  vg1 swi-a-s---  4.00m      [hv0_vorigin] 0.00
+```
+
 #### Guest OS
 
 Let's install the guest OS through `virt-install`
