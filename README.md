@@ -1192,6 +1192,9 @@ by `virt-install` as below:
 
 ```
 air$ sudo virt-install -n hv0 --memory 2048 --vcpus 1 --hvm --cdrom /var/lib/libvirt/boot/ubuntu-16.04.1-server-amd64.iso --disk /dev/vg1/hv0 --graphics vnc
+Starting install...
+Creating domain...                                          |    0 B  00:00
+Domain installation still in progress. Waiting for installation to complete.
 ```
 
 ### Open vSwitch
