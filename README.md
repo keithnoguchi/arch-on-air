@@ -1051,6 +1051,13 @@ sted
 air$
 ```
 
+Make it run by default through the `/etc/modprobe.d/modprobe.conf`
+
+```
+air$ cat /etc/modprobe.d/modprobe.conf
+options kvm_intel nested=1
+```
+
 #### Storage pool
 
 As we allocate separate partition for storage pool before, let's define
