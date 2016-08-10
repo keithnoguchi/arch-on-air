@@ -1161,16 +1161,6 @@ air$ ln -s /usr/bin/python2-config ~/bin/python-config
 air$ export PATH=~/bin:$PATH
 ```
 
-Cool!  Let's make it run by default through `systemd`
-
-```
-air$ for i in libvirtd virtlogd
-air$ do
-air$ sudo systemctl start $i
-air$ sudo systemctl enable $i
-air$ done
-```
-
 #### Guest OS
 
 Let's install the guest OS through `virt-install`
