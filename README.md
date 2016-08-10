@@ -1179,6 +1179,17 @@ vermagic:       4.7.0.1 SMP preempt mod_unload modversions
 air$
 ```
 
+and build the initial *OVSDB database* based off on the OVS
+[schema](https://github.com/openvswitch/ovs/blob/master/vswitchd/vswitch.ovsschema)
+
+```
+air$ pwd
+/usr/local/git/ovs
+air$ sudo ovsdb-tool create /usr/local/etc/openvswitch/conf.db vswitchd/vswitch.ovsschema
+air$ ls -l /usr/local/etc/openvswitch/conf.db
+-rw-r--r-- 1 root root 12964 Aug 10 09:45 /usr/local/etc/openvswitch/conf.db
+```
+
 #### Guest OS
 
 Let's install the guest OS through `virt-install`
