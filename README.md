@@ -1000,9 +1000,34 @@ EndSection
 Here is the [one](https://github.com/keinohguchi/arch-on-air/blob/master/xorg.conf.d/70-synaptics.conf)
  I use for synaptics.
 
-### Bluetooth
-
 ### KVM
+
+#### libvirt
+
+I love *KVM* and *OVS* based virtualization through *libvirt* on Linux
+because of their simplicity and performance.  Here is the basic steps to
+make have your KVM and OVS up and running on your ArchLinux:
+
+```
+air$ sudo pacman -Ss libvirt
+```
+
+Now, you're ready to run KVM based virtual machines through the libvirt.
+Let's run those services through `systemd`:
+
+```
+air$ sudo systemctl start libvirtd
+air$ sudo systemctl start virtlogd
+```
+
+You can also make it startup daemons by using the `enable` subcommand:
+
+```
+air$ sudo systemctl enable libvirtd
+air$ sudo systemctl enable virtlogd
+```
+
+### Bluetooth
 
 ### Slack
 
