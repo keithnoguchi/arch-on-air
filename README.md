@@ -1051,6 +1051,47 @@ sted
 air$
 ```
 
+#### Storage pool
+
+As we allocate separate partition for storage pool before, let's define
+the *volume group* as a new *storage pool*:
+
+```
+air$ sudo virsh pool-define-as images logical - - /dev/sda5 vg1
+air$ sudo virsh pool-build images
+air$ sudo virsh pool-start images
+```
+
+now, we setup the storage pool for VM images
+
+```
+virsh # pool-info images
+Name:           images
+UUID:           d67d0287-6cbd-4584-91f5-8d76fb971b58
+State:          running
+Persistent:     yes
+Autostart:      no
+Capacity:       125.71 GiB
+Allocation:     0.00 B
+Available:      125.71 GiB
+```
+
+Check it through the *LVM* command line tool, *vgs*
+
+```
+air$ sudo vgs
+VG  #PV #LV #SN Attr   VSize   VFree
+vg0   1   3   0 wz--n- 160.00g      0
+vg1   1   0   0 wz--n- 125.71g 125.71g
+air$
+```
+
+Now, make it run by default.
+
+```
+air$ sudo virsh pool-autostart images
+```
+
 #### Guest OS
 
 Let's install the guest OS through `virt-install`
