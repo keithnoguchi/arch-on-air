@@ -1129,6 +1129,38 @@ air$ sudo lvs
 
 #### Open vSwitch
 
+Let's compile, instead of installing it through `pacman`, for fun!
+
+```
+air$ git clone git@github.com:openvswitch/ovs
+```
+
+Install autotools, if you haven't done that.
+
+```
+air$ sudo pacman -S m4 automake autoconf
+```
+
+Cool!  Compiling *OVS* is just like *1-2-3*, as explained in
+[INSTALL.md](https://github.com/openvswitch/ovs/blob/master/INSTALL.md).
+
+```
+air$ ./boot.sh
+air$ ./configure
+air$ make && sudo make install
+```
+
+If you encounter *pyton2/3* related issue while you compile, use `python2`
+instead of Arch default `python3` through, say creating a symbolic link as in
+[ArchLinux wiki](https://wiki.archlinux.org/index.php/Python#Python_2):
+
+```
+air$ mkdir -p ~/bin
+air$ ln -s /usr/bin/python2 ~/bin/python
+air$ ln -s /usr/bin/python2-config ~/bin/python-config
+air$ export PATH=~/bin:$PATH
+```
+
 #### Guest OS
 
 Let's install the guest OS through `virt-install`
