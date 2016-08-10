@@ -1052,7 +1052,7 @@ sted
 air$
 ```
 
-Make it run by default through the `/etc/modprobe.d/modprobe.conf`
+Make it persistent by adding it to the `/etc/modprobe.d/modprobe.conf`
 
 ```
 air$ cat /etc/modprobe.d/modprobe.conf
