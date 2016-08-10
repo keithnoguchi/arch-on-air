@@ -1037,7 +1037,7 @@ air$ id
 uid=1000(admin) gid=10(wheel) groups=10(wheel),995(libvirt),996(git)
 ```
 
-#### VM in VM
+#### KVM in KVM
 
 As mentioned on [ArchLinux KVM wiki](https://wiki.archlinux.org/index.php/KVM#Nested_virtualization),
 you can do KVM in KVM by doing below:
