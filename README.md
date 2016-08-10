@@ -1129,6 +1129,8 @@ air$ sudo lvs
 
 #### Open vSwitch
 
+##### Build
+
 Let's compile, instead of installing it through `pacman`, for fun!
 
 ```
@@ -1167,6 +1169,8 @@ air$ make && sudo make install
 Load the kernel module and build the *OVSDB* database, as explained in
 [INSTALL.md](https://github.com/openvswitch/ovs/blob/master/INSTALL.md#building-the-sources).
 
+##### Init
+
 ```
 air$ sudo modprobe openvswitch
 air$ modinfo openvswitch
@@ -1188,6 +1192,26 @@ air$ pwd
 air$ sudo ovsdb-tool create /usr/local/etc/openvswitch/conf.db vswitchd/vswitch.ovsschema
 air$ ls -l /usr/local/etc/openvswitch/conf.db
 -rw-r--r-- 1 root root 12964 Aug 10 09:45 /usr/local/etc/openvswitch/conf.db
+```
+
+##### Run
+
+Let's run `ovsdb-server` OVS database server.
+
+```
+air$ sudo ovsdb-server --remote=punix:/usr/local/var/run/openvswitch/db.sock --pidfile
+```
+
+and initialize the database through `ovs-vsctl` for the first time.
+
+```
+air$ sudo ovs-vsctl --no-wait init
+```
+
+and then run the `ovs-vswitchd`
+
+```
+air$ sudo ovs-vswitchd --pidfile
 ```
 
 #### Guest OS
