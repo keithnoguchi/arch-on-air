@@ -1027,6 +1027,16 @@ air$ sudo systemctl enable libvirtd
 air$ sudo systemctl enable virtlogd
 ```
 
+Now, add yourself to the `libvirt` group
+
+```
+air$ sudo usermod -a -G libvirt admin
+air$ su admin
+Password:
+air$ id
+uid=1000(admin) gid=10(wheel) groups=10(wheel),995(libvirt),996(git)
+```
+
 ### Bluetooth
 
 ### Slack
