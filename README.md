@@ -1196,7 +1196,8 @@ air$ ls -l /usr/local/etc/openvswitch/conf.db
 
 ##### Run
 
-Let's run `ovsdb-server` OVS database server.
+Let's run `ovsdb-server`, the OVS database server, and the `ovs-vswitchd`,
+vswitch itself, as explained in [INSTALL.md](https://github.com/openvswitch/ovs/blob/master/INSTALL.md#startup).
 
 ```
 air$ sudo ovsdb-server --remote=punix:/usr/local/var/run/openvswitch/db.sock --pidfile
