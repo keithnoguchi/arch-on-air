@@ -622,6 +622,7 @@ root@archiso ~ # reboot
 - [Power](#power)
 - [Scrolling](#natural-scrolling)
 - [KVM](#kvm)
+- [Open vSwitch](#open-vswitch)
 - [Bluetooth](#bluetooth)
 - [Slack](#slack)
 - [Audio](#audio)
@@ -1127,9 +1128,24 @@ air$ sudo lvs
   hv0  vg1 swi-a-s---  4.00m      [hv0_vorigin] 0.00
 ```
 
-#### Open vSwitch
+#### Guest OS
 
-##### Build
+Let's install the guest OS through `virt-install`
+
+```
+air$ sudo pacman -Ss virt-install
+```
+
+Once you download the OS, let's install it through headlless
+by `virt-install` as below:
+
+```
+air$ sudo virt-install -n hv0 --memory 2048 --vcpus 1 --hvm --cdrom /var/lib/libvirt/boot/ubuntu-16.04.1-server-amd64.iso --disk /dev/vg1/hv0 --graphics vnc
+```
+
+### Open vSwitch
+
+#### Build
 
 Let's compile, instead of installing it through `pacman`, for fun!
 
@@ -1169,7 +1185,7 @@ air$ make && sudo make install
 Load the kernel module and build the *OVSDB* database, as explained in
 [INSTALL.md](https://github.com/openvswitch/ovs/blob/master/INSTALL.md#building-the-sources).
 
-##### Initialize
+#### Initialize
 
 ```
 air$ sudo modprobe openvswitch
@@ -1194,7 +1210,7 @@ air$ ls -l /usr/local/etc/openvswitch/conf.db
 -rw-r--r-- 1 root root 12964 Aug 10 09:45 /usr/local/etc/openvswitch/conf.db
 ```
 
-##### Run
+#### Run
 
 Let's run `ovsdb-server`, the OVS database server, and the `ovs-vswitchd`,
 vswitch itself, as explained in [INSTALL.md](https://github.com/openvswitch/ovs/blob/master/INSTALL.md#startup).
@@ -1213,21 +1229,6 @@ and then run the `ovs-vswitchd`
 
 ```
 air$ sudo ovs-vswitchd --pidfile
-```
-
-#### Guest OS
-
-Let's install the guest OS through `virt-install`
-
-```
-air$ sudo pacman -Ss virt-install
-```
-
-Once you download the OS, let's install it through headlless
-by `virt-install` as below:
-
-```
-air$ sudo virt-install -n hv0 --memory 2048 --vcpus 1 --hvm --cdrom /var/lib/libvirt/boot/ubuntu-16.04.1-server-amd64.iso --disk /dev/vg1/hv0 --graphics vnc
 ```
 
 ### Bluetooth
