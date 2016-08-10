@@ -1206,14 +1206,11 @@ air$ sudo virsh vncdisplay hv0
 127.0.0.1:0
 ```
 
-This means, we just run the `vncclient` on the host machine without specifying
-the address nor port:
+Let's connect to the guest and finish it up the work!
 
 ```
-air$ vncviewer
+air$ vncviewer 127.0.0.1
 ```
-
-Then, just follow the standard OS installation process of your choise.
 
 ### Open vSwitch
 
