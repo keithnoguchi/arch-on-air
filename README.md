@@ -1007,10 +1007,10 @@ Here is the [one](https://github.com/keinohguchi/arch-on-air/blob/master/xorg.co
 
 I love *KVM* and *OVS* based virtualization through *libvirt* on Linux
 because of their simplicity and performance.  Here is the basic steps to
-make have your KVM and OVS up and running on your ArchLinux:
+make your KVM up and running under libvirt on your Arch:
 
 ```
-air$ sudo pacman -Ss libvirt
+air$ sudo pacman -Ss qemu libvirt
 ```
 
 Now, you're ready to run KVM based virtual machines through the libvirt.
@@ -1126,6 +1126,57 @@ air$ sudo lvs
   root vg0 -wi-ao---- 32.00g
   var  vg0 -wi-ao---- 64.00g
   hv0  vg1 swi-a-s---  4.00m      [hv0_vorigin] 0.00
+```
+
+#### Network
+
+We'll use the default Linux kernel bridge, just because, as of August 2016,
+Open vSwitch [doesn't support *NAT mode* for libvirt networking](http://openvswitch.org/support/dist-docs/INSTALL.Libvirt.md.html).
+
+We'll install those packages through `pacman` so that KVM guests will get
+the IP address through the DHCP.
+
+```
+air$ sudo pacman -S ebtables dnsmasq
+```
+
+Let's restart `libvirtd` to make the change affected, so that the default
+network will up and running
+
+```
+air$ sudo systemctl restart libvirtd
+```
+
+Let's check both `virsh` as well as `ip` commands
+
+```
+air$ sudo virsh net-dumpxml default
+<network>
+  <name>default</name>
+  <uuid>bb24f0ba-754c-4f00-b16b-5e7dbb35807e</uuid>
+  <forward mode='nat'>
+    <nat>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  <bridge name='mgmt' stp='off' delay='0'/>
+    <mac address='00:00:00:bb:00:01'/>
+      <ip address='192.168.122.1' netmask='255.255.255.0'>
+        <dhcp>
+          <range start='192.168.122.129' end='192.168.122.254'/>
+        </dhcp>
+      </ip>
+</network>
+```
+
+```
+air$ ip l show dev mgmt
+12: mgmt: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN
+mode DEFAULT group default qlen 1000
+  link/ether 00:00:00:bb:00:01 brd ff:ff:ff:ff:ff:ff
+air$ ip l show dev mgmt-nic
+13: mgmt-nic: <BROADCAST,MULTICAST> mtu 1500 qdisc fq_codel master mgmt state DOWN mode DEFAULT group default qlen 1000
+  link/ether 00:00:00:bb:00:01 brd ff:ff:ff:ff:ff:ff
 ```
 
 #### Guest OS
