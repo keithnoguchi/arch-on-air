@@ -1181,10 +1181,11 @@ air$ ip l show dev mgmt-nic
 
 #### Guest OS
 
-Let's install the guest OS through `virt-install`
+Install the guest OS installer package, called `virt-install` as well as
+VNC client package, `tigervnc`, through `pacman`:
 
 ```
-air$ sudo pacman -Ss virt-install
+air$ sudo pacman -Ss virt-install tigervnc
 ```
 
 Once you download the OS, let's install it through headlless
@@ -1196,6 +1197,23 @@ Starting install...
 Creating domain...                                          |    0 B  00:00
 Domain installation still in progress. Waiting for installation to complete.
 ```
+
+Check the IP address and the port to connect to the new guest OS by
+`virsh vncdisplay hv0`:
+
+```
+air$ sudo virsh vncdisplay hv0
+127.0.0.1:0
+```
+
+This means, we just run the `vncclient` on the host machine without specifying
+the address nor port:
+
+```
+air$ vncviewer
+```
+
+Then, just follow the standard OS installation process of your choise.
 
 ### Open vSwitch
 
