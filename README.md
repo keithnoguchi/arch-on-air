@@ -1127,12 +1127,21 @@ air$ sudo lvs
   hv0  vg1 swi-a-s---  4.00m      [hv0_vorigin] 0.00
 ```
 
+#### Open vSwitch
+
 #### Guest OS
 
 Let's install the guest OS through `virt-install`
 
 ```
 air$ sudo pacman -Ss virt-install
+```
+
+Once you download the OS, let's install it through headlless
+by `virt-install` as below:
+
+```
+air$ sudo virt-install -n hv0 --memory 2048 --vcpus 1 --hvm --cdrom /var/lib/libvirt/boot/ubuntu-16.04.1-server-amd64.iso --disk /dev/vg1/hv0 --graphics vnc
 ```
 
 ### Bluetooth
