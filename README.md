@@ -1037,6 +1037,16 @@ air$ id
 uid=1000(admin) gid=10(wheel) groups=10(wheel),995(libvirt),996(git)
 ```
 
+#### VM in VM
+
+#### Guest OS
+
+Let's install the guest OS through `virt-install`
+
+```
+air$ sudo pacman -Ss virt-install
+```
+
 ### Bluetooth
 
 ### Slack
