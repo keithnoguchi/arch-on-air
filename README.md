@@ -1039,6 +1039,18 @@ uid=1000(admin) gid=10(wheel) groups=10(wheel),995(libvirt),996(git)
 
 #### VM in VM
 
+As mentioned on [ArchLinux KVM wiki](https://wiki.archlinux.org/index.php/KVM#Nested_virtualization),
+you can do KVM in KVM by doing below:
+
+```
+air$ sudo modprobe -r kvm_intel
+air$ sudo modprobe kvm_intel nested=1
+air$ sudo systool -m kvm_intel -v | grep ne
+sted
+    nested              = "Y"
+air$
+```
+
 #### Guest OS
 
 Let's install the guest OS through `virt-install`
