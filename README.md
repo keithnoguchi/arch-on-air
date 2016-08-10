@@ -1164,6 +1164,21 @@ air$ ./configure
 air$ make && sudo make install
 ```
 
+Load the kernel module and build the *OVSDB* database, as explained in
+[INSTALL.md](https://github.com/openvswitch/ovs/blob/master/INSTALL.md#building-the-sources).
+
+```
+air$ sudo modprobe openvswitch
+air$ modinfo openvswitch
+filename:       /lib/modules/4.7.0.1/kernel/net/openvswitch/openvswitch.ko.gz
+license:        GPL
+description:    Open vSwitch switching datapath
+depends:        nf_conntrack,nf_nat,libcrc32c,nf_nat_ipv6,nf_nat_ipv4,nf_defrag_ipv6
+intree:         Y
+vermagic:       4.7.0.1 SMP preempt mod_unload modversions
+air$
+```
+
 #### Guest OS
 
 Let's install the guest OS through `virt-install`
