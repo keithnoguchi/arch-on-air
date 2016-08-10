@@ -1169,7 +1169,7 @@ air$ make && sudo make install
 Load the kernel module and build the *OVSDB* database, as explained in
 [INSTALL.md](https://github.com/openvswitch/ovs/blob/master/INSTALL.md#building-the-sources).
 
-##### Init
+##### Initialize
 
 ```
 air$ sudo modprobe openvswitch
