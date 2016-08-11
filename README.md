@@ -1160,12 +1160,14 @@ air$ sudo virsh net-dumpxml default
     </nat>
   </forward>
   <bridge name='mgmt' stp='off' delay='0'/>
-    <mac address='00:00:00:bb:00:01'/>
-      <ip address='192.168.122.1' netmask='255.255.255.0'>
-        <dhcp>
-          <range start='192.168.122.129' end='192.168.122.254'/>
-        </dhcp>
-      </ip>
+  <mac address='00:00:bb:00:00:00'/>
+  <ip address='192.168.122.1' netmask='255.255.255.0'>
+    <dhcp>
+      <range start='192.168.122.129' end='192.168.122.254'/>
+      <host mac='00:00:bb:14:04:00' ip='192.168.122.129'/>
+      <host mac='00:00:bb:16:04:00' ip='192.168.122.130'/>
+    </dhcp>
+  </ip>
 </network>
 ```
 
