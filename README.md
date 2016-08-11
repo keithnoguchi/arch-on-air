@@ -1404,6 +1404,31 @@ ctl.!default {
 Let's check the audio by watching
 [youtube](https://www.youtube.com/watch?v=tnSkHhsLqpM) video.
 
+You can change the volume mute/unmute through `amixer` or `alsamixer`
+as explained in [ArchLinux wiki](https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture#Unmuting_the_channels):
+
+Unmute the sound
+
+```
+air$ amixer sset Master unmute
+Simple mixer control 'Master',0
+  Capabilities: pvolume pvolume-joined pswitch pswitch-joined
+  Playback channels: Mono
+  Limits: Playback 0 - 127
+  Mono: Playback 104 [82%] [-11.50dB] [on]
+```
+
+and mute!
+
+```
+air$ amixer sset Master mute
+Simple mixer control 'Master',0
+  Capabilities: pvolume pvolume-joined pswitch pswitch-joined
+  Playback channels: Mono
+  Limits: Playback 0 - 127
+  Mono: Playback 104 [82%] [-11.50dB] [off]
+```
+
 ### Slack
 
 ### Google hangouts
