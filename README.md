@@ -1419,7 +1419,7 @@ Simple mixer control 'Master',0
   Mono: Playback 104 [82%] [-11.50dB] [on]
 ```
 
-and mute!
+and mute the sound!
 
 ```
 air$ amixer sset Master mute
