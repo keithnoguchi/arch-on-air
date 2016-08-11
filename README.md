@@ -1353,9 +1353,58 @@ a86d4283-5862-428a-8576-f39646655c5f
 
 Once you assign the IP address inside the VM, you can make a IP reachability.
 
-### Slack
-
 ### Audio
+
+Let's install
+[PulseAudio](https://wiki.archlinux.org/index.php/PulseAudio) and
+[ALSA utils](https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture#Installation),
+Advanced Linux Sound Architecture,
+through `pacman`:
+
+```
+air$ sudo pacman -S pulseaudio alsa-utils
+```
+
+We'll use analog PCH device as a default device, as HDMI device doesn't
+work somehow.
+
+```
+air$ aplay -l
+**** List of PLAYBACK Hardware Devices ****
+card 0: HDMI [HDA Intel HDMI], device 3: HDMI 0 [HDMI 0]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 0: HDMI [HDA Intel HDMI], device 7: HDMI 1 [HDMI 1]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 0: HDMI [HDA Intel HDMI], device 8: HDMI 2 [HDMI 2]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 1: PCH [HDA Intel PCH], device 0: CS4208 Analog [CS4208 Analog]
+  Subdevices: 0/1
+  Subdevice #0: subdevice #0
+```
+
+I use the `~/.asoundrc` file to set the default device, as explained
+in [ArchLinux wiki](https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture#Alternative_method):
+
+```
+air$ cat ~/.asoundrc
+pcm.!default {
+        type hw
+        card PCH
+}
+
+ctl.!default {
+        type hw
+        card PCH
+}
+```
+
+Let's check the audio by watching
+[youtube](https://www.youtube.com/watch?v=tnSkHhsLqpM) video.
+
+### Slack
 
 ### Google hangouts
 
