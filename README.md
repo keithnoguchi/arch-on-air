@@ -1300,6 +1300,64 @@ and then run the `ovs-vswitchd`
 air$ sudo ovs-vswitchd --pidfile
 ```
 
+Let's create a simple L2 switch with `ovs-vsctl` called *sw0*:
+
+```
+air$ sudo ovs-vsctl add-br sw0
+```
+
+and edit libvirt XML file for the VMs to attach to that bridge:
+
+```
+air$ sudo virsh dumpxml hv0 | grep -A 10 "interface type='bridge'"
+<interface type='bridge'>
+  <mac address='00:00:00:14:04:00'/>
+  <source bridge='sw0'/>
+  <virtualport type='openvswitch'>
+    <parameters interfaceid='e4aedd4d-c540-403b-96ad-0a9592a1d41c'/>
+  </virtualport>
+  <target dev='vnet3'/>
+  <model type='virtio'/>
+  <alias name='net1'/>
+  <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x0'/>
+</interface>
+```
+
+and same for *hv1*
+
+```
+air$ sudo virsh dumpxml hv1 | grep -A 10 "interface type='bridge'"
+<interface type='bridge'>
+  <mac address='00:00:00:16:04:00'/>
+  <source bridge='sw0'/>
+  <virtualport type='openvswitch'>
+    <parameters interfaceid='7ffe491d-ecbb-4496-9224-ccffb865c14d'/>
+  </virtualport>
+  <target dev='vnet1'/>
+  <model type='virtio'/>
+  <alias name='net1'/>
+  <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x0'/>
+</interface>
+```
+
+Once you `sudo virsh start hv0` and `sudo virsh start hv1`, those guests are
+connected through the `sw0` OvS switch, as shown below.
+
+```
+air$ sudo ovs-vsctl show
+a86d4283-5862-428a-8576-f39646655c5f
+    Bridge "br0"
+        Port "br0"
+            Interface "br0"
+                 type: internal
+        Port "vnet1"
+            Interface "vnet1"
+        Port "vnet3"
+            Interface "vnet3"
+```
+
+Once you assign the IP address inside the VM, you can make a IP reachability.
+
 ### Slack
 
 ### Audio
