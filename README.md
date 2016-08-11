@@ -1147,7 +1147,7 @@ network will up and running
 air$ sudo systemctl restart libvirtd
 ```
 
-Let's check both `virsh` as well as `ip` commands
+Let's check it with `virsh net-dumpxml` command
 
 ```
 air$ sudo virsh net-dumpxml default
