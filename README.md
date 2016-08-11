@@ -1171,16 +1171,6 @@ air$ sudo virsh net-dumpxml default
 </network>
 ```
 
-```
-air$ ip l show dev mgmt
-12: mgmt: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN
-mode DEFAULT group default qlen 1000
-  link/ether 00:00:00:bb:00:01 brd ff:ff:ff:ff:ff:ff
-air$ ip l show dev mgmt-nic
-13: mgmt-nic: <BROADCAST,MULTICAST> mtu 1500 qdisc fq_codel master mgmt state DOWN mode DEFAULT group default qlen 1000
-  link/ether 00:00:00:bb:00:01 brd ff:ff:ff:ff:ff:ff
-```
-
 #### Guest OS
 
 Install the guest OS installer package, called `virt-install` as well as
