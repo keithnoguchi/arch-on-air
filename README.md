@@ -1385,8 +1385,9 @@ card 1: PCH [HDA Intel PCH], device 0: CS4208 Analog [CS4208 Analog]
   Subdevice #0: subdevice #0
 ```
 
-I use the `~/.asoundrc` file to set the default device, as explained
-in [ArchLinux wiki](https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture#Alternative_method):
+I use the [~/.asoundrc](https://github.com/keinohguchi/home/blob/master/.asoundrc)
+file to set the default device, as explained in
+[ArchLinux wiki](https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture#Alternative_method):
 
 ```
 air$ cat ~/.asoundrc
