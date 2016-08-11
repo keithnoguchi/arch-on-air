@@ -623,11 +623,11 @@ root@archiso ~ # reboot
 - [Scrolling](#natural-scrolling)
 - [KVM](#kvm)
 - [Open vSwitch](#open-vswitch)
-- [Bluetooth](#bluetooth)
-- [Slack](#slack)
 - [Audio](#audio)
+- [Slack](#slack)
 - [Hangouts](#google-hangouts)
 - [Zoom](#zoom)
+- [Bluetooth](#bluetooth)
 
 ### Console
 
