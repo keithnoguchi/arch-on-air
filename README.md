@@ -190,10 +190,10 @@ Logical volume "home" created.
 root@archiso ~ # lvcreate -l 100%FREE -n var vg0
 Logical volume "var" created.
 root@archiso ~ # lvs
-LV   VG  Attr       LSize  Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
-home vg0 -wi-a----- 64.00g
-root vg0 -wi-a----- 32.00g
-var  vg0 -wi-a----- 64.00g
+  LV   VG  Attr       LSize  Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  home vg0 -wi-a----- 64.00g
+  root vg0 -wi-a----- 32.00g
+  var  vg0 -wi-a----- 64.00g
 ```
 
 ### Format the partitions
@@ -1121,11 +1121,11 @@ Allocation:     4.00 MiB
 
 ```
 air$ sudo lvs
-  LV   VG  Attr       LSize  Pool Origin        Data%  Meta%  Move Log Cpy%Sync Convert
+  LV   VG  Attr       LSize  Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
   home vg0 -wi-ao---- 64.00g
   root vg0 -wi-ao---- 32.00g
   var  vg0 -wi-ao---- 64.00g
-  hv0  vg1 swi-a-s---  4.00m      [hv0_vorigin] 0.00
+  hv0  vg1 -wi-a----- 20.00g
 ```
 
 #### Network
@@ -1430,11 +1430,11 @@ Simple mixer control 'Master',0
   Mono: Playback 104 [82%] [-11.50dB] [off]
 ```
 
-### Slack
-
 ### Google hangouts
 
 ### Zoom
+
+### Slack
 
 ### Bluetooth
 
