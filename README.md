@@ -614,6 +614,7 @@ root@archiso ~ # reboot
 - [Kernel](#kernel)
 - [WiFi](#wifi)
 - [Video](#video)
+- [Backlight](#screen-backlight)
 - [X](#x)
 - [WindowManager](#window-manager)
 - [KeyMapping](#key-mapping)
@@ -828,6 +829,17 @@ air$ lspci | grep VGA
 ```
 air$ sudo pacman -S xf86-video-intel
 ```
+
+### Screen backlight
+
+You can change the backlight through `/sys/class/backlight/intel_backlight/brightness` as
+
+```
+air$ sudo bash -c 'tee /sys/class/backlight/intel_backlight/brightness <<< 700'
+```
+
+you can check the maximum backlight brightness through
+`cat /sys/class/backlight/intel_backlight/max_brightness`
 
 ### X
 
