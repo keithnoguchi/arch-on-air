@@ -917,10 +917,23 @@ chromium these days...
 
 #### surf
 
-Install `gtk2` and `webkitgtk2` with `pacman`
+Install `xorg-xprop`, `gtk2`, and `webkitgtk2` with `pacman`
 
 ```
-air$ sudo pacman -S gtk2 webkitgtk2
+air$ sudo pacman -S xorg-xprop gtk2 webkitgtk2
+```
+
+then, clone the latest `surf`
+
+```
+air$ git clone http://git.suckless.org/surf
+```
+
+and `make && sudo make install`
+
+```
+air$ cd surf
+air$ make && sudo make install
 ```
 
 #### chromium
