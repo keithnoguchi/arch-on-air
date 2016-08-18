@@ -990,6 +990,10 @@ do
 done &
 ```
 
+[TLP](https://wiki.archlinux.org/index.php/TLP), Linux Advanced Power Managemnt
+Tool, for suspend/sleep.  I'll come back here, once I explore that.  Yep,
+I just shutdown/start when I'm done.  Hey, we're in a SSD era, buddy. :)
+
 ### Bluetooth
 
 Install `bluez` and `bluez-utils` as explained in
