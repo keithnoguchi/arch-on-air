@@ -619,16 +619,17 @@ root@archiso ~ # reboot
 - [WindowManager](#window-manager)
 - [KeyMapping](#key-mapping)
 - [Fonts](#fonts)
-- [Web](#browser)
-- [Power](#power)
 - [Scrolling](#natural-scrolling)
+- [Power](#power)
+- [Bluetooth](#bluetooth)
+- [Web](#browser)
+- [Slack](#slack)
+- [Audio](#audio)
 - [KVM](#kvm)
 - [Open vSwitch](#open-vswitch)
-- [Audio](#audio)
-- [Slack](#slack)
+- [Facetime HD](#facetime-hd)
 - [Hangouts](#google-hangouts)
 - [Zoom](#zoom)
-- [Bluetooth](#bluetooth)
 
 ### Console
 
@@ -922,62 +923,6 @@ At this point, I'm with `ttf-freefont`, as it's simple and clean, and have
 air$ sudo pacman -S ttf-freefont
 ```
 
-### Browser
-
-I'm big fan of [surf](http://surf.suckless.org) but am forced to use
-chromium these days...
-
-#### surf
-
-Install `xorg-xprop`, `gtk2`, and `webkitgtk2` with `pacman`
-
-```
-air$ sudo pacman -S xorg-xprop gtk2 webkitgtk2
-```
-
-then, clone the latest `surf`
-
-```
-air$ git clone http://git.suckless.org/surf
-```
-
-and `make && sudo make install`
-
-```
-air$ cd surf
-air$ make && sudo make install
-```
-
-#### chromium
-
-I'm just lazy that I usually use `pacman` for `chromium`
-
-```
-air$ sudo pacman -S chromium
-```
-
-And I usually install [Vimium](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en)
-extension for Vim key binding.
-
-### Power
-
-Install `acpi` ACPI client package to retrieve a current battery life
-
-```
-air$ sudo pacman -S acpi
-```
-
-You can get the current buttery status with `acpi -b`.  I set it up
-in `.xinitrc` to periodically check the status
-
-```
-while true
-do
-  xsetroot -name "$(acpi -b),$(date +%l:%M%P)"
-  sleep 1m
-done &
-```
-
 ### Natural Scrolling
 
 #### USB mouse
@@ -1025,6 +970,150 @@ EndSection
 
 Here is the [one](https://github.com/keinohguchi/arch-on-air/blob/master/xorg.conf.d/70-synaptics.conf)
  I use for synaptics.
+
+### Power
+
+Install `acpi` ACPI client package to retrieve a current battery life
+
+```
+air$ sudo pacman -S acpi
+```
+
+You can get the current buttery status with `acpi -b`.  I set it up
+in `.xinitrc` to periodically check the status
+
+```
+while true
+do
+  xsetroot -name "$(acpi -b),$(date +%l:%M%P)"
+  sleep 1m
+done &
+```
+
+### Bluetooth
+
+### Browser
+
+I'm big fan of [surf](http://surf.suckless.org) but am forced to use
+chromium these days...
+
+#### surf
+
+Install `xorg-xprop`, `gtk2`, and `webkitgtk2` with `pacman`
+
+```
+air$ sudo pacman -S xorg-xprop gtk2 webkitgtk2
+```
+
+then, clone the latest `surf`
+
+```
+air$ git clone http://git.suckless.org/surf
+```
+
+and `make && sudo make install`
+
+```
+air$ cd surf
+air$ make && sudo make install
+```
+
+#### chromium
+
+I'm just lazy that I usually use `pacman` for `chromium`
+
+```
+air$ sudo pacman -S chromium
+```
+
+And I usually install [Vimium](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en)
+extension for Vim key binding.
+
+### Slack
+
+There is a native [Slack](https://slack.com) app, `slack-desktop` on
+[AUR](https://aur.archlinux.org/packages/slack-desktop/), but I usually use
+normal browser.  Both surf as well as chromium work just like a native app.
+
+You can also setup [IRC gateway](https://get.slack.help/hc/en-us/articles/201727913-Connecting-to-Slack-over-IRC-and-XMPP),
+so that you can slack through IRC client, e.g. `irssi`.
+
+### Audio
+
+Let's install
+[PulseAudio](https://wiki.archlinux.org/index.php/PulseAudio) and
+[ALSA utils](https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture#Installation),
+Advanced Linux Sound Architecture,
+through `pacman`:
+
+```
+air$ sudo pacman -S pulseaudio alsa-utils
+```
+
+We'll use analog PCH device as a default device, as HDMI device doesn't
+work somehow.
+
+```
+air$ aplay -l
+**** List of PLAYBACK Hardware Devices ****
+card 0: HDMI [HDA Intel HDMI], device 3: HDMI 0 [HDMI 0]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 0: HDMI [HDA Intel HDMI], device 7: HDMI 1 [HDMI 1]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 0: HDMI [HDA Intel HDMI], device 8: HDMI 2 [HDMI 2]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 1: PCH [HDA Intel PCH], device 0: CS4208 Analog [CS4208 Analog]
+  Subdevices: 0/1
+  Subdevice #0: subdevice #0
+```
+
+I use the [~/.asoundrc](https://github.com/keinohguchi/home/blob/master/.asoundrc)
+file to set the default device, as explained in
+[ArchLinux wiki](https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture#Alternative_method):
+
+```
+air$ cat ~/.asoundrc
+pcm.!default {
+        type hw
+        card PCH
+}
+
+ctl.!default {
+        type hw
+        card PCH
+}
+```
+
+Let's check the audio by watching
+[youtube](https://www.youtube.com/watch?v=tnSkHhsLqpM) video.
+
+You can change the volume mute/unmute through `amixer` or `alsamixer`
+as explained in [ArchLinux wiki](https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture#Unmuting_the_channels):
+
+Unmute the sound
+
+```
+air$ amixer sset Master unmute
+Simple mixer control 'Master',0
+  Capabilities: pvolume pvolume-joined pswitch pswitch-joined
+  Playback channels: Mono
+  Limits: Playback 0 - 127
+  Mono: Playback 104 [82%] [-11.50dB] [on]
+```
+
+and mute the sound!
+
+```
+air$ amixer sset Master mute
+Simple mixer control 'Master',0
+  Capabilities: pvolume pvolume-joined pswitch pswitch-joined
+  Playback channels: Mono
+  Limits: Playback 0 - 127
+  Mono: Playback 104 [82%] [-11.50dB] [off]
+```
 
 ### KVM
 
@@ -1378,89 +1467,15 @@ a86d4283-5862-428a-8576-f39646655c5f
 
 Once you assign the IP address inside the VM, you can make a IP reachability.
 
-### Audio
+### Facetime HD
 
-Let's install
-[PulseAudio](https://wiki.archlinux.org/index.php/PulseAudio) and
-[ALSA utils](https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture#Installation),
-Advanced Linux Sound Architecture,
-through `pacman`:
-
-```
-air$ sudo pacman -S pulseaudio alsa-utils
-```
-
-We'll use analog PCH device as a default device, as HDMI device doesn't
-work somehow.
-
-```
-air$ aplay -l
-**** List of PLAYBACK Hardware Devices ****
-card 0: HDMI [HDA Intel HDMI], device 3: HDMI 0 [HDMI 0]
-  Subdevices: 1/1
-  Subdevice #0: subdevice #0
-card 0: HDMI [HDA Intel HDMI], device 7: HDMI 1 [HDMI 1]
-  Subdevices: 1/1
-  Subdevice #0: subdevice #0
-card 0: HDMI [HDA Intel HDMI], device 8: HDMI 2 [HDMI 2]
-  Subdevices: 1/1
-  Subdevice #0: subdevice #0
-card 1: PCH [HDA Intel PCH], device 0: CS4208 Analog [CS4208 Analog]
-  Subdevices: 0/1
-  Subdevice #0: subdevice #0
-```
-
-I use the [~/.asoundrc](https://github.com/keinohguchi/home/blob/master/.asoundrc)
-file to set the default device, as explained in
-[ArchLinux wiki](https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture#Alternative_method):
-
-```
-air$ cat ~/.asoundrc
-pcm.!default {
-        type hw
-        card PCH
-}
-
-ctl.!default {
-        type hw
-        card PCH
-}
-```
-
-Let's check the audio by watching
-[youtube](https://www.youtube.com/watch?v=tnSkHhsLqpM) video.
-
-You can change the volume mute/unmute through `amixer` or `alsamixer`
-as explained in [ArchLinux wiki](https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture#Unmuting_the_channels):
-
-Unmute the sound
-
-```
-air$ amixer sset Master unmute
-Simple mixer control 'Master',0
-  Capabilities: pvolume pvolume-joined pswitch pswitch-joined
-  Playback channels: Mono
-  Limits: Playback 0 - 127
-  Mono: Playback 104 [82%] [-11.50dB] [on]
-```
-
-and mute the sound!
-
-```
-air$ amixer sset Master mute
-Simple mixer control 'Master',0
-  Capabilities: pvolume pvolume-joined pswitch pswitch-joined
-  Playback channels: Mono
-  Limits: Playback 0 - 127
-  Mono: Playback 104 [82%] [-11.50dB] [off]
-```
+As mentioned in [ArchLinux wiki](https://wiki.archlinux.org/index.php/MacBook#Facetime_HD),
+we need to install [bcwc_pcie driver](https://github.com/patjak/bcwc_pcie)
+through [AUR](https://aur.archlinux.org/packages/bcwc-pcie-git).
+I'll get back here once I try that out.
 
 ### Google hangouts
 
 ### Zoom
-
-### Slack
-
-### Bluetooth
 
 Happy Hacking!
