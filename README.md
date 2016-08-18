@@ -1005,12 +1005,32 @@ Now, let's start `bluetooth.service` through `systemctl`
 air$ sudo systemctl start bluetooth
 ```
 
-You can now run `bluetoothctl` to pair the device.  Here is the sample
-pairing with bluetooth mouse.
+First of all, let's become `lp` group so that you can omit
+`sudo` when you run `bluetoothctl`.  Then follow the steps
+below to connect your mighty mouse.
 
 ```
-TBD
+air$ bluetoothctl
+[NEW] Controller 08:6D:41:BC:2D:1D air [default]
+[bluetooth]# power on
+[CHG] Controller 08:6D:41:BC:2D:1D Class: 0x10010c
+Changing power on succeeded
+[CHG] Controller 08:6D:41:BC:2D:1D Powered: yes
+[bluetooth]# scan on
+Discovery started
+[CHG] Controller 08:6D:41:BC:2D:1D Discovering: yes
+[NEW] Device 04:4B:ED:D0:66:4F mm2
+[bluetooth]# pair 04:4B:ED:D0:66:4F
+Attempting to pair with 04:4B:ED:D0:66:4F
+[CHG] Device 04:4B:ED:D0:66:4F Connected: yes
+[CHG] Device 04:4B:ED:D0:66:4F UUIDs: 00001124-0000-1000-8000-00805f9b34fb
+[CHG] Device 04:4B:ED:D0:66:4F UUIDs: 00001200-0000-1000-8000-00805f9b34fb
+[CHG] Device 04:4B:ED:D0:66:4F Paired: yes
+Pairing successful
+[mm2]#
 ```
+
+Cool!  Let's mighty mouse! :)
 
 ### Browser
 
