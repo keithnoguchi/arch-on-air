@@ -992,6 +992,26 @@ done &
 
 ### Bluetooth
 
+Install `bluez` and `bluez-utils` as explained on
+[ArchLinux bluetooth guide](https://wiki.archlinux.org/index.php/Bluetooth).
+
+```
+air$ sudo pacman -S bluez bluez-utils
+```
+
+Now, let's start `bluetooth.service` through `systemctl`
+
+```
+air$ sudo systemctl start bluetooth
+```
+
+You can now run `bluetoothctl` to pair the device.  Here is the sample
+pairing with bluetooth mouse.
+
+```
+TBD
+```
+
 ### Browser
 
 I'm big fan of [surf](http://surf.suckless.org) but am forced to use
