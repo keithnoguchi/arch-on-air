@@ -992,7 +992,7 @@ done &
 
 ### Bluetooth
 
-Install `bluez` and `bluez-utils` as explained on
+Install `bluez` and `bluez-utils` as explained in
 [ArchLinux bluetooth guide](https://wiki.archlinux.org/index.php/Bluetooth).
 
 ```
