@@ -625,11 +625,11 @@ root@archiso ~ # reboot
 - [Web](#browser)
 - [Slack](#slack)
 - [Audio](#audio)
-- [KVM](#kvm)
-- [Open vSwitch](#open-vswitch)
 - [Facetime HD](#facetime-hd)
 - [Hangouts](#google-hangouts)
 - [Zoom](#zoom)
+- [KVM](#kvm)
+- [Open vSwitch](#open-vswitch)
 
 ### Console
 
@@ -1155,6 +1155,17 @@ Simple mixer control 'Master',0
   Mono: Playback 104 [82%] [-11.50dB] [off]
 ```
 
+### Facetime HD
+
+As mentioned in [ArchLinux wiki](https://wiki.archlinux.org/index.php/MacBook#Facetime_HD),
+we need to install [bcwc_pcie driver](https://github.com/patjak/bcwc_pcie)
+through [AUR](https://aur.archlinux.org/packages/bcwc-pcie-git).
+I'll get back here once I try that out.
+
+### Google hangouts
+
+### Zoom
+
 ### KVM
 
 #### libvirt
@@ -1506,16 +1517,5 @@ a86d4283-5862-428a-8576-f39646655c5f
 ```
 
 Once you assign the IP address inside the VM, you can make a IP reachability.
-
-### Facetime HD
-
-As mentioned in [ArchLinux wiki](https://wiki.archlinux.org/index.php/MacBook#Facetime_HD),
-we need to install [bcwc_pcie driver](https://github.com/patjak/bcwc_pcie)
-through [AUR](https://aur.archlinux.org/packages/bcwc-pcie-git).
-I'll get back here once I try that out.
-
-### Google hangouts
-
-### Zoom
 
 Happy Hacking!
