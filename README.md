@@ -1226,7 +1226,7 @@ If it's not up and running, do [sudo modprobe -r bdc_pci](https://github.com/pat
 
 ### Google hangouts
 
-Once you make both [Audio](#audio) and Facetime HD(#facetime-hd) up and
+Once you make both [Audio](#audio) and [Facetime HD](#facetime-hd) up and
 running, [google hangouts](http://hangouts.google.com/) are up and running.
 
 Enjoy hangouting!
