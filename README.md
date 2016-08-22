@@ -101,7 +101,7 @@ root@archiso ~ # timedatectl set-ntp true
 #### gdisk
 
 Create two LVM partitions by `gdisk`, one for the base Linux OS and the other
-for the libvirt storage pool.  As mentioned in
+for the libvirt storage pool.  As explained in
 [ArchWiki](https://wiki.archlinux.org/index.php/MacBook#Option_1:_EFI), use
 *+128M* as the starting point to make a gap after OSX partition:
 
@@ -703,8 +703,10 @@ Here is the current [.config](kernel/dot.config) file I use for your reference.
 
 #### wlp3s0
 
-As explained in [Arch MacBook wiki](https://wiki.archlinux.org/index.php/MacBook#WiFi),
-there is [broadcom-wl-dkms AUR](https://aur.archlinux.org/packages/broadcom-wl-dkms/)
+As explained in
+[Arch MacBook wiki](https://wiki.archlinux.org/index.php/MacBook#WiFi),
+there is
+[broadcom-wl-dkms AUR](https://aur.archlinux.org/packages/broadcom-wl-dkms/)
 for `wl` driver.
 
 Let's first get `git`, `dkms`, and `fakeroot` through pacman
@@ -1161,7 +1163,8 @@ Simple mixer control 'Master',0
 
 ### Facetime HD
 
-As mentioned in [ArchLinux wiki](https://wiki.archlinux.org/index.php/MacBook#Facetime_HD),
+As explained in
+[ArchLinux wiki](https://wiki.archlinux.org/index.php/MacBook#Facetime_HD),
 we need to install [bcwc_pcie driver](https://github.com/patjak/bcwc_pcie)
 through [AUR](https://aur.archlinux.org/packages/bcwc-pcie-git).
 I'll get back here once I try that out.
@@ -1209,7 +1212,8 @@ uid=1000(admin) gid=10(wheel) groups=10(wheel),995(libvirt),996(git)
 
 #### KVM in KVM
 
-As mentioned on [ArchLinux KVM wiki](https://wiki.archlinux.org/index.php/KVM#Nested_virtualization),
+As explained in
+[ArchLinux KVM wiki](https://wiki.archlinux.org/index.php/KVM#Nested_virtualization),
 you can do KVM in KVM by doing below:
 
 ```
