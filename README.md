@@ -1165,11 +1165,71 @@ Simple mixer control 'Master',0
 
 As explained in
 [ArchLinux wiki](https://wiki.archlinux.org/index.php/MacBook#Facetime_HD),
-we need to install [bcwc_pcie driver](https://github.com/patjak/bcwc_pcie)
-through [AUR](https://aur.archlinux.org/packages/bcwc-pcie-git).
-I'll get back here once I try that out.
+[bcwc_pcie driver](https://github.com/patjak/bcwc_pcie) is the one to make
+our Facetime HD up and running.  Let's make it work as explained in
+their [wiki](https://github.com/patjak/bcwc_pcie/wiki/Get-Started#get-started-on-arch).
+
+First, install `cpio` package through `pacman`
+
+```
+air$ sudo pacman -Ss cpio
+```
+
+Now, clone the [bcwc_pcie driver](https://github.com/patjak/bcwc_pcie)
+package and download the firmware, as explained in their wiki
+
+```
+git clone https://github.com/patjak/bcwc_pcie.git
+air$ cd bcwc_pcie/firmware
+air$ make
+
+Checking dependencies for driver download...
+/usr/bin/curl
+/usr/bin/xzcat
+/usr/bin/cpio
+
+Downloading the driver, please wait...
+
+
+Found matching hash from OS X, El Capitan 10.11.3
+==> Extracting firmware...
+--> Decompressing the firmware using gzip...
+--> Deleting temporary files...
+--> Extracted firmware version 1.43.0
+
+air$ ls -F
+AppleCameraInterface*  Makefile  debian/  extract-firmware.sh*  firmware.bin
+```
+
+Then, install the driver into `/usr/lib/firmware` with `sudo make install`
+
+```
+air$ sudo make install
+Copying firmware into '//usr/lib/firmware/facetimehd'
+```
+
+Load the `facetimehd` with `modprobe`
+
+```
+air$ sudo depmod
+air$ sudo modprobe facetimehd
+```
+
+Now, `make && sudo make install` under `bcwc_pcie` directory
+
+```
+air$ cd ..
+air$ make && sudo make install
+```
+
+If it's not up and running, do [sudo modprobe -r bdc_pci](https://github.com/patjak/bcwc_pcie/wiki/Get-Started#devvideo-not-created).
 
 ### Google hangouts
+
+Once you make both [Audio](#audio) and Facetime HD(#facetime-hd) up and
+running, [google hangouts](http://hangouts.google.com/) are up and running.
+
+Enjoy hangouting!
 
 ### Zoom
 
