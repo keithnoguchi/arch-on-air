@@ -645,7 +645,7 @@ KEYMAP=emacs2
 I install those for console fun
 
 ```
-air$ sudo pacman -S vim tmux irssi mutt cscope w3m
+air$ sudo pacman -S tmux vim tree irssi mutt cscope w3m
 ```
 
 ### Kernel
