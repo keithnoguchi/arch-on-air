@@ -628,6 +628,7 @@ root@archiso ~ # reboot
 - [Facetime HD](#facetime-hd)
 - [Hangouts](#google-hangouts)
 - [Zoom](#zoom)
+- [Vagrant/VirtualBox)(#vagrant-virtualbox)
 - [KVM](#kvm)
 - [Open vSwitch](#open-vswitch)
 
@@ -1264,6 +1265,15 @@ air$ sudo pacman -U zoom-2.0.57232.0713-2-x86_64.pkg.tar.xz
 ```
 
 Happy zooming!
+
+### Vagrant/VirtualBox
+
+Good to have Vagrant/VirtualBox handy for some quick check on different
+distro/OS.  Both of them are provided through the `pacman`.
+
+```
+air$ sudo pacman -Ss virtualbox vagrant
+```
 
 ### KVM
 
