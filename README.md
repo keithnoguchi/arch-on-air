@@ -1233,6 +1233,38 @@ Enjoy hangouting!
 
 ### Zoom
 
+There is a [AUR](https://aur.archlinux.org/packages/zoom/) package.  Just
+download the snapshot, `makepkg -f`, and do `sudo pacman -U` to get `zoom`
+up and running.
+
+But before that, let's resolve the dependency by install those by `pacman`.
+
+```
+air$ sudo pacman -S qt5-webengine gstreamer0.10-base qt5-svg
+```
+
+```
+air$ tar xvfz zoom.tar.gz
+zoom/
+zoom/.SRCINFO
+zoom/PKGBUILD
+```
+
+`makepkg`
+
+```
+air$ cd zoom
+air$ makepkg -f
+```
+
+and `pacman -U`
+
+```
+air$ sudo pacman -U zoom-2.0.57232.0713-2-x86_64.pkg.tar.xz
+```
+
+Happy zooming!
+
 ### KVM
 
 #### libvirt
