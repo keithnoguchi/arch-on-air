@@ -628,7 +628,7 @@ root@archiso ~ # reboot
 - [Facetime HD](#facetime-hd)
 - [Hangouts](#google-hangouts)
 - [Zoom](#zoom)
-- [Vagrant/VirtualBox)(#vagrant-virtualbox)
+- [Vagrant/VirtualBox](#vagrant-virtualbox)
 - [KVM](#kvm)
 - [Open vSwitch](#open-vswitch)
 
