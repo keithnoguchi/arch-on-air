@@ -1261,10 +1261,12 @@ air$ makepkg -f
 and `pacman -U`
 
 ```
-air$ sudo pacman -U zoom-2.0.57232.0713-2-x86_64.pkg.tar.xz
+air$ sudo pacman -U zoom-2.0.63547.0830-1-x86_64.pkg.tar.xz
 ```
 
 Happy zooming!
+
+> Note that please grab `0830` version or above for the screen sharing!
 
 ### Vagrant/VirtualBox
 
