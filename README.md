@@ -54,9 +54,9 @@ make enough space for linux.
 root@archiso ~ # lsblk
 NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
 sda      8:0    0 465.9G  0 disk
-__sda1   8:1    0   200M  0 part
-__sda2   8:2    0 179.2G  0 part
-__sda3   8:3    0 619.9M  0 part
++-sda1   8:1    0   200M  0 part
++-sda2   8:2    0 179.2G  0 part
++-sda3   8:3    0 619.9M  0 part
 ```
 
 Here, *sda1* for the EFI system partition, *sda2* for OSX, *sda4* for the base Linux,
@@ -1046,10 +1046,10 @@ chromium these days...
 
 #### surf
 
-Install `xorg-xprop`, `gtk2`, and `webkitgtk2` with `pacman`
+Install `xorg-xprop`, `gtk3`, and `webkitgtk2` through `pacman`
 
 ```
-air$ sudo pacman -S xorg-xprop gtk2 webkitgtk2
+air$ sudo pacman -S xorg-xprop gtk3 webkitgtk2
 ```
 
 then, clone the latest `surf`
