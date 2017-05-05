@@ -1173,7 +1173,7 @@ their [wiki](https://github.com/patjak/bcwc_pcie/wiki/Get-Started#get-started-on
 First, install `cpio` package through `pacman`
 
 ```
-air$ sudo pacman -Ss cpio
+air$ sudo pacman -S cpio
 ```
 
 Now, clone the [bcwc_pcie driver](https://github.com/patjak/bcwc_pcie)
@@ -1274,7 +1274,7 @@ Good to have Vagrant/VirtualBox handy for some quick check on different
 distro/OS.  Both of them are provided through the `pacman`.
 
 ```
-air$ sudo pacman -Ss virtualbox vagrant
+air$ sudo pacman -S virtualbox vagrant
 ```
 
 ### KVM
@@ -1286,7 +1286,7 @@ because of their simplicity and performance.  Here is the basic steps to
 make your KVM up and running under libvirt on your Arch:
 
 ```
-air$ sudo pacman -Ss qemu libvirt
+air$ sudo pacman -S qemu libvirt
 ```
 
 Now, you're ready to run KVM based virtual machines through the libvirt.
@@ -1454,7 +1454,7 @@ Install the guest OS installer package, called `virt-install` as well as
 VNC client package, `tigervnc`, through `pacman`:
 
 ```
-air$ sudo pacman -Ss virt-install tigervnc
+air$ sudo pacman -S virt-install tigervnc
 ```
 
 Once you download the OS, let's install it through headlless
