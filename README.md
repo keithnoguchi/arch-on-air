@@ -55,12 +55,12 @@ root@archiso ~ # lsblk
 NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
 sda      8:0    0 465.9G  0 disk
 +-sda1   8:1    0   200M  0 part
-+-sda2   8:2    0 179.2G  0 part
++-sda2   8:2    0   168G  0 part
 +-sda3   8:3    0 619.9M  0 part
++-sda4   8:4    0   297G  0 part
 ```
 
-Here, *sda1* for the EFI system partition, *sda2* for OSX, *sda4* for the base Linux,
-and *sda5* for the libvirt storage pool.
+Here, *sda1* for the EFI system partition, *sda2* for OSX, and *sda4* for the archlinux.
 
 ### Set the keyboard layout
 
