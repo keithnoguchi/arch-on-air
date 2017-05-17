@@ -754,6 +754,35 @@ air$ sudo systemctl start dhcpcd@wlp3s0
 
 and you got the IP over the air!
 
+#### systemd-networkd
+
+I like [systemd](https://wiki.archlinux.org/index.php/Systemd),
+and [systemd-networkd](https://wiki.archlinux.org/index.php/systemd-networkd).
+
+To setup the `wlp3s0` interfaces under `systemd-networkd` with DHCP, all you have to do
+is just put the following file under `/etc/systemd/network` directory
+
+```
+air$ cat wlp3s0.network
+[Match]
+Name=wlp3s0
+
+[Network]
+DHCP=yes
+air$
+```
+
+Once you place the file above, just enable and start those two services:
+
+```
+air$ sudo systemctl start systemd-networkd
+air$ sudo systemctl start systemd-resolved
+air$ sudo systemctl enable systemd-networkd
+air$ sudo systemctl enable systemd-resolved
+```
+
+Now you're on the wifi!
+
 #### wifi-menu
 
 `wifi-menu` is a good to have app, to automatically look for the available
