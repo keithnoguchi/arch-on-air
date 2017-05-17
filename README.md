@@ -1437,7 +1437,9 @@ Once you download the OS, let's install it through headlless
 by `virt-install` as below:
 
 ```
-air$ sudo virt-install -n hv10 --memory 2048 --vcpus 1 --hvm --cpu host,require=vmx --virt-type kvm --cdrom /var/lib/libvirt/boot/ubuntu-16.04.2-server-amd64.iso --disk /dev/vg1/hv10 --graphics vnc
+air$ sudo virt-install -n hv10 --memory 2048 --vcpus 1 --hvm --virt-type kvm \
+--cdrom /var/lib/libvirt/boot/ubuntu-16.04.2-server-amd64.iso \
+--disk /dev/vg1/hv10 --graphics vnc --cpu host,require=vmx
 Starting install...
 Creating domain...
 Domain installation still in progress. Waiting for installation to complete.
