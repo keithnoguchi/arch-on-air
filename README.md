@@ -1358,26 +1358,27 @@ As we setup a storage pool, we can finally create a storage volumes
 for the guest OS:
 
 ```
-air$ sudo virsh vol-create-as images hv0 20G --format qcow2 --allocation 0
+air$ sudo virsh vol-create-as images hv10 12G --format qcow2
 ```
 
 Cool, now let's check it both from `virsh` as well as `lvs`
 
 ```
-virsh # vol-info --pool images hv0
-Name:           hv0
+air$ sudo virsh vol-info hv10 images
+Name:           hv10
 Type:           block
-Capacity:       20.00 GiB
-Allocation:     4.00 MiB
+Capacity:       12.00 GiB
+Allocation:     12.00 GiB
 ```
 
 ```
 air$ sudo lvs
-  LV   VG  Attr       LSize  Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
-  home vg0 -wi-ao---- 64.00g
+  LV   VG  Attr       LSize  Pool Origin         Data%  Meta%  Move Log Cpy%Sync Convert
+  home vg0 -wi-ao---- 32.00g
   root vg0 -wi-ao---- 32.00g
-  var  vg0 -wi-ao---- 64.00g
-  hv0  vg1 -wi-a----- 20.00g
+  var  vg0 -wi-ao---- 32.00g
+  hv10 vg1 swi-a-s--- 12.00g
+air$
 ```
 
 #### Network
@@ -1429,16 +1430,16 @@ Install the guest OS installer package, called `virt-install` as well as
 VNC client package, `tigervnc`, through `pacman`:
 
 ```
-air$ sudo pacman -S virt-install tigervnc
+air$ sudo pacman -S virt-install virt-viewer tigervnc
 ```
 
 Once you download the OS, let's install it through headlless
 by `virt-install` as below:
 
 ```
-air$ sudo virt-install -n hv0 --memory 2048 --vcpus 1 --hvm --cpu host,require=vmx --virt-type kvm --cdrom /var/lib/libvirt/boot/ubuntu-16.04.1-server-amd64.iso --disk /dev/vg1/hv0 --graphics vnc
+air$ sudo virt-install -n hv10 --memory 2048 --vcpus 1 --hvm --cpu host,require=vmx --virt-type kvm --cdrom /var/lib/libvirt/boot/ubuntu-16.04.2-server-amd64.iso --disk /dev/vg1/hv10 --graphics vnc
 Starting install...
-Creating domain...                                          |    0 B  00:00
+Creating domain...
 Domain installation still in progress. Waiting for installation to complete.
 ```
 
@@ -1446,10 +1447,10 @@ where `--cpu require=vmx` is important to provide the nested KVM feature
 inside the guest OS.
 
 Check the IP address and the port to connect to the new guest OS by
-`virsh vncdisplay hv0`:
+`virsh vncdisplay hv10`:
 
 ```
-air$ sudo virsh vncdisplay hv0
+air$ sudo virsh vncdisplay hv10
 127.0.0.1:0
 ```
 
