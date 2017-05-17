@@ -1216,7 +1216,7 @@ up and running.
 But before that, let's resolve the dependency by install those by `pacman`.
 
 ```
-air$ sudo pacman -S qt5-webengine gstreamer0.10-base qt5-svg
+air$ sudo pacman -S xcb-util-image xcb-util-keysyms qt5-webengine gstreamer0.10-base qt5-svg pulseaudio-alsa
 ```
 
 ```
