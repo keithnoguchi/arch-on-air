@@ -704,68 +704,13 @@ Here is the current [.config](kernel/.config) file I use for your reference.
 
 #### wlp3s0
 
-As explained in
-[Arch MacBook wiki](https://wiki.archlinux.org/index.php/MacBook#WiFi),
-there is
-[broadcom-wl-dkms AUR](https://www.archlinux.org/packages/community/x86_64/broadcom-wl-dkms/)
-for `wl` driver.
+Great news!! Now, broadcom-wl-dkms has been maintained under the [community](https://git.archlinux.org/svntogit/community.git/refs/?h=packages/broadcom-wl-dkms)
+package.  All you have to do is just install `broadcom-wl-dkms` through the
+standard `pacman` command, as below:
 
-Let's first get `git`, `dkms`, and `fakeroot` through pacman
 
 ```
-air$ sudo pacman -S git dkms fakeroot
-```
-
-clone the `broadcom-wl-dkms` repo and `makepkg`
-
-```
-air$ git clone https://aur.archlinux.org/broadcom-wl-dkms
-```
-```
-air$ cd broadcom-wl-dkms/
-air$ makepkg -f
-```
-
-Then, just install the self-build package with `pacman`
-
-```
-air$ sudo pacman -U broadcom-wl-dkms-6.30.223.271-8-x86_64.pkg.tar.xz
-loading packages...
-warning: broadcom-wl-dkms-6.30.223.271-8 is up to date -- reinstalling
-resolving dependencies...
-looking for conflicting packages...
-
-Packages (1) broadcom-wl-dkms-6.30.223.271-8
-
-Total Installed Size:  7.66 MiB
-Net Upgrade Size:      0.00 MiB
-
-:: Proceed with installation? [Y/n] y
-(1/1) checking keys in keyring                       [###########################] 100%
-(1/1) checking package integrity                     [###########################] 100%
-(1/1) loading package files                          [###########################] 100%
-(1/1) checking for file conflicts                    [###########################] 100%
-(1/1) checking available disk space                  [###########################] 100%
-:: Running pre-transaction hooks...
-(1/1) Remove DKMS modules
-==> No kernel 4.6.4-1-ARCH headers. You must install them to use DKMS!
-==> dkms remove -m broadcom-wl -v 6.30.223.271 -k 4.7.0.1
-Error! There are no instances of module: broadcom-wl
-6.30.223.271 located in the DKMS tree.
-:: Processing package changes...
-(1/1) reinstalling broadcom-wl-dkms                  [###########################] 100%
-
-To load the new module, run as root:
-
-  rmmod b43 b43legacy ssb bcm43xx brcm80211 brcmfmac brcmsmac bcma wl
-  modprobe wl
-
-or just reboot the system.
-
-:: Running post-transaction hooks...
-(1/1) Install DKMS modules
-==> No kernel 4.6.4-1-ARCH headers. You must install them to use DKMS!
-==> dkms install -m broadcom-wl -v 6.30.223.271 -k 4.7.0.1
+air$ sudo pacman -S broadcom-wl-dkms
 ```
 
 Just do `sudo modprobe wl` then boom, you have `wlp3s0` on air!
