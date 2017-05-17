@@ -1151,7 +1151,8 @@ air$ sudo pacman -S cpio
 ```
 
 Now, clone the [bcwc_pcie driver](https://github.com/patjak/bcwc_pcie)
-package and download the firmware, as explained in their wiki
+package and download the firmware, as explained in their
+[wiki](https://github.com/patjak/bcwc_pcie/wiki)
 
 ```
 git clone https://github.com/patjak/bcwc_pcie.git
