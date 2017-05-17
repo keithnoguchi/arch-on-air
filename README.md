@@ -707,7 +707,7 @@ Here is the current [.config](kernel/.config) file I use for your reference.
 As explained in
 [Arch MacBook wiki](https://wiki.archlinux.org/index.php/MacBook#WiFi),
 there is
-[broadcom-wl-dkms AUR](https://aur.archlinux.org/packages/broadcom-wl-dkms/)
+[broadcom-wl-dkms AUR](https://www.archlinux.org/packages/community/x86_64/broadcom-wl-dkms/)
 for `wl` driver.
 
 Let's first get `git`, `dkms`, and `fakeroot` through pacman
