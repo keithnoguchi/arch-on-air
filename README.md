@@ -991,10 +991,10 @@ chromium these days...
 
 #### surf
 
-Install `xorg-xprop`, `gtk3`, and `webkitgtk2` through `pacman`
+Install `xorg-xprop`, `gtk3`, and `webkit2gtk` through `pacman`
 
 ```
-air$ sudo pacman -S xorg-xprop gtk3 webkitgtk2
+air$ sudo pacman -S xorg-xprop gtk3 webkit2gtk
 ```
 
 then, clone the latest `surf`
