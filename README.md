@@ -1416,9 +1416,9 @@ air$ sudo virsh net-dumpxml default
   <mac address='00:00:bb:00:00:00'/>
   <ip address='192.168.122.1' netmask='255.255.255.0'>
     <dhcp>
-      <range start='192.168.122.129' end='192.168.122.254'/>
-      <host mac='00:00:bb:14:04:00' ip='192.168.122.129'/>
-      <host mac='00:00:bb:16:04:00' ip='192.168.122.130'/>
+      <range start='192.168.122.64' end='192.168.122.254'/>
+      <host mac='00:00:bb:16:04:10' ip='192.168.122.110'/>
+      <host mac='00:00:bb:16:04:11' ip='192.168.122.111'/>
     </dhcp>
   </ip>
 </network>
