@@ -874,8 +874,9 @@ air$ cd dwm
 air$ make && sudo make install
 ```
 
-I do the same, too, for [st](http://st.suckless.org) and
-[dmenu](http://dmenu.suckless.org) from [suckless](http://suckless.org).
+I do the same for [st](http://st.suckless.org) and
+[dmenu](http://dmenu.suckless.org) from [suckless](http://suckless.org)
+to get X going.
 
 ### Key mapping
 
@@ -940,8 +941,8 @@ Section "InputClass"
         Identifier "touchpad"
 	Driver "synaptics"
 	MatchIsTouchpad "on"
-		Option "VertScrollDelta" "-111"
-		Option "HorizScrollDelta" "-111"
+	Option "VertScrollDelta" "-111"
+	Option "HorizScrollDelta" "-111"
 EndSection
 ```
 
