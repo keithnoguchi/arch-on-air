@@ -1386,7 +1386,7 @@ air$
 #### Network
 
 We'll use the default Linux kernel bridge, just because, as of August 2016,
-Open vSwitch [doesn't support *NAT mode* for libvirt networking](http://openvswitch.org/support/dist-docs/INSTALL.Libvirt.md.html).
+Open vSwitch [doesn't support *NAT mode* for libvirt networking](https://github.com/horms/openvswitch/blob/master/INSTALL.Libvirt.md).
 
 We'll install those packages through `pacman` so that KVM guests will get
 the IP address through the DHCP.
