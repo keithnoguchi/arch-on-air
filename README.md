@@ -1258,7 +1258,7 @@ air$ sudo pacman -S virtualbox vagrant
 
 #### libvirt
 
-I love *KVM* and *OVS* based virtualization through *libvirt* on Linux
+I love *KVM* and *OvS* based virtualization through *libvirt* on Linux
 because of their simplicity and performance.  Here is the basic steps to
 make your KVM up and running under libvirt on your Arch:
 
@@ -1480,7 +1480,7 @@ Install autotools, if you haven't done that.
 air$ sudo pacman -S m4 automake autoconf
 ```
 
-As of Summer 2016, [*OVS* code is not ready *python2* yet](https://github.com/openvswitch/ovs/blob/master/INSTALL.md#installation-requirements) and,
+As of Summer 2016, [*OvS* code is not ready *python2* yet](https://github.com/openvswitch/ovs/blob/master/INSTALL.md#installation-requirements) and,
 as Arch has been shifted to *python3* as the default *python* long time ago,
 you need to hack around it to make it work.  Here is one way of doing
 it, as explained on
@@ -1520,7 +1520,7 @@ vermagic:       4.7.0.1 SMP preempt mod_unload modversions
 air$
 ```
 
-and build the initial *OVSDB database* based off on the OVS
+and build the initial *OVSDB database* based off on the OvS
 [schema](https://github.com/openvswitch/ovs/blob/master/vswitchd/vswitch.ovsschema)
 
 ```
@@ -1533,7 +1533,7 @@ air$ ls -l /usr/local/etc/openvswitch/conf.db
 
 #### Run
 
-Let's run `ovsdb-server`, the OVS database server, and the `ovs-vswitchd`,
+Let's run `ovsdb-server`, the OvS database server, and the `ovs-vswitchd`,
 vswitch itself, as explained in [INSTALL.md](https://github.com/openvswitch/ovs/blob/master/INSTALL.md#startup).
 
 ```
