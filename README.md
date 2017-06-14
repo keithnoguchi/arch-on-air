@@ -1110,7 +1110,7 @@ ctl.!default {
 ```
 
 Let's check the audio by watching
-[youtube](https://www.youtube.com/watch?v=tnSkHhsLqpM) video.
+[OVN with Kubernetes](https://www.youtube.com/watch?v=lc6uu-mvs1w) youtube video.
 
 You can change the volume mute/unmute through `amixer` or `alsamixer`
 as explained in [ArchLinux wiki](https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture#Unmuting_the_channels):
