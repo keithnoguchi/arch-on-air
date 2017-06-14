@@ -1421,6 +1421,8 @@ air$ sudo virsh net-dumpxml default
       <range start='192.168.122.64' end='192.168.122.254'/>
       <host mac='00:00:bb:16:04:10' ip='192.168.122.110'/>
       <host mac='00:00:bb:16:04:11' ip='192.168.122.111'/>
+      <host mac='00:00:bb:16:04:12' ip='192.168.122.112'/>
+      <host mac='00:00:bb:16:04:13' ip='192.168.122.113'/>
     </dhcp>
   </ip>
 </network>
@@ -1435,8 +1437,7 @@ VNC client package, `tigervnc`, through `pacman`:
 air$ sudo pacman -S virt-install virt-viewer tigervnc
 ```
 
-Once you download the OS, let's install it through headlless
-by `virt-install` as below:
+Let's install the guest, after downloading the image of your choise.  I usually play with [Ubuntu LTS](http://mirror.pnl.gov/releases/16.04.2/), just to see what they're up to. :)
 
 ```
 air$ sudo virt-install -n hv10 --memory 2048 --vcpus 1 --hvm --virt-type kvm \
