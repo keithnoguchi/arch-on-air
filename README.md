@@ -1440,16 +1440,41 @@ air$ sudo pacman -S virt-install virt-viewer tigervnc
 Let's install the guest, after downloading the image of your choise.  I usually play with [Ubuntu LTS](http://mirror.pnl.gov/releases/16.04.2/), just to see what they're up to. :)
 
 ```
-air$ sudo virt-install -n hv10 --memory 2048 --vcpus 1 --hvm --virt-type kvm \
---cdrom /var/lib/libvirt/boot/ubuntu-16.04.2-server-amd64.iso \
---disk /dev/vg1/hv10 --graphics vnc --cpu host,require=vmx
+air$ sudo virt-install -n hv10 -v --disk /dev/vg1/hv10 \
+-c /var/lib/libvirt/boot/ubuntu-16.04.2-server-amd64.iso \
+--memory 2048 --cpu host,require=vmx --graphics vnc
 Starting install...
 Creating domain...
 Domain installation still in progress. Waiting for installation to complete.
 ```
 
-where `--cpu require=vmx` is important to provide the nested KVM feature
-inside the guest OS.
+I've focus on the minimum required setup in the command line above, which
+doesn't slow down the installation process.  Here is the break down:
+
+1. `-n hv10`: Specify new guest name, e.g. `hv10`
+2. `-v`: Does hardware virtualization, a.k.a --hvm
+3. `--disk /dev/vg1/hv10`: Specify the guest local hard disk.
+4. `-c /var/lib/...`: Specify the boot image (ISO)
+5. `--memory 2048`: Allocate 2G of memory to the guest. (optional)
+
+   You don't need this much of memory for the day to day business, but
+   it's good for the installation process, as sometime it requires more
+   memory.  You can always reconfigure this allocation through
+   `virsh edit hv10` after the installation.
+
+6. `--cpu host,require=vmx`: For KVM in KVM. (optional)
+
+   This is not required for the installation
+   but better to have it for the operation, especially you want to run KVM
+   inside your guest OS.
+
+7. `--graphics vnc`: Use VNC for the installation process. (optional)
+
+   You don't need this, as you have your own X, but better to get familier
+   with it.
+
+Out of all, `--cpu host,require=vmx` is the most important thing to remember,
+if you're planing to run KVM inside your guest OS.
 
 Check the IP address and the port to connect to the new guest OS by
 `virsh vncdisplay hv10`:
