@@ -1490,6 +1490,50 @@ Let's connect to the guest and finish it up the work!
 air$ vncviewer 127.0.0.1
 ```
 
+##### Guest OS name resolution
+
+You can setup your own name servers to take care of the name resolution
+for all your guest OSes but if you're lazy, just like me, you can do the
+simple way to take care of it through the `/etc/hosts` files, as show
+below:
+
+First setup guest network MAC address through `virsh edit` command:
+
+```
+air$ sudo virsh dumpxml hv10 | grep '04:10'
+      <mac address='00:00:bb:16:04:10'/>
+```
+
+setup the libvirt network witht he MAC to IP address mapping:
+
+```
+air$ sudo virsh net-dumpxml default | grep '04:10'
+      <host mac='00:00:bb:16:04:10' ip='192.168.122.110'/>
+```
+
+and setup the host `/etc/hosts` file to do the name to address
+resolution:
+
+```
+air$ grep hv10 /etc/hosts
+192.168.122.110 hv10
+air$
+```
+
+Now, you can ping with the shorter names, e.g. `hv10`, as below:
+
+```
+air$ ping -c2 hv10
+PING hv10 (192.168.122.110) 56(84) bytes of data.
+64 bytes from hv10 (192.168.122.110): icmp_seq=1 ttl=64 time=0.127 ms
+64 bytes from hv10 (192.168.122.110): icmp_seq=2 ttl=64 time=0.187 ms
+
+--- hv10 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1015ms
+rtt min/avg/max/mdev = 0.127/0.157/0.187/0.030 ms
+air$
+```
+
 ### Open vSwitch
 
 #### Build
