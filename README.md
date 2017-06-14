@@ -630,6 +630,7 @@ root@archiso ~ # reboot
 - [Zoom](#zoom)
 - [Vagrant/VirtualBox](#vagrant-virtualbox)
 - [KVM](#kvm)
+- [Configuration Management Tools](#configuration-management-tools)
 - [Open vSwitch](#open-vswitch)
 
 ### Console
@@ -1519,6 +1520,61 @@ PING hv10 (192.168.122.110) 56(84) bytes of data.
 rtt min/avg/max/mdev = 0.127/0.157/0.187/0.030 ms
 air$
 ```
+### Configuration Management Tools
+
+I'm a big fan of configuration management tools, especially push based,
+as [ansible](https://ansible.com) and [terraform](https://terraform.io)
+
+#### Ansible
+
+You can install ansible through `pacman` but let's make it more fun by
+installing it from the source:
+
+Let's install `pip` so that we can take care of the python dependency
+quick by `pip install -r requirements.txt`:
+
+```
+air$ sudo pacman -S python2-pip
+```
+
+Then checkout the source code from their [github repo](https://github.com/ansible/ansible):
+
+```
+air$ git clone git@github.com:ansible/ansible
+```
+
+As mentioned before, let's lay the foundation by `pip install -r` command:
+
+```
+air$ cd ansible
+air$ sudo pip install -r requirements.txt
+```
+
+now, you're ready to build and install:
+
+```
+air$ python setup.py build
+air$ sudo python setup.py install
+```
+
+Let's check if `ansible` command is up and running by
+[ping](http://docs.ansible.com/ping_module.html) to localhost:
+
+```
+air$ ansible -m ping localhost
+ [WARNING]: No inventory was parsed, only implicit localhost is available
+
+ [WARNING]: provided hosts list is empty, only localhost is available
+
+localhost | SUCCESS => {
+    "changed": false,
+    "failed": false,
+    "ping": "pong"
+}
+air$
+```
+
+Welcome to the fun [ansible](https://ansible.com) world!
 
 ### Open vSwitch
 

@@ -1,0 +1,11 @@
+---
+- name: setup ubuntu guests
+  hosts: guests
+  become: yes
+  tasks:
+    - name: check the ping
+      command: date
+      register: result
+
+    - name: print the result
+      debug: var=result
