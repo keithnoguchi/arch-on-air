@@ -938,16 +938,17 @@ and put the following file under `/etc/X11/xorg.conf.d`
 ```
 air$ cat /etc/X11/xorg.conf.d/70-synaptics.conf
 Section "InputClass"
-        Identifier "touchpad"
+	Identifier "touchpad"
 	Driver "synaptics"
 	MatchIsTouchpad "on"
-	Option "VertScrollDelta" "-111"
-	Option "HorizScrollDelta" "-111"
+		Option "TapButton1" "1"
+		Option "PalmDetect" "1"
+		Option "VertScrollDelta" "-111"
+		Option "HorizScrollDelta" "-111"
 EndSection
 ```
 
-Here is the [one](https://github.com/keinohguchi/arch-on-air/blob/master/xorg.conf.d/70-synaptics.conf)
- I use for synaptics.
+Here is the [one](xorg.conf.d/70-synaptics.conf) I use for synaptics.
 
 ### Power
 
