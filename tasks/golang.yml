@@ -1,0 +1,29 @@
+---
+- name: install pre-requisite packages
+  apt: name={{ item }} state=present update_cache=yes
+  items:
+    - golang-1.6
+    - w3m
+  become: true
+
+- name: clone the git repos
+  git:
+    repo: git@github.com:golang/go
+    dest: /usr/local/git/go
+    update: yes
+    ssh_opts: "-o StrictHostKeyChecking=no"
+  register: result
+
+- name: print the result
+  debug: var=result
+  when: verbose|bool
+
+- name: build & install the latest golang
+  shell: GOROOT_BOOTSTRAP=/usr/lib/go-1.6 ./make.bash
+  args:
+    chdir: /usr/local/git/go/src
+  register: result
+
+- name: print the result
+  debug: var=result
+  when: verbose|bool
