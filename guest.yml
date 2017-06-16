@@ -52,22 +52,5 @@
       debug: var=result
       when: verbose|bool
 
-    - name: install python packages for ansible
-      pip: requirements=/usr/local/git/ansible/requirements.txt
-      become: true
-      register: result
-
-    - name: print the result
-      debug: var=result
-      when: verbose|bool
-
     - name: install the latest ansible
-      command: python setup.py install
-      args:
-        chdir: /usr/local/git/ansible
-      become: true
-      register: result
-
-    - name: print the result
-      debug: var=result
-      when: verbose|bool
+      include_tasks: tasks/ansible.yml
