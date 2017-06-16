@@ -1,0 +1,30 @@
+---
+- name: get terraform core & providers
+  command: go get {{ item }}
+  with_items:
+    - github.com/hashicorp/terraform
+    - github.com/terraform-providers/terraform-provider-terraform
+    - github.com/terraform-providers/terraform-provider-digitalocean
+  register: result
+
+- name: print the result
+  debug: var=result
+  when: verbose|bool
+
+- name: build & install the terraform core & providers
+  make:
+    chdir: "{{ lookup('env', 'GOPATH') }}/src/github.com/{{ item.path }}"
+    target: "{{ item.target }}"
+  with_items:
+    - { path: hashicorp/terraform, target: dev }
+    - { path: terraform-providers/terraform-provider-terraform, target: build }
+    - { path: terraform-providers/terraform-provider-digitalocean, target: build }
+  register: result
+  environment:
+    GOROOT: "{{ lookup('env', 'GOROOT') }}"
+    GOPATH: "{{ lookup('env', 'GOPATH') }}"
+    PATH: "{{ lookup('env', 'GOROOT') }}/bin:{{ lookup('env', 'GOPATH') }}/bin:/usr/bin:/bin"
+
+- name: print the result
+  debug: var=result
+  when: verbose|bool

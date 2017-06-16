@@ -20,5 +20,8 @@
     - name: build & install the latest golang
       import_tasks: tasks/golang.yml
 
+    - name: build & install the latest terraform
+      import_tasks: tasks/terraform.yml
+
     - name: install the latest ansible
       import_tasks: tasks/ansible.yml
