@@ -1,0 +1,28 @@
+---
+- name: setup ubuntu guests
+  hosts: guests
+  gather_facts: false
+  tasks:
+    - name: add user to the src group
+      user:
+        name: "{{ ansible_user }}"
+        group: adm
+        groups: src,sudo
+        append: yes
+      become: true
+
+    - name: create /usr/local/git directory
+      file: path=/usr/local/git state=directory group=src mode=0775
+      become: true
+
+    - name: clone golang repo
+      git:
+        repo: git@github.com:golang/go
+        dest: /usr/local/git/go
+        update: yes
+        ssh_opts: "-o StrictHostKeyChecking=no"
+      register: result
+
+
+    - name: print the result
+      debug: var=result
