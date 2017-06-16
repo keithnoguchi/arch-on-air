@@ -1,6 +1,8 @@
 ---
 - name: setup ubuntu guests
   hosts: guests
+  vars:
+    verbose: false
   gather_facts: false
   tasks:
     - name: add user to the src group
@@ -23,6 +25,6 @@
         ssh_opts: "-o StrictHostKeyChecking=no"
       register: result
 
-
     - name: print the result
       debug: var=result
+      when: verbose|bool
