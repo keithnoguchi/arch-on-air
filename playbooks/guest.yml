@@ -1,5 +1,5 @@
 ---
-- name: setup ubuntu guests
+- name: setup ubuntu guest
   hosts: guests
   vars:
     verbose: false
@@ -10,6 +10,9 @@
       items:
         - golang-1.6
         - w3m
+        - python
+        - python-pip
+        - libssl-dev
       become: true
 
     - name: add user to the src group
@@ -24,22 +27,45 @@
       file: path=/usr/local/git state=directory group=src mode=0775
       become: true
 
-    - name: clone golang repo
+    - name: clone git repos
       git:
-        repo: git@github.com:golang/go
-        dest: /usr/local/git/go
+        repo: "{{ item.repo }}"
+        dest: "/usr/local/git/{{ item.dest }}"
         update: yes
         ssh_opts: "-o StrictHostKeyChecking=no"
+      with_items:
+        - { repo: "git@github.com:golang/go", dest: go }
+        - { repo: "git@github.com:ansible/ansible", dest: ansible }
       register: result
 
     - name: print the result
       debug: var=result
       when: verbose|bool
 
-    - name: compile the latest golang
+    - name: build & install the latest golang
       shell: GOROOT_BOOTSTRAP=/usr/lib/go-1.6 ./make.bash
       args:
         chdir: /usr/local/git/go/src
+      register: result
+
+    - name: print the result
+      debug: var=result
+      when: verbose|bool
+
+    - name: install python packages for ansible
+      pip: requirements=/usr/local/git/ansible/requirements.txt
+      become: true
+      register: result
+
+    - name: print the result
+      debug: var=result
+      when: verbose|bool
+
+    - name: install the latest ansible
+      command: python setup.py install
+      args:
+        chdir: /usr/local/git/ansible
+      become: true
       register: result
 
     - name: print the result
