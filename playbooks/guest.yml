@@ -9,6 +9,7 @@
       apt: name={{ item }} state=present update_cache=yes
       items:
         - golang-1.6
+        - w3m
       become: true
 
     - name: add user to the src group
@@ -29,6 +30,16 @@
         dest: /usr/local/git/go
         update: yes
         ssh_opts: "-o StrictHostKeyChecking=no"
+      register: result
+
+    - name: print the result
+      debug: var=result
+      when: verbose|bool
+
+    - name: compile the latest golang
+      shell: GOROOT_BOOTSTRAP=/usr/lib/go-1.6 ./make.bash
+      args:
+        chdir: /usr/local/git/go/src
       register: result
 
     - name: print the result
