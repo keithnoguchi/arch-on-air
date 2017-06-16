@@ -5,6 +5,12 @@
     verbose: false
   gather_facts: false
   tasks:
+    - name: install packages
+      apt: name={{ item }} state=present update_cache=yes
+      items:
+        - golang-1.6
+      become: true
+
     - name: add user to the src group
       user:
         name: "{{ ansible_user }}"
