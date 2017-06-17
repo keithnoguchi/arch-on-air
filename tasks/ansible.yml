@@ -1,5 +1,5 @@
 ---
-- name: install pre-requisite packages
+- name: install pre-requisite packages for ansible
   apt: name={{ item }} state=present update_cache=yes
   items:
     - python
@@ -7,7 +7,7 @@
     - libssl-dev
   become: true
 
-- name: clone the git repos
+- name: clone the ansible git repo
   git:
     repo: git@github.com:ansible/ansible
     dest: /usr/local/git/ansible
