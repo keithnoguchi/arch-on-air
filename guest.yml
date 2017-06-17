@@ -20,6 +20,12 @@
       file: path=/usr/local/git state=directory group=src mode=0775
       become: true
 
+    - name: install general pre-requisite packages
+      apt: name={{ item }} state=present update_cache=yes
+      items:
+        - libvirt-dev
+      become: true
+
     - name: build & install the latest golang
       import_tasks: tasks/golang.yml
       when: golang|bool

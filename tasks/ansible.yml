@@ -1,6 +1,6 @@
 ---
 - name: install pre-requisite packages for ansible
-  apt: name={{ item }} state=present update_cache=yes
+  apt: name={{ item }} state=present update_cache=no
   items:
     - python
     - python-pip
