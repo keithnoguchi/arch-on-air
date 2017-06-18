@@ -6,3 +6,4 @@ provision guest:
 
 clean:
 	$(RM) *.retry
+	$(RM) .*.sw? **/.*.sw?
