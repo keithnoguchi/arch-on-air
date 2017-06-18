@@ -647,7 +647,7 @@ KEYMAP=emacs2
 Those are my favorite apps on console
 
 ```
-air$ sudo pacman -S tmux vim irssi mutt cscope w3m tcpdump net-tools gnu-netcat
+air$ sudo pacman -S tmux vim irssi mutt cscope w3m tcpdump net-tools gnu-netcat bind-tools
 ```
 
 ### Kernel
