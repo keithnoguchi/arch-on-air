@@ -1,0 +1,26 @@
+---
+- name: setup post-installation provisioning
+  hosts: host
+  vars:
+    verbose: true
+  gather_facts: false
+  tasks:
+    - name: install console apps
+      pacman: name={{ item }} state=present
+      items:
+        - tmux
+        - vim
+        - irssi
+        - mutt
+        - cscope
+        - w3m
+        - tcpdump
+        - net-tools
+        - bind-tools
+        - gnu-netcat
+      become: true
+      register: result
+
+    - name: print the result
+      debug: var=result
+      when: verbose|bool

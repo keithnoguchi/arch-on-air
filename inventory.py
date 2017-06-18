@@ -10,9 +10,9 @@ import libvirt
 def main():
     inventory = {'all': {'hosts': [],
                          'vars': {'ansible_user': os.environ['USER']}}}
-    inventory['localhost'] = {'hosts': ['localhost'],
-                              'vars': {'ansible_python_interpreter':
-                                       '/usr/bin/python2'}}
+    inventory['host'] = {'hosts': ['localhost'],
+                         'vars': {'ansible_python_interpreter':
+                                  '/usr/bin/python2'}}
     inventory['guests'] = guests()
 
     hostvars = {}
