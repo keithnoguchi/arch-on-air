@@ -1,7 +1,8 @@
-.PHONY: guest
-guest:
-	ansible-playbook guest.yml
+all: provision guest
+
+.PHONY: provision guest
+provision guest:
+	@ansible-playbook $@.yml -e verbose=false
 
 clean:
 	$(RM) *.retry
-	$(RM) tasks/*.retry

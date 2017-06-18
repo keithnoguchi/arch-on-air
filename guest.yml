@@ -5,7 +5,8 @@
     golang: true
     terraform: true
     ansible: true
-    verbose: false
+    perl: true
+    verbose: true
   gather_facts: false
   tasks:
     - name: add user to the src group
@@ -37,3 +38,7 @@
     - name: install the latest ansible
       import_tasks: tasks/ansible.yml
       when: ansible|bool
+
+    - name: install the latest perl
+      import_tasks: tasks/perl.yml
+      when: perl|bool

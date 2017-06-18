@@ -17,6 +17,7 @@
 
 - name: print the result
   debug: var=result
+  delegate_to: localhost
   when: verbose|bool
 
 - name: install python packages for ansible
@@ -26,6 +27,7 @@
 
 - name: print the result
   debug: var=result
+  delegate_to: localhost
   when: verbose|bool
 
 - name: install the latest ansible
@@ -37,4 +39,5 @@
 
 - name: print the result
   debug: var=result
+  delegate_to: localhost
   when: verbose|bool
