@@ -10,6 +10,12 @@
   debug: var=result
   when: verbose|bool
 
+- name: create RabbitMQ required directories
+  file: path={{ item }} state=directory owner=rabbitmq group=rabbitmq mode=0755
+  items:
+    - /var/log/rabbitmq
+    - /var/lib/rabbitmq/mnesia/rabbit
+
 - name: start required services
   service: name={{ item }} state=started
   items:
