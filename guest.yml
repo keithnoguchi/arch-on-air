@@ -51,4 +51,11 @@
 
     - name: setup RabbitMQ environment
       import_tasks: tasks/rabbit.yml
+      vars:
+        username: rabbit
+        password: RabbitMQ
+        vhost: hole
+        configure_priv: ".*"
+        read_priv: ".*"
+        write_priv: ".*"
       when: rabbit|bool
