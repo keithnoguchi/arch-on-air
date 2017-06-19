@@ -3,6 +3,7 @@
   hosts: guests
   vars:
     kvm: true
+    rabbit: true
     golang: true
     terraform: true
     ansible: true
@@ -31,6 +32,10 @@
     - name: setup KVM environment
       import_tasks: tasks/kvm.yml
       when: kvm|bool
+
+    - name: setup RabbitMQ environment
+      import_tasks: tasks/rabbit.yml
+      when: rabbit|bool
 
     - name: build & install the latest golang
       import_tasks: tasks/golang.yml

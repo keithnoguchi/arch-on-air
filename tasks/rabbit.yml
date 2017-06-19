@@ -1,0 +1,11 @@
+---
+- name: install RabbitMQ packages
+  apt: name={{ item }} state=present update_cache=false
+  items:
+    - rabbitmq-server
+  become: true
+  register: result
+
+- name: print out the result
+  debug: var=result
+  when: verbose|bool
