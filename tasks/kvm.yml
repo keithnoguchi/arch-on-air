@@ -1,0 +1,6 @@
+---
+- name: install KVM pre-requisite packages
+  apt: name={{ item }} state=present update_cache=false
+  items:
+    - libvirt-dev
+  become: true

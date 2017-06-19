@@ -2,6 +2,7 @@
 - name: setup ubuntu guest
   hosts: guests
   vars:
+    kvm: true
     golang: true
     terraform: true
     ansible: true
@@ -22,10 +23,14 @@
       become: true
 
     - name: install general pre-requisite packages
-      apt: name={{ item }} state=present update_cache=yes
+      apt: name={{ item }} state=present update_cache=true
       items:
-        - libvirt-dev
+        - binutils
       become: true
+
+    - name: setup KVM environment
+      import_tasks: tasks/kvm.yml
+      when: kvm|bool
 
     - name: build & install the latest golang
       import_tasks: tasks/golang.yml

@@ -1,6 +1,6 @@
 ---
 - name: install pre-requisite packages for golang
-  apt: name={{ item }} state=present update_cache=no
+  apt: name={{ item }} state=present update_cache=false
   items:
     - golang-1.6
     - w3m
