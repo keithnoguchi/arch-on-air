@@ -9,3 +9,13 @@
 - name: print out the result
   debug: var=result
   when: verbose|bool
+
+- name: start required services
+  service: name={{ item }} state=started
+  items:
+    - rabbitmq-server
+  register: result
+
+- name: print out the result
+  debug: var=result
+  when: verbose|bool

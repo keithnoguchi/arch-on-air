@@ -2,12 +2,12 @@
 - name: setup ubuntu guest
   hosts: guests
   vars:
-    kvm: true
-    rabbit: true
     golang: true
     terraform: true
     ansible: true
     perl: true
+    kvm: true
+    rabbit: true
     verbose: true
   gather_facts: false
   tasks:
@@ -29,14 +29,6 @@
         - binutils
       become: true
 
-    - name: setup KVM environment
-      import_tasks: tasks/kvm.yml
-      when: kvm|bool
-
-    - name: setup RabbitMQ environment
-      import_tasks: tasks/rabbit.yml
-      when: rabbit|bool
-
     - name: build & install the latest golang
       import_tasks: tasks/golang.yml
       when: golang|bool
@@ -52,3 +44,11 @@
     - name: install the latest perl
       import_tasks: tasks/perl.yml
       when: perl|bool
+
+    - name: setup KVM environment
+      import_tasks: tasks/kvm.yml
+      when: kvm|bool
+
+    - name: setup RabbitMQ environment
+      import_tasks: tasks/rabbit.yml
+      when: rabbit|bool
