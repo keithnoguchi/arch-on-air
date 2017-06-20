@@ -13,10 +13,10 @@ def main():
     inventory['host'] = {'hosts': ['localhost'],
                          'vars': {'ansible_python_interpreter':
                                   '/usr/bin/python2'}}
-    inventory['guests'] = guests()
+    inventory['guest'] = guests()
 
     hostvars = {}
-    for type in ['guests']:
+    for type in ['guest']:
         for host in inventory[type]['hosts']:
             inventory['all']['hosts'].append(host)
             hostvars[host] = {'name': host}

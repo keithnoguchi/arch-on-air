@@ -1,6 +1,6 @@
 ---
 - name: setup ubuntu guest
-  hosts: guests
+  hosts: guest
   vars:
     golang: true
     terraform: true
