@@ -16,7 +16,6 @@
         name: "{{ ansible_user }}"
         group: adm
         groups: src,sudo
-        shell: /bin/bash
         append: true
       become: true
 
@@ -53,8 +52,10 @@
     - name: setup RabbitMQ environment
       import_tasks: tasks/rabbit.yml
       vars:
+        scheme: amqp
         username: rabbit
         password: RabbitMQ
+        cluster: "localhost:5672"
         vhost: hole
         configure_priv: ".*"
         read_priv: ".*"
