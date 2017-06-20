@@ -16,6 +16,7 @@
   items:
     - /var/log/rabbitmq
     - /var/lib/rabbitmq/mnesia/rabbit
+  become: true
 
 - name: start required services
   service: name={{ item }} state=started
