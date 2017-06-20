@@ -11,6 +11,10 @@
   delegate_to: localhost
   when: verbose|bool
 
+- name: add user to the rabbitmq group
+  user: name={{ ansible_user }} append=true groups=rabbitmq
+  become: true
+
 - name: create RabbitMQ required directories
   file: path={{ item }} state=directory owner=rabbitmq group=rabbitmq mode=0755
   items:

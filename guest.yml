@@ -16,7 +16,8 @@
         name: "{{ ansible_user }}"
         group: adm
         groups: src,sudo
-        append: yes
+        shell: /bin/bash
+        append: true
       become: true
 
     - name: create /usr/local/git directory
