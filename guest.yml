@@ -2,12 +2,9 @@
 - name: setup ubuntu guest
   hosts: guest
   vars:
-    golang: true
-    terraform: true
-    ansible: true
-    perl: true
     kvm: true
     rabbit: true
+    latest: false
     verbose: true
   gather_facts: false
   tasks:
@@ -31,19 +28,19 @@
 
     - name: build & install the latest golang
       import_tasks: tasks/golang.yml
-      when: golang|bool
+      when: latest|bool
 
     - name: build & install the latest terraform
       import_tasks: tasks/terraform.yml
-      when: terraform|bool
+      when: latest|bool
 
     - name: install the latest ansible
       import_tasks: tasks/ansible.yml
-      when: ansible|bool
+      when: latest|bool
 
     - name: install the latest perl
       import_tasks: tasks/perl.yml
-      when: perl|bool
+      when: latest|bool
 
     - name: setup KVM environment
       import_tasks: tasks/kvm.yml
