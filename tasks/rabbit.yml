@@ -21,11 +21,11 @@
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
   items:
-    - { regexp: "AMQP_SCHEME=",   line: "export AMQP_SCHEME={{ scheme }}" }
-    - { regexp: "AMQP_USERNAME=", line: "export AMQP_USERNAME={{ username }}" }
-    - { regexp: "AMQP_PASSWORD=", line: "export AMQP_PASSWORD={{ password }}" }
-    - { regexp: "AMQP_CLUSTER=",  line: "export AMQP_CLUSTER={{ cluster }}" }
-    - { regexp: "AMQP_VHOST=",    line: "export AMQP_VHOST={{ vhost }}" }
+    - { regexp: "^export AMQP_SCHEME=",   line: "export AMQP_SCHEME={{ scheme }}" }
+    - { regexp: "^export AMQP_USERNAME=", line: "export AMQP_USERNAME={{ username }}" }
+    - { regexp: "^export AMQP_PASSWORD=", line: "export AMQP_PASSWORD={{ password }}" }
+    - { regexp: "^export AMQP_CLUSTER=",  line: "export AMQP_CLUSTER={{ cluster }}" }
+    - { regexp: "^export AMQP_VHOST=",    line: "export AMQP_VHOST={{ vhost }}" }
   become: true
 
 - name: create RabbitMQ required directories
