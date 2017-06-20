@@ -23,4 +23,5 @@
 
     - name: print the result
       debug: var=result
+      delegate_to: localhost
       when: verbose|bool
