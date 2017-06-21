@@ -2,6 +2,7 @@
 - name: setup post-installation provisioning
   hosts: host
   vars:
+    latest: true
     verbose: true
   gather_facts: false
   tasks:
@@ -27,3 +28,20 @@
       debug: var=result
       delegate_to: localhost
       when: verbose|bool
+
+    - name: install pre-requisite packages for ansible
+      pacman: name={{ item }} state=present update_cache=false
+      items:
+        - python2
+        - python2-pip
+      become: true
+      register: result
+
+    - name: print the result
+      debug: var=result
+      delegate_to: localhost
+      when: verbose|bool
+
+    - name: install the latest ansible
+      import_tasks: tasks/ansible.yml
+      when: latest|bool

@@ -1,12 +1,4 @@
 ---
-- name: install pre-requisite packages for ansible
-  apt: name={{ item }} state=present update_cache=false
-  items:
-    - python
-    - python-pip
-    - libssl-dev
-  become: true
-
 - name: clone the ansible git repo
   git:
     repo: git@github.com:ansible/ansible
@@ -31,7 +23,7 @@
   when: verbose|bool
 
 - name: install the latest ansible
-  command: python setup.py install
+  command: "{{ ansible_python_interpreter }} setup.py install"
   args:
     chdir: /usr/local/git/ansible
   become: true

@@ -41,7 +41,8 @@ def guests():
         print 'Failed to open connection to the hypervisor'
         sys.exit(1)
 
-    guests = {'hosts': []}
+    guests = {'hosts': [],
+              'vars': {'ansible_python_interpreter': '/usr/bin/python'}}
     for i in c.listDomainsID():
         dom = c.lookupByID(i)
         guests['hosts'].append(dom.name())

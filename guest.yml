@@ -34,6 +34,15 @@
       import_tasks: tasks/terraform.yml
       when: latest|bool
 
+    - name: install pre-requisite packages for ansible
+      apt: name={{ item }} state=present update_cache=false
+      items:
+        - python
+        - python-pip
+        - libssl-dev
+      become: true
+      when: latest|bool
+
     - name: install the latest ansible
       import_tasks: tasks/ansible.yml
       when: latest|bool
