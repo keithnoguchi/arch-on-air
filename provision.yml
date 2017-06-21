@@ -12,12 +12,14 @@
         - vim
         - irssi
         - mutt
-        - cscope
         - w3m
+        - cscope
         - tcpdump
         - net-tools
         - bind-tools
         - gnu-netcat
+        - mtr
+        - traceroute
       become: true
       register: result
 
