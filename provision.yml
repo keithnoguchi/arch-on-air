@@ -52,6 +52,10 @@
       delegate_to: localhost
       when: verbose|bool
 
+    - name: install the latest terraform
+      import_tasks: tasks/terraform.yml
+      when: latest|bool
+
     - name: install pre-requisite packages for ansible
       pacman: name={{ item }} state=present update_cache=false
       items:

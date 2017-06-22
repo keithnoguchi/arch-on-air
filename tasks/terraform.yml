@@ -6,6 +6,10 @@
     - github.com/terraform-providers/terraform-provider-terraform
     - github.com/terraform-providers/terraform-provider-digitalocean
   register: result
+  environment:
+    GOROOT: "{{ lookup('env', 'GOROOT') }}"
+    GOPATH: "{{ lookup('env', 'GOPATH') }}"
+    PATH: "{{ lookup('env', 'GOROOT') }}/bin:{{ lookup('env', 'GOPATH') }}/bin:/usr/bin:/bin"
 
 - name: print the result
   debug: var=result
