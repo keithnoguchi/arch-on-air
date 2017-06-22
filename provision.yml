@@ -14,7 +14,30 @@
         - irssi
         - mutt
         - w3m
+      become: true
+      register: result
+
+    - name: print the result
+      debug: var=result
+      delegate_to: localhost
+      when: verbose|bool
+
+    - name: install compilers
+      pacman: name={{ item }} state=present update_cache=false
+      items:
+        - go
         - cscope
+      become: true
+      register: result
+
+    - name: print the result
+      debug: var=result
+      delegate_to: localhost
+      when: verbose|bool
+
+    - name: install network related tools
+      pacman: name={{ item }} state=present update_cache=false
+      items:
         - tcpdump
         - net-tools
         - bind-tools
