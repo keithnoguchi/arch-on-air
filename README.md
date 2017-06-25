@@ -45,10 +45,10 @@ I wish it's a quad core with 16GB of memory, but hey, it does a decent job! :)
 
 ### Dual booting
 
-As I use OSX ocasionally, I dual boot the air with OSX.  As recommended on
+As I use OSX occasionally, I dual boot the air with OSX.  As recommended on
 [Arch on MacBook(Air) wiki](https://wiki.archlinux.org/index.php/MacBook#OS_X_with_Arch_Linux),
 I use the Apple partition tool to shrink the OSX partition to around 180GB to
-make enough space for linux.
+make enough space for Linux.
 
 ```
 root@archiso ~ # lsblk
@@ -60,11 +60,11 @@ sda      8:0    0 465.9G  0 disk
 +-sda4   8:4    0   297G  0 part
 ```
 
-Here, *sda1* for the EFI system partition, *sda2* for OSX, and *sda4* for the archlinux.
+Here, *sda1* for the EFI system partition, *sda2* for OSX, and *sda4* for the ArchLinux.
 
 ### Set the keyboard layout
 
-Load *emacs key binding*, as usual:
+Load *Emacs key binding*, as usual:
 
 ```
 root@archiso ~ # loadkeys /usr/share/kbd/keymaps/i386/qwerty/emacs2.map.gz
@@ -72,7 +72,7 @@ root@archiso ~ # loadkeys /usr/share/kbd/keymaps/i386/qwerty/emacs2.map.gz
 
 ### Connect to the Internet
 
-As default wifi doesn't work out of the box, I just connect TP-Link power over
+As default WiFi doesn't work out of the box, I just connect TP-Link power over
 ether adapter and hook into the thunderbolt port:
 
 ```
@@ -84,7 +84,7 @@ default qlen 1
     link/ether 38:c9:86:04:85:78 brd ff:ff:ff:ff:ff:ff
 ```
 
-and then, run *dhcp* on top of it:
+and then, run *DHCP* on top of it:
 
 ```
 root@archiso ~ # systemctl start dhcpcd@ens9
@@ -644,11 +644,46 @@ KEYMAP=emacs2
 
 #### Console apps
 
-Those are my favorite apps on console
+I've wrote a simple [ansible](http://ansible.com) playbook, called
+[provision.yml](provision.yml) to automatically check and install
+the packages for you.  But to make it work, you need to have an ansible
+and ssh up and running locally, yeah, it's kind a chicken & egg
+challenge, but it's worth to solve it sooner than later. :)
+
+First install ansible through pacman:
 
 ```
-air$ sudo pacman -S busybox tmux vim irssi mutt cscope w3m tcpdump net-tools bind-tools gnu-netcat
+air$ sudo pacman -S ansible
 ```
+
+then, run ssh server locally through systemctl:
+
+```
+air$ sudo systemctl start sshd
+```
+
+Now, you're ready to run the ansible playbook as below:
+
+```
+air$ sudo ansible-playbook provision.yml
+```
+
+Here is the list of console apps install through the above
+[provision.yml](provision.yml) playbook:
+
+- aspell
+- busybox
+- dosfstools
+- tmux
+- vim
+- irssi
+- mutt
+- cscope
+- w3m
+- tcpdump
+- net-tools
+- bind-tools
+- gnu-netcat
 
 ### Kernel
 
@@ -970,7 +1005,7 @@ do
 done &
 ```
 
-[TLP](https://wiki.archlinux.org/index.php/TLP), Linux Advanced Power Managemnt
+[TLP](https://wiki.archlinux.org/index.php/TLP), Linux Advanced Power Management
 Tool, for suspend/sleep.  I'll come back here, once I explore that.  Yep,
 I just shutdown/start when I'm done.  Hey, we're in a SSD era, buddy. :)
 
@@ -1112,7 +1147,7 @@ ctl.!default {
 ```
 
 Let's check the audio by watching
-[OVN with Kubernetes](https://www.youtube.com/watch?v=lc6uu-mvs1w) youtube video.
+[OVN with Kubernetes](https://www.youtube.com/watch?v=lc6uu-mvs1w) YouTube video.
 
 You can change the volume mute/unmute through `amixer` or `alsamixer`
 as explained in [ArchLinux wiki](https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture#Unmuting_the_channels):
@@ -1275,7 +1310,7 @@ air$ sudo systemctl start libvirtd
 air$ sudo systemctl start virtlogd
 ```
 
-You can also make it startup daemons by using the `enable` subcommand:
+You can also make it startup daemons by using the `enable` sub command:
 
 ```
 air$ sudo systemctl enable libvirtd
@@ -1301,8 +1336,7 @@ you can do KVM in KVM by doing below:
 ```
 air$ sudo modprobe -r kvm_intel
 air$ sudo modprobe kvm_intel nested=1
-air$ sudo systool -m kvm_intel -v | grep ne
-sted
+air$ sudo systool -m kvm_intel -v | grep nested
     nested              = "Y"
 air$
 ```
@@ -1491,7 +1525,7 @@ air$ sudo virsh dumpxml hv10 | grep '04:10'
       <mac address='00:00:bb:16:04:10'/>
 ```
 
-setup the libvirt network witht he MAC to IP address mapping:
+setup the libvirt network with the MAC to IP address mapping:
 
 ```
 air$ sudo virsh net-dumpxml default | grep '04:10'

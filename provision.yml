@@ -1,5 +1,5 @@
 ---
-- name: setup post-installation provisioning
+- name: install post-installation apps
   hosts: host
   vars:
     latest: false
@@ -9,7 +9,10 @@
     - name: install console apps
       pacman: name={{ item }} state=present update_cache=true
       items:
+        - aspell
+        - aspell-en
         - busybox
+        - dosfstools
         - tmux
         - vim
         - irssi
