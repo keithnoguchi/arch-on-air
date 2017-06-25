@@ -53,6 +53,12 @@
       delegate_to: localhost
       when: verbose|bool
 
+    - name: install the latest golang
+      import_tasks: tasks/golang.yml
+      vars:
+        bootstrap: /usr/lib/go
+      when: latest|bool
+
     - name: install the latest terraform
       import_tasks: tasks/terraform.yml
       when: latest|bool
