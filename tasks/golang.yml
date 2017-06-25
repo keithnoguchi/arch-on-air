@@ -16,9 +16,10 @@
   shell: GOROOT_BOOTSTRAP={{ bootstrap }} ./make.bash
   args:
     chdir: /usr/local/git/go/src
-  register: result
+  register: result2
+  when: result.before != result.after
 
 - name: print the result
-  debug: var=result
+  debug: var=result2
   delegate_to: localhost
   when: verbose|bool
