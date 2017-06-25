@@ -2,13 +2,14 @@
 - name: setup post-installation provisioning
   hosts: host
   vars:
-    latest: true
+    latest: false
     verbose: true
   gather_facts: false
   tasks:
     - name: install console apps
       pacman: name={{ item }} state=present update_cache=true
       items:
+        - busybox
         - tmux
         - vim
         - irssi
