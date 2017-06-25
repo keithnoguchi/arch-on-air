@@ -5,10 +5,10 @@
     dest: /usr/local/git/ansible
     update: yes
     ssh_opts: "-o StrictHostKeyChecking=no"
-  register: result
+  register: git
 
 - name: print the result
-  debug: var=result
+  debug: var=git
   delegate_to: localhost
   when: verbose|bool
 
@@ -28,6 +28,7 @@
     chdir: /usr/local/git/ansible
   become: true
   register: result
+  when: git.before != git.after
 
 - name: print the result
   debug: var=result
