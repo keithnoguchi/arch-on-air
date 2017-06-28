@@ -1,5 +1,6 @@
 ---
 # https://github.com/mikkeloscar/arch-travis/blob/master/README.md
+# http://blog.fossasia.org/arch-linux-for-travis-ci/
 sudo: required
 
 env:
@@ -16,12 +17,21 @@ arch:
   repos:
     - archlinuxfr=http://repo.archlinux.fr/$arch
   packages:
+    - procps-ng
+    - reflector
+    # aur
+    - screenfetch-git
     # pacman packages
     - ansible
     - openssh
+  script:
+    # script run under chroot environment
+    - "sudo screenfetch"
+    - "reflector --verbose -l 20 --sort rate -p https"
+    - "echo $CC"
+    - "touch test_file"
+    - "systemctl status sshd"
 
 script:
   - "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
-  - "systemctl start sshd"
-  - "systemctl status sshd"
   - "ls -l"
