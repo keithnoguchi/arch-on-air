@@ -4,6 +4,7 @@
   vars:
     latest: false
     verbose: true
+    gitroot: /usr/local/git
   gather_facts: false
   tasks:
     - name: install console apps
@@ -26,10 +27,15 @@
       delegate_to: localhost
       when: verbose|bool
 
-    - name: install compilers
+    - name: install compilers & developer tools
       pacman: name={{ item }} state=present update_cache=false
       items:
         - go
+        - make
+        - autoconf
+        - automake
+        - libtool
+        - unzip
         - cscope
       become: true
       register: result
@@ -42,6 +48,7 @@
     - name: install network related tools
       pacman: name={{ item }} state=present update_cache=false
       items:
+        - curl
         - tcpdump
         - net-tools
         - bind-tools
@@ -55,6 +62,18 @@
       debug: var=result
       delegate_to: localhost
       when: verbose|bool
+
+    - name: create git root directory
+      file:
+        path: "{{ gitroot }}"
+        state: directory
+        group: git
+        mode: 0775
+      become: true
+
+    - name: install the latest protobuf
+      import_tasks: tasks/protobuf.yml
+      when: latest|bool
 
     - name: install the latest golang
       import_tasks: tasks/golang.yml

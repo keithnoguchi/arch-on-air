@@ -6,6 +6,7 @@
     rabbit: true
     latest: false
     verbose: true
+    gitroot: /usr/local/git
   gather_facts: false
   tasks:
     - name: add user to the src group
@@ -16,8 +17,12 @@
         append: true
       become: true
 
-    - name: create /usr/local/git directory
-      file: path=/usr/local/git state=directory group=src mode=0775
+    - name: create git root directory
+      file:
+        path: "{{ gitroot }}"
+        state: directory
+        group: src
+        mode: 0775
       become: true
 
     - name: install general pre-requisite packages
@@ -25,6 +30,22 @@
       items:
         - binutils
       become: true
+
+    - name: install pre-requisite packages for protobuf
+      apt: name={{ item }} state=present update_cache=false
+      items:
+        - autoconf
+        - automake
+        - libtool
+        - curl
+        - make
+        - g++
+        - unzip
+      become: true
+
+    - name: build & install the latest protobuf
+      import_tasks: tasks/protobuf.yml
+      when: latest|bool
 
     - name: install pre-requisite packages for golang
       apt: name={{ item }} state=present update_cache=false
