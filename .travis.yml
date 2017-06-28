@@ -1,23 +1,16 @@
 ---
-# https://github.com/fossasia/arch-travis/blob/master/.travis.yml
+# https://github.com/mikkeloscar/arch-travis/blob/master/README.md
 sudo: required
-
-env:
-  - ARCH_TRAVIS_CLEAN_CHROOT=1
-
-language: c
-
-compiler:
-  - gcc
-  - clang
 
 arch:
   repos:
-    - archlinuxfr=http://repo.archlinux.fr/$arch
+    - papyros=http://dash.papyros.io/repos/$repo/$arch
   packages:
-    - procps-ng
-    - reflector
+    # pacman packages
     - ansible
+    - openssh
 
 script:
+  - "systemctl start sshd"
+  - "systemctl status sshd"
   - "ls -l"
