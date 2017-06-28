@@ -2,13 +2,21 @@
 # https://github.com/mikkeloscar/arch-travis/blob/master/README.md
 sudo: required
 
+env:
+  - ARCH_TRAVIS_CLEAN_CHROOT=1
+  - ARCH_TRAVIS_CONFIRM_YES=1
+
+language: c
+
+compiler:
+  - gcc
+  - clang
+
 arch:
   repos:
-    - papyros=http://dash.papyros.io/repos/$repo/$arch
+    - archlinuxfr=http://repo.archlinux.fr/$arch
   packages:
     # pacman packages
-    - libsystemd
-    - systemd
     - ansible
     - openssh
 
