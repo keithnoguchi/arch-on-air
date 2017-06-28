@@ -1,0 +1,22 @@
+---
+# https://github.com/fossasia/arch-travis/blob/master/.travis.yml
+sudo: required
+
+env:
+  - ARCH_TRAVIS_CLEAN_CHROOT=1
+
+language: c
+
+compiler:
+  - gcc
+  - clang
+
+arch:
+  repos:
+    - archlinuxfr=http://repo.archlinux.fr/$arch
+  packages:
+    - procps-ng
+    - reflector
+
+script:
+  - "ls -l"

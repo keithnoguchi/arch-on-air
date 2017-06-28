@@ -1,4 +1,4 @@
-# Arch-on-Air
+# Arch-on-Air [![Build Status](https://travis-ci.org/keinohguchi/arch-on-air.svg)](https://travis-ci.org/keinohguchi/arch-on-air)
 
 Yet another note on *Let's make ArchLinux up and running on MacBook Air!*
 
