@@ -17,6 +17,7 @@ arch:
   packages:
     - procps-ng
     - reflector
+    - ansible
 
 script:
   - "ls -l"
