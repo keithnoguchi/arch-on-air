@@ -7,6 +7,8 @@ arch:
     - papyros=http://dash.papyros.io/repos/$repo/$arch
   packages:
     # pacman packages
+    - libsystemd
+    - systemd
     - ansible
     - openssh
 
