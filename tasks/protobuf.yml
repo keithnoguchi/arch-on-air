@@ -37,6 +37,8 @@
 - name: build protobuf runtime and protoc protobuf compiler
   make:
     chdir: "{{ gitpath }}protobuf"
+    params:
+      NUM_THREADS: 4
   register: result
   when: git.before != git.after
 
