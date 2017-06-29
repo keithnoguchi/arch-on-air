@@ -7,11 +7,6 @@
     ssh_opts: "-o StrictHostKeyChecking=no"
   register: git
 
-- name: print the result
-  debug: var=git
-  delegate_to: localhost
-  when: verbose|bool
-
 - name: create ./configure script through autogen.sh
   command: ./autogen.sh
   args:
@@ -19,20 +14,10 @@
   register: result
   when: git.before != git.after
 
-- name: print the result
-  debug: var=result
-  delegate_to: localhost
-  when: verbose|bool
-
 - name: configure the protobuf
   command: ./configure chdir="{{ gitpath }}protobuf"
   register: result
   when: git.before != git.after
-
-- name: print the result
-  debug: var=result
-  delegate_to: localhost
-  when: verbose|bool
 
 - name: build protobuf runtime and protoc protobuf compiler
   make:
@@ -42,11 +27,6 @@
   register: result
   when: git.before != git.after
 
-- name: print the result
-  debug: var=result
-  delegate_to: localhost
-  when: verbose|bool
-
 - name: install the protobuf runtime and compiler
   make:
     chdir: "{{ gitpath }}protobuf"
@@ -55,21 +35,11 @@
   register: result
   when: git.before != git.after
 
-- name: print the result
-  debug: var=result
-  delegate_to: localhost
-  when: verbose|bool
-
 - name: refresh the shared library cache
   command: ldconfig
   register: result
   become: true
   when: git.before != git.after
-
-- name: print the result
-  debug: var=result
-  delegate_to: localhost
-  when: verbose|bool
 
 - name: check the protobuf version
   command: protoc --version
@@ -77,8 +47,3 @@
     PATH: "{{ lookup('env', 'PATH') }}"
   changed_when: false
   register: result
-
-- name: print the result
-  debug: var=result
-  delegate_to: localhost
-  when: verbose|bool

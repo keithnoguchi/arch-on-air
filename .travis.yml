@@ -1,5 +1,6 @@
 ---
-# https://github.com/mikkeloscar/arch-travis/blob/master/README.md
+os: linux
+dist: trusty
 sudo: required
 
 env:
@@ -7,15 +8,16 @@ env:
     - GOROOT=/usr/local/git/go
     - GOPATH=/usr/local/git/golib
   matrix:
-    include:
-      - os: linux
-        env: ARCH_TRAVIS_ARCH=x86_64 ARCH_TRAVIS_CLEAN_CHROOT=1 ARCH_TRAVIS_CONFIRM_YES=1
+    # This is the chrooted archlinux environemnt to check provision.yml.
+    # https://github.com/mikkeloscar/arch-travis/blob/master/README.md
+    - ARCH_TRAVIS_ARCH=x86_64 ARCH_TRAVIS_CLEAN_CHROOT=1 ARCH_TRAVIS_CONFIRM_YES=1
+    # This is the ubuntu environment, to check guest.yml.
+    - ARCH_TRAVIS_GUEST_ENV=1
 
 language: c
 
 compiler:
   - gcc
-  - clang
 
 arch:
   repos:
@@ -33,8 +35,8 @@ arch:
     # script run under chrooted environment
     - "sudo screenfetch"
     - "reflector --verbose -l 20 --sort rate -p https"
-    - "sudo -E make travis-ci"
+    - "sudo -E make test"
 
 script:
-  # script run under the host environment.
-  - "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
+  - if [[ "${ARCH_TRAVIS_CLEAN_CHROOT}" == "1" ]]; then curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash; fi
+  - if [[ "${ARCH_TRAVIS_GUEST_ENV}" == "1" ]]; then sudo -E make test-guest; fi

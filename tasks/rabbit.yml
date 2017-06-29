@@ -6,11 +6,6 @@
   become: true
   register: result
 
-- name: print out the result
-  debug: var=result
-  delegate_to: localhost
-  when: verbose|bool
-
 - name: add user to the rabbitmq group
   user: name={{ ansible_user }} append=true groups=rabbitmq shell=/bin/bash
   become: true
@@ -41,20 +36,10 @@
     - rabbitmq-server
   register: result
 
-- name: print out the result
-  debug: var=result
-  delegate_to: localhost
-  when: verbose|bool
-
 - name: create RabbitMQ vhost
   rabbitmq_vhost: name={{ vhost }} state=present
   become: true
   register: result
-
-- name: print out the result
-  debug: var=result
-  delegate_to: localhost
-  when: verbose|bool
 
 - name: create RabbitMQ user on vhost with the permissions
   rabbitmq_user:
@@ -68,8 +53,3 @@
         write_priv: "{{ write_priv }}"
   become: true
   register: result
-
-- name: print out the result
-  debug: var=result
-  delegate_to: localhost
-  when: verbose|bool

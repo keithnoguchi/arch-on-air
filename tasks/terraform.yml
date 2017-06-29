@@ -11,11 +11,6 @@
     GOPATH: "{{ lookup('env', 'GOPATH') }}"
     PATH: "{{ lookup('env', 'GOROOT') }}/bin:{{ lookup('env', 'GOPATH') }}/bin:/usr/bin:/bin"
 
-- name: print the result
-  debug: var=result
-  delegate_to: localhost
-  when: verbose|bool
-
 - name: build & install the terraform core & providers
   make:
     chdir: "{{ lookup('env', 'GOPATH') }}/src/github.com/{{ item.path }}"
@@ -29,8 +24,3 @@
     GOROOT: "{{ lookup('env', 'GOROOT') }}"
     GOPATH: "{{ lookup('env', 'GOPATH') }}"
     PATH: "{{ lookup('env', 'GOROOT') }}/bin:{{ lookup('env', 'GOPATH') }}/bin:/usr/bin:/bin"
-
-- name: print the result
-  debug: var=result
-  delegate_to: localhost
-  when: verbose|bool

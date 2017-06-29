@@ -7,22 +7,12 @@
   become: true
   register: result
 
-- name: print out the result
-  debug: var=result
-  delegate_to: localhost
-  when: verbose|bool
-
 - name: add docker repository into apt source list
   apt_repository:
     repo: "deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
     state: present
   register: result
   become: true
-
-- name: print out the result
-  debug: var=result
-  delegate_to: localhost
-  when: verbose|bool
 
 - name: install docker-ce through apt server
   apt: name={{ item }} state=present update_cache=yes
@@ -31,11 +21,6 @@
   register: result
   become: true
 
-- name: print out the result
-  debug: var=result
-  delegate_to: localhost
-  when: verbose|bool
-
 - name: add user to the docker group
   user:
     name: "{{ ansible_user }}"
@@ -43,8 +28,3 @@
     append: true
   register: result
   become: true
-
-- name: print out the result
-  debug: var=result
-  delegate_to: localhost
-  when: verbose|bool

@@ -1,2 +1,3 @@
 [all]
 host ansible_host=localhost ansible_python_interpreter=/usr/bin/python2
+guest ansible_hsot=localhost ansible_python_interpreter=/usr/bin/python

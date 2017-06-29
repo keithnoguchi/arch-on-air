@@ -6,7 +6,7 @@
     docker: true
     rabbit: true
     latest: false
-    verbose: true
+    travis_ci: false
     gitsite: "git@github.com:"
     gitpath: "/usr/local/git/"
   gather_facts: true
@@ -32,6 +32,7 @@
       items:
         - binutils
       become: true
+      when: latest|bool and not travis_ci|bool
 
     - name: install pre-requisite packages for protobuf
       apt: name={{ item }} state=present update_cache=false
@@ -47,7 +48,7 @@
 
     - name: build & install the latest protobuf
       import_tasks: tasks/protobuf.yml
-      when: latest|bool
+      when: latest|bool and not travis_ci|bool
 
     - name: install pre-requisite packages for golang
       apt: name={{ item }} state=present update_cache=false
@@ -88,8 +89,8 @@
       when: kvm|bool
 
     - name: setup docker environment
-      import_tasks: tasks/docker.yml
-      when: docker|bool
+      import_tasks: tasks/docker-ubuntu-1604.yml
+      when: docker|bool and ansible_distribution_version == "16.04"
 
     - name: setup RabbitMQ environment
       import_tasks: tasks/rabbit.yml
@@ -102,4 +103,4 @@
         configure_priv: ".*"
         read_priv: ".*"
         write_priv: ".*"
-      when: rabbit|bool
+      when: rabbit|bool and not travis_ci|bool

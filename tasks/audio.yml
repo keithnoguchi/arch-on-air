@@ -1,0 +1,10 @@
+---
+- name: copy .asoundrc to the home directory
+  get_url:
+    url: https://raw.githubusercontent.com/keinohguchi/home/master/.asoundrc
+    dest: "{{ lookup('env', 'HOME') }}/.asoundrc"
+    mode: 0644
+
+- name: let's unmute the sound
+  command: amixer sset Master unmute
+  changed_when: false

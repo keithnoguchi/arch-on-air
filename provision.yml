@@ -3,10 +3,9 @@
   hosts: host
   vars:
     latest: false
-    verbose: true
+    travis_ci: false
     gitsite: "git@github.com:"
     gitpath: "/usr/local/git/"
-    travis_ci: false
   gather_facts: false
   tasks:
     - name: install console apps
@@ -24,11 +23,6 @@
       become: true
       register: result
 
-    - name: print the result
-      debug: var=result
-      delegate_to: localhost
-      when: verbose|bool
-
     - name: install compilers & developer tools
       pacman: name={{ item }} state=present update_cache=false
       items:
@@ -41,11 +35,6 @@
         - cscope
       become: true
       register: result
-
-    - name: print the result
-      debug: var=result
-      delegate_to: localhost
-      when: verbose|bool
 
     - name: install network related tools
       pacman: name={{ item }} state=present update_cache=false
@@ -60,11 +49,6 @@
       become: true
       register: result
 
-    - name: print the result
-      debug: var=result
-      delegate_to: localhost
-      when: verbose|bool
-
     - name: create git root directory
       file:
         path: "{{ gitpath }}"
@@ -72,6 +56,15 @@
         group: git
         mode: 0775
       become: true
+
+    - name: install audio related packages as in README.md
+      pacman: name={{ item }} state=present update_cache=false
+      items:
+        - pulseaudio
+        - alsa-utils
+
+    - name: configure the audio
+      import_tasks: tasks/audio.yml
 
     - name: install the latest protobuf
       import_tasks: tasks/protobuf.yml
@@ -94,11 +87,6 @@
         - python2-pip
       become: true
       register: result
-
-    - name: print the result
-      debug: var=result
-      delegate_to: localhost
-      when: verbose|bool
 
     - name: install the latest ansible
       import_tasks: tasks/ansible.yml

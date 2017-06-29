@@ -2,25 +2,34 @@ all: provision guest
 
 .PHONY: provision guest
 provision guest:
-	@ansible-playbook $@.yml -e verbose=true -e latest=true
+	@ansible-playbook $@.yml -e latest=true
 
-# ansible, ping, and test targets are for by the travis-ci through .travis.yml.
-.PHONY: ansible ping test travis-ci
-ansible: clean
+# those are the target primarily used by the travis CI through .travis.yml.
+.PHONY: ansible-arch ansible-ubuntu ping test test-guest
+ansible-arch: clean
 	git clone https://github.com/ansible/ansible .ansible
 	cd .ansible \
 		&& sudo pip2 install -r requirements.txt \
 		&& sudo python2 setup.py install
 
-ping: ansible
+ansible-ubuntu: clean
+	git clone https://github.com/ansible/ansible .ansible
+	cd .ansible \
+		&& sudo pip install -r requirements.txt \
+		&& sudo python setup.py install
+
+ping:
 	ansible -vvv -m ping -i inventory.local -c local host
 
-test: ping
-	ansible-playbook -vvv provision.yml -e verbose=true -e latest=true \
+test: ansible-arch ping
+	ansible-playbook -vvv provision.yml -e latest=true \
 		-i inventory.local -c local -e travis_ci=true \
 		-e gitsite=https://github.com/
 
-travis-ci: test
+test-guest: ansible-ubuntu ping
+	ansible-playbook -vvv guest.yml -e latest=true \
+		-i inventory.local -c local -e travis_ci=true \
+		-e gitsite=https://github.com/
 
 clean:
 	$(RM) -rf .ansible
