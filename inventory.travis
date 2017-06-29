@@ -1,1 +1,2 @@
-# just blank inventory file, used for the travis CI.
+[all]
+host ansible_host=localhost ansible_python_interpreter=/usr/bin/python2

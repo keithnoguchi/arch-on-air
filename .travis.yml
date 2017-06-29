@@ -30,9 +30,8 @@ arch:
     - "sudo screenfetch"
     - "reflector --verbose -l 20 --sort rate -p https"
     - "echo $CC"
-    - "/usr/bin/sshd"
     # There is an issue on the libvirt in the chroot environment.
-    - "ansible -m ping -i inventory.travis localhost"
+    - "ansible -m ping -i inventory.travis -c local host"
 
 script:
   # script run under the host environment.
