@@ -19,7 +19,8 @@ arch:
   packages:
     # pacman packages
     - openssh
-    - ansible
+    - python2
+    - python2-pip
     - procps-ng
     - reflector
     # aur
@@ -29,6 +30,8 @@ arch:
     - "sudo screenfetch"
     - "reflector --verbose -l 20 --sort rate -p https"
     - "sudo ansible -vvv -m ping -i inventory.travis -c local host"
+    - "git clone https://github.com/ansible/ansible .ansible"
+    - "cd .ansible && sudo pip install -r requirements.txt && sudo python2 setup.py install"
     - "sudo ansible-playbook -i inventory.travis -c local provision.yml"
 
 script:
