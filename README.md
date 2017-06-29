@@ -610,6 +610,15 @@ root@archiso ~ # reboot
 
 ## Post-installation
 
+I'm gradually making those post installation steps automated through
+[ansible](https://ansible.com), as in [provision.yml](provision.yml)
+playbook.  And also, that playbook is under the
+[travis CI](https://travis-ci.org/keinohguchi/arch-on-air) to make sure
+that's valid under the clean [arch](https://archlinux.org) environment.
+
+You can also see it in action locally by running `$ make travis-ci`,
+as in [.travis.yml](.travis.yml).
+
 - [Console](#console)
 - [Kernel](#kernel)
 - [WiFi](#wifi)
@@ -644,32 +653,8 @@ KEYMAP=emacs2
 
 #### Console apps
 
-I've wrote a simple [ansible](http://ansible.com) playbook, called
-[provision.yml](provision.yml) to automatically check and install
-the packages for you.  But to make it work, you need to have an ansible
-and ssh up and running locally, yeah, it's kind a chicken & egg
-challenge, but it's worth to solve it sooner than later. :)
-
-First install ansible through pacman:
-
-```
-air$ sudo pacman -S ansible
-```
-
-then, run ssh server locally through systemctl:
-
-```
-air$ sudo systemctl start sshd
-```
-
-Now, you're ready to run the ansible playbook as below:
-
-```
-air$ sudo ansible-playbook provision.yml
-```
-
-Here is the list of console apps install through the above
-[provision.yml](provision.yml) playbook:
+Here is the list of console apps I usually install on arch,
+as in the [provision.yml](provision.yml) playbook:
 
 - aspell
 - busybox
