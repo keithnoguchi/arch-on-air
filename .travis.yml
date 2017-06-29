@@ -17,13 +17,16 @@ arch:
   repos:
     - archlinuxfr=http://repo.archlinux.fr/$arch
   packages:
+    # pacman packages
+    - openssh
+    - ansible
+    - libvirt
+    - libvirt-python
+    - libvirt-python2
     - procps-ng
     - reflector
     # aur
     - screenfetch-git
-    # pacman packages
-    - ansible
-    - openssh
   script:
     # script run under chroot environment
     - "uname -an"
