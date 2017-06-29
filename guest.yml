@@ -3,12 +3,13 @@
   hosts: guest
   vars:
     kvm: true
+    docker: true
     rabbit: true
     latest: false
     verbose: true
     gitsite: "git@github.com:"
     gitpath: "/usr/local/git/"
-  gather_facts: false
+  gather_facts: true
   tasks:
     - name: add user to the src group
       user:
@@ -85,6 +86,10 @@
     - name: setup KVM environment
       import_tasks: tasks/kvm.yml
       when: kvm|bool
+
+    - name: setup docker environment
+      import_tasks: tasks/docker.yml
+      when: docker|bool
 
     - name: setup RabbitMQ environment
       import_tasks: tasks/rabbit.yml
