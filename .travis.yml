@@ -26,12 +26,15 @@ arch:
     - openssh
   script:
     # script run under chroot environment
+    - "ls -l"
     - "sudo screenfetch"
     - "reflector --verbose -l 20 --sort rate -p https"
     - "echo $CC"
     - "touch test_file"
     - "systemctl status sshd"
+    - "uname -an"
 
 script:
+  # script run under the host environment.
   - "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
-  - "ls -l"
+  - "uname -an"
