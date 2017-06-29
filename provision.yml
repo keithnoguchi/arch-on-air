@@ -6,6 +6,7 @@
     verbose: true
     gitsite: "git@github.com:"
     gitpath: "/usr/local/git/"
+    travis_ci: false
   gather_facts: false
   tasks:
     - name: install console apps
@@ -74,7 +75,7 @@
 
     - name: install the latest protobuf
       import_tasks: tasks/protobuf.yml
-      when: latest|bool
+      when: latest|bool and not travis_ci|bool
 
     - name: install the latest golang
       import_tasks: tasks/golang.yml
