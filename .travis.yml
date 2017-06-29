@@ -4,10 +4,12 @@
 sudo: required
 
 env:
-  - ARCH_TRAVIS_CLEAN_CHROOT=1
-  - ARCH_TRAVIS_CONFIRM_YES=1
-  - GOROOT=/usr/local/git/go
-  - GOPATH=/usr/local/git/golib
+  global:
+    - GOROOT=/usr/local/git/go
+    - GOPATH=/usr/local/git/golib
+  matrix:
+    - ARCH_TRAVIS_CLEAN_CHROOT=1
+    - ARCH_TRAVIS_CONFIRM_YES=1
 
 language: c
 
