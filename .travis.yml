@@ -34,7 +34,8 @@ arch:
     - "echo $CC"
     - "/usr/bin/libvirtd -d"
     - "/usr/bin/sshd"
-    - "ansible -m ping localhost"
+    # There is an issue on the libvirt in the chroot environment.
+    #- "ansible -m ping localhost"
 
 script:
   # script run under the host environment.
