@@ -29,10 +29,7 @@ arch:
     # script run under chrooted environment
     - "sudo screenfetch"
     - "reflector --verbose -l 20 --sort rate -p https"
-    - "git clone https://github.com/ansible/ansible .ansible"
-    - "cd .ansible && sudo pip2 install -r requirements.txt && sudo python2 setup.py install"
-    - "sudo ansible -vvv -m ping -i inventory.local -c local host"
-    - "sudo make test"
+    - "sudo make travis-ci"
 
 script:
   # script run under the host environment.
