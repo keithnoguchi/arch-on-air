@@ -22,7 +22,6 @@ arch:
     - ansible
     - libvirt
     - libvirt-python
-    - libvirt-python2
     - procps-ng
     - reflector
     # aur
@@ -33,8 +32,7 @@ arch:
     - "sudo screenfetch"
     - "reflector --verbose -l 20 --sort rate -p https"
     - "echo $CC"
-    - "sudo systemctl start sshd"
-    - "sudo systemctl status sshd"
+    - "/usr/sbin/libvirtd -d"
     - "ansible -m ping localhost"
 
 script:
