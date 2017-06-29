@@ -32,6 +32,7 @@ arch:
     - "echo $CC"
     - "sudo systemctl start sshd"
     - "sudo systemctl status sshd"
+    - "ansible -m ping localhost"
 
 script:
   # script run under the host environment.
