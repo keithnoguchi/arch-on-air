@@ -30,7 +30,7 @@ arch:
     - "sudo screenfetch"
     - "reflector --verbose -l 20 --sort rate -p https"
     - "git clone https://github.com/ansible/ansible .ansible"
-    - "cd .ansible && sudo pip install -r requirements.txt && sudo python2 setup.py install"
+    - "cd .ansible && sudo pip2 install -r requirements.txt && sudo python2 setup.py install"
     - "sudo ansible -vvv -m ping -i inventory.travis -c local host"
     - "sudo ansible-playbook -i inventory.travis -c local provision.yml"
 
