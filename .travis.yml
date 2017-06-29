@@ -1,6 +1,5 @@
 ---
 # https://github.com/mikkeloscar/arch-travis/blob/master/README.md
-# http://blog.fossasia.org/arch-linux-for-travis-ci/
 sudo: required
 
 env:
@@ -8,8 +7,7 @@ env:
     - GOROOT=/usr/local/git/go
     - GOPATH=/usr/local/git/golib
   matrix:
-    - ARCH_TRAVIS_CLEAN_CHROOT=1
-    - ARCH_TRAVIS_CONFIRM_YES=1
+    - ARCH_TRAVIS_ARCH=x86_64 ARCH_TRAVIS_CLEAN_CHROOT=1 ARCH_TRAVIS_CONFIRM_YES=1
 
 language: c
 
@@ -33,7 +31,7 @@ arch:
     # script run under chrooted environment
     - "sudo screenfetch"
     - "reflector --verbose -l 20 --sort rate -p https"
-    - "sudo make travis-ci"
+    - "sudo -E make travis-ci"
 
 script:
   # script run under the host environment.
