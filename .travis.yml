@@ -25,13 +25,11 @@ arch:
     # aur
     - screenfetch-git
   script:
-    # script run under chroot environment
-    - "uname -an"
+    # script run under chrooted environment
     - "sudo screenfetch"
     - "reflector --verbose -l 20 --sort rate -p https"
-    - "echo $CC"
-    # There is an issue on the libvirt in the chroot environment.
     - "sudo ansible -vvv -m ping -i inventory.travis -c local host"
+    - "sudo ansible-playbook -i inventory.travis -c local provision.yml"
 
 script:
   # script run under the host environment.
