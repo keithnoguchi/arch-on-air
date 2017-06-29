@@ -20,7 +20,7 @@
 
     - name: create git root directory
       file:
-        path: "{{ gitroot }}"
+        path: "{{ gitpath }}"
         state: directory
         group: src
         mode: 0775
