@@ -31,8 +31,8 @@ arch:
     - "reflector --verbose -l 20 --sort rate -p https"
     - "echo $CC"
     - "touch test_file"
-    - "systemctl status sshd"
     - "uname -an"
+    - "sudo systemctl status sshd"
 
 script:
   # script run under the host environment.
