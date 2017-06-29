@@ -36,16 +36,14 @@ def main():
         print(json.dumps(hostvars.get(args.host, {})))
 
 def guests():
-    c = libvirt.openReadOnly("qemu:///system")
-    if c == None:
-        print 'Failed to open connection to the hypervisor'
-        sys.exit(1)
-
     guests = {'hosts': [],
               'vars': {'ansible_python_interpreter': '/usr/bin/python'}}
-    for i in c.listDomainsID():
-        dom = c.lookupByID(i)
-        guests['hosts'].append(dom.name())
+
+    c = libvirt.openReadOnly("qemu:///system")
+    if c != None:
+        for i in c.listDomainsID():
+            dom = c.lookupByID(i)
+            guests['hosts'].append(dom.name())
 
     return guests
 
