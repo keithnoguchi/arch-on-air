@@ -1,8 +1,8 @@
 ---
 - name: clone the golang git repo
   git:
-    repo: git@github.com:golang/go
-    dest: /usr/local/git/go
+    repo: "{{ gitsite }}golang/go"
+    dest: "{{ gitpath }}go"
     update: yes
     ssh_opts: "-o StrictHostKeyChecking=no"
   register: git

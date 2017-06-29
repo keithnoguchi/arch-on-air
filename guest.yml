@@ -6,7 +6,8 @@
     rabbit: true
     latest: false
     verbose: true
-    gitroot: /usr/local/git
+    gitsite: "git@github.com:"
+    gitpath: "/usr/local/git/"
   gather_facts: false
   tasks:
     - name: add user to the src group
