@@ -616,7 +616,7 @@ playbook.  And also, that playbook is under the
 [travis CI](https://travis-ci.org/keinohguchi/arch-on-air) to make sure
 that's valid under the clean [arch](https://archlinux.org) environment.
 
-You can also see it in action locally by running `$ make travis-ci`,
+You can also see it in action locally by running `$ make test`,
 as in [.travis.yml](.travis.yml).
 
 - [Console](#console)
