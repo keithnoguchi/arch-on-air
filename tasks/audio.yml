@@ -8,3 +8,4 @@
 - name: let's unmute the sound
   command: amixer sset Master unmute
   changed_when: false
+  when: not travis_ci|bool
