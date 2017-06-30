@@ -610,6 +610,8 @@ root@archiso ~ # reboot
 
 ## Post-installation
 
+[![Build Status](https://travis-ci.org/keinohguchi/arch-on-air.svg)](https://travis-ci.org/keinohguchi/arch-on-air)
+
 I'm gradually making those post installation steps automated through
 [ansible](https://ansible.com), as in [provision.yml](provision.yml)
 playbook.  And also, that playbook is under the
