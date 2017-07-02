@@ -19,19 +19,19 @@ ansible-ubuntu: clean
 		&& sudo python setup.py install
 
 ping:
-	ansible -vvv -m ping -i inventory.local -c local host
+	ansible -vvv -m ping -i inventory.test -c local host
 
 test: ansible-arch ping
 	ansible-playbook -vvv provision.yml -e latest=true \
-		-i inventory.local -c local -e travis_ci=true \
+		-i inventory.test -c local -e travis_ci=true \
 		-e gitsite=https://github.com/
 
 test-guest: ansible-ubuntu ping
 	ansible-playbook -vvv guest.yml -e latest=true \
-		-i inventory.local -c local -e travis_ci=true \
+		-i inventory.test -c local -e travis_ci=true \
 		-e gitsite=https://github.com/
 
 clean:
-	$(RM) -rf .ansible
+	sudo $(RM) -rf .ansible
 	$(RM) *.retry
 	$(RM) .*.sw? **/.*.sw?
