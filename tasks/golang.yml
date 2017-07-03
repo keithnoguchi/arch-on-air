@@ -11,5 +11,4 @@
   shell: GOROOT_BOOTSTRAP={{ bootstrap }} ./make.bash
   args:
     chdir: /usr/local/git/go/src
-  register: result
   when: git.before != git.after

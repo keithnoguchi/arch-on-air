@@ -11,12 +11,10 @@
   command: ./autogen.sh
   args:
     chdir: "{{ gitpath }}protobuf"
-  register: result
   when: git.before != git.after
 
 - name: configure the protobuf
   command: ./configure chdir="{{ gitpath }}protobuf"
-  register: result
   when: git.before != git.after
 
 - name: build protobuf runtime and protoc protobuf compiler
@@ -24,7 +22,6 @@
     chdir: "{{ gitpath }}protobuf"
     params:
       NUM_THREADS: 4
-  register: result
   when: git.before != git.after
 
 - name: install the protobuf runtime and compiler
@@ -32,12 +29,10 @@
     chdir: "{{ gitpath }}protobuf"
     target: install
   become: true
-  register: result
   when: git.before != git.after
 
 - name: refresh the shared library cache
   command: ldconfig
-  register: result
   become: true
   when: git.before != git.after
 
@@ -46,4 +41,3 @@
   environment:
     PATH: "{{ lookup('env', 'PATH') }}"
   changed_when: false
-  register: result

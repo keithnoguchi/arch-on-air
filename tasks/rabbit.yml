@@ -4,7 +4,6 @@
   items:
     - rabbitmq-server
   become: true
-  register: result
 
 - name: add user to the rabbitmq group
   user: name={{ ansible_user }} append=true groups=rabbitmq shell=/bin/bash
@@ -34,12 +33,10 @@
   service: name={{ item }} state=started
   items:
     - rabbitmq-server
-  register: result
 
 - name: create RabbitMQ vhost
   rabbitmq_vhost: name={{ vhost }} state=present
   become: true
-  register: result
 
 - name: create RabbitMQ user on vhost with the permissions
   rabbitmq_user:
@@ -52,4 +49,3 @@
         read_priv: "{{ read_priv }}"
         write_priv: "{{ write_priv }}"
   become: true
-  register: result

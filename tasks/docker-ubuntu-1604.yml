@@ -5,18 +5,15 @@
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
   become: true
-  register: result
 
 - name: add docker repository into apt source list
   apt_repository:
     repo: "deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
     state: present
-  register: result
   become: true
 
 - name: install docker-ce through apt server
   apt: name={{ item }} state=present update_cache=yes
   items:
     - docker-ce
-  register: result
   become: true

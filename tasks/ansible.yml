@@ -11,12 +11,10 @@
   pip:
     requirements: "{{ gitpath }}ansible/requirements.txt"
   become: true
-  register: result
 
 - name: install the latest ansible
   command: "{{ ansible_python_interpreter }} setup.py install"
   args:
     chdir: "{{ gitpath }}ansible"
   become: true
-  register: result
   when: git.before != git.after

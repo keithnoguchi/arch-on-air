@@ -13,7 +13,7 @@ def main():
     inventory['host'] = {'hosts': ['localhost'],
                          'vars': {'ansible_python_interpreter':
                                   '/usr/bin/python2'}}
-    inventory['guest'] = guests()
+    inventory['guest'] = guest()
 
     hostvars = {}
     for type in ['guest']:
@@ -35,17 +35,17 @@ def main():
     elif args.host:
         print(json.dumps(hostvars.get(args.host, {})))
 
-def guests():
-    guests = {'hosts': [],
+def guest():
+    guest = {'hosts': [],
               'vars': {'ansible_python_interpreter': '/usr/bin/python'}}
 
     c = libvirt.openReadOnly("qemu:///system")
     if c != None:
         for i in c.listDomainsID():
             dom = c.lookupByID(i)
-            guests['hosts'].append(dom.name())
+            guest['hosts'].append(dom.name())
 
-    return guests
+    return guest
 
 
 if __name__ == "__main__":
