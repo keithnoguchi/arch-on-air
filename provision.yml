@@ -21,7 +21,6 @@
         - mutt
         - w3m
       become: true
-      register: result
 
     - name: install compilers & developer tools
       pacman: name={{ item }} state=present update_cache=false
@@ -34,7 +33,6 @@
         - unzip
         - cscope
       become: true
-      register: result
 
     - name: install network related tools
       pacman: name={{ item }} state=present update_cache=false
@@ -47,7 +45,6 @@
         - mtr
         - traceroute
       become: true
-      register: result
 
     - name: create git root directory
       file:
@@ -86,7 +83,6 @@
         - python2
         - python2-pip
       become: true
-      register: result
 
     - name: install the latest ansible
       import_tasks: tasks/ansible.yml
