@@ -1,0 +1,9 @@
+---
+- name: get etcd
+  command: go get {{ item }}
+  items:
+    - github.com/coreos/etcd/cmd/etcd
+  environment:
+    GOROOT: "{{ lookup('env', 'GOROOT') }}"
+    GOPATH: "{{ lookup('env', 'GOPATH') }}"
+    PATH: "{{ lookup('env', 'GOROOT') }}/bin:{{ lookup('env', 'GOPATH') }}/bin:/usr/bin:/bin"

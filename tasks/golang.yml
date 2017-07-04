@@ -10,5 +10,5 @@
 - name: build & install the latest golang
   shell: GOROOT_BOOTSTRAP={{ bootstrap }} ./make.bash
   args:
-    chdir: /usr/local/git/go/src
+    chdir: "{{ gitpath }}/go/src"
   when: git.before != git.after

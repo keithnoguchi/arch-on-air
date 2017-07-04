@@ -1,7 +1,7 @@
 ---
 - name: get terraform core & providers
   command: go get {{ item }}
-  with_items:
+  items:
     - github.com/hashicorp/terraform
     - github.com/terraform-providers/terraform-provider-terraform
     - github.com/terraform-providers/terraform-provider-digitalocean
