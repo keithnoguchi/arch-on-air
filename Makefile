@@ -10,13 +10,13 @@ ansible-arch: clean
 	git clone https://github.com/ansible/ansible .ansible
 	cd .ansible \
 		&& sudo pip2 install -r requirements.txt \
-		&& sudo python2 setup.py install
+		&& sudo python2 setup.py install 2>&1 > /dev/null
 
 ansible-ubuntu: clean
 	git clone https://github.com/ansible/ansible .ansible
 	cd .ansible \
 		&& sudo pip install -r requirements.txt \
-		&& sudo python setup.py install
+		&& sudo python setup.py install 2>&1 > /dev/null
 
 ping:
 	ansible -vvv -m ping -i inventory.test -c local host
