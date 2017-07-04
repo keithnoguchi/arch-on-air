@@ -610,7 +610,7 @@ Cool, let's reboot!
 root@archiso ~ # reboot
 ```
 
-## Post-installation [![Build Status](https://travis-ci.org/keinohguchi/arch-on-air.svg)](https://travis-ci.org/keinohguchi/arch-on-air)
+## Post-installation
 
 [![Build Status](https://travis-ci.org/keinohguchi/arch-on-air.svg)](https://travis-ci.org/keinohguchi/arch-on-air)
 
