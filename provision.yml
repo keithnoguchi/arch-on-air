@@ -25,6 +25,7 @@
     - name: install developer tools
       pacman: name={{ item }} state=present update_cache=false
       items:
+        - bc
         - git
         - gcc
         - make
