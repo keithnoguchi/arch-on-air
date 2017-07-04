@@ -1,5 +1,5 @@
 ---
-- name: install post-installation apps
+- name: arch-on-air post-installation play
   hosts: host
   vars:
     latest: false
