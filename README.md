@@ -618,10 +618,11 @@ I'm gradually making those post installation steps automated through
 [ansible](https://ansible.com), as in [provision.yml](provision.yml)
 playbook.  And also, that playbook is under the
 [travis CI](https://travis-ci.org/keinohguchi/arch-on-air) to make sure
-that's valid under the clean [arch](https://archlinux.org) environment.
+it's sane under a clean [ArchLinux](https://archlinux.org) environment.
 
 You can also see it in action locally by running [$ make test](Makefile),
-as in [.travis.yml](.travis.yml).
+as shown in the [.travis.yml](.travis.yml) [Travis](travis-ci.org)
+configuration file.
 
 - [Console](#console)
 - [Kernel](#kernel)
