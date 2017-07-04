@@ -52,7 +52,7 @@
         path: "{{ gitpath }}"
         state: directory
         group: git
-        mode: 0775
+        mode: 0770
       become: true
 
     - name: install audio related packages as in README.md
