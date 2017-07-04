@@ -3,6 +3,7 @@
   command: go get {{ item }}
   items:
     - github.com/coreos/etcd/cmd/etcd
+    - github.com/coreos/etcd/cmd/etcdctl
   environment:
     GOROOT: "{{ lookup('env', 'GOROOT') }}"
     GOPATH: "{{ lookup('env', 'GOPATH') }}"
