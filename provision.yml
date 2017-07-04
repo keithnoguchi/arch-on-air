@@ -64,7 +64,7 @@
     - name: configure the audio
       import_tasks: tasks/audio.yml
 
-    - name: configure docker
+    - name: configure the docker environment
       import_tasks: tasks/docker.yml
       when: not travis_ci|bool
 

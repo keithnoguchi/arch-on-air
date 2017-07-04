@@ -88,9 +88,13 @@
       import_tasks: tasks/kvm.yml
       when: kvm|bool
 
-    - name: setup docker environment
+    - name: install docker daemon and cli
       import_tasks: tasks/docker-ubuntu-1604.yml
       when: docker|bool and ansible_distribution_version == "16.04"
+
+    - name: setup docker environment
+      import_tasks: tasks/docker.yml
+      when: docker|bool and not travis_ci|bool
 
     - name: setup RabbitMQ environment
       import_tasks: tasks/rabbit.yml

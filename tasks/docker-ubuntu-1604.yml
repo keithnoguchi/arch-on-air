@@ -20,11 +20,3 @@
     - docker-ce
   register: result
   become: true
-
-- name: add user to the docker group
-  user:
-    name: "{{ ansible_user }}"
-    groups: docker
-    append: true
-  register: result
-  become: true
