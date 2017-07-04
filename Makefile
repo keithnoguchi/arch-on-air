@@ -33,5 +33,4 @@ test-guest: ansible-ubuntu ping
 
 clean:
 	sudo $(RM) -rf .ansible
-	$(RM) *.retry
-	$(RM) .*.sw? **/.*.sw?
+	$(RM) *.bak *.retry .*.sw? **/.*.sw?
