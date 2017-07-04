@@ -75,11 +75,7 @@
       when: not travis_ci|bool
 
     - name: create git root directory
-      file:
-        path: "{{ gitpath }}"
-        state: directory
-        group: git
-        mode: 0770
+      file: path={{ gitpath }} state=directory group=git mode=0770
       become: true
 
     - name: install the latest protobuf
