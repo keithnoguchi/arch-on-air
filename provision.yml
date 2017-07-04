@@ -39,6 +39,7 @@
         - docker
         - python2
         - python2-pip
+        - jre8-openjdk-headless
       become: true
 
     - name: install network related tools
