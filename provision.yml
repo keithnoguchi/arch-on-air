@@ -64,14 +64,6 @@
     - name: configure the audio
       import_tasks: tasks/audio.yml
 
-    - name: configure the docker environment
-      import_tasks: tasks/docker.yml
-      when: not travis_ci|bool
-
-    - name: install the latest etcd
-      import_tasks: tasks/etcd.yml
-      when: latest|bool
-
     - name: install the latest protobuf
       import_tasks: tasks/protobuf.yml
       when: latest|bool and not travis_ci|bool
@@ -80,6 +72,14 @@
       import_tasks: tasks/golang.yml
       vars:
         bootstrap: /usr/lib/go
+      when: latest|bool
+
+    - name: configure the docker environment
+      import_tasks: tasks/docker.yml
+      when: not travis_ci|bool
+
+    - name: install the latest etcd
+      import_tasks: tasks/etcd.yml
       when: latest|bool
 
     - name: install the latest terraform
