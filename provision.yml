@@ -31,6 +31,7 @@
         - automake
         - libtool
         - unzip
+        - docker
         - cscope
       become: true
 
@@ -62,6 +63,10 @@
 
     - name: configure the audio
       import_tasks: tasks/audio.yml
+
+    - name: configure docker
+      import_tasks: tasks/docker.yml
+      when: not travis_ci|bool
 
     - name: install the latest protobuf
       import_tasks: tasks/protobuf.yml
