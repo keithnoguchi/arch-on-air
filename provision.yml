@@ -36,6 +36,8 @@
         - unzip
         - go
         - docker
+        - python2
+        - python2-pip
       become: true
 
     - name: install network related tools
@@ -50,14 +52,6 @@
         - traceroute
       become: true
 
-    - name: create git root directory
-      file:
-        path: "{{ gitpath }}"
-        state: directory
-        group: git
-        mode: 0770
-      become: true
-
     - name: install audio related packages as in README.md
       pacman: name={{ item }} state=present update_cache=false
       items:
@@ -66,6 +60,26 @@
 
     - name: configure the audio
       import_tasks: tasks/audio.yml
+
+    - name: configure the docker environment
+      import_tasks: tasks/docker.yml
+      when: not travis_ci|bool
+
+    - name: add user to the developer groups
+      user:
+        name: "{{ lookup('env', 'USER') }}"
+        append: true
+        groups: git,docker
+      become: true
+      when: not travis_ci|bool
+
+    - name: create git root directory
+      file:
+        path: "{{ gitpath }}"
+        state: directory
+        group: git
+        mode: 0770
+      become: true
 
     - name: install the latest protobuf
       import_tasks: tasks/protobuf.yml
@@ -77,10 +91,6 @@
         bootstrap: /usr/lib/go
       when: latest|bool
 
-    - name: configure the docker environment
-      import_tasks: tasks/docker.yml
-      when: not travis_ci|bool
-
     - name: install the latest etcd
       import_tasks: tasks/etcd.yml
       when: latest|bool
@@ -88,13 +98,6 @@
     - name: install the latest terraform
       import_tasks: tasks/terraform.yml
       when: latest|bool
-
-    - name: install pre-requisite packages for ansible
-      pacman: name={{ item }} state=present update_cache=false
-      items:
-        - python2
-        - python2-pip
-      become: true
 
     - name: install the latest ansible
       import_tasks: tasks/ansible.yml

@@ -11,6 +11,7 @@
   pip:
     requirements: "{{ gitpath }}ansible/requirements.txt"
   become: true
+  when: git.before != git.after
 
 - name: install the latest ansible
   command: "{{ ansible_python_interpreter }} setup.py install"
