@@ -22,17 +22,19 @@
         - w3m
       become: true
 
-    - name: install compilers & developer tools
+    - name: install developer tools
       pacman: name={{ item }} state=present update_cache=false
       items:
-        - go
+        - git
+        - gcc
         - make
+        - cscope
         - autoconf
         - automake
         - libtool
         - unzip
+        - go
         - docker
-        - cscope
       become: true
 
     - name: install network related tools
