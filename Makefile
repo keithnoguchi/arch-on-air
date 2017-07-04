@@ -22,8 +22,8 @@ ping:
 	ansible -vvv -m ping -i inventory.test -c local host
 
 test: ansible-arch ping
-	ansible-playbook -vvv provision.yml -e latest=true \
-		-i inventory.test -c local -e travis_ci=true \
+	ansible-playbook -vvv -i inventory.test -c local provision.yml \
+		-e travis_ci=true -e latest=true \
 		-e gitsite=https://github.com/
 
 test-guest: ansible-ubuntu ping
