@@ -57,6 +57,7 @@
       items:
         - pulseaudio
         - alsa-utils
+      become: true
 
     - name: configure the audio
       import_tasks: tasks/audio.yml
