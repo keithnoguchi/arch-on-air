@@ -28,6 +28,7 @@
         - bc
         - git
         - gcc
+        - gcc-fortran
         - make
         - cscope
         - autoconf
