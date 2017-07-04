@@ -4,9 +4,9 @@
 
 Yet another note on *Let's make ArchLinux up and running on MacBook Air!*
 
-This is one way, or I would say, *my way* of running *Arch* on *Air*,
+This is one way, or I would say, *my way*, of running *Arch* on *Air*,
 based on the official
-[ArchLinux on MacBook(Air)](https://wiki.archlinux.org/index.php/MacBook) wiki
+[ArchLinux on MacBook(Air) wifi](https://wiki.archlinux.org/index.php/MacBook)
 and
 [Arch Installation guide](https://wiki.archlinux.org/index.php/installation_guide).
 
