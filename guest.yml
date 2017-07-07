@@ -31,8 +31,9 @@
       apt: name={{ item }} state=present update_cache=true
       items:
         - binutils
+        - aspell
+        - aspell-en
       become: true
-      when: latest|bool and not travis_ci|bool
 
     - name: install pre-requisite packages for protobuf
       apt: name={{ item }} state=present update_cache=false
