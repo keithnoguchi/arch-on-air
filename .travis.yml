@@ -30,14 +30,14 @@ arch:
     - openssh
     - python2
     - python2-pip
-    - procps-ng
-    - reflector
+    #- procps-ng
+    #- reflector
     # aur
-    - screenfetch-git
+    #- screenfetch-git
   script:
     # script run under chrooted environment
     #- "sudo screenfetch"
-    - "reflector --verbose -l 20 --sort rate -p https"
+    #- "reflector --verbose -l 20 --sort rate -p https"
     - "sudo -E make test"
 
 script:
