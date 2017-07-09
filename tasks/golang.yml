@@ -12,3 +12,12 @@
   args:
     chdir: "{{ gitpath }}/go/src"
   when: git.before != git.after
+
+- name: get some important golang packages
+  command: go get -u {{ item }}
+  items:
+    - github.com/golang/protobuf/protoc-gen-go
+  environment:
+    GOROOT: "{{ lookup('env', 'GOROOT') }}"
+    GOPATH: "{{ lookup('env', 'GOPATH') }}"
+    PATH: "{{ lookup('env', 'GOROOT') }}/bin:{{ lookup('env', 'GOPATH') }}/bin:/usr/bin:/bin"

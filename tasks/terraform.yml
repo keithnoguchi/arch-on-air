@@ -1,6 +1,6 @@
 ---
 - name: get terraform core & providers
-  command: go get {{ item }}
+  command: go get -u {{ item }}
   items:
     - github.com/hashicorp/terraform
     - github.com/terraform-providers/terraform-provider-terraform
