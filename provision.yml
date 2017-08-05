@@ -64,6 +64,12 @@
     - name: configure the audio
       import_tasks: tasks/audio.yml
 
+    - name: install graphical tools
+      pacman: name={{ item }} state=present update_cache=true
+      items:
+        - inkscape
+      become: true
+
     - name: configure the docker environment
       import_tasks: tasks/docker.yml
       when: not travis_ci|bool
