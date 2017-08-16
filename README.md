@@ -400,7 +400,7 @@ airootfs                262144   7280    254864   3% /etc/resolv.conf
 Link the `zoneinfo` file
 
 ```
-[root@archiso /]# ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+[root@archiso /]# rm /etc/localtime && ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 ```
 
 to get your local time.
@@ -689,8 +689,9 @@ air$ sudo pacman -S gcc make bc
 compile,
 
 ```
-air$ tar xfJ linux-4.7.tar.xz
-air$ cd linux-4.7
+air$ curl -LO https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.12.7.tar.xz
+air$ tar xfJ linux-4.12.7.tar.xz
+air$ cd linux-4.12.7
 air$ zcat /proc/config.gz > .config
 air$ make oldconfig
 ...
@@ -701,25 +702,25 @@ and, install!
 
 ```
 air$ sudo make modules_install
-air$ sudo cp ./arch/x86_64/boot/bzImage /boot/vmlinuz-4.7.0.1
-air$ sudo mkinitcpio -k 4.7.0.1 -g /boot/initramfs-4.7.0.1.img
+air$ sudo cp ./arch/x86_64/boot/bzImage /boot/vmlinuz-4.12.7.1
+air$ sudo mkinitcpio -k 4.12.7.1 -g /boot/initramfs-4.12.7.1.img
 ```
 
 Create new boot loader entries under `/boot/loader/entries`
 
 ```
-air$ cat /boot/loader/entries/4.7.0.conf
-title   4.7.0.1 train
-linux   /vmlinuz-4.7.0.1
-initrd  /initramfs-4.7.0.1.img
+air$ cat /boot/loader/entries/4.12.7.conf
+title   4.12.7 train
+linux   /vmlinuz-4.12.7.1
+initrd  /initramfs-4.12.7.1.img
 options root=/dev/mapper/vg0-root rw
 ```
 make the new one as a default kernel
 
 ```
-air$ sudo sed -i.old -e "s/arch/4.7.0/"  /boot/loader/loader.conf
+air$ sudo sed -i.old -e "s/arch/4.12.7/" /boot/loader/loader.conf
 air$ cat /boot/loader/loader.conf
-default 4.7.0
+default 4.12.7
 timeout 4
 editor  0
 ```
