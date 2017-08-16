@@ -283,7 +283,7 @@ root@archiso ~ # for i in home var
 \`for> mkdir /mnt/$i
 \`for> mount /dev/vg0/$i /mnt/$i
 \`for> done
-root@archiso ~ # mount /dev/sda1 /mnt/boot
+root@archiso ~ # mkdir -p /mnt/boot && mount /dev/sda1 /mnt/boot
 root@archiso ~ # df -k
 Filesystem           1K-blocks   Used Available Use% Mounted on
 dev                    4025808      0   4025808   0% /dev
