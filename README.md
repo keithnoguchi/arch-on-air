@@ -313,7 +313,8 @@ tmpfs                   808024      0    808024   0% /run/user/0
 
 ### Pacman mirror
 
-Bring the `kernel.org` to the top.
+Bring the closest mirror, `kernel.org` in my case, to the top of
+the `mirrirlist` file, as shown below:
 
 ```
 root@archiso ~ # head -10 /etc/pacman.d/mirrorlist
