@@ -80,10 +80,10 @@
         - xorg-xsetroot
         - xorg-xinput
         - xorg-xprop
+        - ttf-freefont
         - gtk3
         - webkit2gtk
         - chromium
-        - inkscape
       become: true
 
     - name: configure the docker environment
