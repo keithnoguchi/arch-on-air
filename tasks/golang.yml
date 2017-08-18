@@ -19,6 +19,8 @@
     - golang.org/x/tools/cmd/goimports
     - golang.org/x/tools/cmd/present
     - google.golang.org/grpc
+    - github.com/golang/mock/gomock
+    - github.com/golang/mock/mockgen
     - github.com/golang/protobuf/protoc-gen-go
     - github.com/streadway/amqp
     - github.com/derekparker/delve/cmd/dlv

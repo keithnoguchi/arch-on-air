@@ -110,7 +110,6 @@
       import_tasks: tasks/golang.yml
       vars:
         bootstrap: /usr/lib/go
-      when: latest|bool
 
     - name: install the latest etcd
       import_tasks: tasks/etcd.yml
