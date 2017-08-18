@@ -1464,11 +1464,11 @@ VNC client package, `tigervnc`, through `pacman`:
 air$ sudo pacman -S virt-install virt-viewer tigervnc
 ```
 
-Let's install the guest, after downloading the image of your choise.  I usually play with [Ubuntu LTS](http://mirror.pnl.gov/releases/16.04.2/), just to see what they're up to. :)
+Let's install the guest, after downloading the image of your choise.  I usually play with [Ubuntu LTS](http://mirror.pnl.gov/releases/16.04.3/), just to see what they're up to. :)
 
 ```
 air$ sudo virt-install --name hv10 --disk /dev/vg1/hv10 \
---cdrom /var/lib/libvirt/boot/ubuntu-16.04.2-server-amd64.iso \
+--cdrom /var/lib/libvirt/boot/ubuntu-16.04.3-server-amd64.iso \
 --hvm --memory 2048 --cpu host,require=vmx --graphics vnc
 Starting install...
 Creating domain...
