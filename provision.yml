@@ -86,13 +86,17 @@
         - chromium
       become: true
 
-    - name: configure libvirt environment
+    - name: configure kvm/libvirt environment
       pacman: name={{ item }} state=installed
       items:
+        - qemu-headless
         - libvirt
         - libvirt-python2
         - ebtables
         - dnsmasq
+        - virt-install
+        - virt-viewer
+        - tigervnc
       become: true
 
     - name: configure the docker environment

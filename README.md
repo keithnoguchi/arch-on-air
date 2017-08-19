@@ -1291,7 +1291,15 @@ because of their simplicity and performance.  Here is the basic steps to
 make your KVM up and running under libvirt on your Arch:
 
 ```
-air$ sudo pacman -S qemu libvirt
+air$ sudo pacman -S qemu-headless libvirt
+```
+
+Before running the libvirtd, let's add her to the `kvm` group
+through `/etc/libvirt/qemu.conf
+
+```
+air$ grep '^group' /etc/libvirt/qemu.conf
+group="kvm"
 ```
 
 Now, you're ready to run KVM based virtual machines through the libvirt.
@@ -1309,7 +1317,7 @@ air$ sudo systemctl enable libvirtd
 air$ sudo systemctl enable virtlogd
 ```
 
-Now, add yourself to the `libvirt` group
+You can add yourself to the `libvirt` group
 
 ```
 air$ sudo usermod -a -G libvirt $USER
