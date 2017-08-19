@@ -8,7 +8,7 @@
     latest: false
     travis_ci: false
     gitsite: "git@github.com:"
-    gitpath: "/usr/local/git/"
+    gitpath: "{{ lookup('env', 'HOME') }}/git"
   gather_facts: true
   tasks:
     - name: add user to the src group

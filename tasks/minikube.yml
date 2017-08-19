@@ -9,12 +9,32 @@
 
 - name: build the latest minikube
   make: 
-    chdir: "{{ lookup('env', GOPATH) }}/src/k8s.io/minikube"
+    chdir: "{{ lookup('env', 'GOPATH') }}/src/k8s.io/minikube"
   when: git.before != git.after
 
-- name: copy to the /usr/local/bin directory
+- name: copy minikube to the /usr/local/bin directory
   copy:
     src: "{{ lookup('env', 'GOPATH') }}/src/k8s.io/minikube/out/minikube"
     dest: /usr/local/bin/minikube
+    remote_src: true
+  become: true
+
+- name: clone docker-machine-kvm repo
+  git:
+    repo: "{{ gitsite }}/dhiltgen/docker-machine-kvm"
+    dest: "{{ lookup('env', 'GOPATH') }}/src/dhiltgen/docker-machine-kvm"
+    update: yes
+    ssh_opts: "-o StrictHostKeyChecking=no"
+  register: docker-machine-kvm
+
+- name: build the latest docker-machine-kvm
+  make:
+    chdir: "{{ lookup('env', 'GOPATH') }}/src/dhiltgen/docker-machine-kvm/cmd/docker-machine-driver-kvm"
+  when: docker-machine-kvm.before != docker-machine-kvm.after
+
+- name: copy docker-machine-kvm to the /usr/local/bin directory
+  copy:
+    src: "{{ lookup('env', 'GOPATH') }}/src/dhiltgen/docker-machine-kvm/cmd/docker-machine-driver-kvm/docker-machine-driver-kvm"
+    dest: /usr/local/bin/docker-machine-driver-kvm
     remote_src: true
   become: true

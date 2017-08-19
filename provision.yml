@@ -5,7 +5,7 @@
     latest: false
     travis_ci: false
     gitsite: "git@github.com:"
-    gitpath: "/usr/local/git/"
+    gitpath: "{{ lookup('env', 'HOME') }}/git"
   gather_facts: false
   tasks:
     - name: install console apps
@@ -40,6 +40,7 @@
         - unzip
         - go
         - docker
+        - docker-machine
         - python2
         - python2-pip
         - jre8-openjdk-headless
@@ -55,6 +56,7 @@
         - gnu-netcat
         - mtr
         - traceroute
+        - rsync
       become: true
 
     - name: install audio related packages as in README.md
@@ -106,7 +108,7 @@
       user:
         name: "{{ lookup('env', 'USER') }}"
         append: true
-        groups: git,docker
+        groups: git,docker,libvirt
       become: true
       when: not travis_ci|bool
 
@@ -127,8 +129,8 @@
       import_tasks: tasks/etcd.yml
       when: latest|bool
 
-    - name: configure the minikube environment
-      import_tasks: tasks/minikube.yml
+    - name: install the latest kubernetes
+      import_tasks: tasks/kubernetes.yml
       when: not travis_ci|bool
 
     - name: install the latest terraform
