@@ -94,9 +94,6 @@
         - libvirt-python2
         - ebtables
         - dnsmasq
-        - virt-install
-        - virt-viewer
-        - tigervnc
       become: true
 
     - name: configure the docker environment
