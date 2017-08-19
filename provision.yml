@@ -9,7 +9,7 @@
   gather_facts: false
   tasks:
     - name: install console apps
-      pacman: name={{ item }} state=present update_cache=true
+      pacman: name={{ item }} state=present force=true update_cache=true
       items:
         - aspell
         - aspell-en
@@ -25,7 +25,7 @@
       become: true
 
     - name: install developer tools
-      pacman: name={{ item }} state=present update_cache=false
+      pacman: name={{ item }} state=present force=true update_cache=false
       items:
         - bc
         - git
@@ -46,7 +46,7 @@
       become: true
 
     - name: install network related tools
-      pacman: name={{ item }} state=present update_cache=false
+      pacman: name={{ item }} state=present force=true update_cache=false
       items:
         - curl
         - tcpdump
@@ -58,7 +58,7 @@
       become: true
 
     - name: install audio related packages as in README.md
-      pacman: name={{ item }} state=present update_cache=false
+      pacman: name={{ item }} state=present force=true update_cache=false
       items:
         - pulseaudio
         - alsa-utils
@@ -68,7 +68,7 @@
       import_tasks: tasks/audio.yml
 
     - name: install graphical tools
-      pacman: name={{ item }} state=present update_cache=true
+      pacman: name={{ item }} state=present force=true update_cache=true
       items:
         - gcr
         - libxft
@@ -89,7 +89,7 @@
       become: true
 
     - name: configure kvm/libvirt environment
-      pacman: name={{ item }} state=installed
+      pacman: name={{ item }} state=present force=true update_cache=false
       items:
         - qemu-headless
         - libvirt
