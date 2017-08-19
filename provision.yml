@@ -20,6 +20,8 @@
         - irssi
         - mutt
         - w3m
+        - tree
+        - jq
       become: true
 
     - name: install developer tools
