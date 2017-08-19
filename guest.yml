@@ -34,6 +34,8 @@
         - gdb
         - aspell
         - aspell-en
+        - python
+        - python-pip
       become: true
 
     - name: install pre-requisite packages for protobuf
@@ -84,8 +86,6 @@
     - name: install pre-requisite packages for ansible
       apt: name={{ item }} state=present update_cache=false
       items:
-        - python
-        - python-pip
         - libssl-dev
       become: true
       when: latest|bool
