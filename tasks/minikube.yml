@@ -1,0 +1,20 @@
+---
+- name: clone the minikube repo
+  git:
+    repo: "{{ gitsite }}/kubernetes/minikube"
+    dest: "{{ lookup('env', 'GOPATH') }}/src/k8s.io/minikube"
+    update: yes
+    ssh_opts: "-o StrictHostKeyChecking=no"
+  register: git
+
+- name: build the latest minikube
+  make: 
+    chdir: "{{ lookup('env', GOPATH) }}/src/k8s.io/minikube"
+  when: git.before != git.after
+
+- name: copy to the /usr/local/bin directory
+  copy:
+    src: "{{ lookup('env', 'GOPATH') }}/src/k8s.io/minikube/out/minikube"
+    dest: /usr/local/bin/minikube
+    remote_src: true
+  become: true

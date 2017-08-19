@@ -127,6 +127,10 @@
       import_tasks: tasks/etcd.yml
       when: latest|bool
 
+    - name: configure the minikube environment
+      import_tasks: tasks/minikube.yml
+      when: not travis_ci|bool
+
     - name: install the latest terraform
       import_tasks: tasks/terraform.yml
       when: latest|bool
