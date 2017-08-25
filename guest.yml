@@ -3,12 +3,13 @@
   hosts: guest
   vars:
     kvm: true
+    ovs: true
     docker: true
     rabbit: true
     latest: false
     travis_ci: false
     gitsite: "git@github.com:"
-    gitpath: "{{ lookup('env', 'HOME') }}/git"
+    gitpath: "{{ lookup('env', 'HOME') }}/git/"
   gather_facts: true
   tasks:
     - name: add user to the src group
@@ -97,6 +98,12 @@
     - name: install the latest perl
       import_tasks: tasks/perl.yml
       when: latest|bool
+
+    - name: install the latest Open vSwitch
+      import_tasks: tasks/openvswitch.yml
+      vars:
+        ovs_version: 2.7.90-1
+      when: ovs|bool
 
     - name: setup KVM environment
       import_tasks: tasks/kvm.yml
