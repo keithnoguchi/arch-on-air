@@ -3,4 +3,5 @@
   apt: name={{ item }} state=present update_cache=false
   items:
     - libvirt-dev
+    - libvirt-bin
   become: true
