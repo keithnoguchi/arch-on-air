@@ -8,8 +8,8 @@ group: edge
 
 env:
   global:
-    - GOROOT=/usr/local/git/go
-    - GOPATH=/usr/local/git/golib
+    - GOROOT=$HOME/git/go
+    - GOPATH=$HOME
   matrix:
     # This is the chrooted archlinux environemnt to check provision.yml.
     # https://github.com/mikkeloscar/arch-travis/blob/master/README.md

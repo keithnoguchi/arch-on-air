@@ -5,7 +5,7 @@
     latest: false
     travis_ci: false
     gitsite: "git@github.com:"
-    gitpath: "{{ lookup('env', 'HOME') }}/git"
+    gitpath: "{{ lookup('env', 'HOME') }}/git/"
   gather_facts: false
   tasks:
     - name: install console apps
@@ -113,7 +113,7 @@
       when: not travis_ci|bool
 
     - name: create git root directory
-      file: path={{ gitpath }} state=directory group=git mode=0770
+      file: path={{ gitpath }} state=directory group=git mode=0700
       become: true
 
     - name: install the latest protobuf
