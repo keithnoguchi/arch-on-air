@@ -7,17 +7,26 @@
     ssh_opts: "-o StrictHostKeyChecking=no"
   register: git
 
-- name: build OvS, as in ovs/Documentaions/intro/install/debian.rst
-  shell: >
-    cd "{{ gitpath }}ovs" &&
-    DEB_BUILD_OPTIONS='parallel=8 nocheck' fakeroot debian/rules binary
+- name: bootstrap OvS build environment
+  command: ./boot.sh
+  args:
+    chdir: "{{ gitpath }}ovs"
+  when: git.before != git.after
 
-- name: download the OvS/OVN deb packages
-  fetch: src=/tmp/{{ item }} dest=/tmp/{{ ansible_user_id }}/{{ item }} flat=yes
-  with_items:
-    - openvswitch-datapath-dkms_{{ ovs_version }}_all.deb
-    - openvswitch-common_{{ ovs_version }}_amd64.deb
-    - openvswitch-switch_{{ ovs_version }}_amd64.deb
-    - ovn-common_{{ ovs_version }}_amd64.deb
-    - ovn-central_{{ ovs_version }}_amd64.deb
-    - ovn-host_{{ ovs_version }}_amd64.deb
+- name: configure OvS with ./configure
+  command: ./configure
+  args:
+    chdir: "{{ gitpath }}ovs"
+  when: git.before != git.after
+
+- name: build OvS!
+  make:
+    chdir: "{{ gitpath }}ovs"
+  when: git.before != git.after
+
+- name: install OvS executables
+  make:
+    chdir: "{{ gitpath }}ovs"
+    target: install
+  become: true
+  when: git.before != git.after

@@ -8,16 +8,34 @@
     - name: install console apps
       pacman: name={{ item }} state=present force=true update_cache=true
       items:
-        - busybox
-        - dosfstools
-        - tmux
         - vim
+        - tmux
         - tree
         - jq
-        - pulseaudio
-        - alsa-utils
         - aspell
         - aspell-en
+        - busybox
+        - dosfstools
+        - pulseaudio
+        - alsa-utils
+      become: true
+
+    - name: install network tools
+      pacman: name={{ item }} state=present force=true update_cache=false
+      items:
+        - w3m
+        - curl
+        - tcpdump
+        - traceroute
+        - net-tools
+        - bind-tools
+        - gnu-netcat
+        - mtr
+        - rsync
+        - irssi
+        - mutt
+        - ebtables
+        - dnsmasq
       become: true
 
     - name: install graphical libraries & tools
@@ -41,29 +59,6 @@
         - chromium
       become: true
 
-    - name: install network apps
-      pacman: name={{ item }} state=present force=true update_cache=false
-      items:
-        - curl
-        - tcpdump
-        - net-tools
-        - bind-tools
-        - gnu-netcat
-        - traceroute
-        - mtr
-        - rsync
-        - irssi
-        - mutt
-        - w3m
-        - ebtables
-        - dnsmasq
-        - qemu-headless
-        - libvirt
-        - libvirt-python2
-        - docker
-        - docker-machine
-      become: true
-
     - name: install developer tools
       pacman: name={{ item }} state=present force=true update_cache=false
       items:
@@ -71,6 +66,7 @@
         - gcc
         - gcc-fortran
         - git
+        - gdb
         - make
         - cscope
         - autoconf
@@ -79,8 +75,14 @@
         - pkg-config
         - unzip
         - go
+        - cpanminus
         - python2
         - python2-pip
+        - qemu-headless
+        - libvirt
+        - libvirt-python2
+        - docker
+        - docker-machine
         - jre8-openjdk-headless
       become: true
 

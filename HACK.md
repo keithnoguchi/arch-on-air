@@ -281,6 +281,34 @@ rtt min/avg/max/mdev = 0.127/0.157/0.187/0.030 ms
 air$
 ```
 
+## Docker
+
+Let's have docker for the containerized world, by following
+[the official docker for ArchLinux](https://wiki.archlinux.org/index.php/Docker)
+wiki:
+
+```
+air$ sudo pacman -S docker
+```
+
+and add yourself to `docker` group by:
+
+```
+air$ sudo usermod -a -G docker $USER
+air$ su $USER
+Password:
+air$ id
+uid=1000($USER) gid=10(wheel) groups=10(wheel),991(docker),995(libvirt),996(git)
+```
+
+now, you can execute `docker` client command without sudo:
+
+```
+air$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+air$
+```
+
 ## Open vSwitch
 
 ### Build
@@ -426,34 +454,6 @@ a86d4283-5862-428a-8576-f39646655c5f
 ```
 
 Once you assign the IP address inside the VM, you can make a IP reachability.
-
-## Docker
-
-Let's have docker for the containerized world, by following
-[the official docker for ArchLinux](https://wiki.archlinux.org/index.php/Docker)
-wiki:
-
-```
-air$ sudo pacman -S docker
-```
-
-and add yourself to `docker` group by:
-
-```
-air$ sudo usermod -a -G docker $USER
-air$ su $USER
-Password:
-air$ id
-uid=1000($USER) gid=10(wheel) groups=10(wheel),991(docker),995(libvirt),996(git)
-```
-
-now, you can execute `docker` client command without sudo:
-
-```
-air$ docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-air$
-```
 
 ## Configuration Management Tools
 

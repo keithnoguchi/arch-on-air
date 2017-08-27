@@ -1,10 +1,4 @@
 ---
-- name: install the perl pre-requisite packages
-  apt: name={{ item }} state=present update_cache=false
-  items:
-    - cpanminus
-  become: true
-
 - name: install perl packages for the unit testing
   cpanm: name={{ item }}
   items:

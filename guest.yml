@@ -2,56 +2,52 @@
 - name: setup ubuntu guest
   hosts: guest
   vars:
-    kvm: true
-    ovs: true
-    docker: true
     rabbit: true
     latest: false
     travis_ci: false
     gitsite: "git@github.com:"
     gitpath: "{{ lookup('env', 'HOME') }}/git/"
+    gobootstrap: /usr/lib/go-1.6
   gather_facts: true
   tasks:
-    - name: add user to the src group
-      user:
-        name: "{{ ansible_user }}"
-        group: adm
-        groups: src,sudo
-        append: true
+    - name: install console apps
+      apt: name={{ item }} state=present update_cache=true
+      items:
+        - vim
+        - tmux
+        - tree
+        - jq
+        - aspell
+        - aspell-en
       become: true
 
-    - name: create git root directory
-      file:
-        path: "{{ gitpath }}"
-        state: directory
-        group: src
-        mode: 0700
+    - name: install network tools
+      apt: name={{ item }} state=present update_cache=false
+      items:
+        - w3m
+        - curl
+        - tcpdump
+        - traceroute
       become: true
 
     - name: install developer tools
-      apt: name={{ item }} state=present update_cache=true
+      apt: name={{ item }} state=present update_cache=false
       items:
-        - build-essential
-        - fakeroot
         - binutils
         - g++
-        - golang-1.6
+        - git
         - gdb
         - make
+        - cscope
         - autoconf
         - automake
         - libtool
-        - curl
-        - w3m
         - bzip2
         - unzip
-        - aspell
-        - aspell-en
-        - python-all
+        - golang-1.6
+        - cpanminus
         - python
         - python-pip
-        - python-twisted-conch
-        - python-zopeinterface
         - python-six
         - graphviz
         - debhelper
@@ -59,61 +55,13 @@
         - libssl-dev
         - openssl
         - procps
-      become: true
-
-    - name: install kvm/libvirt libraries
-      apt: name={{ item }} state=present update_cache=false
-      items:
         - libvirt-dev
         - libvirt-bin
       become: true
 
-    - name: install the latest Open vSwitch
-      import_tasks: tasks/openvswitch.yml
-      vars:
-        ovs_version: 2.8.90-1
-      when: ovs|bool
-
     - name: install docker daemon and cli
       import_tasks: tasks/docker-ubuntu-1604.yml
-      when: docker|bool and ansible_distribution_version == "16.04"
-
-    - name: setup docker environment
-      import_tasks: tasks/docker.yml
-      when: docker|bool and not travis_ci|bool
-
-    - name: build & install the latest protobuf
-      import_tasks: tasks/protobuf.yml
-      when: latest|bool and not travis_ci|bool
-
-    - name: build & install the latest golang
-      import_tasks: tasks/golang.yml
-      vars:
-        bootstrap: /usr/lib/go-1.6
-      when: latest|bool
-
-    - name: install the latest etcd
-      import_tasks: tasks/etcd.yml
-      when: latest|bool
-
-    - name: build & install the latest terraform
-      import_tasks: tasks/terraform.yml
-      when: latest|bool
-
-    - name: install pre-requisite packages for ansible
-      apt: name={{ item }} state=present update_cache=false
-      items:
-        - libssl-dev
-      become: true
-      when: latest|bool
-
-    - name: install the latest ansible
-      import_tasks: tasks/ansible.yml
-      when: latest|bool
-
-    - name: install the latest perl
-      import_tasks: tasks/perl.yml
-      when: latest|bool
+      when: ansible_distribution_version == "16.04"
 
     - name: setup RabbitMQ environment
       import_tasks: tasks/rabbit.yml
@@ -127,3 +75,40 @@
         read_priv: ".*"
         write_priv: ".*"
       when: rabbit|bool and not travis_ci|bool
+
+    - name: create git root directory
+      file: path={{ gitpath }} state=directory mode=0700
+
+    - name: configure the docker environment
+      import_tasks: tasks/docker.yml
+      when: not travis_ci|bool
+
+    - name: install the latest Open vSwitch
+      import_tasks: tasks/openvswitch.yml
+
+    - name: install the latest golang
+      import_tasks: tasks/golang.yml
+
+    - name: install the latest protobuf
+      import_tasks: tasks/protobuf.yml
+      when: latest|bool and not travis_ci|bool
+
+    - name: install the latest etcd
+      import_tasks: tasks/etcd.yml
+      when: latest|bool
+
+    - name: install the latest kubernetes
+      import_tasks: tasks/kubernetes.yml
+      when: latest|bool and not travis_ci|bool
+
+    - name: install the latest terraform
+      import_tasks: tasks/terraform.yml
+      when: latest|bool
+
+    - name: install the latest ansible
+      import_tasks: tasks/ansible.yml
+      when: latest|bool
+
+    - name: install the latest perl
+      import_tasks: tasks/perl.yml
+      when: latest|bool

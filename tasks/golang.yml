@@ -8,7 +8,7 @@
   register: git
 
 - name: build & install the latest golang
-  shell: GOROOT_BOOTSTRAP={{ bootstrap }} ./make.bash
+  shell: GOROOT_BOOTSTRAP={{ gobootstrap }} ./make.bash
   args:
     chdir: "{{ gitpath }}/go/src"
   when: git.before != git.after

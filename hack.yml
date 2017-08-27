@@ -6,12 +6,9 @@
     travis_ci: false
     gitsite: "git@github.com:"
     gitpath: "{{ lookup('env', 'HOME') }}/git/"
+    gobootstrap: /usr/lib/go
   gather_facts: false
   tasks:
-    - name: configure the docker environment
-      import_tasks: tasks/docker.yml
-      when: not travis_ci|bool
-
     - name: add user to the developer groups
       user:
         name: "{{ lookup('env', 'USER') }}"
@@ -21,17 +18,21 @@
       when: not travis_ci|bool
 
     - name: create git root directory
-      file: path={{ gitpath }} state=directory group=git mode=0700
-      become: true
+      file: path={{ gitpath }} state=directory mode=0700
+
+    - name: configure the docker environment
+      import_tasks: tasks/docker.yml
+      when: not travis_ci|bool
+
+    - name: install the latest Open vSwitch
+      import_tasks: tasks/openvswitch.yml
+
+    - name: install the latest golang
+      import_tasks: tasks/golang.yml
 
     - name: install the latest protobuf
       import_tasks: tasks/protobuf.yml
       when: latest|bool and not travis_ci|bool
-
-    - name: install the latest golang
-      import_tasks: tasks/golang.yml
-      vars:
-        bootstrap: /usr/lib/go
 
     - name: install the latest etcd
       import_tasks: tasks/etcd.yml
@@ -39,7 +40,7 @@
 
     - name: install the latest kubernetes
       import_tasks: tasks/kubernetes.yml
-      when: not travis_ci|bool
+      when: latest|bool and not travis_ci|bool
 
     - name: install the latest terraform
       import_tasks: tasks/terraform.yml
@@ -47,4 +48,8 @@
 
     - name: install the latest ansible
       import_tasks: tasks/ansible.yml
+      when: latest|bool
+
+    - name: install the latest perl
+      import_tasks: tasks/perl.yml
       when: latest|bool
