@@ -1,10 +1,10 @@
 # Let's hack!
 
-Let's hack those cool tools!
+Let's hack the virtualization on Air!
 
 - [KVM/Libvirt](#kvm-libvirt)
-- [Docker](#docker)
 - [Open vSwitch](#open-vswitch)
+- [Docker](#docker)
 - [Configuration Management Tools](#configuration-management-tools)
 - [Vagrant/VirtualBox](#vagrant-virtualbox)
 
@@ -281,34 +281,6 @@ rtt min/avg/max/mdev = 0.127/0.157/0.187/0.030 ms
 air$
 ```
 
-## Docker
-
-Let's have docker for the containerized world, by following
-[the official docker for ArchLinux](https://wiki.archlinux.org/index.php/Docker)
-wiki:
-
-```
-air$ sudo pacman -S docker
-```
-
-and add yourself to `docker` group by:
-
-```
-air$ sudo usermod -a -G docker $USER
-air$ su $USER
-Password:
-air$ id
-uid=1000($USER) gid=10(wheel) groups=10(wheel),991(docker),995(libvirt),996(git)
-```
-
-now, you can execute `docker` client command without sudo:
-
-```
-air$ docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-air$
-```
-
 ## Open vSwitch
 
 ### Build
@@ -340,16 +312,16 @@ air$ export PATH=~/bin:$PATH
 
 Cool!  Now, we're ready to compile and it's really easy just like *1-2-3*
 as explained in
-[INSTALL.md](https://github.com/openvswitch/ovs/blob/master/INSTALL.md).
+[intro/install/general.rst](https://github.com/openvswitch/ovs/blob/master/Documentation/intro/install/general.rst).
 
 ```
 air$ ./boot.sh
-air$ ./configure
+air$ ./configure --with-linux=/lib/modules/$(uname -r)/build
 air$ make && sudo make install
 ```
 
 Load the kernel module and build the *OVSDB* database, as explained in
-[INSTALL.md](https://github.com/openvswitch/ovs/blob/master/INSTALL.md#building-the-sources).
+[intro/install/general.rst](https://github.com/openvswitch/ovs/blob/master/Documentation/intro/install/general.rst).
 
 ### Initialize
 
@@ -379,7 +351,7 @@ air$ ls -l /usr/local/etc/openvswitch/conf.db
 ### Run
 
 Let's run `ovsdb-server`, the OvS database server, and the `ovs-vswitchd`,
-vswitch itself, as explained in [INSTALL.md](https://github.com/openvswitch/ovs/blob/master/INSTALL.md#startup).
+vswitch itself, as explained in [intro/install/general.rst](https://github.com/openvswitch/ovs/blob/master/Documentation/intro/install/general.rst).
 
 ```
 air$ sudo ovsdb-server --remote=punix:/usr/local/var/run/openvswitch/db.sock --pidfile
@@ -454,6 +426,34 @@ a86d4283-5862-428a-8576-f39646655c5f
 ```
 
 Once you assign the IP address inside the VM, you can make a IP reachability.
+
+## Docker
+
+Let's have docker for the containerized world, by following
+[the official docker for ArchLinux](https://wiki.archlinux.org/index.php/Docker)
+wiki:
+
+```
+air$ sudo pacman -S docker
+```
+
+and add yourself to `docker` group by:
+
+```
+air$ sudo usermod -a -G docker $USER
+air$ su $USER
+Password:
+air$ id
+uid=1000($USER) gid=10(wheel) groups=10(wheel),991(docker),995(libvirt),996(git)
+```
+
+now, you can execute `docker` client command without sudo:
+
+```
+air$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+air$
+```
 
 ## Configuration Management Tools
 

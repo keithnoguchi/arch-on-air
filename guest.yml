@@ -46,7 +46,7 @@
         - unzip
         - golang-1.6
         - cpanminus
-        - python
+        - python-all
         - python-pip
         - python-six
         - graphviz
@@ -57,6 +57,7 @@
         - procps
         - libvirt-dev
         - libvirt-bin
+        - libcap-ng-dev
       become: true
 
     - name: install docker daemon and cli

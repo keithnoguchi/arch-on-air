@@ -59,32 +59,5 @@
         - chromium
       become: true
 
-    - name: install developer tools
-      pacman: name={{ item }} state=present force=true update_cache=false
-      items:
-        - bc
-        - gcc
-        - gcc-fortran
-        - git
-        - gdb
-        - make
-        - cscope
-        - autoconf
-        - automake
-        - libtool
-        - pkg-config
-        - unzip
-        - go
-        - cpanminus
-        - python2
-        - python2-pip
-        - qemu-headless
-        - libvirt
-        - libvirt-python2
-        - docker
-        - docker-machine
-        - jre8-openjdk-headless
-      become: true
-
     - name: configure the audio
       import_tasks: tasks/audio.yml

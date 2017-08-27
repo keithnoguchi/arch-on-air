@@ -13,8 +13,14 @@
     chdir: "{{ gitpath }}ovs"
   when: git.before != git.after
 
+- name: setup configure options
+  set_fact:
+    with_linux: "--with-linux=/lib/modules/{{ ansible_kernel }}/build"
+  when: not travis_ci|bool
+
 - name: configure OvS with ./configure
-  command: ./configure
+  command: >
+    ./configure "{{ with_linux|default('') }}"
   args:
     chdir: "{{ gitpath }}ovs"
   when: git.before != git.after
@@ -30,3 +36,10 @@
     target: install
   become: true
   when: git.before != git.after
+
+- name: install OvS kernel modules
+  make:
+    chdir: "{{ gitpath }}ovs"
+    target: modules_install
+  become: true
+  when: git.before != git.after and not travis_ci|bool
