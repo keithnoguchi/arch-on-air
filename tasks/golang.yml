@@ -24,8 +24,8 @@
     - github.com/golang/protobuf/protoc-gen-go
     - github.com/streadway/amqp
     - github.com/derekparker/delve/cmd/dlv
-    - github.com/kubernetes/kubernetes/cmd/kubectl
   environment:
     GOROOT: "{{ lookup('env', 'GOROOT') }}"
     GOPATH: "{{ lookup('env', 'GOPATH') }}"
     PATH: "{{ lookup('env', 'GOPATH') }}/bin:{{ lookup('env', 'GOROOT') }}/bin:/usr/bin:/bin"
+  when: git.before != git.after
