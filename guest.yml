@@ -25,42 +25,32 @@
         path: "{{ gitpath }}"
         state: directory
         group: src
-        mode: 0775
+        mode: 0700
       become: true
 
-    - name: install general pre-requisite packages
+    - name: install developer tools
       apt: name={{ item }} state=present update_cache=true
       items:
         - binutils
+        - g++
+        - golang-1.6
         - gdb
+        - make
+        - autoconf
+        - automake
+        - libtool
+        - curl
+        - w3m
+        - unzip
         - aspell
         - aspell-en
         - python
         - python-pip
       become: true
 
-    - name: install pre-requisite packages for protobuf
-      apt: name={{ item }} state=present update_cache=false
-      items:
-        - autoconf
-        - automake
-        - libtool
-        - curl
-        - make
-        - g++
-        - unzip
-      become: true
-
     - name: build & install the latest protobuf
       import_tasks: tasks/protobuf.yml
       when: latest|bool and not travis_ci|bool
-
-    - name: install pre-requisite packages for golang
-      apt: name={{ item }} state=present update_cache=false
-      items:
-        - golang-1.6
-        - w3m
-      become: true
 
     - name: build & install the latest golang
       import_tasks: tasks/golang.yml

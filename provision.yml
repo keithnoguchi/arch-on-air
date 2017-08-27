@@ -24,6 +24,64 @@
         - jq
       become: true
 
+    - name: install network apps
+      pacman: name={{ item }} state=present force=true update_cache=false
+      items:
+        - curl
+        - tcpdump
+        - net-tools
+        - bind-tools
+        - gnu-netcat
+        - mtr
+        - traceroute
+        - rsync
+      become: true
+
+    - name: install audio apps as in README.md
+      pacman: name={{ item }} state=present force=true update_cache=false
+      items:
+        - pulseaudio
+        - alsa-utils
+      become: true
+
+    - name: configure the audio
+      import_tasks: tasks/audio.yml
+
+    - name: install graphical libraries & tools
+      pacman: name={{ item }} state=present force=true update_cache=true
+      items:
+        - gcr
+        - libxft
+        - libxinerama
+        - xf86-video-intel
+        - xf86-input-libinput
+        - xf86-input-synaptics
+        - xorg-server
+        - xorg-xinit
+        - xorg-xset
+        - xorg-xsetroot
+        - xorg-xinput
+        - xorg-xprop
+        - ttf-freefont
+        - gtk3
+        - webkit2gtk
+        - chromium
+      become: true
+
+    - name: install kvm/libvirt libraries
+      pacman: name={{ item }} state=present force=true update_cache=false
+      items:
+        - qemu-headless
+        - libvirt
+        - libvirt-python2
+        - ebtables
+        - dnsmasq
+      become: true
+
+    - name: configure the docker environment
+      import_tasks: tasks/docker.yml
+      when: not travis_ci|bool
+
     - name: install developer tools
       pacman: name={{ item }} state=present force=true update_cache=false
       items:
@@ -45,64 +103,6 @@
         - python2-pip
         - jre8-openjdk-headless
       become: true
-
-    - name: install network related tools
-      pacman: name={{ item }} state=present force=true update_cache=false
-      items:
-        - curl
-        - tcpdump
-        - net-tools
-        - bind-tools
-        - gnu-netcat
-        - mtr
-        - traceroute
-        - rsync
-      become: true
-
-    - name: install audio related packages as in README.md
-      pacman: name={{ item }} state=present force=true update_cache=false
-      items:
-        - pulseaudio
-        - alsa-utils
-      become: true
-
-    - name: configure the audio
-      import_tasks: tasks/audio.yml
-
-    - name: install graphical tools
-      pacman: name={{ item }} state=present force=true update_cache=true
-      items:
-        - gcr
-        - libxft
-        - libxinerama
-        - xf86-video-intel
-        - xf86-input-libinput
-        - xf86-input-synaptics
-        - xorg-server
-        - xorg-xinit
-        - xorg-xset
-        - xorg-xsetroot
-        - xorg-xinput
-        - xorg-xprop
-        - ttf-freefont
-        - gtk3
-        - webkit2gtk
-        - chromium
-      become: true
-
-    - name: configure kvm/libvirt environment
-      pacman: name={{ item }} state=present force=true update_cache=false
-      items:
-        - qemu-headless
-        - libvirt
-        - libvirt-python2
-        - ebtables
-        - dnsmasq
-      become: true
-
-    - name: configure the docker environment
-      import_tasks: tasks/docker.yml
-      when: not travis_ci|bool
 
     - name: add user to the developer groups
       user:
