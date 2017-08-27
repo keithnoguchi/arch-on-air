@@ -1,11 +1,11 @@
 all: provision guest
 
-.PHONY: provision guest
-provision guest:
+.PHONY: provision hack guest
+provision hack guest:
 	@ansible-playbook $@.yml -e latest=true
 
 # those are the target primarily used by the travis CI through .travis.yml.
-.PHONY: ansible-arch ansible-ubuntu ping test test-guest
+.PHONY: ansible-arch ansible-ubuntu ping test test-provision test-hack test-guest
 ansible-arch: clean
 	git clone https://github.com/ansible/ansible .ansible
 	cd .ansible \
@@ -21,8 +21,14 @@ ansible-ubuntu: clean
 ping:
 	ansible -vvv -m ping -i inventory.test -c local host
 
-test: ansible-arch ping
+test: ansible-arch ping test-provision test-hack
+
+test-provision:
 	ansible-playbook -vvv -i inventory.test -c local provision.yml \
+		-e travis_ci=true
+
+test-hack: test-provision
+	ansible-playbook -vvv -i inventory.test -c local hack.yml \
 		-e travis_ci=true -e latest=true \
 		-e gitsite=https://github.com/
 
