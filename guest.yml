@@ -31,6 +31,8 @@
     - name: install developer tools
       apt: name={{ item }} state=present update_cache=true
       items:
+        - build-essential
+        - fakeroot
         - binutils
         - g++
         - golang-1.6
@@ -41,12 +43,44 @@
         - libtool
         - curl
         - w3m
+        - bzip2
         - unzip
         - aspell
         - aspell-en
+        - python-all
         - python
         - python-pip
+        - python-twisted-conch
+        - python-zopeinterface
+        - python-six
+        - graphviz
+        - debhelper
+        - dh-autoreconf
+        - libssl-dev
+        - openssl
+        - procps
       become: true
+
+    - name: install kvm/libvirt libraries
+      apt: name={{ item }} state=present update_cache=false
+      items:
+        - libvirt-dev
+        - libvirt-bin
+      become: true
+
+    - name: install the latest Open vSwitch
+      import_tasks: tasks/openvswitch.yml
+      vars:
+        ovs_version: 2.8.90-1
+      when: ovs|bool
+
+    - name: install docker daemon and cli
+      import_tasks: tasks/docker-ubuntu-1604.yml
+      when: docker|bool and ansible_distribution_version == "16.04"
+
+    - name: setup docker environment
+      import_tasks: tasks/docker.yml
+      when: docker|bool and not travis_ci|bool
 
     - name: build & install the latest protobuf
       import_tasks: tasks/protobuf.yml
@@ -57,14 +91,6 @@
       vars:
         bootstrap: /usr/lib/go-1.6
       when: latest|bool
-
-    - name: install docker daemon and cli
-      import_tasks: tasks/docker-ubuntu-1604.yml
-      when: docker|bool and ansible_distribution_version == "16.04"
-
-    - name: setup docker environment
-      import_tasks: tasks/docker.yml
-      when: docker|bool and not travis_ci|bool
 
     - name: install the latest etcd
       import_tasks: tasks/etcd.yml
@@ -88,16 +114,6 @@
     - name: install the latest perl
       import_tasks: tasks/perl.yml
       when: latest|bool
-
-    - name: install the latest Open vSwitch
-      import_tasks: tasks/openvswitch.yml
-      vars:
-        ovs_version: 2.7.90-1
-      when: ovs|bool
-
-    - name: setup KVM environment
-      import_tasks: tasks/kvm.yml
-      when: kvm|bool
 
     - name: setup RabbitMQ environment
       import_tasks: tasks/rabbit.yml

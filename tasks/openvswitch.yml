@@ -1,43 +1,15 @@
 ---
-- name: install required packages
-  apt: pkg={{ item }} update_cache=yes
-  with_items:
-    - build-essential
-    - fakeroot
-  become: true
-
 - name: git clone the latest OvS from github.com
-  git: repo=https://github.com/openvswitch/ovs dest=/tmp/ovs
+  git:
+    repo: "{{ gitsite }}openvswitch/ovs"
+    dest: "{{ gitpath }}ovs"
+    update: yes
+    ssh_opts: "-o StrictHostKeyChecking=no"
+  register: git
 
-- name: install build dependency explained in ovs/debian/control
-  apt: pkg={{ item }} update_cache=no
-  with_items:
-    - graphviz
-    - autoconf
-    - automake
-    - bzip2
-    - debhelper
-    - dh-autoreconf
-    - libssl-dev
-    - libtool
-    - openssl
-    - procps
-    - python-all
-    - python-twisted-conch
-    - python-zopeinterface
-    - python-six
-  become: true
-
-- name: check the build dependency with dpkg-checkbuilddeps
+- name: build OvS, as in ovs/Documentaions/intro/install/debian.rst
   shell: >
-    cd /tmp/ovs &&
-    dpkg-checkbuilddeps
-  changed_when: false
-  become: true
-
-- name: build OvS, as in ovs/Documentaions/intro/install/debian.rst!
-  shell: >
-    cd /tmp/ovs &&
+    cd "{{ gitpath }}ovs" &&
     DEB_BUILD_OPTIONS='parallel=8 nocheck' fakeroot debian/rules binary
 
 - name: download the OvS/OVN deb packages
