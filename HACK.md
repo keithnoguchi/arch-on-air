@@ -331,51 +331,35 @@ Load the kernel module and build the *OVSDB* database, as explained in
 ```
 air$ sudo modprobe openvswitch
 air$ modinfo openvswitch
-filename:       /lib/modules/4.7.0.1/kernel/net/openvswitch/openvswitch.ko.gz
+filename:       /lib/modules/4.11.3.1/extra/openvswitch.ko.gz
+alias:          net-pf-16-proto-16-family-ovs_packet
+alias:          net-pf-16-proto-16-family-ovs_flow
+alias:          net-pf-16-proto-16-family-ovs_vport
+alias:          net-pf-16-proto-16-family-ovs_datapath
+version:        2.8.90
 license:        GPL
 description:    Open vSwitch switching datapath
-depends:        nf_conntrack,nf_nat,libcrc32c,nf_nat_ipv6,nf_nat_ipv4,nf_defrag_ipv6
-intree:         Y
-vermagic:       4.7.0.1 SMP preempt mod_unload modversions
+srcversion:     0FCD1E445B525F806CFC22C
+depends:        nf_conntrack,nf_nat,udp_tunnel,libcrc32c,nf_nat_ipv6,nf_nat_ipv4,nf_defrag_ipv6
+vermagic:       4.11.3.1 SMP preempt mod_unload modversions
 air$
-```
-
-and build the initial *OVSDB database* based off on the OvS
-[schema](https://github.com/openvswitch/ovs/blob/master/vswitchd/vswitch.ovsschema)
-
-```
-air$ pwd
-/usr/local/git/ovs
-air$ sudo ovsdb-tool create /usr/local/etc/openvswitch/conf.db vswitchd/vswitch.ovsschema
-air$ ls -l /usr/local/etc/openvswitch/conf.db
--rw-r--r-- 1 root root 12964 Aug 10 09:45 /usr/local/etc/openvswitch/conf.db
 ```
 
 ### Run
 
-Let's run `ovsdb-server`, the OvS database server, and the `ovs-vswitchd`,
-vswitch itself, as explained in [intro/install/general.rst](https://github.com/openvswitch/ovs/blob/master/Documentation/intro/install/general.rst).
+Thanks to `ovs-ctl`, all you need to do is just run it with `ovs-ctl start`:
 
-```
-air$ sudo ovsdb-server --remote=punix:/usr/local/var/run/openvswitch/db.sock --pidfile
-```
-
-and initialize the database through `ovs-vsctl` for the first time.
-
-```
-air$ sudo ovs-vsctl --no-wait init
+```shell
+$ sudo bash -c 'for i in ovs-ctl ovs-lib
+do cp /usr/share/openvswitch/scripts/$i /usr/bin/
+done'
+$ sudo ovs-ctl start
 ```
 
-and then run the `ovs-vswitchd`
+Let's create a simple L2 switch with `ovs-vsctl` called *br1*:
 
 ```
-air$ sudo ovs-vswitchd --pidfile
-```
-
-Let's create a simple L2 switch with `ovs-vsctl` called *sw0*:
-
-```
-air$ sudo ovs-vsctl add-br sw0
+air$ sudo ovs-vsctl add-br br1
 ```
 
 and edit libvirt XML file for the VMs to attach to that bridge:
@@ -384,11 +368,11 @@ and edit libvirt XML file for the VMs to attach to that bridge:
 air$ sudo virsh dumpxml hv0 | grep -A 10 "interface type='bridge'"
 <interface type='bridge'>
   <mac address='00:00:00:14:04:00'/>
-  <source bridge='sw0'/>
+  <source bridge='br1'/>
   <virtualport type='openvswitch'>
     <parameters interfaceid='e4aedd4d-c540-403b-96ad-0a9592a1d41c'/>
   </virtualport>
-  <target dev='vnet3'/>
+  <target dev='vnet0'/>
   <model type='virtio'/>
   <alias name='net1'/>
   <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x0'/>
@@ -401,7 +385,7 @@ and same for *hv1*
 air$ sudo virsh dumpxml hv1 | grep -A 10 "interface type='bridge'"
 <interface type='bridge'>
   <mac address='00:00:00:16:04:00'/>
-  <source bridge='sw0'/>
+  <source bridge='br1'/>
   <virtualport type='openvswitch'>
     <parameters interfaceid='7ffe491d-ecbb-4496-9224-ccffb865c14d'/>
   </virtualport>
@@ -413,19 +397,19 @@ air$ sudo virsh dumpxml hv1 | grep -A 10 "interface type='bridge'"
 ```
 
 Once you `sudo virsh start hv0` and `sudo virsh start hv1`, those guests are
-connected through the `sw0` OvS switch, as shown below.
+connected through the `br1` OvS switch, as shown below.
 
 ```
 air$ sudo ovs-vsctl show
 a86d4283-5862-428a-8576-f39646655c5f
-    Bridge "br0"
-        Port "br0"
-            Interface "br0"
+    Bridge "br1"
+        Port "br1"
+            Interface "br1"
                  type: internal
+        Port "vnet0"
+            Interface "vnet0"
         Port "vnet1"
             Interface "vnet1"
-        Port "vnet3"
-            Interface "vnet3"
 ```
 
 Once you assign the IP address inside the VM, you can make a IP reachability.

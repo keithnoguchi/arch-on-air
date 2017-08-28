@@ -44,3 +44,15 @@
     target: modules_install
   become: true
   when: git.before != git.after and not travis_ci|bool
+
+- name: install ovs-ctl script
+  copy:
+    remote_src: true
+    src: "/usr/share/openvswitch/scripts/{{ item }}"
+    dest: "/usr/bin/{{ item }}"
+    mode: 0755
+  items:
+    - ovs-ctl
+    - ovs-lib
+  become: true
+  when: git.before != git.after
