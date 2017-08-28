@@ -1,0 +1,8 @@
+---
+- name: install python standard packages
+  pip:
+    name: "{{ item }}"
+  items:
+    - MySQL-python
+    - csvkit
+  become: true

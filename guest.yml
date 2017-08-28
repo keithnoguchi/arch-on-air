@@ -10,6 +10,15 @@
     gobootstrap: /usr/lib/go-1.6
   gather_facts: true
   tasks:
+    - name: update /etc/network/interfaces
+      template:
+        src: templates/interfaces.j2
+        dest: /etc/network/interfaces
+        mode: 0644
+        owner: root
+        group: root
+      become: true
+
     - name: install console apps
       apt: name={{ item }} state=present update_cache=true
       items:
@@ -52,6 +61,7 @@
         - graphviz
         - debhelper
         - dh-autoreconf
+        - libmysqlclient-dev
         - libssl-dev
         - openssl
         - procps

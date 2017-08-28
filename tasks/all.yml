@@ -2,6 +2,12 @@
 - name: create git root directory
   file: path={{ gitpath }} state=directory mode=0700
 
+- name: install the latest perl packages
+  import_tasks: tasks/perl.yml
+
+- name: install the latest python packages
+  import_tasks: tasks/python.yml
+
 - name: configure the docker environment
   import_tasks: tasks/docker.yml
   when: not travis_ci|bool
@@ -32,6 +38,3 @@
   import_tasks: tasks/ansible.yml
   when: latest|bool
 
-- name: install the latest perl
-  import_tasks: tasks/perl.yml
-  when: latest|bool
