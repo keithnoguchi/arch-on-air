@@ -287,7 +287,8 @@ air$
 
 ### Build
 
-Let's compile, instead of installing it through `pacman`, for fun!
+Let's compile, instead of installing it through `pacman`, for fun, as in
+[intro/install/general.rst](https://github.com/openvswitch/ovs/blob/master/Documentation/intro/install/general.rst)!
 
 ```
 air$ git clone git@github.com:openvswitch/ovs

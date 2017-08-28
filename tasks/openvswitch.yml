@@ -18,9 +18,10 @@
     with_linux: "--with-linux=/lib/modules/{{ ansible_kernel }}/build"
   when: not travis_ci|bool
 
-- name: configure OvS with ./configure
+- name: configure OvS
   command: >
-    ./configure "{{ with_linux|default('') }}"
+    ./configure --prefix=/usr --localstatedir=/var --sysconfdir=/etc
+    "{{ with_linux|default('') }}"
   args:
     chdir: "{{ gitpath }}ovs"
   when: git.before != git.after
