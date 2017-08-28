@@ -1,6 +1,8 @@
 # Let's hack!
 
-Let's hack the virtualization on Air!
+[![Build Status](https://travis-ci.org/keinohguchi/arch-on-air.svg)](https://travis-ci.org/keinohguchi/arch-on-air)
+
+Let's have a virtualization hack on Air!
 
 - [KVM/Libvirt](#kvm-libvirt)
 - [Open vSwitch](#open-vswitch)
