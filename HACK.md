@@ -4,11 +4,11 @@
 
 Let's have a virtualization hack on Air!
 
-- [KVM/Libvirt](#kvm-libvirt)
+- [KVM/Libvirt](#kvmlibvirt)
 - [Open vSwitch](#open-vswitch)
 - [Docker](#docker)
 - [Configuration Management Tools](#configuration-management-tools)
-- [Vagrant/VirtualBox](#vagrant-virtualbox)
+- [Vagrant/VirtualBox](#vagrantvirtualbox)
 
 ## KVM/Libvirt
 
