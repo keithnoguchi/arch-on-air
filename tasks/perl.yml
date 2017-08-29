@@ -3,3 +3,5 @@
   cpanm: name={{ item }}
   items:
     - "Test::MockModule"
+  environment:
+    PATH: "{{ lookup('env', 'PATH') }}"
