@@ -35,6 +35,7 @@
         - libvirt-python2
         - docker
         - docker-machine
+        - libmariadbclient
         - jre8-openjdk-headless
       become: true
 
