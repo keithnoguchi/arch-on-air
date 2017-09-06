@@ -38,3 +38,5 @@
   import_tasks: tasks/ansible.yml
   when: latest|bool
 
+- name: install the latest asciinema
+  import_tasks: tasks/asciinema.yml

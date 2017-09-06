@@ -58,6 +58,8 @@
         - python-all
         - python-pip
         - python-six
+        - python3-pip
+        - python3-setuptools
         - graphviz
         - debhelper
         - dh-autoreconf
@@ -68,6 +70,7 @@
         - libvirt-dev
         - libvirt-bin
         - libcap-ng-dev
+        - cgroup-tools
       become: true
 
     - name: install docker daemon and cli
