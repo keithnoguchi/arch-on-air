@@ -28,16 +28,21 @@
         - cscope
         - cpanminus
         - python-setuptools
-        - python2
-        - python2-pip
-        - python2-six
         - qemu-headless
         - libvirt
-        - libvirt-python2
         - docker
         - docker-machine
         - libmariadbclient
         - jre8-openjdk-headless
+      become: true
+
+    - name: install python2 tools for some projects
+      pacman: name={{ item }} state=present force=true update_cache=false
+      items:
+        - python2
+        - python2-pip
+        - python2-six
+        - libvirt-python2
       become: true
 
     - name: add user to the developer groups
