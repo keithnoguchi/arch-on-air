@@ -70,10 +70,16 @@
         - libvirt-dev
         - libvirt-bin
         - libcap-ng-dev
-        - cgroup-tools
         - vagrant
         - virtualbox
       become: true
+
+    - name: install developer tools for ubuntu16.04 or above
+      apt: name={{ item }} state=present update_cache=false
+      items:
+        - cgroup-tools
+      become: true
+      when: ansible_distribution_version == "16.04"
 
     - name: install docker daemon and cli
       import_tasks: tasks/docker-ubuntu-1604.yml
