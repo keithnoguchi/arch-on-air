@@ -27,6 +27,7 @@
         - go
         - cscope
         - cpanminus
+        - python-setuptools
         - python2
         - python2-pip
         - python2-six

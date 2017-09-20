@@ -1,0 +1,14 @@
+---
+- name: clone the asciinema git repo
+  git:
+    repo: "{{ gitsite }}asciinema/asciinema"
+    dest: "{{ gitpath }}asciinema"
+    update: yes
+    ssh_opts: "-o StrictHostKeyChecking=no"
+  register: git
+
+- name: install the latest asciinema
+  command: python3 setup.py install
+  args:
+    chdir: "{{ gitpath }}asciinema"
+  become: true
