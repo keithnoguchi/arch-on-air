@@ -71,6 +71,8 @@
         - libvirt-bin
         - libcap-ng-dev
         - cgroup-tools
+        - vagrant
+        - virtualbox
       become: true
 
     - name: install docker daemon and cli
