@@ -27,7 +27,6 @@
         - go
         - cscope
         - cpanminus
-        - python-setuptools
         - qemu-headless
         - libvirt
         - docker
@@ -36,9 +35,10 @@
         - jre8-openjdk-headless
       become: true
 
-    - name: install python2 tools for some projects
+    - name: install python related tools for some projects
       pacman: name={{ item }} state=present force=true update_cache=false
       items:
+        - python-setuptools
         - python2
         - python2-pip
         - python2-six
