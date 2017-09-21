@@ -15,8 +15,9 @@
         - bc
         - gcc
         - gcc-fortran
-        - git
         - gdb
+        - go
+        - git
         - m4
         - make
         - autoconf
@@ -24,25 +25,28 @@
         - libtool
         - pkg-config
         - unzip
-        - go
         - cscope
         - cpanminus
-        - qemu-headless
-        - libvirt
-        - docker
-        - docker-machine
         - libmariadbclient
         - jre8-openjdk-headless
       become: true
 
-    - name: install python related tools for some projects
+    - name: install kvm/docker tools for virtualization environment
       pacman: name={{ item }} state=present force=true update_cache=false
       items:
-        - python-setuptools
+        - qemu-headless
+        - libvirt
+        - libvirt-python2
+        - docker
+        - docker-machine
+      become: true
+
+    - name: install python2 related tools for some projects, e.g. OvS
+      pacman: name={{ item }} state=present force=true update_cache=false
+      items:
         - python2
         - python2-pip
         - python2-six
-        - libvirt-python2
       become: true
 
     - name: add user to the developer groups

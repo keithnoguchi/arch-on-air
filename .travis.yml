@@ -30,6 +30,8 @@ arch:
     - openssh
     - python2
     - python2-pip
+    - python
+    - python-pip
     #- procps-ng
     #- reflector
     # aur

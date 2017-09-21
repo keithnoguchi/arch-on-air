@@ -1,4 +1,8 @@
 ---
+- name: install the python packages for asciinema
+  command: pip3 install -U pip setuptools
+  become: true
+
 - name: clone the asciinema git repo
   git:
     repo: "{{ gitsite }}asciinema/asciinema"
@@ -7,7 +11,7 @@
     ssh_opts: "-o StrictHostKeyChecking=no"
   register: git
 
-- name: install the latest asciinema
+- name: install the latest asciinema with python3
   command: python3 setup.py install
   args:
     chdir: "{{ gitpath }}asciinema"
