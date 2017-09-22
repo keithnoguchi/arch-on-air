@@ -16,6 +16,7 @@
         - aspell-en
         - busybox
         - dosfstools
+        - cowsay
         - pulseaudio
         - alsa-utils
       become: true

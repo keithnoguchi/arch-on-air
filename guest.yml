@@ -28,6 +28,7 @@
         - jq
         - aspell
         - aspell-en
+        - cowsay
       become: true
 
     - name: install network tools
