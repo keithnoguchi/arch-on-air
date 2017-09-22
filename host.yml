@@ -58,6 +58,12 @@
         - gtk3
         - webkit2gtk
         - chromium
+        - xcb-util-image
+        - xcb-util-keysyms
+        - libx264
+        - qt5-webengine
+        - qt5-svg
+        - pulseaudio-alsa
       become: true
 
     - name: configure the audio
