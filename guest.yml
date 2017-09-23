@@ -73,6 +73,7 @@
         - libcap-ng-dev
         - vagrant
         - virtualbox
+        - chef-zero
       become: true
 
     - name: install developer tools for ubuntu16.04 or above
