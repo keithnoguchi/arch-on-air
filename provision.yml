@@ -5,8 +5,18 @@
     travis_ci: false
   gather_facts: false
   tasks:
-    - name: install console apps
+    - name: install python2/3 as a start
       pacman: name={{ item }} state=present force=true update_cache=true
+      items:
+        - python
+        - python-pip
+        - python2
+        - python2-pip
+        - python2-six
+      become: true
+
+    - name: install console apps
+      pacman: name={{ item }} state=present force=true update_cache=false
       items:
         - vim
         - tmux

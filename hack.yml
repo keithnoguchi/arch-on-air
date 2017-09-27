@@ -41,14 +41,6 @@
         - docker-machine
       become: true
 
-    - name: install python2 related tools for some projects, e.g. OvS
-      pacman: name={{ item }} state=present force=true update_cache=false
-      items:
-        - python2
-        - python2-pip
-        - python2-six
-      become: true
-
     - name: add user to the developer groups
       user:
         name: "{{ lookup('env', 'USER') }}"
