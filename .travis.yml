@@ -11,7 +11,7 @@ env:
     - GOROOT=$HOME/git/go
     - GOPATH=$HOME
   matrix:
-    # This is the chrooted archlinux environemnt to check provision.yml.
+    # This is the chrooted archlinux environemnt to check host.yml.
     # https://github.com/mikkeloscar/arch-travis/blob/master/README.md
     - ARCH_TRAVIS_ARCH=x86_64 ARCH_TRAVIS_CLEAN_CHROOT=1 ARCH_TRAVIS_CONFIRM_YES=1
     # This is the ubuntu environment, to check guest.yml.
