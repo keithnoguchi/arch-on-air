@@ -48,6 +48,7 @@
         - mutt
         - ebtables
         - dnsmasq
+        - openconnect
       become: true
 
     - name: install graphical libraries & tools
