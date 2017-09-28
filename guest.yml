@@ -80,7 +80,6 @@
       apt: name={{ item }} state=present update_cache=false
       items:
         - cgroup-tools
-        - chefdk
         - vagrant
         - virtualbox
       become: true
