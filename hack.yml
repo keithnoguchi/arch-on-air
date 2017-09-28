@@ -37,6 +37,9 @@
         - qemu-headless
         - libvirt
         - libvirt-python2
+        - virt-install
+        - virt-viewer
+        - tigervnc
         - docker
         - docker-machine
       become: true
