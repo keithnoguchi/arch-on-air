@@ -37,6 +37,7 @@
       items:
         - w3m
         - curl
+        - nmap
         - tcpdump
         - traceroute
         - net-tools
