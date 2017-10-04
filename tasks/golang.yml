@@ -24,6 +24,7 @@
     - github.com/golang/protobuf/protoc-gen-go
     - github.com/kardianos/govendor
     - github.com/github/hub
+    - github.com/tianon/gosu
     - github.com/streadway/amqp
     - github.com/derekparker/delve/cmd/dlv
   environment:
