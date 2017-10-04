@@ -26,6 +26,7 @@
         - pkg-config
         - unzip
         - cscope
+        - stress
         - cpanminus
         - libmariadbclient
         - jre8-openjdk-headless
