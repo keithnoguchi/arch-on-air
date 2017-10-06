@@ -66,10 +66,10 @@ Here, *sda1* for the EFI system partition, *sda2* for OSX, and *sda4* for the Ar
 
 ### Set the keyboard layout
 
-Load *Emacs key binding*, as usual:
+Load *Emacs key binding*, as always:
 
 ```
-root@archiso ~ # loadkeys /usr/share/kbd/keymaps/i386/qwerty/emacs2.map.gz
+root@archiso ~ # loadkeys emacs2
 ```
 
 ### Connect to the Internet
