@@ -663,6 +663,11 @@ the packages for the ansible up and running:
 - openssh
 - ansible
 
+#### sudo
+
+Make yourself NOPASSWD sudo user.  I usually does that by putting myself under wheel group and update the
+`/etc/sudo.conf` with `visudo` command.
+
 #### Console apps
 
 Here is the list of console apps I usually install on arch,
@@ -671,7 +676,7 @@ as in the [provision.yml](provision.yml) playbook:
 ```sh
 $ git clone https://github.com/keinohguchi/arch-on-air
 $ cd arch-on-air
-$ ansible-playbook provision.yml
+$ ansible-playbook -i inventory.local -c local provision.yml
 ```
 
 ### Kernel
