@@ -23,12 +23,10 @@
       apt: name={{ item }} state=present update_cache=true
       items:
         - vim
-        - tmux
         - tree
         - jq
         - aspell
         - aspell-en
-        - cowsay
       become: true
 
     - name: install network tools
@@ -36,8 +34,6 @@
       items:
         - w3m
         - curl
-        - tcpdump
-        - traceroute
       become: true
 
     - name: install developer tools
@@ -48,7 +44,6 @@
         - git
         - gdb
         - make
-        - cscope
         - autoconf
         - automake
         - libtool
@@ -71,22 +66,17 @@
         - libvirt-dev
         - libvirt-bin
         - libcap-ng-dev
-        - vagrant
-        - virtualbox
-        - chef-zero
       become: true
 
     - name: install developer tools for ubuntu16.04 or above
       apt: name={{ item }} state=present update_cache=false
       items:
         - cgroup-tools
+        - docker.io
         - vagrant
         - virtualbox
+        - chef-zero
       become: true
-      when: ansible_distribution_version == "16.04"
-
-    - name: install docker daemon and cli
-      import_tasks: tasks/docker-ubuntu-1604.yml
       when: ansible_distribution_version == "16.04"
 
     - name: setup RabbitMQ environment
