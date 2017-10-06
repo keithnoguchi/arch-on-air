@@ -36,6 +36,7 @@
       pacman: name={{ item }} state=present force=true update_cache=false
       items:
         - w3m
+        - elinks
         - curl
         - nmap
         - tcpdump
