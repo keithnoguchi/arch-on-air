@@ -23,6 +23,7 @@
         - tree
         - jq
         - acpi
+        - dialog
         - aspell
         - aspell-en
         - busybox

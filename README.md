@@ -652,26 +652,34 @@ Let's disable caps-lock on the console
 air$ cat /etc/vconsole.conf
 KEYMAP=emacs2
 ```
+#### sudo
+
+Make yourself NOPASSWD sudo user.  I usually does that by putting myself under
+wheel group and update the `/etc/sudo.conf` with `visudo` command.
 
 #### Apps for ansible
 
-To automate the provisioning process, I'll use ansible, ssh based powerful configuration management tool.  Here are
-the packages for the ansible up and running:
+To automate the provisioning process, I'll use ansible, ssh based powerful
+configuration management tool.  Here are packages to make ansible up and running:
 
 - git
-- sudo
 - openssh
 - ansible
 
-#### sudo
-
-Make yourself NOPASSWD sudo user.  I usually does that by putting myself under wheel group and update the
-`/etc/sudo.conf` with `visudo` command.
-
 #### Console apps
 
-Here is the list of console apps I usually install on arch,
-as in the [provision.yml](provision.yml) playbook:
+I'm a big fan of console apps, and here is part of the list of those cool apps:
+
+- vim
+- w3m
+- tmux
+- mutt
+- irssi
+- elinks
+- ...
+
+And let's install those through the [provision.yml](provision.yml)
+ansible playbook, as below:
 
 ```sh
 $ git clone https://github.com/keinohguchi/arch-on-air
