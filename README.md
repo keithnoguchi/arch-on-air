@@ -653,24 +653,26 @@ air$ cat /etc/vconsole.conf
 KEYMAP=emacs2
 ```
 
+#### Apps for ansible
+
+To automate the provisioning process, I'll use ansible, ssh based powerful configuration management tool.  Here are
+the packages for the ansible up and running:
+
+- git
+- sudo
+- openssh
+- ansible
+
 #### Console apps
 
 Here is the list of console apps I usually install on arch,
 as in the [provision.yml](provision.yml) playbook:
 
-- aspell
-- busybox
-- dosfstools
-- tmux
-- vim
-- irssi
-- mutt
-- cscope
-- w3m
-- tcpdump
-- net-tools
-- bind-tools
-- gnu-netcat
+```sh
+$ git clone https://github.com/keinohguchi/arch-on-air
+$ cd arch-on-air
+$ ansible-playbook provision.yml
+```
 
 ### Kernel
 
