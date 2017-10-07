@@ -52,6 +52,7 @@
         - ebtables
         - dnsmasq
         - openconnect
+        - wpa_supplicant
       become: true
 
     - name: install graphical libraries & tools
