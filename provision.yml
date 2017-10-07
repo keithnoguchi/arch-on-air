@@ -5,6 +5,17 @@
     travis_ci: false
   gather_facts: false
   tasks:
+    - name: copy files under /etc
+      copy:
+        src: "files/etc/{{ item.file }}"
+        dest: "/etc/{{ item.file }}"
+        mode: "{{ item.mode }}"
+        owner: "{{ item.owner }}"
+        group: "{{ item.group }}"
+      items:
+        - { file: vconsole.conf, mode: 0644, owner: root, group: root }
+      become: true
+
     - name: install python2/3 as a start
       pacman: name={{ item }} state=present force=true update_cache=true
       items:
