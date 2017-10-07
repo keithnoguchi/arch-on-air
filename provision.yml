@@ -7,13 +7,14 @@
   tasks:
     - name: copy files under /etc
       copy:
-        src: "files/etc/{{ item.file }}"
-        dest: "/etc/{{ item.file }}"
+        src: "files/etc/{{ item.path }}"
+        dest: "/etc/{{ item.path }}"
         mode: "{{ item.mode }}"
         owner: "{{ item.owner }}"
         group: "{{ item.group }}"
       items:
-        - { file: vconsole.conf, mode: 0644, owner: root, group: root }
+        - { path: vconsole.conf, mode: 644, owner: root, group: root }
+        - { path: X11/xorg.conf.d/, mode: 644, owner: root, group: root }
       become: true
 
     - name: install python2/3 as a start
