@@ -14,8 +14,9 @@
         group: "{{ item.group }}"
       items:
         - { path: vconsole.conf, mode: 644, owner: root, group: root }
+        - { path: systemd/, mode: 644, owner: root, group: root }
+        - { path: modprobe.d/, mode: 644, owner: root, group: root }
         - { path: X11/xorg.conf.d/, mode: 644, owner: root, group: root }
-        - { path: systemd, mode: 644, owner: root, group: root }
       become: true
 
     - name: install python2/3 as a start
