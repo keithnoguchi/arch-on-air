@@ -737,7 +737,7 @@ editor  0
 ```
 and `reboot`!
 
-Here is the current [.config](kernel/.config) file I use for your reference.
+Here is the current [.config](files/kernel/.config) file I use for your reference.
 
 ### WiFi
 
