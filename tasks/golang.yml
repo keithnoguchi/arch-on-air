@@ -16,13 +16,16 @@
 - name: get some useful golang packages and tools
   command: go get -u {{ item }}
   items:
-    - golang.org/x/tools/cmd/goimports
     - golang.org/x/tools/cmd/present
+    - golang.org/x/tools/cmd/goimports
     - google.golang.org/grpc
+    - github.com/golang/protobuf/protoc-gen-go
     - github.com/golang/mock/gomock
     - github.com/golang/mock/mockgen
-    - github.com/golang/protobuf/protoc-gen-go
     - github.com/kardianos/govendor
+    - k8s.io/kubernetes/cmd/kubectl
+    - github.com/coreos/etcd/cmd/etcd
+    - github.com/coreos/etcd/cmd/etcdctl
     - github.com/github/hub
     - github.com/tianon/gosu
     - github.com/streadway/amqp
