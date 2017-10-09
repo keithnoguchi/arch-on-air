@@ -75,6 +75,7 @@
         - docker.io
         - vagrant
         - virtualbox
+        - chef
         - chef-zero
       become: true
       when: ansible_distribution_version == "16.04"
