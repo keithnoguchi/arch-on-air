@@ -25,6 +25,10 @@
   import_tasks: tasks/terraform.yml
   when: latest|bool
 
+- name: install the latest kubernetes
+  import_tasks: tasks/kubernetes.yml
+  when: latest|bool and not travis_ci|bool
+
 - name: install the latest protobuf
   import_tasks: tasks/protobuf.yml
   when: latest|bool and not travis_ci|bool
