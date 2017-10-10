@@ -53,5 +53,8 @@
       become: true
       when: not travis_ci|bool
 
+    - name: create git root directory
+      file: path={{ gitpath }} state=directory mode=0700
+
     - name: light the fire!
       import_tasks: tasks/all.yml

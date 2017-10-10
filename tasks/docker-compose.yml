@@ -1,15 +1,4 @@
 ---
-- name: add user to the docker group
-  user:
-    name: "{{ lookup('env', 'USER') }}"
-    append: true
-    groups: docker
-  become: true
-
-- name: start the docker daemon
-  service: name=docker enabled=true state=started
-  become: true
-
 - name: clone the docker-compose git repo
   git:
     repo: "{{ gitsite }}docker/compose"

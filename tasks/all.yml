@@ -1,15 +1,18 @@
 ---
-- name: create git root directory
-  file: path={{ gitpath }} state=directory mode=0700
-
 - name: install the latest perl packages
   import_tasks: tasks/perl.yml
 
 - name: install the latest python packages
   import_tasks: tasks/python.yml
 
+- name: install the latest ansible
+  import_tasks: tasks/ansible.yml
+
+- name: install the latest asciinema
+  import_tasks: tasks/asciinema.yml
+
 - name: configure the docker environment
-  import_tasks: tasks/docker.yml
+  import_tasks: tasks/docker-compose.yml
   when: not travis_ci|bool
 
 - name: install the latest Open vSwitch
@@ -18,17 +21,10 @@
 - name: install the latest golang
   import_tasks: tasks/golang.yml
 
-- name: install the latest protobuf
-  import_tasks: tasks/protobuf.yml
-  when: latest|bool and not travis_ci|bool
-
 - name: install the latest terraform
   import_tasks: tasks/terraform.yml
   when: latest|bool
 
-- name: install the latest ansible
-  import_tasks: tasks/ansible.yml
-  when: latest|bool
-
-- name: install the latest asciinema
-  import_tasks: tasks/asciinema.yml
+- name: install the latest protobuf
+  import_tasks: tasks/protobuf.yml
+  when: latest|bool and not travis_ci|bool

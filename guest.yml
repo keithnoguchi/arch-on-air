@@ -11,8 +11,8 @@
   gather_facts: true
   tasks:
     - name: update /etc/network/interfaces
-      template:
-        src: templates/interfaces.j2
+      copy:
+        src: files/etc/network/interfaces
         dest: /etc/network/interfaces
         mode: 0644
         owner: root
@@ -32,8 +32,9 @@
     - name: install network tools
       apt: name={{ item }} state=present update_cache=false
       items:
-        - w3m
         - curl
+        - w3m
+        - elinks
       become: true
 
     - name: install developer tools
@@ -92,6 +93,16 @@
         read_priv: ".*"
         write_priv: ".*"
       when: rabbit|bool and not travis_ci|bool
+
+    - name: add user to the developer groups
+      user:
+        name: "{{ lookup('env', 'USER') }}"
+        append: true
+        groups: libvirtd,docker
+      become: true
+
+    - name: create git root directory
+      file: path={{ gitpath }} state=directory mode=0700
 
     - name: light the fire!
       import_tasks: tasks/all.yml
