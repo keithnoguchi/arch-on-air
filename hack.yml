@@ -3,6 +3,8 @@
   hosts: host
   vars:
     latest: false
+    # Until ansible pacman module in 2.5 has been fixed...
+    ansible: false
     travis_ci: false
     gitsite: "git@github.com:"
     gitpath: "{{ lookup('env', 'HOME') }}/git/"

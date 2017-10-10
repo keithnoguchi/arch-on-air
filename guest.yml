@@ -3,6 +3,7 @@
   hosts: guest
   vars:
     rabbit: true
+    ansible: true
     latest: false
     travis_ci: false
     gitsite: "git@github.com:"

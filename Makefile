@@ -21,7 +21,7 @@ ansible-ubuntu: clean
 ping:
 	ansible -vvv -m ping -i inventory.local -c local host
 
-test: ansible-arch ping
+test: ping
 	ansible-playbook -vvv -i inventory.local -c local host.yml \
 		-e travis_ci=true -e latest=true \
 		-e gitsite=https://github.com/
