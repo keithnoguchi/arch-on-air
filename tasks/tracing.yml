@@ -1,0 +1,10 @@
+---
+- name: get some useful tracing related golang packages and tools
+  command: go get -u {{ item }}
+  items:
+    - github.com/opentracing/opentracing-go
+    - github.com/bg451/opentracing-example
+  environment:
+    GOROOT: "{{ lookup('env', 'GOROOT') }}"
+    GOPATH: "{{ lookup('env', 'GOPATH') }}"
+    PATH: "{{ lookup('env', 'GOPATH') }}/bin:{{ lookup('env', 'GOROOT') }}/bin:/usr/bin:/bin"
