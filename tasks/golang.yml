@@ -30,6 +30,9 @@
     - github.com/tianon/gosu
     - github.com/streadway/amqp
     - github.com/derekparker/delve/cmd/dlv
+    - github.com/opentracing/opentracing-go
+    - github.com/opentracing-contrib/go-stdlib/nethttp
+    - github.com/openzipkin/zipkin-go-opentracing
   environment:
     GOROOT: "{{ lookup('env', 'GOROOT') }}"
     GOPATH: "{{ lookup('env', 'GOPATH') }}"
