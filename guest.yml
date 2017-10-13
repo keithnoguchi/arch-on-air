@@ -109,6 +109,21 @@
       become: true
       when: ansible_distribution_version == "16.04"
 
+    - name: allow the insecure host.localhost docker registry access
+      lineinfile:
+        path: /etc/systemd/system/multi-user.target.wants/docker.service
+        regexp: "^ExecStart"
+        line: "ExecStart=/usr/bin/dockerd --insecure-registry host.localhost:5000 -H fd:// $DOCKER_OPTS"
+      become: true
+      when: ansible_distribution_version == "16.04"
+
+    - name: restart docker daemon to reflect the change
+      systemd:
+        name: docker
+        state: reloaded
+      become: true
+      when: ansible_distribution_version == "16.04"
+
     - name: setup RabbitMQ environment
       import_tasks: tasks/rabbit.yml
       vars:
