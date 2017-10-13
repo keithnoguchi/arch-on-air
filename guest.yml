@@ -6,6 +6,7 @@
     ansible: true
     latest: false
     travis_ci: false
+    host_ip: "192.168.122.1"
     gitsite: "git@github.com:"
     gitpath: "{{ lookup('env', 'HOME') }}/git/"
     gobootstrap: /usr/lib/go-1.6
@@ -18,6 +19,16 @@
         mode: 0644
         owner: root
         group: root
+      become: true
+
+    - name: make host reachable with host.localhost name
+      lineinfile:
+        path: /etc/hosts
+        regexp: "{{ host_ip }}"
+        line: "{{ host_ip }}\thost.localhost\thost"
+        owner: root
+        group: root
+        mode: 0644
       become: true
 
     - name: make console access through ttyS0
