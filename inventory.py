@@ -43,7 +43,8 @@ def guest():
     if c != None:
         for i in c.listDomainsID():
             dom = c.lookupByID(i)
-            guest['hosts'].append(dom.name())
+            if dom.name().startswith('hv'):
+                guest['hosts'].append(dom.name())
 
     return guest
 
