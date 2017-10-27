@@ -12,6 +12,15 @@
     gobootstrap: /usr/lib/go-1.6
   gather_facts: true
   tasks:
+    - name: update /etc/hosts for air.local reachability
+      copy:
+        src: files/etc/hosts
+        dest: /etc/hosts
+        mode: 0644
+        owner: root
+        group: root
+      become: true
+
     - name: update /etc/network/interfaces
       copy:
         src: files/etc/network/interfaces
@@ -19,16 +28,6 @@
         mode: 0644
         owner: root
         group: root
-      become: true
-
-    - name: make host reachable with host.localhost name
-      lineinfile:
-        path: /etc/hosts
-        regexp: "{{ host_ip }}"
-        line: "{{ host_ip }}\thost.localhost\thost"
-        owner: root
-        group: root
-        mode: 0644
       become: true
 
     - name: make console access through ttyS0
@@ -109,11 +108,11 @@
       become: true
       when: ansible_distribution_version == "16.04"
 
-    - name: allow the insecure host.localhost docker registry access
+    - name: allow the insecure air.local local docker registry access
       lineinfile:
         path: /etc/systemd/system/multi-user.target.wants/docker.service
         regexp: "^ExecStart"
-        line: "ExecStart=/usr/bin/dockerd --insecure-registry host.localhost:5000 -H fd:// $DOCKER_OPTS"
+        line: "ExecStart=/usr/bin/dockerd --insecure-registry air.local:5000 -H fd:// $DOCKER_OPTS"
       become: true
       when: ansible_distribution_version == "16.04"
 
