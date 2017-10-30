@@ -1,0 +1,22 @@
+#
+# /etc/hosts: static lookup table for host names
+#
+
+#<ip-address>	<hostname.domain.org>	<hostname>
+127.0.0.1	localhost.local	localhost
+::1		localhost.local	localhost
+
+# air.local for the local docker registry
+10.0.0.1	air.local	air
+
+192.168.122.110	kube10.local	kube10
+192.168.122.111	kube11.local	kube11
+192.168.122.112	hv12.local	hv12
+192.168.122.113	hv13.local	hv13
+
+192.168.122.120	node20.local	node20
+192.168.122.121	node21.local	node21
+192.168.122.122	node22.local	node22
+192.168.122.123	node23.local	node23
+
+# End of file
