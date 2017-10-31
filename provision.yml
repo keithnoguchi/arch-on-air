@@ -1,6 +1,7 @@
 ---
 - name: arch-on-air post-installation playbook
   hosts: host
+  connection: local
   vars:
     travis_ci: false
   gather_facts: false
