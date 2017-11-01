@@ -8,19 +8,19 @@ auto lo
 iface lo inet loopback
 
 # The primary network interface
-auto ens5
-iface ens5 inet dhcp
+auto ens3
+iface ens3 inet dhcp
 
-# bond0 for ens6 and ens7
+# bond0 for ens5 and ens6
+auto ens5
+iface ens5 inet manual
+	bond-master bond0
+	bond-primary ens5
+
 auto ens6
 iface ens6 inet manual
 	bond-master bond0
-	bond-primary ens6
-
-auto ens7
-iface ens7 inet manual
-	bond-master bond0
-	bond-primary ens6
+	bond-primary ens5
 
 auto bond0
 iface bond0 inet manual
