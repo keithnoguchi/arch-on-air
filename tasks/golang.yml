@@ -16,6 +16,7 @@
 - name: get some useful golang packages and tools
   command: go get -u {{ item }}
   items:
+    - golang.org/x/tools/cmd/godoc
     - golang.org/x/tools/cmd/present
     - golang.org/x/tools/cmd/goimports
     - google.golang.org/grpc
