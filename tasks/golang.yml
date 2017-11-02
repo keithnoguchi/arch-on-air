@@ -33,6 +33,7 @@
     - github.com/derekparker/delve/cmd/dlv
     - github.com/opentracing/opentracing-go
     - github.com/opentracing-contrib/go-stdlib/nethttp
+    - github.com/opentracing-contrib/go-amqp/amqptracer
     - github.com/openzipkin/zipkin-go-opentracing
   environment:
     GOROOT: "{{ lookup('env', 'GOROOT') }}"
