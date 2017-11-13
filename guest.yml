@@ -94,6 +94,7 @@
         - libvirt-dev
         - libvirt-bin
         - libcap-ng-dev
+        - virtinst
       become: true
 
     - name: install developer tools for ubuntu16.04 or above
