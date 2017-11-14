@@ -18,8 +18,10 @@ def main():
     hostvars = {}
     for type in ['guest']:
         for host in inventory[type]['hosts']:
+            num = int(filter(str.isdigit, host))
             inventory['all']['hosts'].append(host)
-            hostvars[host] = {'name': host}
+            hostvars[host] = {'name': host,
+                              'hv_node_ip': '10.0.0.%d' % num}
 
     # noqa https://github.com/ansible/ansible/commit/bcaa983c2f3ab684dca6c2c2c8d1997742260761
     inventory['_meta'] = {'hostvars': hostvars}
@@ -37,8 +39,9 @@ def main():
 
 def guest():
     guest = {'hosts': [],
-              'vars': {'ansible_python_interpreter': '/usr/bin/python'}}
-
+             'vars': {'ansible_python_interpreter': '/usr/bin/python',
+                      'hv_node_netmask': '255.255.0.0',
+                      'hv_node_broadcast': '10.0.255.255'}}
     c = libvirt.openReadOnly("qemu:///system")
     if c != None:
         for i in c.listDomainsID():

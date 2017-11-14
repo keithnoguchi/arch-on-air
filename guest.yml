@@ -30,6 +30,22 @@
         group: root
       become: true
 
+    - name: assign br0 IP address
+      template:
+        src: templates/etc/network/interfaces.d/br0.j2
+        dest: /etc/network/interfaces.d/br0
+        mode: 0644
+        owner: root
+        group: root
+      become: true
+      register: br0
+
+    - name: bring up br0 interface
+      command: ifup -a
+      become: true
+      changed_when: false
+      when: br0.changed
+
     - name: make console access through ttyS0
       lineinfile:
         path: /etc/default/grub
