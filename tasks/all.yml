@@ -26,7 +26,7 @@
 
 - name: install the latest terraform
   import_tasks: tasks/terraform.yml
-  when: latest|bool
+  when: not travis_ci|bool
 
 - name: install the latest kubernetes
   import_tasks: tasks/kubernetes.yml
