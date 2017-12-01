@@ -15,6 +15,7 @@
     chdir: "{{ lookup('env', 'GOPATH') }}/src/github.com/{{ item.path }}"
     target: "{{ item.target }}"
   items:
+    - { path: hashicorp/terraform, target: fmt }
     - { path: hashicorp/terraform, target: dev }
     - { path: terraform-providers/terraform-provider-terraform, target: build }
     - { path: terraform-providers/terraform-provider-digitalocean, target: build }
