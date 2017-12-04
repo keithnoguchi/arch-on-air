@@ -5,7 +5,6 @@
   vars:
     latest: false
     # Until ansible pacman module in 2.5 has been fixed...
-    ansible: false
     travis_ci: false
     gitsite: "git@github.com:"
     gitpath: "{{ lookup('env', 'HOME') }}/git/"
@@ -33,6 +32,12 @@
         - cpanminus
         - libmariadbclient
         - jre8-openjdk-headless
+      become: true
+
+    - name: install perf tools!
+      pacman: name={{ item }} state=present update_cache=false
+      items:
+        - sysstat
       become: true
 
     - name: install kvm/docker tools for virtualization environment
