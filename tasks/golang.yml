@@ -24,7 +24,6 @@
     - github.com/golang/mock/gomock
     - github.com/golang/mock/mockgen
     - github.com/kardianos/govendor
-    - k8s.io/kubernetes/cmd/kubectl
     - github.com/coreos/etcd/cmd/etcd
     - github.com/coreos/etcd/cmd/etcdctl
     - github.com/github/hub
