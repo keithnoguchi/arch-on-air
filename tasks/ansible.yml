@@ -18,4 +18,4 @@
   args:
     chdir: "{{ gitpath }}ansible"
   become: true
-  when: git.before != git.after and ansible|bool
+  when: git.before != git.after
