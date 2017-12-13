@@ -1,0 +1,88 @@
+---
+- name: setup ubuntu guest
+  hosts: cloud
+  vars:
+    rabbit: true
+    ansible: true
+    latest: false
+    travis_ci: false
+    gitsite: "https://github.com/"
+    gitpath: "/root/git/"
+    gobootstrap: /usr/lib/go-1.6
+  gather_facts: true
+  tasks:
+    - name: install console apps
+      apt: name={{ item }} state=present update_cache=true
+      items:
+        - vim
+        - tree
+        - jq
+        - aspell
+        - aspell-en
+      become: true
+
+    - name: install network tools
+      apt: name={{ item }} state=present update_cache=false
+      items:
+        - curl
+        - w3m
+        - elinks
+      become: true
+
+    - name: install developer tools
+      apt: name={{ item }} state=present update_cache=false
+      items:
+        - binutils
+        - g++
+        - git
+        - gdb
+        - make
+        - autoconf
+        - automake
+        - libtool
+        - bzip2
+        - unzip
+        - golang-1.6
+        - cpanminus
+        - python-all
+        - python-pip
+        - python-six
+        - python3-pip
+        - python3-setuptools
+        - graphviz
+        - debhelper
+        - dh-autoreconf
+        - libmysqlclient-dev
+        - libssl-dev
+        - openssl
+        - procps
+        - libvirt-dev
+        - libvirt-bin
+        - libcap-ng-dev
+        - virtinst
+      become: true
+
+    - name: install developer tools for ubuntu16.04 or above
+      apt: name={{ item }} state=present update_cache=false
+      items:
+        - cgroup-tools
+        - docker.io
+        - vagrant
+        - virtualbox
+        - chef
+        - chef-zero
+      become: true
+      when: ansible_distribution_version == "16.04"
+
+    - name: add user to the developer groups
+      user:
+        name: "{{ lookup('env', 'USER') }}"
+        append: true
+        groups: libvirtd,docker
+      become: true
+
+    - name: create git root directory
+      file: path={{ gitpath }} state=directory mode=0700
+
+    - name: light the fire!
+      import_tasks: tasks/all.yml
