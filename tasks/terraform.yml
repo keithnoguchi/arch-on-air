@@ -4,7 +4,6 @@
   items:
     - github.com/hashicorp/terraform
     - github.com/terraform-providers/terraform-provider-terraform
-    - github.com/terraform-providers/terraform-provider-digitalocean
   environment:
     GOROOT: "{{ lookup('env', 'GOROOT') }}"
     GOPATH: "{{ lookup('env', 'GOPATH') }}"
@@ -18,7 +17,6 @@
     - { path: hashicorp/terraform, target: fmt }
     - { path: hashicorp/terraform, target: dev }
     - { path: terraform-providers/terraform-provider-terraform, target: build }
-    - { path: terraform-providers/terraform-provider-digitalocean, target: build }
   environment:
     GOROOT: "{{ lookup('env', 'GOROOT') }}"
     GOPATH: "{{ lookup('env', 'GOPATH') }}"
