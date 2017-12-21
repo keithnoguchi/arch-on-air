@@ -20,6 +20,7 @@
     - golang.org/x/tools/cmd/present
     - golang.org/x/tools/cmd/goimports
     - google.golang.org/grpc
+    - github.com/golang/dep/cmd/dep
     - github.com/golang/protobuf/protoc-gen-go
     - github.com/golang/mock/gomock
     - github.com/golang/mock/mockgen
