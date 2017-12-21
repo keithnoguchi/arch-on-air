@@ -41,6 +41,7 @@
         - dialog
         - aspell
         - aspell-en
+        - picocom
         - busybox
         - dosfstools
         - cowsay

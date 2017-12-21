@@ -57,7 +57,7 @@
       user:
         name: "{{ lookup('env', 'USER') }}"
         append: true
-        groups: libvirt,docker
+        groups: uucp,libvirt,docker
       become: true
       when: not travis_ci|bool
 
