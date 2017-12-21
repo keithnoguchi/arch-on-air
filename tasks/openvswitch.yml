@@ -51,7 +51,7 @@
     src: "/usr/share/openvswitch/scripts/{{ item }}"
     dest: "/usr/bin/{{ item }}"
     mode: 0755
-  items:
+  with_items:
     - ovs-ctl
     - ovs-lib
   become: true

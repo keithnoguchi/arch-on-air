@@ -13,7 +13,7 @@
   tasks:
     - name: install developer tools
       pacman: name={{ item }} state=present force=true update_cache=false
-      items:
+      with_items:
         - bc
         - gcc
         - gcc-fortran
@@ -36,13 +36,13 @@
 
     - name: install perf tools!
       pacman: name={{ item }} state=present update_cache=false
-      items:
+      with_items:
         - sysstat
       become: true
 
     - name: install kvm/docker tools for virtualization environment
       pacman: name={{ item }} state=present force=true update_cache=false
-      items:
+      with_items:
         - qemu-headless
         - libvirt
         - libvirt-python2

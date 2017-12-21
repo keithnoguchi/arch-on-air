@@ -1,7 +1,7 @@
 ---
 - name: get etcd
   command: go get {{ item }}
-  items:
+  with_items:
     - github.com/coreos/etcd/cmd/etcd
     - github.com/coreos/etcd/cmd/etcdctl
   environment:

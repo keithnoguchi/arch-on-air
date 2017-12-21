@@ -1,7 +1,7 @@
 ---
 - name: get some useful tracing related golang packages and tools
   command: go get -u {{ item }}
-  items:
+  with_items:
     - github.com/opentracing/opentracing-go
     - github.com/bg451/opentracing-example
   environment:

@@ -13,7 +13,7 @@
         mode: 0644
         owner: root
         group: root
-      items:
+      with_items:
         - vconsole.conf
         - systemd/
         - modprobe.d/
@@ -22,7 +22,7 @@
 
     - name: install python2/3 as a start
       pacman: name={{ item }} state=present force=true update_cache=true
-      items:
+      with_items:
         - python
         - python-pip
         - python2
@@ -32,7 +32,7 @@
 
     - name: install console apps
       pacman: name={{ item }} state=present force=true update_cache=false
-      items:
+      with_items:
         - vim
         - tmux
         - tree
@@ -50,7 +50,7 @@
 
     - name: install network tools
       pacman: name={{ item }} state=present force=true update_cache=false
-      items:
+      with_items:
         - w3m
         - elinks
         - curl
@@ -72,7 +72,7 @@
 
     - name: install graphical libraries & tools
       pacman: name={{ item }} state=present force=true update_cache=true
-      items:
+      with_items:
         - gcr
         - libxft
         - libxinerama

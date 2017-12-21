@@ -1,7 +1,7 @@
 ---
 - name: get terraform core & providers
   command: go get -u {{ item }}
-  items:
+  with_items:
     - github.com/hashicorp/terraform
     - github.com/terraform-providers/terraform-provider-terraform
   environment:
@@ -13,7 +13,7 @@
   make:
     chdir: "{{ lookup('env', 'GOPATH') }}/src/github.com/{{ item.path }}"
     target: "{{ item.target }}"
-  items:
+  with_items:
     - { path: hashicorp/terraform, target: fmt }
     - { path: hashicorp/terraform, target: dev }
     - { path: terraform-providers/terraform-provider-terraform, target: build }

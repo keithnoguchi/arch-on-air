@@ -13,7 +13,7 @@
   tasks:
     - name: install console apps
       apt: name={{ item }} state=present update_cache=true
-      items:
+      with_items:
         - vim
         - tree
         - jq
@@ -23,7 +23,7 @@
 
     - name: install network tools
       apt: name={{ item }} state=present update_cache=false
-      items:
+      with_items:
         - curl
         - w3m
         - elinks
@@ -31,7 +31,7 @@
 
     - name: install developer tools
       apt: name={{ item }} state=present update_cache=false
-      items:
+      with_items:
         - binutils
         - g++
         - git
@@ -64,7 +64,7 @@
 
     - name: install developer tools for ubuntu16.04 or above
       apt: name={{ item }} state=present update_cache=false
-      items:
+      with_items:
         - cgroup-tools
         - docker.io
         - vagrant

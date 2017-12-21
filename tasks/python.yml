@@ -2,7 +2,7 @@
 - name: install python standard packages
   pip:
     name: "{{ item }}"
-  items:
+  with_items:
     - MySQL-python
     - csvkit
   become: true

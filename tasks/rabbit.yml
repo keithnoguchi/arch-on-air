@@ -1,7 +1,7 @@
 ---
 - name: install RabbitMQ packages
   apt: name={{ item }} state=present update_cache=false
-  items:
+  with_items:
     - rabbitmq-server
   become: true
 
@@ -14,7 +14,7 @@
     path: "/home/{{ ansible_user }}/.profile"
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
-  items:
+  with_items:
     - { regexp: "^export AMQP_SCHEME=",   line: "export AMQP_SCHEME={{ scheme }}" }
     - { regexp: "^export AMQP_USERNAME=", line: "export AMQP_USERNAME={{ username }}" }
     - { regexp: "^export AMQP_PASSWORD=", line: "export AMQP_PASSWORD={{ password }}" }
@@ -24,14 +24,14 @@
 
 - name: create RabbitMQ required directories
   file: path={{ item }} state=directory owner=rabbitmq group=rabbitmq mode=0755
-  items:
+  with_items:
     - /var/log/rabbitmq
     - /var/lib/rabbitmq/mnesia/rabbit
   become: true
 
 - name: start required services
   service: name={{ item }} state=started
-  items:
+  with_items:
     - rabbitmq-server
 
 - name: create RabbitMQ vhost
