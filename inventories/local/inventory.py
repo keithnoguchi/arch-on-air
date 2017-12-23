@@ -12,7 +12,7 @@ def main():
                          'vars': {'ansible_user': os.environ['USER']}}}
     inventory['host'] = {'hosts': ['localhost'],
                          'vars': {'ansible_python_interpreter':
-                                  '/usr/bin/python2'}}
+                                  '/usr/bin/python3'}}
     inventory['guest'] = guest()
 
     hostvars = {}

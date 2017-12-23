@@ -3,6 +3,6 @@
   pip:
     name: "{{ item }}"
   with_items:
-    - MySQL-python
+    - py-mysql
     - csvkit
   become: true
