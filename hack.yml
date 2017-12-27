@@ -61,6 +61,26 @@
       become: true
       when: not travis_ci|bool
 
+    - name: setup libvirt group
+      lineinfile:
+        path: /etc/libvirt/libvirtd.conf
+        regexp: 'unix_sock_group'
+        line: 'unix_sock_group = "libvirt"'
+        owner: root
+        group: root
+        mode: 0644
+      become: true
+
+    - name: setup qemu group
+      lineinfile:
+        path: /etc/libvirt/qemu.conf
+        regexp: 'group = '
+        line: 'group = "kvm"'
+        owner: root
+        group: root
+        mode: 0644
+      become: true
+
     - name: create git root directory
       file: path={{ gitpath }} state=directory mode=0700
 
