@@ -64,5 +64,8 @@
     - name: create git root directory
       file: path={{ gitpath }} state=directory mode=0700
 
+    - name: let's suckless!
+      import_tasks: tasks/suckless.yml
+
     - name: light the fire!
       import_tasks: tasks/all.yml

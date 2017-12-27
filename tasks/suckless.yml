@@ -1,0 +1,33 @@
+---
+- name: git clone suckless X apps
+  git:
+    repo: "{{ gitsite }}keinohguchi/{{ item }}"
+    dest: "{{ gitpath }}{{ item }}"
+    version: config
+    update: yes
+    ssh_opts: "-o StrictHostKeyChecking=no"
+  with_items:
+    - dwm
+    - dmenu
+    - st
+    - surf
+
+- name: build suckless X apps
+  make:
+    chdir: "{{ gitpath }}{{ item }}"
+  with_items:
+    - dwm
+    - dmenu
+    - st
+    - surf
+
+- name: install suckless X apps
+  make:
+    chdir: "{{ gitpath }}{{ item }}"
+    target: install
+  with_items:
+    - dwm
+    - dmenu
+    - st
+    - surf
+  become: true
