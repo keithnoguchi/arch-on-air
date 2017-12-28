@@ -54,6 +54,7 @@
       with_items:
         - w3m
         - elinks
+        - wget
         - curl
         - nmap
         - tcpdump
