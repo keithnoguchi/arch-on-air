@@ -28,7 +28,6 @@
         - pkg-config
         - unzip
         - cscope
-        - stress
         - cpanminus
         - libmariadbclient
         - jre8-openjdk-headless
@@ -37,6 +36,7 @@
     - name: install perf tools!
       pacman: name={{ item }} state=present update_cache=false
       with_items:
+        - stress
         - sysstat
       become: true
 
