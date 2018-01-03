@@ -1,0 +1,16 @@
+---
+- name: arch-on-air game playbook
+  hosts: host
+  connection: local
+  vars:
+    latest: false
+    travis_ci: false
+  gather_facts: false
+  tasks:
+    - name: install ruby and libraries for games
+      pacman: name={{ item }} state=present force=true update_cache=false
+      with_items:
+        - ruby
+        - mpg123
+        - sdl2_ttf
+      become: true
