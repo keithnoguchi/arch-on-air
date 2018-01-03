@@ -14,3 +14,10 @@
         - mpg123
         - sdl2_ttf
       become: true
+
+    - name: install ruby gems
+      gem: name={{ item }} state=present
+      with_items:
+        - gosu
+        - chipmunk
+      become: true
