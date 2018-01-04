@@ -4,6 +4,8 @@
   connection: local
   vars:
     travis_ci: false
+    gitsite: "git@github.com:"
+    gitpath: "{{ lookup('env', 'HOME') }}/git/"
   gather_facts: false
   tasks:
     - name: copy files under /etc
@@ -97,3 +99,27 @@
 
     - name: configure the audio
       import_tasks: tasks/audio.yml
+
+    - name: install developer tools
+      pacman: name={{ item }} state=present force=true update_cache=false
+      with_items:
+        - bc
+        - gcc
+        - gdb
+        - go
+        - git
+        - m4
+        - make
+        - autoconf
+        - automake
+        - libtool
+        - pkg-config
+        - unzip
+        - cscope
+      become: true
+
+    - name: create git root directory
+      file: path={{ gitpath }} state=directory mode=0700
+
+    - name: let's suckless!
+      import_tasks: tasks/suckless.yml
