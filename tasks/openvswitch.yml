@@ -16,7 +16,7 @@
 - name: setup configure options
   set_fact:
     with_linux: "--with-linux=/lib/modules/{{ ansible_kernel }}/build"
-  when: not travis_ci|bool
+  when: ansible_kernel is version_compare('4.13', '<=') and not travis_ci|bool
 
 - name: configure OvS
   command: >
