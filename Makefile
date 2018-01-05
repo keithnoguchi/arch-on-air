@@ -1,7 +1,7 @@
-all: host guest
+all: main
 
-.PHONY: host guest provision hack
-host guest provision hack:
+.PHONY: main guest provision hack
+main guest provision hack:
 	@ansible-playbook $@.yml -e latest=true
 
 # those are the target primarily used by the travis CI through .travis.yml.
@@ -16,7 +16,7 @@ ping:
 	ansible -vvv -m ping -i inventories/test/inventory.ini -c local host
 
 test: ansible ping
-	ansible-playbook -vvv host.yml -e latest=true \
+	ansible-playbook -vvv main.yml -e latest=true \
 		-i inventories/test/inventory.ini -c local -e travis_ci=true \
 		-e gitsite=https://github.com/
 

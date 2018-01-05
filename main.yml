@@ -1,6 +1,6 @@
 ---
-- name: host provisioning
+- name: provision the arch
   import_playbook: provision.yml
 
-- name: host hacking
+- name: let's hack!
   import_playbook: hack.yml
