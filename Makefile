@@ -1,7 +1,7 @@
 all: main
 
 .PHONY: main provision hack
-main provision hack:
+main provision game hack:
 	@ansible-playbook $@.yml -e latest=true
 
 # those are the target primarily used by the travis CI through .travis.yml.
