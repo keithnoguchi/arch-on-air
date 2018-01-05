@@ -103,6 +103,13 @@
         - cscope
       become: true
 
+    - name: enable basic systemd services
+      systemd: name={{ item }} enabled=true
+      with_items:
+        - systemd-networkd
+        - systemd-resolved
+      become: true
+
     - name: create git root directory
       file: path={{ gitpath }} state=directory mode=0700
 
