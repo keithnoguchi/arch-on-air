@@ -14,20 +14,7 @@
     - name: install developer tools
       pacman: name={{ item }} state=present force=true update_cache=false
       with_items:
-        - bc
-        - gcc
         - gcc-fortran
-        - gdb
-        - go
-        - git
-        - m4
-        - make
-        - autoconf
-        - automake
-        - libtool
-        - pkg-config
-        - unzip
-        - cscope
         - cpanminus
         - libmariadbclient
         - jre8-openjdk-headless
