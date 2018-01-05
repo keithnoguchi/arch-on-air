@@ -14,10 +14,7 @@
     - name: install developer tools
       pacman: name={{ item }} state=present force=true update_cache=false
       with_items:
-        - python2
         - gcc-fortran
-        - cpanminus
-        - libmariadbclient
         - jre8-openjdk-headless
       become: true
 

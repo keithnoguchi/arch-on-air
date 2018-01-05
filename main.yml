@@ -1,6 +1,9 @@
 ---
-- name: provision the arch
+- name: lay the ground
   import_playbook: provision.yml
 
-- name: let's hack!
+- name: let's game!
+  import_playbook: game.yml
+
+- name: and let's hack! :)
   import_playbook: hack.yml

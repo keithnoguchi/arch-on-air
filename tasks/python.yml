@@ -1,4 +1,10 @@
 ---
+- name: install mariadb library
+  pacman: name={{ item }} state=present force=true update_cache=false
+  with_items:
+    - libmariadbclient
+  become: true
+
 - name: install python standard packages
   pip:
     name: "{{ item }}"

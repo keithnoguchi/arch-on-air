@@ -1,4 +1,10 @@
 ---
+- name: install cpanminus first
+  pacman: name={{ item }} state=present force=true update_cache=false
+  with_items:
+    - cpanminus
+  become: true
+
 - name: install perl packages for the unit testing
   cpanm: name={{ item }}
   with_items:
