@@ -44,7 +44,6 @@
     - name: install network tools
       pacman: name={{ item }} state=present force=true update_cache=false
       with_items:
-        - w3m
         - elinks
         - wget
         - curl
@@ -84,7 +83,6 @@
         - webkit2gtk
         - mupdf
         - chromium
-        - wireshark-gtk
       become: true
 
     - name: configure the audio
