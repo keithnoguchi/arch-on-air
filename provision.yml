@@ -8,20 +8,6 @@
     gitpath: "{{ lookup('env', 'HOME') }}/git/"
   gather_facts: false
   tasks:
-    - name: copy files under /etc
-      copy:
-        src: "files/etc/{{ item }}"
-        dest: "/etc/{{ item }}"
-        mode: 0644
-        owner: root
-        group: root
-      with_items:
-        - vconsole.conf
-        - systemd/
-        - modprobe.d/
-        - X11/xorg.conf.d/
-      become: true
-
     - name: install console apps
       pacman: name={{ item }} state=present force=true update_cache=false
       with_items:
@@ -82,9 +68,6 @@
         - chromium
       become: true
 
-    - name: configure the audio
-      import_tasks: tasks/audio.yml
-
     - name: install developer tools
       pacman: name={{ item }} state=present force=true update_cache=false
       with_items:
@@ -109,6 +92,23 @@
         - systemd-networkd
         - systemd-resolved
       become: true
+
+    - name: copy files under /etc
+      copy:
+        src: "files/etc/{{ item }}"
+        dest: "/etc/{{ item }}"
+        mode: 0644
+        owner: root
+        group: root
+      with_items:
+        - vconsole.conf
+        - systemd/
+        - modprobe.d/
+        - X11/xorg.conf.d/
+      become: true
+
+    - name: everyone needs ounds!
+      import_tasks: tasks/audio.yml
 
     - name: create git root directory
       file: path={{ gitpath }} state=directory mode=0700
