@@ -13,12 +13,11 @@ ansible: clean
 		&& sudo python setup.py install 2>&1 > /dev/null
 
 ping:
-	ansible -vvv -m ping -i inventories/test/inventory.ini -c local host
+	ansible -vvv -m ping -i inventory.ini -c local host
 
 test: ansible ping
-	ansible-playbook -vvv main.yml -e latest=true \
-		-i inventories/test/inventory.ini -c local -e travis_ci=true \
-		-e gitsite=https://github.com/
+	ansible-playbook -vvv main.yml -e latest=true -c local \
+		-e travis_ci=true -e gitsite=https://github.com/
 
 clean:
 	sudo $(RM) -rf .ansible

@@ -1,6 +1,6 @@
 ---
 - name: arch-on-air hack playbook
-  hosts: host
+  hosts: arch
   connection: local
   vars:
     latest: false
@@ -14,6 +14,7 @@
     - name: install developer tools
       pacman: name={{ item }} state=present force=true update_cache=false
       with_items:
+        - python2
         - gcc-fortran
         - cpanminus
         - libmariadbclient
@@ -30,5 +31,31 @@
     - name: create git root directory
       file: path={{ gitpath }} state=directory mode=0700
 
-    - name: light the fire!
-      import_tasks: tasks/all.yml
+    - name: install the latest perl packages
+      import_tasks: tasks/perl.yml
+
+    - name: install the latest python packages
+      import_tasks: tasks/python.yml
+
+    - name: install the latest ansible
+      import_tasks: tasks/ansible.yml
+
+    - name: install the latest asciinema
+      import_tasks: tasks/asciinema.yml
+
+    - name: install the latest Open vSwitch
+      import_tasks: tasks/openvswitch.yml
+
+    - name: install the latest golang
+      import_tasks: tasks/golang.yml
+
+    - name: install the OpenTracing
+      import_tasks: tasks/tracing.yml
+
+    - name: install the latest terraform
+      import_tasks: tasks/terraform.yml
+      when: not travis_ci|bool
+
+    - name: install the latest protobuf
+      import_tasks: tasks/protobuf.yml
+      when: latest|bool and not travis_ci|bool
