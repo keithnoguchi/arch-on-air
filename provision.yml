@@ -27,16 +27,13 @@
       with_items:
         - vim
         - tmux
-        - tree
         - jq
         - acpi
         - dialog
         - aspell
         - aspell-en
         - picocom
-        - busybox
         - dosfstools
-        - cowsay
         - pulseaudio
         - alsa-utils
       become: true
