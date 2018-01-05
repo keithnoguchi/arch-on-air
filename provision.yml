@@ -26,8 +26,11 @@
       pacman: name={{ item }} state=present force=true update_cache=false
       with_items:
         - vim
+        - git
         - tmux
-        - jq
+        - mutt
+        - irssi
+        - elinks
         - acpi
         - dialog
         - aspell
@@ -41,7 +44,6 @@
     - name: install network tools
       pacman: name={{ item }} state=present force=true update_cache=false
       with_items:
-        - elinks
         - wget
         - curl
         - nmap
@@ -52,8 +54,6 @@
         - gnu-netcat
         - mtr
         - rsync
-        - irssi
-        - mutt
         - ebtables
         - dnsmasq
         - openconnect
@@ -92,7 +92,6 @@
         - gcc
         - gdb
         - go
-        - git
         - m4
         - make
         - autoconf
@@ -101,6 +100,7 @@
         - pkg-config
         - unzip
         - cscope
+        - jq
       become: true
 
     - name: enable basic systemd services

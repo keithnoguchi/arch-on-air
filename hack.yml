@@ -37,7 +37,6 @@
         - virt-viewer
         - tigervnc
         - docker
-        - docker-machine
       become: true
 
     - name: add user to the developer groups
