@@ -11,16 +11,16 @@ iface lo inet loopback
 auto ens3
 iface ens3 inet dhcp
 
-# bond0 for ens5 and ens6
+# bond0 for ens4 and ens5
+auto ens4
+iface ens4 inet manual
+	bond-master bond0
+	bond-primary ens4
+
 auto ens5
 iface ens5 inet manual
 	bond-master bond0
-	bond-primary ens5
-
-auto ens6
-iface ens6 inet manual
-	bond-master bond0
-	bond-primary ens5
+	bond-primary ens4
 
 auto bond0
 iface bond0 inet manual

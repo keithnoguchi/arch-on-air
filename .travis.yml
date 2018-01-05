@@ -14,8 +14,6 @@ env:
     # This is the chrooted archlinux environemnt to check host.yml.
     # https://github.com/mikkeloscar/arch-travis/blob/master/README.md
     - ARCH_TRAVIS_ARCH=x86_64 ARCH_TRAVIS_CLEAN_CHROOT=1 ARCH_TRAVIS_CONFIRM_YES=1
-    # This is the ubuntu environment, to check guest.yml.
-    - ARCH_TRAVIS_GUEST_ENV=1
 
 language: c
 
@@ -44,4 +42,3 @@ arch:
 
 script:
   - if [[ "${ARCH_TRAVIS_CLEAN_CHROOT}" == "1" ]]; then curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash; fi
-  - if [[ "${ARCH_TRAVIS_GUEST_ENV}" == "1" ]]; then sudo -E make test-guest; fi
