@@ -102,8 +102,7 @@
         group: root
       with_items:
         - vconsole.conf
-        - systemd/
-        - modprobe.d/
+        - systemd/network/wlp3s0.network
         - X11/xorg.conf.d/
       become: true
 
