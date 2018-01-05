@@ -107,7 +107,7 @@
         - X11/xorg.conf.d/
       become: true
 
-    - name: everyone needs ounds!
+    - name: everyone needs sounds!
       import_tasks: tasks/audio.yml
 
     - name: create git root directory

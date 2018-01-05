@@ -67,6 +67,15 @@
         mode: 0644
       become: true
 
+    - name: /etc/hosts for the guest reachability
+      copy:
+        src: files/etc/hosts
+        dest: /etc/hosts
+        mode: 0644
+        owner: root
+        group: root
+      become: true
+
     - name: create git root directory
       file: path={{ gitpath }} state=directory mode=0700
 
