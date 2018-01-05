@@ -45,7 +45,7 @@
       with_items:
         - qemu-headless
         - libvirt
-        - libvirt-python2
+        - libvirt-python
         - virt-install
         - virt-viewer
         - tigervnc
