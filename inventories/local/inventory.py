@@ -18,7 +18,7 @@ def main():
     hostvars = {}
     for type in ['guest']:
         for host in inventory[type]['hosts']:
-            num = int(filter(str.isdigit, host))
+            num = int(''.join(filter(str.isdigit, host)))
             inventory['all']['hosts'].append(host)
             hostvars[host] = {'name': host,
                               'hv_node_ip': '10.0.0.%d' % num}
