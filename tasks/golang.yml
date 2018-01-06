@@ -12,30 +12,3 @@
   args:
     chdir: "{{ gitpath }}/go/src"
   when: git.before != git.after
-
-- name: get some useful golang packages and tools
-  command: go get -u {{ item }}
-  with_items:
-    - golang.org/x/tools/cmd/godoc
-    - golang.org/x/tools/cmd/present
-    - golang.org/x/tools/cmd/goimports
-    - google.golang.org/grpc
-    - github.com/golang/dep/cmd/dep
-    - github.com/golang/protobuf/protoc-gen-go
-    - github.com/golang/mock/gomock
-    - github.com/golang/mock/mockgen
-    - github.com/kardianos/govendor
-    - github.com/coreos/etcd/cmd/etcd
-    - github.com/coreos/etcd/cmd/etcdctl
-    - github.com/github/hub
-    - github.com/tianon/gosu
-    - github.com/streadway/amqp
-    - github.com/derekparker/delve/cmd/dlv
-    - github.com/opentracing/opentracing-go
-    - github.com/opentracing-contrib/go-stdlib/nethttp
-    - github.com/opentracing-contrib/go-amqp/amqptracer
-    - github.com/openzipkin/zipkin-go-opentracing
-  environment:
-    GOROOT: "{{ lookup('env', 'GOROOT') }}"
-    GOPATH: "{{ lookup('env', 'GOPATH') }}"
-    PATH: "{{ lookup('env', 'GOPATH') }}/bin:{{ lookup('env', 'GOROOT') }}/bin:/usr/bin:/bin"
