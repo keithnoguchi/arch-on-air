@@ -85,6 +85,14 @@
         - jq
       become: true
 
+    - name: uucp group for picocom
+      user:
+        name: "{{ lookup('env', 'USER') }}"
+        append: true
+        groups: uucp
+      become: true
+      when: not travis_ci|bool
+
     - name: enable basic systemd services
       systemd: name={{ item }} enabled=true
       with_items:
