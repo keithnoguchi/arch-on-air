@@ -1,7 +1,6 @@
 ---
 - name: arch-on-air game playbook
-  hosts: host
-  connection: local
+  hosts: arch
   vars:
     latest: false
     travis_ci: false

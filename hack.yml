@@ -1,7 +1,6 @@
 ---
 - name: arch-on-air hack playbook
   hosts: arch
-  connection: local
   vars:
     latest: false
     # Until ansible pacman module in 2.5 has been fixed...

@@ -1,7 +1,6 @@
 ---
 - name: arch-on-air post-installation playbook
   hosts: arch
-  connection: local
   vars:
     travis_ci: false
     gitsite: "git@github.com:"
