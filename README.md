@@ -684,7 +684,7 @@ ansible playbook, as below:
 ```sh
 $ git clone https://github.com/keinohguchi/arch-on-air
 $ cd arch-on-air
-$ ansible-playbook -i inventories/local -c local provision.yml
+$ ansible-playbook provision.yml
 ```
 
 ### Kernel
