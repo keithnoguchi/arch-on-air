@@ -54,4 +54,4 @@
 
     - name: install the latest protobuf
       import_tasks: tasks/protobuf.yml
-      when: latest|bool and not travis_ci|bool
+      when: not travis_ci|bool

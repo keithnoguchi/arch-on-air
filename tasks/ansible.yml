@@ -14,7 +14,7 @@
   when: git.before != git.after
 
 - name: install the latest ansible
-  command: "{{ ansible_python_interpreter }} setup.py install"
+  command: python setup.py install
   args:
     chdir: "{{ gitpath }}ansible"
   become: true
