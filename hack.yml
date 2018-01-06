@@ -3,7 +3,6 @@
   hosts: arch
   vars:
     latest: false
-    # Until ansible pacman module in 2.5 has been fixed...
     travis_ci: false
     gitsite: "git@github.com:"
     gitpath: "{{ lookup('env', 'HOME') }}/git/"
@@ -23,9 +22,6 @@
         - stress
         - sysstat
       become: true
-
-    - name: create git root directory
-      file: path={{ gitpath }} state=directory mode=0700
 
     - name: install the latest perl packages
       import_tasks: tasks/perl.yml
