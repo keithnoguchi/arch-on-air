@@ -70,6 +70,7 @@
     - name: install developer tools
       pacman: name={{ item }} state=present force=true update_cache=false
       with_items:
+        - binutils
         - bc
         - gcc
         - gdb
