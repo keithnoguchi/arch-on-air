@@ -10,6 +10,7 @@
 - name: install python packages for ansible
   pip:
     requirements: "{{ gitpath }}ansible/requirements.txt"
+    extra_args: --upgrade
   become: true
   when: git.before != git.after
 
