@@ -23,6 +23,7 @@
         - picocom
         - dosfstools
         - pulseaudio
+        - pulseaudio-alsa
         - alsa-utils
       become: true
 
@@ -60,6 +61,8 @@
         - xorg-xsetroot
         - xorg-xinput
         - xorg-xprop
+        - xcb-util-image
+        - xcb-util-keysyms
         - ttf-freefont
         - gtk3
         - webkit2gtk
