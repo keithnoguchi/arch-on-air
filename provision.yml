@@ -12,6 +12,7 @@
       with_items:
         - vim
         - git
+        - time
         - tmux
         - mutt
         - cscope
