@@ -46,6 +46,7 @@
         - dnsmasq
         - openconnect
         - wpa_supplicant
+        - ipcalc
       become: true
 
     - name: install graphical libraries & tools
