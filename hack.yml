@@ -7,7 +7,7 @@
     gitsite: "git@github.com:"
     gitpath: "{{ lookup('env', 'HOME') }}/git/"
     gobootstrap: /usr/lib/go
-  gather_facts: false
+  gather_facts: true
   tasks:
     - name: install developer tools
       pacman: name={{ item }} state=present force=true update_cache=false
