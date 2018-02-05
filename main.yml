@@ -4,6 +4,3 @@
 
 - name: let's game!
   import_playbook: game.yml
-
-- name: and let's hack! :)
-  import_playbook: hack.yml
