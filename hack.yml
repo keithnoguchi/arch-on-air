@@ -25,6 +25,21 @@
         - sysstat
       become: true
 
+    - name: install kvm/container to create virtual environment
+      pacman: name={{ item }} state=present force=true update_cache=false
+      with_items:
+        - qemu-headless
+        - libvirt
+        - libvirt-python
+        - virt-install
+        - virt-viewer
+        - tigervnc
+        - docker
+        - python-lxml
+        - python2-docker
+        - python2-requests
+      become: true
+
     - name: install the latest perl packages
       import_tasks: tasks/perl.yml
 
