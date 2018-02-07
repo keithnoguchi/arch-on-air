@@ -5,9 +5,11 @@
     - cpanminus
   become: true
 
-- name: install perl packages for the unit testing
+- name: install perl packages for good
   cpanm: name={{ item }}
   with_items:
+    - "NetAddr::IP"
     - "Test::MockModule"
   environment:
     PATH: "{{ lookup('env', 'PATH') }}"
+  become: true
