@@ -615,15 +615,24 @@ root@archiso ~ # reboot
 
 [![Build Status](https://travis-ci.org/keinohguchi/arch-on-air.svg)](https://travis-ci.org/keinohguchi/arch-on-air)
 
-I'm gradually making those post installation steps automated through
-[ansible](https://ansible.com), as in [provision.yml](provision.yml)
-playbook.  And also, that playbook is under the
-[travis CI](https://travis-ci.org/keinohguchi/arch-on-air) to make sure
-it's sane under a clean [ArchLinux](https://archlinux.org) environment.
+I usually run [provision.yml] [Ansible] playbook to provision the arch
+as a post-installation process.  All you need is grab those manually
+and run [provision.yml], then you have minimum development environment
+ready, including the X!
 
-You can also see it in action locally by running [$ make test](Makefile),
+- sudo
+- git
+- openssh
+- ansible
+
+[provision.yml]: ./provision.yml
+[Ansible]: https://www.ansible.com
+
+You can also see it in action localy by running [$ make test](Makefile),
 as shown in the [.travis.yml](.travis.yml) [Travis](travis-ci.org)
 configuration file.
+
+But here is the manual steps to install & configure those components.
 
 - [Console](#console)
 - [Kernel](#kernel)
