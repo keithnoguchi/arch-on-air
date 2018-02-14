@@ -9,6 +9,7 @@
   pip:
     name: "{{ item }}"
   with_items:
+    - docker
     - py-mysql
     - csvkit
   become: true

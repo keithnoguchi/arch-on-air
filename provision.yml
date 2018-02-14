@@ -71,6 +71,9 @@
         - webkit2gtk
         - mupdf
         - chromium
+        - qt5-svg
+        - qt5-webengine
+        - qt5-quickcontrols2
       become: true
 
     - name: install developer tools
