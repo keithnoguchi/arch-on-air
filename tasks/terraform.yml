@@ -1,4 +1,14 @@
 ---
+- name: cleanup the local changes, if there is
+  git:
+    repo: "{{ gitsite }}{{ item }}"
+    dest: "{{ lookup('env', 'GOPATH') }}/src/github.com/{{ item }}"
+    force: true
+    ssh_opts: "-o StrictHostKeyChecking=no"
+  with_items:
+    - hashicorp/terraform
+    - terraform-providers/terraform-provider-terraform
+
 - name: get terraform core & providers
   command: go get -u {{ item }}
   with_items:
