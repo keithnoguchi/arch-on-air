@@ -16,6 +16,7 @@
         - iperf3
         - stress
         - sysstat
+        - strace
       become: true
 
     - name: install kvm/container to create virtual environment
