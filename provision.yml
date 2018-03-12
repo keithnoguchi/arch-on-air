@@ -37,6 +37,7 @@
         - curl
         - nmap
         - tcpdump
+        - ethtool
         - traceroute
         - net-tools
         - bind-tools
