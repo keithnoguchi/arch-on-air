@@ -9,6 +9,7 @@
     gobootstrap: /usr/lib/go
   gather_facts: true
   tasks:
+    # https://wiki.archlinux.org/index.php/improving_performance
     - name: install perf tools!
       pacman: name={{ item }} state=present update_cache=false
       with_items:
