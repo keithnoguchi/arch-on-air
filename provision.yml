@@ -41,6 +41,7 @@
         - traceroute
         - net-tools
         - bind-tools
+        - conntrack-tools
         - gnu-netcat
         - mtr
         - rsync
