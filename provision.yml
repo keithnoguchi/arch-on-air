@@ -112,6 +112,7 @@
         - systemd-networkd
         - systemd-resolved
       become: true
+      when: not travis_ci|bool
 
     - name: copy files under /etc
       copy:
