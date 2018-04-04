@@ -85,6 +85,7 @@
         - binutils
         - bc
         - bison
+        - flex
         - gcc
         - gdb
         - go
