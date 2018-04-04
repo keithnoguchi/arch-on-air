@@ -8,7 +8,7 @@
   gather_facts: false
   tasks:
     - name: install console apps
-      pacman: name={{ item }} state=present force=true update_cache=false
+      pacman: name={{ item }} state=present force=true update_cache=true
       with_items:
         - vim
         - git
@@ -84,6 +84,7 @@
       with_items:
         - binutils
         - bc
+        - bison
         - gcc
         - gdb
         - go
