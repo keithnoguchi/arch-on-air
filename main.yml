@@ -4,3 +4,4 @@
 
 - name: let's game!
   import_playbook: game.yml
+  when: not travis_ci|bool
