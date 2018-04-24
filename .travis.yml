@@ -28,6 +28,8 @@ arch:
     - sudo
     - openssh
     - git
+    - make
+    - linux-headers
     - python
     - python-pip
     #- procps-ng
