@@ -129,11 +129,11 @@
         - X11/xorg.conf.d/
       become: true
 
-    - name: everyone needs sounds!
-      import_tasks: tasks/audio.yml
-
     - name: create git root directory
       file: path={{ gitpath }} state=directory mode=0700
 
     - name: let's suckless!
       import_tasks: tasks/suckless.yml
+
+    - name: we need sounds!
+      import_tasks: tasks/audio.yml
