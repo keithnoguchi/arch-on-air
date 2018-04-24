@@ -15,6 +15,7 @@
       with_items:
         - time
         - iperf3
+        - netperf
         - stress
         - sysstat
         - strace
