@@ -171,13 +171,13 @@ PV         VG Fmt  Attr PSize   PFree
 ##### Logical groups
 
 Create a logical groups, one for base OS, *vg0*, and the other for the the
-libvirt storage pool, *vg1*, with `vgcreate`:
+libvirt storage pool, *images*, with `vgcreate`:
 
 ```
 root@archiso ~ # vgcreate vg0 /dev/sda4
 Volume group "vg0" successfully created
-root@archiso ~ # vgcreate vg1 /dev/sda5
-Volume group "vg1" successfully created
+root@archiso ~ # vgcreate images /dev/sda5
+Volume group "images" successfully created
 ```
 
 ##### Logical volumes
