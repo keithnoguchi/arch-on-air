@@ -25,10 +25,10 @@ arch:
     - archlinuxfr=http://repo.archlinux.fr/$arch
   packages:
     # pacman packages
+    - sudo
     - openssh
     - git
     - python
-    - python-setuptools
     - python-pip
     #- procps-ng
     #- reflector
