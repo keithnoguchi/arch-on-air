@@ -25,7 +25,6 @@ arch:
     - archlinuxfr=http://repo.archlinux.fr/$arch
   packages:
     # pacman packages
-    - libnsl
     - sudo
     - openssh
     - git
