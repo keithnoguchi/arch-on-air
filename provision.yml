@@ -97,6 +97,7 @@
         - automake
         - libtool
         - pkg-config
+        - numactl
         - fakeroot
         - unzip
         - jq
