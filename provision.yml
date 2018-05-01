@@ -83,6 +83,7 @@
       pacman: name={{ item }} state=present force=true update_cache=false
       with_items:
         - linux-headers
+        - yasm
         - binutils
         - bc
         - bison
