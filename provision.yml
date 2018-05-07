@@ -93,6 +93,7 @@
         - go
         - m4
         - make
+        - patch
         - autoconf
         - automake
         - libtool
