@@ -1,4 +1,4 @@
-name,air,kvm
+name,air,kvm,comment
 aes_x86_64,y,y,
 aesni_intel,y,y,
 crc32_pclmul,y,y,
