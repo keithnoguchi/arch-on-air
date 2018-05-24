@@ -764,7 +764,10 @@ editor  0
 ```
 and `reboot`!
 
-Here is the current [.config](files/kernel/.config) file I use for your reference.
+Here is the my [.config] file and the list of [modules], for your reference.
+
+[.config]: files/kernel/.config
+[modules]: files/kernel/modules.csv
 
 ### WiFi
 
