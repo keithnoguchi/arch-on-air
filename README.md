@@ -616,14 +616,31 @@ root@archiso ~ # reboot
 [![Build Status](https://travis-ci.org/keinohguchi/arch-on-air.svg)](https://travis-ci.org/keinohguchi/arch-on-air)
 
 I usually run [provision.yml] [Ansible] playbook to provision the arch
-as a post-installation process.  All you need is grab those manually
-and run [provision.yml], then you have minimum development environment
-ready, including the X!
+as a post-installation process.  All you need is grab those minimum packages
+manually with `pacman`:
+
 
 - sudo
-- git
 - openssh
-- ansible
+- git
+- make
+- python
+- python-pip
+
+then, run just run `make ansible` under this repo, to install the latest
+ansible and ansible-playbook:
+
+```hs
+air$ make ansible
+```
+
+Now, you're ready to provision your air with the simple one liner:
+
+```sh
+air$ ansible-playbook provision.yml
+```
+
+This will install all the MVP packages, including X environment.
 
 [provision.yml]: ./provision.yml
 [Ansible]: https://www.ansible.com
@@ -632,7 +649,8 @@ You can also see it in action localy by running [$ make test](Makefile),
 as shown in the [.travis.yml](.travis.yml) [Travis](travis-ci.org)
 configuration file.
 
-But here is the manual steps to install & configure those components.
+Following are more detailed information how to take care of the
+post-installation steps.
 
 - [Console](#console)
 - [Kernel](#kernel)
