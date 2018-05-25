@@ -79,31 +79,6 @@
         - qt5-quickcontrols2
       become: true
 
-    - name: install developer tools
-      pacman: name={{ item }} state=present force=true update_cache=false
-      with_items:
-        - linux-headers
-        - yasm
-        - binutils
-        - bc
-        - bison
-        - flex
-        - gcc
-        - gdb
-        - go
-        - m4
-        - make
-        - patch
-        - autoconf
-        - automake
-        - libtool
-        - pkg-config
-        - numactl
-        - fakeroot
-        - unzip
-        - jq
-      become: true
-
     - name: uucp group for picocom
       user:
         name: "{{ lookup('env', 'USER') }}"
@@ -131,6 +106,13 @@
         - vconsole.conf
         - systemd/network/wlp3s0.network
         - X11/xorg.conf.d/
+      become: true
+
+    - name: install minimum developer tools for suckless and more!
+      pacman: name={{ item }} state=present force=true update_cache=false
+      with_items:
+        - gcc
+        - make
       become: true
 
     - name: create git root directory
