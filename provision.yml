@@ -50,6 +50,8 @@
         - openconnect
         - wpa_supplicant
         - ipcalc
+        - avahi
+        - nss-mdns
       become: true
 
     - name: install graphical libraries & tools
@@ -92,6 +94,7 @@
       with_items:
         - systemd-networkd
         - systemd-resolved
+        - avahi-daemon
       become: true
       when: not travis_ci|bool
 
@@ -106,6 +109,13 @@
         - vconsole.conf
         - systemd/network/wlp3s0.network
         - X11/xorg.conf.d/
+      become: true
+
+    - name: Enable mDNS/DNS-SD in /etc/nsswitch.conf
+      lineinfile:
+        path: /etc/nsswitch.conf
+        regexp: '^hosts:'
+        line: 'hosts: files mymachines myhostname mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns'
       become: true
 
     - name: install minimum developer tools for suckless and more!
