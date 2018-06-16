@@ -76,6 +76,7 @@
         - webkit2gtk
         - mupdf
         - chromium
+        - imagemagick
         - qt5-svg
         - qt5-webengine
         - qt5-quickcontrols2
