@@ -61,5 +61,6 @@
   with_items:
     - ovs-ctl
     - ovs-lib
+    - ovs-kmod-ctl
   become: true
   when: git.before != git.after
