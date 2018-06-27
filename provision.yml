@@ -52,6 +52,7 @@
         - ipcalc
         - avahi
         - nss-mdns
+        - wireshark-cli
       become: true
 
     - name: install graphical libraries & tools
@@ -82,13 +83,23 @@
         - qt5-quickcontrols2
       become: true
 
-    - name: uucp group for picocom
+    - name: add user to uucp for picocom and wireshark for tshark
       user:
         name: "{{ lookup('env', 'USER') }}"
         append: true
-        groups: uucp
+        groups: uucp,wireshark
       become: true
       when: not travis_ci|bool
+
+    - name: capabilities for wireshark
+      capabilities:
+        path: /usr/bin/dumpcap
+        capability: "{{ item }}"
+        state: present
+      with_items:
+        - cap_net_raw+eip
+        - cap_net_admin+eip
+      become: true
 
     - name: enable basic systemd services
       systemd: name={{ item }} enabled=true
