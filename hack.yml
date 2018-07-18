@@ -33,7 +33,6 @@
         - unzip
         - nodejs
         - yarn
-        - npm
         - jq
       become: true
 
