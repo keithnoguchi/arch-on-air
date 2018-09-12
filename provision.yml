@@ -8,79 +8,88 @@
   gather_facts: false
   tasks:
     - name: install console apps
-      pacman: name={{ item }} state=present force=true update_cache=true
-      with_items:
-        - vim
-        - git
-        - tmux
-        - mutt
-        - tree
-        - cscope
-        - irssi
-        - elinks
-        - acpi
-        - dialog
-        - aspell
-        - aspell-en
-        - picocom
-        - moreutils
-        - dosfstools
-        - pulseaudio
-        - pulseaudio-alsa
-        - alsa-utils
+      pacman:
+        name:
+          - vim
+          - git
+          - tmux
+          - mutt
+          - tree
+          - cscope
+          - irssi
+          - elinks
+          - acpi
+          - dialog
+          - aspell
+          - aspell-en
+          - picocom
+          - moreutils
+          - dosfstools
+          - pulseaudio
+          - pulseaudio-alsa
+          - alsa-utils
+        state: present
+        force: true
+        update_cache: true
       become: true
 
     - name: install network tools
-      pacman: name={{ item }} state=present force=true update_cache=false
-      with_items:
-        - wget
-        - curl
-        - nmap
-        - tcpdump
-        - ethtool
-        - traceroute
-        - net-tools
-        - bind-tools
-        - conntrack-tools
-        - gnu-netcat
-        - mtr
-        - rsync
-        - ebtables
-        - dnsmasq
-        - openconnect
-        - wpa_supplicant
-        - ipcalc
-        - avahi
-        - nss-mdns
-        - wireshark-cli
+      pacman:
+        name:
+          - wget
+          - curl
+          - nmap
+          - tcpdump
+          - ethtool
+          - traceroute
+          - net-tools
+          - bind-tools
+          - conntrack-tools
+          - gnu-netcat
+          - mtr
+          - rsync
+          - ebtables
+          - dnsmasq
+          - openconnect
+          - wpa_supplicant
+          - ipcalc
+          - avahi
+          - nss-mdns
+          - wireshark-cli
+        state: present
+        force: true
+        update_cache: false
       become: true
 
     - name: install graphical libraries & tools
-      pacman: name={{ item }} state=present force=true update_cache=true
-      with_items:
-        - gcr
-        - libxft
-        - libxinerama
-        - xf86-video-intel
-        - xf86-input-libinput
-        - xf86-input-synaptics
-        - xorg-server
-        - xorg-xinit
-        - xorg-xset
-        - xorg-xsetroot
-        - xorg-xinput
-        - xorg-xprop
-        - xcb-util-image
-        - xcb-util-keysyms
-        - ttf-freefont
-        - gtk3
-        - webkit2gtk
-        - mupdf
-        - chromium
-        - imagemagick
-        - qt5-svg
-        - qt5-webengine
-        - qt5-quickcontrols2
+      pacman:
+        name:
+          - gcr
+          - libxft
+          - libxinerama
+          - xf86-video-intel
+          - xf86-input-libinput
+          - xf86-input-synaptics
+          - xorg-server
+          - xorg-xinit
+          - xorg-xset
+          - xorg-xsetroot
+          - xorg-xinput
+          - xorg-xprop
+          - xcb-util-image
+          - xcb-util-keysyms
+          - ttf-freefont
+          - gtk3
+          - webkit2gtk
+          - mupdf
+          - chromium
+          - imagemagick
+          - qt5-svg
+          - qt5-webengine
+          - qt5-quickcontrols2
+        state: present
+        force: true
+        update_cache: true
       become: true
 
     - name: add user to uucp for picocom and wireshark for tshark
