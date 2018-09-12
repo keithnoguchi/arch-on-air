@@ -9,6 +9,9 @@
   tasks:
     - name: install console apps
       pacman:
+        state: present
+        force: true
+        update_cache: true
         name:
           - vim
           - git
@@ -28,13 +31,13 @@
           - pulseaudio
           - pulseaudio-alsa
           - alsa-utils
-        state: present
-        force: true
-        update_cache: true
       become: true
 
     - name: install network tools
       pacman:
+        state: present
+        force: true
+        update_cache: false
         name:
           - wget
           - curl
@@ -56,13 +59,13 @@
           - avahi
           - nss-mdns
           - wireshark-cli
-        state: present
-        force: true
-        update_cache: false
       become: true
 
     - name: install graphical libraries & tools
       pacman:
+        state: present
+        force: true
+        update_cache: true
         name:
           - gcr
           - libxft
@@ -87,9 +90,6 @@
           - qt5-svg
           - qt5-webengine
           - qt5-quickcontrols2
-        state: present
-        force: true
-        update_cache: true
       become: true
 
     - name: add user to uucp for picocom and wireshark for tshark
@@ -140,10 +140,13 @@
       become: true
 
     - name: install minimum developer tools for suckless and more!
-      pacman: name={{ item }} state=present force=true update_cache=false
-      with_items:
-        - gcc
-        - make
+      pacman:
+        state: present
+        force: true
+        update_cache: false
+        name:
+          - gcc
+          - make
       become: true
 
     - name: create git root directory

@@ -1,9 +1,12 @@
 ---
 - name: install python2 for OvS
-  pacman: name={{ item }} state=present force=true update_cache=false
-  with_items:
-    - python2
-    - python2-six
+  pacman:
+    state: present
+    force: true
+    update_cache: false
+    name:
+      - python2
+      - python2-six
   become: true
 
 - name: git clone the latest OvS from github.com

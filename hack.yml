@@ -10,59 +10,66 @@
   gather_facts: true
   tasks:
     - name: additional developer tools
-      pacman: name={{ item }} state=present update_cache=false
-      with_items:
-        - linux-headers
-        - yasm
-        - binutils
-        - bc
-        - bison
-        - flex
-        - clang
-        - llvm
-        - gdb
-        - go
-        - patch
-        - m4
-        - autoconf
-        - automake
-        - libtool
-        - pkg-config
-        - numactl
-        - fakeroot
-        - unzip
-        - nodejs
-        - yarn
-        - jq
+      pacman:
+        state: present
+        update_cache: false
+        name:
+          - linux-headers
+          - yasm
+          - binutils
+          - bc
+          - bison
+          - flex
+          - clang
+          - llvm
+          - gdb
+          - go
+          - patch
+          - m4
+          - autoconf
+          - automake
+          - libtool
+          - pkg-config
+          - numactl
+          - fakeroot
+          - unzip
+          - nodejs
+          - yarn
+          - jq
       become: true
 
     # https://wiki.archlinux.org/index.php/improving_performance
     - name: install perf tools!
-      pacman: name={{ item }} state=present update_cache=false
-      with_items:
-        - time
-        - perf
-        - netperf
-        - iperf3
-        - stress
-        - sysstat
-        - strace
+      pacman:
+        state: present
+        update_cache: false
+        name:
+          - time
+          - perf
+          - netperf
+          - iperf3
+          - stress
+          - sysstat
+          - strace
       become: true
 
     - name: install kvm/container to create virtual environment
-      pacman: name={{ item }} state=present force=true update_cache=false
-      with_items:
-        - qemu-headless
-        - libvirt
-        - libvirt-python
-        - virt-install
-        - virt-viewer
-        - tigervnc
-        - docker
-        - python-lxml
-        - python-virtualenv
-        - python2-docker
-        - python2-requests
+      pacman:
+        state: present
+        force: true
+        update_cache: false
+        name:
+          - qemu-headless
+          - libvirt
+          - libvirt-python
+          - virt-install
+          - virt-viewer
+          - tigervnc
+          - docker
+          - python-lxml
+          - python-virtualenv
+          - python2-docker
+          - python2-requests
       become: true
 
     - name: add user to the libvirt/container groups

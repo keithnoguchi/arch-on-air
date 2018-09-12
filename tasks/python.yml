@@ -1,15 +1,17 @@
 ---
 - name: install mariadb library
-  pacman: name={{ item }} state=present force=true update_cache=false
-  with_items:
-    - libmariadbclient
+  pacman:
+    state: present
+    force: true
+    update_cache: false
+    name:
+      - libmariadbclient
   become: true
 
 - name: install python standard packages
   pip:
-    name: "{{ item }}"
-  with_items:
-    - docker
-    - py-mysql
-    - csvkit
+    name:
+      - docker
+      - py-mysql
+      - csvkit
   become: true
