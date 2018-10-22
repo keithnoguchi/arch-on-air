@@ -36,6 +36,7 @@
           - nodejs
           - yarn
           - jq
+          - mariadb-clients
       become: true
 
     # https://wiki.archlinux.org/index.php/improving_performance
