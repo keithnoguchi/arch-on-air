@@ -147,6 +147,7 @@
         name:
           - gcc
           - make
+          - pkgconf
       become: true
 
     - name: create git root directory
