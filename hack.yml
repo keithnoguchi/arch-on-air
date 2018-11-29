@@ -54,7 +54,7 @@
           - strace
       become: true
 
-    - name: install kvm/container to create virtual environment
+    - name: install kvm/container for the virtual environment
       pacman:
         state: present
         force: true
