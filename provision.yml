@@ -28,6 +28,7 @@
           - picocom
           - moreutils
           - dosfstools
+          - exfat-utils
           - pulseaudio
           - pulseaudio-alsa
           - alsa-utils
