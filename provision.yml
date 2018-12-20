@@ -32,6 +32,8 @@
           - pulseaudio
           - pulseaudio-alsa
           - alsa-utils
+          - rng-tools
+          - haveged
       become: true
 
     - name: install network tools
