@@ -51,3 +51,6 @@
 
     - name: let's suckless!
       import_tasks: tasks/suckless.yml
+
+    - name: we need sounds!
+      import_tasks: tasks/audio.yml

@@ -3,8 +3,6 @@
   hosts: arch
   vars:
     travis_ci: false
-    gitsite: "git@github.com:"
-    gitpath: "{{ lookup('env', 'HOME') }}/git/"
   gather_facts: false
   tasks:
     - name: install console apps
@@ -28,7 +26,6 @@
           - picocom
           - moreutils
           - dosfstools
-          - exfat-utils
           - pulseaudio
           - pulseaudio-alsa
           - alsa-utils
@@ -110,7 +107,7 @@
         line: 'hosts: files mymachines myhostname mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns'
       become: true
 
-    - name: install minimum developer tools for suckless and more!
+    - name: install minimum developer tools
       pacman:
         state: present
         force: true
@@ -121,8 +118,8 @@
           - pkgconf
       become: true
 
-    - name: create git root directory
-      file: path={{ gitpath }} state=directory mode=0700
-
-    - name: we need sounds!
-      import_tasks: tasks/audio.yml
+    - name: create git and src directories for having fun
+      file: path={{ lookup('env', 'HOME') }}/{{ item }} state=directory mode=0700
+      with_items:
+        - git
+        - src
