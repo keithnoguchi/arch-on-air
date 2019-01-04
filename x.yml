@@ -1,0 +1,53 @@
+---
+- name: arch-on-air post-installation X playbook
+  hosts: arch
+  vars:
+    travis_ci: false
+    gitsite: "git@github.com:"
+    gitpath: "{{ lookup('env', 'HOME') }}/git/"
+  gather_facts: false
+  tasks:
+    - name: install graphical libraries & tools
+      pacman:
+        state: present
+        force: true
+        update_cache: true
+        name:
+          - gcr
+          - libxft
+          - libxinerama
+          - xf86-video-intel
+          - xf86-input-libinput
+          - xf86-input-synaptics
+          - xorg-server
+          - xorg-xinit
+          - xorg-xset
+          - xorg-xsetroot
+          - xorg-xinput
+          - xorg-xprop
+          - xcb-util-image
+          - xcb-util-keysyms
+          - ttf-freefont
+          - gtk3
+          - webkit2gtk
+          - mupdf
+          - chromium
+          - imagemagick
+          - qt5-svg
+          - qt5-webengine
+          - qt5-quickcontrols2
+      become: true
+
+    - name: copy files under /etc
+      copy:
+        src: "files/etc/{{ item }}"
+        dest: "/etc/{{ item }}"
+        mode: 0644
+        owner: root
+        group: root
+      with_items:
+        - X11/xorg.conf.d/
+      become: true
+
+    - name: let's suckless!
+      import_tasks: tasks/suckless.yml
