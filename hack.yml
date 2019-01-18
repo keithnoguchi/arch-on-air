@@ -24,6 +24,7 @@
           - llvm
           - gdb
           - go
+          - clisp
           - patch
           - m4
           - autoconf
