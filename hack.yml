@@ -23,6 +23,7 @@
           - clang
           - llvm
           - gdb
+          - valgrind
           - go
           - clisp
           - patch
@@ -68,6 +69,8 @@
           - virt-viewer
           - tigervnc
           - docker
+          - python
+          - python-pip
           - python-lxml
           - python-virtualenv
           - python2-docker
