@@ -43,7 +43,7 @@ jobs:
     steps:
       - run:
           name: install tar to attach to the workspace
-          command: pacman -Sy --noconfirm tar
+          command: pacman -Sy --noconfirm tar gcc make grep git python python-pip
       - attach_workspace:
           at: /
       - run: SUDO= make test
