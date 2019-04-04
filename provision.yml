@@ -84,6 +84,7 @@
       with_items:
         - systemd-networkd
         - systemd-resolved
+        - haveged
         - avahi-daemon
       become: true
       when: not travis_ci|bool
