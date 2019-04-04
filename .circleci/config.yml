@@ -1,0 +1,50 @@
+---
+version: 2
+default: &defaults
+  working_directory: /home/circleci/project/arch-on-air
+  docker:
+    - image: archlinux/base:latest
+workflows:
+  version: 2
+  build_clean:
+    jobs:
+      - checkout
+      - test:
+          requires:
+            - checkout
+jobs:
+  checkout:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Install kernel source code and the build tools
+          command: |
+            pacman -Sy --noconfirm linux linux-headers gcc make grep
+      - persist_to_workspace:
+          root: /
+          paths:
+            - lib/modules/
+            - usr/bin/as
+            - usr/bin/ld
+            - usr/bin/gcc
+            - usr/bin/make
+            - usr/bin/grep
+            - usr/lib/libopcodes-*
+            - usr/lib/libbfd-*
+            - usr/lib/libgc.so*
+            - usr/lib/libmpc.so*
+            - usr/lib/libmpfr.so*
+            - usr/lib/libltdl.so*
+            - usr/lib/libguile-2.2.so*
+            - usr/lib/gcc/x86_64-pc-linux-gnu
+            - home/circleci/project/arch-on-air
+  test:
+    <<: *defaults
+    steps:
+      - run:
+          name: install tar to attach to the workspace
+          command: pacman -Sy --noconfirm tar
+      - attach_workspace:
+          at: /
+      - run: make test
