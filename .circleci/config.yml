@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Install kernel source code and the build tools
           command: |
-            pacman -Sy --noconfirm gcc make grep sudo
+            pacman -Sy --noconfirm gcc make grep
       - persist_to_workspace:
           root: /
           paths:
@@ -37,9 +37,6 @@ jobs:
             - usr/lib/libltdl.so*
             - usr/lib/libguile-2.2.so*
             - usr/lib/gcc/x86_64-pc-linux-gnu
-            - etc/sudoers
-            - usr/bin/sudo
-            - usr/lib/sudo
             - home/circleci/project/arch-on-air
   test:
     <<: *defaults
@@ -49,4 +46,4 @@ jobs:
           command: pacman -Sy --noconfirm tar
       - attach_workspace:
           at: /
-      - run: make test
+      - run: SUDO= make test

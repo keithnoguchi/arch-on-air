@@ -1,3 +1,4 @@
+SUDO ?= sudo
 all: main
 
 .PHONY: main provision hack
@@ -9,8 +10,8 @@ main provision game hack:
 ansible: clean
 	git clone https://github.com/ansible/ansible .ansible
 	cd .ansible \
-		&& sudo pip install -r requirements.txt \
-		&& sudo python setup.py install 2>&1 > /dev/null
+		&& $(SUDO) pip install -r requirements.txt \
+		&& $(SUDO) python setup.py install 2>&1 > /dev/null
 
 ping:
 	ansible -vvv -m ping -i inventory.ini -c local host
@@ -20,5 +21,5 @@ test: ansible ping
 		-e travis_ci=true -e gitsite=https://github.com/
 
 clean:
-	sudo $(RM) -rf .ansible
+	$(SUDO) $(RM) -rf .ansible
 	$(RM) *.bak *.retry .*.sw? **/.*.sw?
