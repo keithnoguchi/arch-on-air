@@ -1,14 +1,13 @@
 # Arch-on-Air
 
-[![Build Status](https://travis-ci.org/keinohguchi/arch-on-air.svg)](https://travis-ci.org/keinohguchi/arch-on-air)
+[![CircleCI]](https://circleci.com/gh/keinohguchi/workflows/arch-on-air)
+[![TravisCI]](https://travis-ci.org/keinohguchi/arch-on-air)
 
 Yet another note on *Let's make ArchLinux up and running on MacBook Air!*
 
 This is one way, or I would say, *my way*, of running *Arch* on *Air*,
-based on the official
-[ArchLinux on MacBook(Air) wifi](https://wiki.archlinux.org/index.php/MacBook)
-and
-[Arch Installation guide](https://wiki.archlinux.org/index.php/installation_guide).
+based on the official [ArchLinux on MacBook(Air) wifi] and
+[Arch Installation guide].
 
 - [Spec](#spec)
 - [Pre-installation](#pre-installation)
@@ -16,6 +15,11 @@ and
 - [Post-installation](#post-installation)
 
 Buckle up and let's roll!
+
+[CircleCI]: https://circleci.com/gh/keinohguchi/arch-on-air.svg?style=svg
+[TravisCI]: https://travis-ci.org/keinohguchi/arch-on-air.svg
+[ArchLinux on MacBook(Air) wifi]: https://wiki.archlinux.org/index.php/MacBook
+[Arch Installation guide]: https://wiki.archlinux.org/index.php/installation_guide
 
 ## Spec
 
@@ -613,7 +617,8 @@ root@archiso ~ # reboot
 
 ## Post-installation
 
-[![Build Status](https://travis-ci.org/keinohguchi/arch-on-air.svg)](https://travis-ci.org/keinohguchi/arch-on-air)
+[![CircleCI]](https://circleci.com/gh/keinohguchi/workflows/arch-on-air)
+[![TravisCI]](https://travis-ci.org/keinohguchi/arch-on-air)
 
 I usually run [provision.yml] [Ansible] playbook to provision the arch
 as a post-installation process.  All you need is grab those minimum packages
