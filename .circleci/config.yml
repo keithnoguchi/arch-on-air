@@ -12,7 +12,10 @@ workflows:
       - ansible:
           requires:
             - checkout
-      - test:
+      - provision:
+          requires:
+            - checkout
+      - all:
           requires:
             - checkout
 jobs:
@@ -36,7 +39,7 @@ jobs:
       - attach_workspace:
           at: .
       - run: SUDO= make ansible
-  test:
+  provision:
     <<: *defaults
     steps:
       - run:
@@ -44,4 +47,13 @@ jobs:
           command: pacman -Sy --noconfirm tar gcc make grep git python python-pip
       - attach_workspace:
           at: .
-      - run: SUDO= make test
+      - run: SUDO= make ansible provision
+  all:
+    <<: *defaults
+    steps:
+      - run:
+          name: install tar and other tools to run the test
+          command: pacman -Sy --noconfirm tar gcc make grep git python python-pip
+      - attach_workspace:
+          at: .
+      - run: SUDO= make all
