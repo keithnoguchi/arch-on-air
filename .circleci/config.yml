@@ -17,15 +17,16 @@ workflows:
             - checkout
       - all:
           requires:
-            - checkout
+            - ansible
+            - provision
 jobs:
   checkout:
     <<: *defaults
     steps:
-      - checkout
       - run:
-          name: install tar to build the workspace
-          command: pacman -Sy --noconfirm tar
+          name: install tar and git to build the workspace
+          command: pacman -Sy --noconfirm tar git
+      - checkout
       - persist_to_workspace:
           root: /home/circleci/project/arch-on-air
           paths:
