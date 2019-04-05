@@ -1,10 +1,13 @@
-SUDO ?= sudo
+SUDO   ?= sudo
+CI     ?= false
+GITURL ?= "git@github.com:"
 all: ansible ping
 	ansible-playbook -vvv main.yml -e latest=true -c local \
-		-e travis_ci=true -e gitsite=https://github.com/
+		-e travis_ci=$(CI) -e gitsite=$(GITURL)
 .PHONY: main provision x game hack ansible ping clean
 main provision x game hack:
-	@ansible-playbook $@.yml -e latest=true
+	@ansible-playbook $@.yml -e latest=true \
+		-e travis_ci=$(CI) -e gitsite=$(GITURL)
 ansible:
 	git clone https://github.com/ansible/ansible .ansible
 	cd .ansible \

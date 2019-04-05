@@ -47,7 +47,7 @@ jobs:
           command: pacman -Sy --noconfirm tar gcc make grep git python python-pip
       - attach_workspace:
           at: .
-      - run: SUDO= make ansible provision
+      - run: SUDO= CI=true GITURL=https://github.com/ make ansible provision
   all:
     <<: *defaults
     steps:
@@ -56,4 +56,4 @@ jobs:
           command: pacman -Sy --noconfirm tar gcc make grep git python python-pip
       - attach_workspace:
           at: .
-      - run: SUDO= make all
+      - run: SUDO= CI=true GITURL=https://github.com/ make all

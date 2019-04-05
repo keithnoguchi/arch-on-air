@@ -40,7 +40,7 @@ arch:
     # script run under chrooted environment
     #- "sudo screenfetch"
     #- "reflector --verbose -l 20 --sort rate -p https"
-    - "sudo -E make all"
+    - "CI=true GITURL=https://github.com/ sudo -E make all"
 
 script:
   - if [[ "${ARCH_TRAVIS_CLEAN_CHROOT}" == "1" ]]; then curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash; fi
