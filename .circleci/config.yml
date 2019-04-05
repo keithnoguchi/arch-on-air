@@ -32,7 +32,7 @@ jobs:
     steps:
       - run:
           name: install tar and other tools to build the latest ansible
-          command: pacman -Sy --noconfirm tar make python python-pip
+          command: pacman -Sy --noconfirm tar make git python python-pip
       - attach_workspace:
           at: .
       - run: SUDO= make ansible
