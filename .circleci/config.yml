@@ -17,33 +17,16 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run:
-          name: Install kernel source code and the build tools
-          command: |
-            pacman -Sy --noconfirm gcc make grep
       - persist_to_workspace:
-          root: /
+          root: /home/circleci/project/arch-on-air
           paths:
-            - usr/bin/as
-            - usr/bin/ld
-            - usr/bin/gcc
-            - usr/bin/make
-            - usr/bin/grep
-            - usr/lib/libopcodes-*
-            - usr/lib/libbfd-*
-            - usr/lib/libgc.so*
-            - usr/lib/libmpc.so*
-            - usr/lib/libmpfr.so*
-            - usr/lib/libltdl.so*
-            - usr/lib/libguile-2.2.so*
-            - usr/lib/gcc/x86_64-pc-linux-gnu
-            - home/circleci/project/arch-on-air
+            - .
   test:
     <<: *defaults
     steps:
       - run:
-          name: install tar to attach to the workspace
+          name: install tar and other tools to run the test
           command: pacman -Sy --noconfirm tar gcc make grep git python python-pip
       - attach_workspace:
-          at: /
+          at: .
       - run: SUDO= make test
