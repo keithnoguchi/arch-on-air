@@ -17,6 +17,9 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      - run:
+          name: install tar to build the workspace
+          command: pacman -Sy --noconfirm tar
       - persist_to_workspace:
           root: /home/circleci/project/arch-on-air
           paths:
