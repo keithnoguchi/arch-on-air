@@ -9,6 +9,9 @@ workflows:
   build_clean:
     jobs:
       - checkout
+      - ansible:
+          requires:
+            - checkout
       - test:
           requires:
             - checkout
@@ -24,6 +27,15 @@ jobs:
           root: /home/circleci/project/arch-on-air
           paths:
             - .
+  ansible:
+    <<: *defaults
+    steps:
+      - run:
+          name: install tar and other tools to build the latest ansible
+          command: pacman -Sy --noconfirm tar gcc make grep git python python-pip
+      - attach_workspace:
+          at: .
+      - run: SUDO= make ansible
   test:
     <<: *defaults
     steps:
