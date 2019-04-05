@@ -24,8 +24,8 @@ jobs:
     <<: *defaults
     steps:
       - run:
-          name: install tar and git to build the workspace
-          command: pacman -Sy --noconfirm tar git
+          name: install tar and git/ssh to checkout and create a workspace
+          command: pacman -Sy --noconfirm tar git openssh
       - checkout
       - persist_to_workspace:
           root: /home/circleci/project/arch-on-air
