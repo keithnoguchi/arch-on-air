@@ -5,6 +5,9 @@
 - name: graphics
   import_playbook: x.yml
 
+- name: let's hack!
+  import_playbook: hack.yml
+
 - name: let's game!
   import_playbook: game.yml
   when: not travis_ci|bool
