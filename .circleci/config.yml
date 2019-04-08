@@ -49,7 +49,7 @@ jobs:
     steps:
       - run:
           name: install tar and other tools to run the test
-          command: pacman -Sy --noconfirm tar ansible
+          command: pacman -Sy --noconfirm tar make ansible
       - attach_workspace:
           at: .
       - run: SUDO= CI=true GITURL=https://github.com/ make provision
@@ -58,7 +58,7 @@ jobs:
     steps:
       - run:
           name: install tar and other tools to run the test
-          command: pacman -Sy --noconfirm tar ansible
+          command: pacman -Sy --noconfirm tar make ansible
       - attach_workspace:
           at: .
       - run: SUDO= CI=true GITURL=https://github.com/ make hack
@@ -67,7 +67,7 @@ jobs:
     steps:
       - run:
           name: install tar and other tools to run the test
-          command: pacman -Sy --noconfirm tar gcc make grep git python python-pip
+          command: pacman -Sy --noconfirm tar gcc make git python python-pip
       - attach_workspace:
           at: .
       - run: SUDO= CI=true GITURL=https://github.com/ make all
