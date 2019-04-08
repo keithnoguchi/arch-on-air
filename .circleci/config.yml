@@ -6,7 +6,7 @@ default: &defaults
     - image: archlinux/base:latest
 workflows:
   version: 2
-  checkout_ansible_provision_all:
+  checkout_ansible_provision_hack_all:
     jobs:
       - checkout
       - ansible:
@@ -15,10 +15,14 @@ workflows:
       - provision:
           requires:
             - checkout
+      - hack:
+          requires:
+            - checkout
       - all:
           requires:
             - ansible
             - provision
+            - hack
 jobs:
   checkout:
     <<: *defaults
@@ -49,6 +53,15 @@ jobs:
       - attach_workspace:
           at: .
       - run: SUDO= CI=true GITURL=https://github.com/ make ansible provision
+  hack:
+    <<: *defaults
+    steps:
+      - run:
+          name: install tar and other tools to run the test
+          command: pacman -Sy --noconfirm tar gcc make grep git python python-pip
+      - attach_workspace:
+          at: .
+      - run: SUDO= CI=true GITURL=https://github.com/ make ansible hack
   all:
     <<: *defaults
     steps:
