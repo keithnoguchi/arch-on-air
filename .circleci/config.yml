@@ -3,7 +3,7 @@ version: 2
 default: &defaults
   working_directory: /home/circleci/project/arch-on-air
   docker:
-    - image: archlinux/base:latest
+    - image: keinohguchi/archlinux:latest
 workflows:
   version: 2
   checkout_ansible_provision_hack_all:
