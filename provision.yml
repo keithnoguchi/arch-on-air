@@ -30,7 +30,6 @@
           - pulseaudio-alsa
           - alsa-utils
           - rng-tools
-          - haveged
       become: true
 
     - name: install network tools
@@ -84,7 +83,7 @@
       with_items:
         - systemd-networkd
         - systemd-resolved
-        - haveged
+        - rngd
         - avahi-daemon
       become: true
       when: not travis_ci|bool
