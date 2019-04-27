@@ -26,6 +26,7 @@
           - valgrind
           - go
           - clisp
+          - wabt
           - patch
           - m4
           - autoconf
