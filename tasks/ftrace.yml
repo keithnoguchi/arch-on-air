@@ -1,0 +1,26 @@
+- name: clone the ftrace git repo
+  git:
+    repo: "https://git.kernel.org/pub/scm/linux/kernel/git/rostedt/trace-cmd"
+    dest: "{{ gitpath }}trace-cmd"
+    update: yes
+    ssh_opts: "-o StrictHostKeyChecking=no"
+  register: git
+
+- name: build ftrace!
+  make:
+    chdir: "{{ gitpath }}trace-cmd"
+    target: "{{ item }}"
+  with_items:
+    - all
+    - doc
+  when: git.before != git.after
+
+- name: install ftrace command
+  make:
+    chdir: "{{ gitpath }}trace-cmd"
+    target: "{{ item }}"
+  with_items:
+    - install
+    - install_doc
+  become: true
+  when: git.before != git.after
