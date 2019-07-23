@@ -27,7 +27,7 @@
           - xorg-xprop
           - xcb-util-image
           - xcb-util-keysyms
-          - ttf-freefont
+          - gnu-free-fonts
           - gtk3
           - webkit2gtk
           - mupdf
