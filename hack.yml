@@ -25,6 +25,7 @@
           - llvm
           - gdb
           - valgrind
+          - dtc
           - go
           - clisp
           - wabt
