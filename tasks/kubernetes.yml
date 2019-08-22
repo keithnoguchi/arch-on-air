@@ -1,8 +1,0 @@
----
-- name: build & install the latest kubernetes
-  make:
-    chdir: "{{ lookup('env', 'GOPATH') }}/src/k8s.io/kubernetes"
-  environment:
-    GOROOT: "{{ lookup('env', 'GOROOT') }}"
-    GOPATH: "{{ lookup('env', 'GOPATH') }}"
-    PATH: "{{ lookup('env', 'GOROOT') }}/bin:{{ lookup('env', 'GOPATH') }}/bin:/usr/bin:/bin"
