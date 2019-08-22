@@ -36,6 +36,7 @@
           - libtool
           - pkg-config
           - cmake
+          - gtest
           - numactl
           - fakeroot
           - unzip
