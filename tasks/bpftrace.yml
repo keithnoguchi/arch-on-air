@@ -1,0 +1,41 @@
+- name: clone the bcc and bpftrace git repo
+  git:
+    repo: "https://github.com/iovisor/{{ item }}"
+    dest: "{{ gitpath }}{{ item }}"
+    update: yes
+    ssh_opts: "-o StrictHostKeyChecking=no"
+  with_items:
+    - bcc
+    - bpftrace
+
+- name: create build directories
+  file:
+    path: "{{ gitpath }}{{ item }}/build"
+    state: directory
+  with_items:
+    - bcc
+    - bpftrace
+
+- name: setup the build environment with cmake
+  command: cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+  args:
+    chdir: "{{ gitpath }}{{ item }}/build"
+  with_items:
+    - bcc
+    - bpftrace
+
+- name: build bcc and bpftrace
+  make:
+    chdir: "{{ gitpath }}{{ item }}/build"
+  with_items:
+    - bcc
+    - bpftrace
+
+- name: install bcc and bpftrace commands
+  make:
+    chdir: "{{ gitpath }}{{ item }}/build"
+    target: install
+  with_items:
+    - bcc
+    - bpftrace
+  become: true

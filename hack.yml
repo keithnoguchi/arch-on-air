@@ -64,5 +64,8 @@
     - name: install ftrace, kernel tracer
       import_tasks: tasks/ftrace.yml
 
+    - name: install bpftrace to trace anything
+      import_tasks: tasks/bpftrace.yml
+
     - name: install the latest golang
       import_tasks: tasks/golang.yml
