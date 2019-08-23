@@ -41,7 +41,7 @@
   become: true
 
 - name: make bpftrace files executable
-  shell: chmod u+x /usr/share/{{ item }}/tools/*.bt
+  shell: chmod ugo+x /usr/share/{{ item }}/tools/*.bt
   args:
     warn: false
   with_items:
