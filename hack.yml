@@ -64,6 +64,9 @@
     - name: install ftrace, kernel tracer
       import_tasks: tasks/ftrace.yml
 
+    - name: install bcc for BPF fun
+      import_tasks: tasks/bcc.yml
+
     - name: install bpftrace to trace anything
       import_tasks: tasks/bpftrace.yml
 
