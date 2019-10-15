@@ -1,7 +1,7 @@
 # Arch-on-Air
 
-[![CircleCI]](https://circleci.com/gh/keinohguchi/workflows/arch-on-air)
-[![TravisCI]](https://travis-ci.org/keinohguchi/arch-on-air)
+[![CircleCI]](https://circleci.com/gh/keithnoguchi/workflows/arch-on-air)
+[![TravisCI]](https://travis-ci.org/keithnoguchi/arch-on-air)
 
 Yet another note on *Let's make ArchLinux up and running on MacBook Air!*
 
@@ -16,8 +16,8 @@ based on the official [ArchLinux on MacBook(Air) wifi] and
 
 Buckle up and let's roll!
 
-[CircleCI]: https://circleci.com/gh/keinohguchi/arch-on-air.svg?style=svg
-[TravisCI]: https://travis-ci.org/keinohguchi/arch-on-air.svg
+[CircleCI]: https://circleci.com/gh/keithnoguchi/arch-on-air.svg?style=svg
+[TravisCI]: https://travis-ci.org/keithnoguchi/arch-on-air.svg
 [ArchLinux on MacBook(Air) wifi]: https://wiki.archlinux.org/index.php/MacBook
 [Arch Installation guide]: https://wiki.archlinux.org/index.php/installation_guide
 
@@ -617,8 +617,8 @@ root@archiso ~ # reboot
 
 ## Post-installation
 
-[![CircleCI]](https://circleci.com/gh/keinohguchi/workflows/arch-on-air)
-[![TravisCI]](https://travis-ci.org/keinohguchi/arch-on-air)
+[![CircleCI]](https://circleci.com/gh/keithnoguchi/workflows/arch-on-air)
+[![TravisCI]](https://travis-ci.org/keithnoguchi/arch-on-air)
 
 I usually run [provision.yml] [Ansible] playbook to provision the arch
 as a post-installation process.  All you need is grab those minimum packages
@@ -714,7 +714,7 @@ And let's install those through the [provision.yml](provision.yml)
 ansible playbook, as below:
 
 ```sh
-$ git clone https://github.com/keinohguchi/arch-on-air
+$ git clone https://github.com/keithnoguchi/arch-on-air
 $ cd arch-on-air
 $ ansible-playbook provision.yml
 ```
@@ -1167,7 +1167,7 @@ card 1: PCH [HDA Intel PCH], device 0: CS4208 Analog [CS4208 Analog]
   Subdevice #0: subdevice #0
 ```
 
-I use the [~/.asoundrc](https://github.com/keinohguchi/home/blob/master/.asoundrc)
+I use the [~/.asoundrc](https://github.com/keithnoguchi/home/blob/master/.asoundrc)
 file to set the default device, as explained in
 [ArchLinux wiki](https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture#Alternative_method):
 
