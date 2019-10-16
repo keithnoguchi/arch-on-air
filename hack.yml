@@ -55,6 +55,7 @@
         name:
           - time
           - perf
+          - strace
           - netperf
           - iperf3
           - stress
