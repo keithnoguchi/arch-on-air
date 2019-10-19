@@ -1,0 +1,21 @@
+---
+# https://github.com/rust-lang/rust#building-on-nix
+- name: clone the rust git repo
+  git:
+    repo: "{{ gitsite }}rust-lang/rust"
+    dest: "{{ gitpath }}rust"
+    update: yes
+    ssh_opts: "-o StrictHostKeyChecking=no"
+  register: git
+
+- name: copy config.toml to configure the build process
+  copy:
+    src: "files/local/rust/config.toml.example"
+    dest: "{{ gitpath }}/rust/config.toml"
+  when: git.before != git.after
+
+- name: build & install the latest rust
+  shell: ./x.py build && ./x.py install
+  args:
+    chdir: "{{ gitpath }}/rust"
+  when: git.before != git.after
