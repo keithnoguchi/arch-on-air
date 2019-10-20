@@ -34,8 +34,8 @@
           - m4
           - autoconf
           - automake
+          - pkgconf
           - libtool
-          - pkg-config
           - cmake
           - gtest
           - numactl
