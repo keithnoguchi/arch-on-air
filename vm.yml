@@ -21,7 +21,6 @@
           - virt-install
           - virt-viewer
           - tigervnc
-          - docker
           - python
           - python-pip
           - python-lxml
@@ -32,7 +31,7 @@
       user:
         name: "{{ lookup('env', 'USER') }}"
         append: true
-        groups: libvirt,docker
+        groups: libvirt
       become: true
       when: not travis_ci|bool
 
@@ -56,12 +55,11 @@
         mode: 0644
       become: true
 
-    - name: enable libvirt and docker services
+    - name: enable libvirt services
       systemd: name={{ item }} enabled=true state=started
       with_items:
         - libvirtd
         - virtlogd
-        - docker
       become: true
       when: not travis_ci|bool
 

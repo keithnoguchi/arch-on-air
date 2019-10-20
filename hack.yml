@@ -25,6 +25,7 @@
           - llvm
           - gdb
           - valgrind
+          - docker
           - dtc
           - go
           - clisp
@@ -61,6 +62,20 @@
           - stress
           - sysstat
       become: true
+
+    - name: add user to docker group
+      user:
+        name: "{{ lookup('env', 'USER') }}"
+        append: true
+        groups: docker
+      become: true
+
+    - name: enable basic services
+      systemd: name={{ item }} enabled=true
+      with_items:
+        - docker
+      become: true
+      when: not travis_ci|bool
 
     - name: install ftrace, kernel tracer
       import_tasks: tasks/ftrace.yml

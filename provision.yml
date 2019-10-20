@@ -78,7 +78,7 @@
         - cap_net_admin+eip
       become: true
 
-    - name: enable basic systemd services
+    - name: enable basic system services
       systemd: name={{ item }} enabled=true
       with_items:
         - systemd-networkd
