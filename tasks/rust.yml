@@ -14,8 +14,20 @@
     dest: "{{ gitpath }}/rust/config.toml"
   when: git.before != git.after
 
-- name: build & install the latest rust
-  shell: ./x.py build && ./x.py install
+- name: build the latest Rust
+  shell: ./x.py build
+  args:
+    chdir: "{{ gitpath }}/rust"
+  when: git.before != git.after
+
+- name: install the latest Rust
+  shell: ./x.py install
+  args:
+    chdir: "{{ gitpath }}/rust"
+  when: git.before != git.after
+
+- name: build the Rust documentation
+  shell: ./x.py install
   args:
     chdir: "{{ gitpath }}/rust"
   when: git.before != git.after
