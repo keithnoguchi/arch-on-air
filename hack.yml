@@ -56,12 +56,12 @@
         name:
           - time
           - perf
-          - strace
           - netperf
           - iperf3
           - stress
           - sysstat
           - sysbench
+          - sysdig
       become: true
 
     - name: add user to docker group
