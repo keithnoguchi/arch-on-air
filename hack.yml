@@ -61,6 +61,7 @@
           - iperf3
           - stress
           - sysstat
+          - sysbench
       become: true
 
     - name: add user to docker group
