@@ -78,6 +78,13 @@
       become: true
       when: not travis_ci|bool
 
+    # https://github.com/rust-lang/rust#building-on-nix
+    - name: install the latest rust
+      import_tasks: tasks/rust.yml
+
+    - name: install the latest golang
+      import_tasks: tasks/golang.yml
+
     - name: install ftrace, kernel tracer
       import_tasks: tasks/ftrace.yml
 
@@ -86,10 +93,3 @@
 
     - name: install bpftrace to trace anything
       import_tasks: tasks/bpftrace.yml
-
-    # https://github.com/rust-lang/rust#building-on-nix
-    - name: install the latest rust
-      import_tasks: tasks/rust.yml
-
-    - name: install the latest golang
-      import_tasks: tasks/golang.yml
