@@ -30,6 +30,7 @@
           - pulseaudio-alsa
           - alsa-utils
           - rng-tools
+          - docker
       become: true
 
     - name: install network tools
@@ -60,11 +61,11 @@
           - wireshark-cli
       become: true
 
-    - name: add user to uucp for picocom and wireshark for tshark
+    - name: add user to uucp for picocom, wireshark for tshark, docker for docker
       user:
         name: "{{ lookup('env', 'USER') }}"
         append: true
-        groups: uucp,wireshark
+        groups: uucp,wireshark,docker
       become: true
       when: not travis_ci|bool
 
@@ -85,6 +86,7 @@
         - systemd-resolved
         - rngd
         - avahi-daemon
+        - docker
       become: true
       when: not travis_ci|bool
 
