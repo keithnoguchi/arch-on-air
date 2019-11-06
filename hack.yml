@@ -24,6 +24,7 @@
           - clang
           - llvm
           - gdb
+          - lldb
           - valgrind
           - dtc
           - go
