@@ -25,6 +25,7 @@
           - xorg-xsetroot
           - xorg-xinput
           - xorg-xprop
+          - xclip
           - xcb-util-image
           - xcb-util-keysyms
           - gnu-free-fonts
