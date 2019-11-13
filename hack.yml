@@ -2,8 +2,8 @@
 - name: arch-on-air hack playbook
   hosts: arch
   vars:
+    ci: false
     latest: false
-    travis_ci: false
     gitsite: "git@github.com:"
     gitpath: "{{ lookup('env', 'HOME') }}/git/"
     gobootstrap: /usr/lib/go
@@ -67,15 +67,33 @@
     # https://github.com/rust-lang/rust#building-on-nix
     - name: install the latest rust
       import_tasks: tasks/rust.yml
+      when: latest|bool
 
     - name: install the latest golang
       import_tasks: tasks/golang.yml
+      when: latest|bool
 
     - name: install ftrace, kernel tracer
       import_tasks: tasks/ftrace.yml
+      when: latest|bool
 
     - name: install bcc for BPF fun
       import_tasks: tasks/bcc.yml
+      when: latest|bool
 
     - name: install bpftrace to trace anything
       import_tasks: tasks/bpftrace.yml
+      when: latest|bool
+
+    - name: install local RabbitMQ message broker
+      import_tasks: tasks/rabbit.yml
+      vars:
+        scheme: amqp
+        username: rabbit
+        password: RabbitMQ
+        cluster: "localhost:5672"
+        vhost: hole
+        configure_priv: ".*"
+        read_priv: ".*"
+        write_priv: ".*"
+      when: not ci|bool
