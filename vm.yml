@@ -26,6 +26,7 @@
           - python-lxml
           - python-virtualenv
           - minikube
+          - helm
       become: true
 
     - name: add user to the libvirt/container groups
