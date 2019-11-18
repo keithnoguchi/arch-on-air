@@ -62,6 +62,7 @@
           - sysstat
           - sysbench
           - sysdig
+          - fio
       become: true
 
     # https://github.com/rust-lang/rust#building-on-nix
