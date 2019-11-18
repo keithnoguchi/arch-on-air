@@ -63,6 +63,7 @@
           - sysbench
           - sysdig
           - fio
+          - iotop
       become: true
 
     # https://github.com/rust-lang/rust#building-on-nix
