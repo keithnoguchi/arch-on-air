@@ -93,8 +93,8 @@
         scheme: amqp
         username: rabbit
         password: RabbitMQ
-        cluster: "localhost:5672"
-        vhost: hole
+        cluster: "127.0.0.1:5672"
+        vhost: mx
         configure_priv: ".*"
         read_priv: ".*"
         write_priv: ".*"
