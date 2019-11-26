@@ -14,6 +14,7 @@
         state: present
         update_cache: false
         name:
+          - archiso
           - linux-headers
           - yasm
           - binutils
