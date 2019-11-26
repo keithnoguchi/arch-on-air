@@ -80,9 +80,5 @@
     - name: install the latest Open vSwitch
       import_tasks: tasks/openvswitch.yml
 
-    - name: install the latest protobuf
-      import_tasks: tasks/protobuf.yml
-      when: not travis_ci|bool
-
     - name: install the latest terraform
       import_tasks: tasks/terraform.yml

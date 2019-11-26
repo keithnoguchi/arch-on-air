@@ -40,6 +40,7 @@
           - gtest
           - numactl
           - fakeroot
+          - flatbuffers
           - unzip
           - nodejs
           - yarn
@@ -66,6 +67,19 @@
           - iotop
       become: true
 
+    - name: install local RabbitMQ message broker
+      import_tasks: tasks/rabbit.yml
+      vars:
+        scheme: amqp
+        username: rabbit
+        password: RabbitMQ
+        cluster: "127.0.0.1:5672"
+        vhost: mx
+        configure_priv: ".*"
+        read_priv: ".*"
+        write_priv: ".*"
+      when: not ci|bool
+
     # https://github.com/rust-lang/rust#building-on-nix
     - name: install the latest rust
       import_tasks: tasks/rust.yml
@@ -87,15 +101,6 @@
       import_tasks: tasks/bpftrace.yml
       when: latest|bool
 
-    - name: install local RabbitMQ message broker
-      import_tasks: tasks/rabbit.yml
-      vars:
-        scheme: amqp
-        username: rabbit
-        password: RabbitMQ
-        cluster: "127.0.0.1:5672"
-        vhost: mx
-        configure_priv: ".*"
-        read_priv: ".*"
-        write_priv: ".*"
-      when: not ci|bool
+    - name: install the latest protobuf
+      import_tasks: tasks/protobuf.yml
+      when: latest|bool

@@ -33,6 +33,7 @@
   systemd: name={{ item }} state=started
   with_items:
     - rabbitmq
+  become: true
 
 - name: create RabbitMQ vhost
   rabbitmq_vhost: name={{ vhost }} state=present
@@ -43,9 +44,8 @@
     user: "{{ username }}"
     password: "{{ password }}"
     state: present
-    permissions:
-      - vhost: "{{ vhost }}"
-        configure_priv: "{{ configure_priv }}"
-        read_priv: "{{ read_priv }}"
-        write_priv: "{{ write_priv }}"
+    vhost: "{{ vhost }}"
+    configure_priv: "{{ configure_priv }}"
+    read_priv: "{{ read_priv }}"
+    write_priv: "{{ write_priv }}"
   become: true
