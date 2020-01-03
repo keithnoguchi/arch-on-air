@@ -1,0 +1,15 @@
+---
+- name: install gcloud SDK
+  get_url:
+    url: https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-233.0.0-linux-x86_64.tar.gz
+    dest: /tmp/gcloud.tgz
+    mode: 0744
+
+- name: untar the gcloud SDK
+  unarchive:
+    src: /tmp/gcloud.tgz
+    dest: "{{ lookup('env', 'HOME') }}/src/"
+    remote_src: true
+
+- name: install the gcloud SDK
+  shell: "{{ lookup('env', 'HOME') }}/src/google-cloud-sdk/install.sh"

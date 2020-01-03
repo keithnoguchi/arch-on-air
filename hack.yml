@@ -81,6 +81,9 @@
         write_priv: ".*"
       when: not ci|bool
 
+    - name: install the latest gcloud
+      import_tasks: tasks/gcloud.yml
+
     # https://github.com/rust-lang/rust#building-on-nix
     - name: install the latest rust
       import_tasks: tasks/rust.yml
