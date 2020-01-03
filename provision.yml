@@ -84,6 +84,7 @@
       with_items:
         - systemd-networkd
         - systemd-resolved
+        - systemd-timesyncd
         - rngd
         - avahi-daemon
         - docker
