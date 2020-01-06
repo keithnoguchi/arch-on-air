@@ -63,6 +63,17 @@
           - iotop
       become: true
 
+    # https://rust-embedded.github.io/book/intro/install/linux.html
+    - name: cross compile environment
+      pacman:
+        state: present
+        update_cache: false
+        name:
+          - arm-none-eabi-gdb
+          - qemu-headless-arch-extra
+          - openocd
+      become: true
+
     - name: install local RabbitMQ message broker
       import_tasks: tasks/rabbit.yml
       vars:
