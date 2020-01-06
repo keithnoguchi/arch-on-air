@@ -5,6 +5,24 @@
     travis_ci: false
   gather_facts: false
   tasks:
+    - name: install fundamental developer tools
+      pacman:
+        state: present
+        force: true
+        update_cache: false
+        name:
+          - gcc
+          - make
+          - pkgconf
+          - go
+          - ruby
+          - ruby-irb
+          - clisp
+          - yasm
+          - wabt
+          - nodejs
+      become: true
+
     - name: install console apps
       pacman:
         state: present
@@ -108,17 +126,6 @@
         path: /etc/nsswitch.conf
         regexp: '^hosts:'
         line: 'hosts: files mymachines myhostname mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns'
-      become: true
-
-    - name: install minimum developer tools
-      pacman:
-        state: present
-        force: true
-        update_cache: false
-        name:
-          - gcc
-          - make
-          - pkgconf
       become: true
 
     - name: create git and src directories for having fun

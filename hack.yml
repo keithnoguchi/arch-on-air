@@ -16,7 +16,6 @@
         name:
           - archiso
           - linux-headers
-          - yasm
           - binutils
           - bc
           - bison
@@ -28,9 +27,6 @@
           - lldb
           - valgrind
           - dtc
-          - go
-          - clisp
-          - wabt
           - patch
           - m4
           - autoconf
@@ -43,7 +39,6 @@
           - fakeroot
           - flatbuffers
           - unzip
-          - nodejs
           - yarn
           - jq
           - asciidoc
