@@ -15,6 +15,7 @@
           - make
           - pkgconf
           - go
+          - rustup
           - ruby
           - ruby-irb
           - clisp
