@@ -19,6 +19,7 @@
           - ruby
           - ruby-irb
           - clisp
+          - jdk-openjdk
           - yasm
           - wabt
           - nodejs
