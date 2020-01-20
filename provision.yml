@@ -20,6 +20,7 @@
           - ruby-irb
           - clisp
           - jdk-openjdk
+          - maven
           - yasm
           - wabt
           - nodejs
