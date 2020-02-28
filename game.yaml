@@ -2,8 +2,8 @@
 - name: arch-on-air game playbook
   hosts: arch
   vars:
+    ci: false
     latest: false
-    travis_ci: false
   gather_facts: false
   tasks:
     - name: install ruby and libraries for games

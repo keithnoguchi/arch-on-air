@@ -1,7 +1,6 @@
 # Arch-on-Air
 
 [![CircleCI]](https://circleci.com/gh/keithnoguchi/workflows/arch-on-air)
-[![TravisCI]](https://travis-ci.org/keithnoguchi/arch-on-air)
 
 Yet another note on *Let's make ArchLinux up and running on MacBook Air!*
 
@@ -17,7 +16,6 @@ based on the official [ArchLinux on MacBook(Air) wifi] and
 Buckle up and let's roll!
 
 [CircleCI]: https://circleci.com/gh/keithnoguchi/arch-on-air.svg?style=svg
-[TravisCI]: https://travis-ci.org/keithnoguchi/arch-on-air.svg
 [ArchLinux on MacBook(Air) wifi]: https://wiki.archlinux.org/index.php/MacBook
 [Arch Installation guide]: https://wiki.archlinux.org/index.php/installation_guide
 
@@ -620,7 +618,7 @@ root@archiso ~ # reboot
 [![CircleCI]](https://circleci.com/gh/keithnoguchi/workflows/arch-on-air)
 [![TravisCI]](https://travis-ci.org/keithnoguchi/arch-on-air)
 
-I usually run [provision.yml] [Ansible] playbook to provision the arch
+I usually run [provision.yaml] [Ansible] playbook to provision the arch
 as a post-installation process.  All you need is grab those minimum packages
 manually with `pacman`:
 
@@ -642,16 +640,16 @@ air$ make ansible
 Now, you're ready to provision your air with the simple one liner:
 
 ```sh
-air$ ansible-playbook provision.yml
+air$ ansible-playbook provision.yaml
 ```
 
 This will install all the MVP packages, including X environment.
 
-[provision.yml]: ./provision.yml
+[provision.yaml]: provision.yaml
 [Ansible]: https://www.ansible.com
 
 You can also see it in action localy by running [$ make test](Makefile),
-as shown in the [.travis.yml](.travis.yml) [Travis](travis-ci.org)
+as shown in the [.travis.yaml](.travis.yaml) [Travis](travis-ci.org)
 configuration file.
 
 Following are more detailed information how to take care of the
@@ -710,13 +708,12 @@ I'm a big fan of console apps, and here is part of the list of those cool apps:
 - elinks
 - ...
 
-And let's install those through the [provision.yml](provision.yml)
-ansible playbook, as below:
+And let's install those through the [provision.yaml] ansible playbook, as below:
 
 ```sh
 $ git clone https://github.com/keithnoguchi/arch-on-air
 $ cd arch-on-air
-$ ansible-playbook provision.yml
+$ ansible-playbook provision.yaml
 ```
 
 ### Kernel

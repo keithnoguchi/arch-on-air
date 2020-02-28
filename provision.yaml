@@ -88,7 +88,7 @@
         append: true
         groups: uucp,wireshark,docker
       become: true
-      when: not travis_ci|bool
+      when: not ci|bool
 
     - name: capabilities for wireshark
       capabilities:
@@ -110,7 +110,7 @@
         - avahi-daemon
         - docker
       become: true
-      when: not travis_ci|bool
+      when: not ci|bool
 
     - name: copy files under /etc
       copy:

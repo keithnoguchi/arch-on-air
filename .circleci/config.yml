@@ -3,7 +3,7 @@ version: 2
 default: &defaults
   working_directory: /home/circleci/project/arch-on-air
   docker:
-    - image: keinohguchi/archlinux:latest
+    - image: archlinux/base:latest
 workflows:
   version: 2
   checkout_ansible_provision_hack_all:
@@ -49,25 +49,25 @@ jobs:
     steps:
       - run:
           name: install tar and other tools to run the test
-          command: pacman -Sy --noconfirm tar make ansible
+          command: pacman -Sy --noconfirm tar make git ansible
       - attach_workspace:
           at: .
-      - run: SUDO= CI=true GITURL=https://github.com/ make provision
+      - run: SUDO= GOROOT=/usr/lib/go GOPATH=$HOME make ci-provision
   hack:
     <<: *defaults
     steps:
       - run:
           name: install tar and other tools to run the test
-          command: pacman -Sy --noconfirm tar make go git ansible
+          command: pacman -Sy --noconfirm tar make git ansible go
       - attach_workspace:
           at: .
-      - run: SUDO= CI=true GITURL=https://github.com/ make hack
+      - run: SUDO= GOROOT=$HOME/git/go GOPATH=$HOME make ci-hack
   all:
     <<: *defaults
     steps:
       - run:
           name: install tar and other tools to run the test
-          command: pacman -Sy --noconfirm tar gcc make git python python-pip
+          command: pacman -Sy --noconfirm tar make git ansible
       - attach_workspace:
           at: .
-      - run: SUDO= CI=true GITURL=https://github.com/ make all
+      - run: SUDO= GOROOT=$HOME/git/go GOPATH=$HOME make ci-all
