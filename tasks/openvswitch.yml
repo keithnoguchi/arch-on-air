@@ -26,7 +26,7 @@
 - name: setup configure options
   set_fact:
     with_linux: "--with-linux=/lib/modules/{{ ansible_kernel }}/build"
-  when: ansible_kernel is version_compare('4.13', '<=') and not travis_ci|bool
+  when: ansible_kernel is version_compare('4.13', '<=') and not ci|bool
 
 - name: configure OvS
   command: >
@@ -53,7 +53,7 @@
     chdir: "{{ gitpath }}ovs"
     target: modules_install
   become: true
-  when: git.before != git.after and not travis_ci|bool
+  when: git.before != git.after and not ci|bool
 
 - name: install ovs-ctl script
   copy:

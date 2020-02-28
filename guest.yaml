@@ -1,0 +1,39 @@
+---
+- name: archlinux based guest
+  hosts: arch
+  gather_facts: false
+  vars:
+    ci: false
+    latest: false
+    guest_management_network: 172.31.255
+  tasks:
+    - name: update hostname to be in sync with the inventory host name
+      hostname: name={{ inventory_hostname_short }}
+      become: true
+      when: not ci|bool
+
+    - name: update files under /etc
+      template:
+        src: "templates/etc/{{ item }}.j2"
+        dest: "/etc/{{ item }}"
+        mode: 0644
+        owner: root
+        group: root
+      with_items:
+        - hosts
+        - systemd/network/bond0.netdev
+        - systemd/network/bond0.network
+        - systemd/network/ens3.network
+        - systemd/network/ens4.network
+        - systemd/network/ens5.network
+      become: true
+      when: not ci|bool
+
+    - name: restart systemd services
+      systemd: name={{ item }} enabled=true state=restarted
+      with_items:
+        - systemd-networkd
+        - systemd-resolved
+        - systemd-timesyncd
+      become: true
+      when: not ci|bool

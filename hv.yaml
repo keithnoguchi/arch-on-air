@@ -1,13 +1,30 @@
 ---
-- name: arch-on-air hack playbook
+- name: arch-on-air hypvervisor playbook
   hosts: arch
+  gather_facts: true
   vars:
+    ci: false
     latest: false
-    travis_ci: false
     gitsite: "git@github.com:"
     gitpath: "{{ lookup('env', 'HOME') }}/git/"
     gobootstrap: /usr/lib/go
-  gather_facts: true
+    guest_emulator: /usr/bin/qemu-system-x86_64
+    guest_arch: x86_64
+    guest_machine: pc-i440fx-2.11
+    guest_disk_type: block
+    guest_disk_path: /dev/images
+    guest_disk_source_type: dev
+    guest_intf0_dev_prefix: ens3-
+    guest_intf1_dev_prefix: ens4-
+    guest_intf2_dev_prefix: ens5-
+    guest_management_network: 172.31.255
+    guests:
+      - { id: '01', type: arch }
+      - { id: '02', type: arch }
+  environment:
+    GOROOT: "{{ lookup('env', 'GOROOT') }}"
+    GOPATH: "{{ lookup('env', 'GOPATH') }}"
+    PATH: "{{ lookup('env', 'GOROOT') }}/bin:{{ lookup('env', 'GOPATH') }}/bin:/usr/bin:/bin"
   tasks:
     - name: install kvm/container for the virtual environment
       pacman:
@@ -35,7 +52,7 @@
         append: true
         groups: libvirt
       become: true
-      when: not travis_ci|bool
+      when: not ci|bool
 
     - name: setup qemu group in /etc/libvirt/qemu.conf
       lineinfile:
@@ -63,7 +80,42 @@
         - libvirtd
         - virtlogd
       become: true
-      when: not travis_ci|bool
+      when: not ci|bool
+
+    - name: update files under /etc
+      template:
+        src: "templates/etc/{{ item }}.j2"
+        dest: "/etc/{{ item }}"
+        mode: 0644
+        owner: root
+        group: root
+      with_items:
+        - hosts
+        - modprobe.d/modprobe.conf
+        - systemd/network/br0.network
+      become: true
+      when: not ci|bool
+
+    - name: undefine libvirt guest network
+      virt_net: name=default state=absent
+      become: true
+      when: not ci|bool
+
+    - name: define libvirt guest network
+      virt_net:
+        name: default
+        state: present
+        xml: "{{ lookup('template', 'templates/etc/libvirt/qemu/networks/default.xml.j2') }}"
+      become: true
+      when: not ci|bool
+
+    - name: define libvirt guest
+      virt:
+        command: define
+        xml: "{{ lookup('template', 'templates/etc/libvirt/qemu/{{ item.type }}.xml.j2') }}"
+      with_items: "{{ guests }}"
+      become: true
+      when: not ci|bool
 
     - name: install the latest perl packages
       import_tasks: tasks/perl.yml
@@ -76,6 +128,9 @@
 
     - name: install the latest asciinema
       import_tasks: tasks/asciinema.yml
+
+    - name: install docker-compose
+      import_tasks: tasks/docker-compose.yml
 
     - name: install the latest Open vSwitch
       import_tasks: tasks/openvswitch.yml

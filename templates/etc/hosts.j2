@@ -1,0 +1,16 @@
+#
+# /etc/hosts: static lookup table for host names
+#
+
+#<ip-address>	<hostname.domain.org>	<hostname>
+127.0.0.1	localhost.local	localhost
+::1		localhost.local	localhost
+127.0.0.1	{{ inventory_hostname_short }}.node.local	{{ inventory_hostname_short }}
+::1		{{ inventory_hostname_short }}.node.local	{{ inventory_hostname_short }}
+
+# air.local for the local docker registry
+{{ guest_management_network }}.1	arch01.local	arch01
+{{ guest_management_network }}.2	arch02.local	arch02
+{{ guest_management_network }}.254	host.local	host
+
+# End of file

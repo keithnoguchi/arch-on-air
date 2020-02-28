@@ -2,7 +2,7 @@
 - name: arch-on-air post-installation X playbook
   hosts: arch
   vars:
-    travis_ci: false
+    ci: false
     gitsite: "git@github.com:"
     gitpath: "{{ lookup('env', 'HOME') }}/git/"
   gather_facts: false

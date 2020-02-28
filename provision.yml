@@ -2,7 +2,7 @@
 - name: arch-on-air post-installation playbook
   hosts: arch
   vars:
-    travis_ci: false
+    ci: false
   gather_facts: false
   tasks:
     - name: install fundamental developer tools
