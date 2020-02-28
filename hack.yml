@@ -88,6 +88,9 @@
         write_priv: ".*"
       when: not ci|bool
 
+    - name: install docker-compose
+      import_tasks: tasks/docker-compose.yml
+
     - name: install the latest gcloud
       import_tasks: tasks/gcloud.yml
 

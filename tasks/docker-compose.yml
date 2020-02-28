@@ -1,0 +1,21 @@
+---
+- name: clone the docker-compose git repo
+  git:
+    repo: "{{ gitsite }}docker/compose"
+    dest: "{{ gitpath }}docker-compose"
+    update: yes
+    ssh_opts: "-o StrictHostKeyChecking=no"
+  register: git
+
+- name: install python packages for docker-compose
+  pip:
+    requirements: "{{ gitpath}}/docker-compose/requirements-dev.txt"
+  become: true
+  when: git.before != git.after
+
+- name: install the latest docker-compose
+  command: python setup.py install
+  args:
+    chdir: "{{ gitpath }}docker-compose"
+  become: true
+  when: git.before != git.after
