@@ -22,6 +22,8 @@ ping-%:
 	ansible -vvv -m ping -i inventory.ini -c local $*.yaml
 
 # CI targets
+.PHONY: ci-all
+ci-all: ci-main
 ci-%: ping-%
 	ansible-playbook -vvv $*.yaml -i inventory.ini -c local \
 		-e ci=true -e gitsite=https://github.com/

@@ -1,13 +1,13 @@
 ---
 - name: lay the ground
-  import_playbook: provision.yml
+  import_playbook: provision.yaml
 
 - name: graphics
-  import_playbook: x.yml
+  import_playbook: x.yaml
 
 - name: let's hack!
-  import_playbook: hack.yml
+  import_playbook: hack.yaml
 
 - name: let's game!
-  import_playbook: game.yml
+  import_playbook: game.yaml
   when: not ci|bool
