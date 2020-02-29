@@ -130,9 +130,3 @@
         regexp: '^hosts:'
         line: 'hosts: files mymachines myhostname mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns'
       become: true
-
-    - name: create git and src directories for having fun
-      file: path={{ lookup('env', 'HOME') }}/{{ item }} state=directory mode=0700
-      with_items:
-        - git
-        - src

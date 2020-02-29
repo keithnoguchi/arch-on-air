@@ -88,6 +88,12 @@
         write_priv: ".*"
       when: not ci|bool
 
+    - name: create git and src directories for having fun
+      file: path={{ lookup('env', 'HOME') }}/{{ item }} state=directory mode=0700
+      with_items:
+        - git
+        - src
+
     - name: install the latest gcloud
       import_tasks: tasks/gcloud.yml
 
