@@ -16,14 +16,18 @@
           - pkgconf
           - go
           - rustup
-          - ruby
-          - ruby-irb
+          - yasm
           - clisp
+          - wabt
           - jdk-openjdk
           - maven
-          - yasm
-          - wabt
           - nodejs
+          - yarn
+          - cpanminus
+          - ruby
+          - ruby-irb
+          - python
+          - python-pip
       become: true
 
     - name: install console apps

@@ -1,13 +1,4 @@
 ---
-- name: install cpanminus first
-  pacman:
-    state: present
-    force: true
-    update_cache: false
-    name:
-      - cpanminus
-  become: true
-
 - name: install perl packages for good
   cpanm: name={{ item }}
   with_items:

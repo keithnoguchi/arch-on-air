@@ -33,13 +33,13 @@
           - automake
           - pkgconf
           - libtool
+          - python-pip
           - cmake
           - gtest
           - numactl
           - fakeroot
           - flatbuffers
           - unzip
-          - yarn
           - jq
           - asciidoc
           - postgresql-libs
