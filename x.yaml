@@ -37,6 +37,7 @@
           - qt5-svg
           - qt5-webengine
           - qt5-quickcontrols2
+          - eog
       become: true
 
     - name: copy files under /etc
@@ -51,7 +52,7 @@
       become: true
 
     - name: let's suckless!
-      import_tasks: tasks/suckless.yml
+      import_tasks: tasks/suckless.yaml
 
     - name: we need sounds!
-      import_tasks: tasks/audio.yml
+      import_tasks: tasks/audio.yaml

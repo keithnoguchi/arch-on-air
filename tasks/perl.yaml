@@ -14,5 +14,5 @@
     - "NetAddr::IP"
     - "Test::MockModule"
   environment:
-    PATH: "{{ lookup('env', 'PATH') }}"
+    PATH: "/usr/bin/vendor_perl:{{ lookup('env', 'PATH') }}"
   become: true

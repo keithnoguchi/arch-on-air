@@ -1,0 +1,10 @@
+---
+- name: install python standard packages
+  pip:
+    name:
+      - python-dotenv
+      - docker
+      - docker-compose
+      - py-mysql
+      - csvkit
+  become: true

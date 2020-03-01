@@ -76,7 +76,7 @@
       become: true
 
     - name: install local RabbitMQ message broker
-      import_tasks: tasks/rabbit.yml
+      import_tasks: tasks/rabbit.yaml
       vars:
         scheme: amqp
         username: rabbit
@@ -94,30 +94,44 @@
         - git
         - src
 
-    - name: install the latest gcloud
-      import_tasks: tasks/gcloud.yml
+    - name: install the latest perl packages
+      import_tasks: tasks/perl.yaml
 
-    # https://github.com/rust-lang/rust#building-on-nix
-    - name: install the latest rust
-      import_tasks: tasks/rust.yml
-      when: latest|bool
+    - name: install the latest python packages
+      import_tasks: tasks/python.yaml
+
+    - name: install the latest ansible
+      import_tasks: tasks/ansible.yaml
+
+    - name: install the latest asciinema
+      import_tasks: tasks/asciinema.yaml
+
+    - name: install the latest gcloud
+      import_tasks: tasks/gcloud.yaml
 
     - name: install the latest golang
-      import_tasks: tasks/golang.yml
-      when: latest|bool
+      import_tasks: tasks/golang.yaml
 
     - name: install ftrace, kernel tracer
-      import_tasks: tasks/ftrace.yml
-      when: latest|bool
+      import_tasks: tasks/ftrace.yaml
 
     - name: install bcc for BPF fun
-      import_tasks: tasks/bcc.yml
+      import_tasks: tasks/bcc.yaml
       when: latest|bool
 
     - name: install bpftrace to trace anything
-      import_tasks: tasks/bpftrace.yml
+      import_tasks: tasks/bpftrace.yaml
+      when: latest|bool
+
+    # https://github.com/rust-lang/rust#building-on-nix
+    - name: install the latest rust
+      import_tasks: tasks/rust.yaml
       when: latest|bool
 
     - name: install the latest protobuf
-      import_tasks: tasks/protobuf.yml
+      import_tasks: tasks/protobuf.yaml
+      when: latest|bool
+
+    - name: install the latest terraform
+      import_tasks: tasks/terraform.yaml
       when: latest|bool
