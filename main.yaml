@@ -2,8 +2,11 @@
 - name: lay the ground
   import_playbook: provision.yaml
 
-- name: graphics
+- name: add X
   import_playbook: x.yaml
+
+- name: make it hypervisor
+  import_playbook: hv.yaml
 
 - name: let's hack!
   import_playbook: hack.yaml
