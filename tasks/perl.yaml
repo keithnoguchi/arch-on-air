@@ -1,9 +1,7 @@
 ---
 - name: install perl packages for good
-  cpanm: name={{ item }}
+  cpanm: name={{ item }} executable=/usr/bin/vendor_perl/cpanm
   with_items:
     - "NetAddr::IP"
     - "Test::MockModule"
-  environment:
-    PATH: "/usr/bin/vendor_perl:{{ lookup('env', 'PATH') }}"
   become: true

@@ -33,6 +33,7 @@
           - automake
           - pkgconf
           - libtool
+          - cpanminus
           - python-pip
           - cmake
           - gtest
@@ -117,21 +118,21 @@
 
     - name: install bcc for BPF fun
       import_tasks: tasks/bcc.yaml
-      when: latest|bool
+      when: latest|bool and not ci|bool
 
     - name: install bpftrace to trace anything
       import_tasks: tasks/bpftrace.yaml
-      when: latest|bool
+      when: latest|bool and not ci|bool
 
     # https://github.com/rust-lang/rust#building-on-nix
     - name: install the latest rust
       import_tasks: tasks/rust.yaml
-      when: latest|bool
+      when: latest|bool and not ci|bool
 
     - name: install the latest protobuf
       import_tasks: tasks/protobuf.yaml
-      when: latest|bool
+      when: latest|bool and not ci|bool
 
     - name: install the latest terraform
       import_tasks: tasks/terraform.yaml
-      when: latest|bool
+      when: latest|bool and not ci|bool
