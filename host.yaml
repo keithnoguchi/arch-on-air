@@ -1,6 +1,6 @@
 ---
 - name: arch-on-air hypvervisor playbook
-  hosts: arch
+  hosts: host
   gather_facts: true
   vars:
     ci: false
@@ -17,27 +17,21 @@
     guest_intf0_dev_prefix: ens3-
     guest_intf1_dev_prefix: ens4-
     guest_intf2_dev_prefix: ens5-
-    guest_management_network: 172.31.255
     guests:
       - { id: '01', type: arch }
       - { id: '02', type: arch }
+      - { id: '03', type: arch }
+      - { id: '04', type: arch }
+      - { id: '05', type: arch }
+      - { id: '06', type: arch }
+      - { id: '07', type: arch }
+      - { id: '08', type: arch }
+      - { id: '09', type: arch }
   environment:
     GOROOT: "{{ lookup('env', 'GOROOT') }}"
     GOPATH: "{{ lookup('env', 'GOPATH') }}"
     PATH: "{{ lookup('env', 'GOROOT') }}/bin:{{ lookup('env', 'GOPATH') }}/bin:/usr/bin:/bin"
   tasks:
-    - name: setup OvS build environment
-      pacman:
-        state: present
-        update_cache: false
-        name:
-          - gcc
-          - make
-          - pkgconf
-          - autoconf
-          - automake
-      become: true
-
     - name: install kvm/container for the virtual environment
       pacman:
         state: present
@@ -54,9 +48,21 @@
           - python-pip
           - python-lxml
           - python-virtualenv
-          - minikube
-          - helm
       become: true
+
+    - name: update files under /etc
+      template:
+        src: "templates/etc/{{ item }}.j2"
+        dest: "/etc/{{ item }}"
+        mode: 0644
+        owner: root
+        group: root
+      with_items:
+        - hosts
+        - modprobe.d/modprobe.conf
+        - systemd/network/br0.network
+      become: true
+      when: not ci|bool
 
     - name: add user to the libvirt/container groups
       user:
@@ -86,28 +92,6 @@
         mode: 0644
       become: true
 
-    - name: enable libvirt services
-      systemd: name={{ item }} enabled=true state=started
-      with_items:
-        - libvirtd
-        - virtlogd
-      become: true
-      when: not ci|bool
-
-    - name: update files under /etc
-      template:
-        src: "templates/etc/{{ item }}.j2"
-        dest: "/etc/{{ item }}"
-        mode: 0644
-        owner: root
-        group: root
-      with_items:
-        - hosts
-        - modprobe.d/modprobe.conf
-        - systemd/network/br0.network
-      become: true
-      when: not ci|bool
-
     - name: undefine libvirt guest network
       virt_net: name=default state=absent
       become: true
@@ -121,11 +105,29 @@
       become: true
       when: not ci|bool
 
+    - name: undefine libvirt guest
+      virt:
+        name: "{{ item.type }}{{ item.id }}"
+        command: undefine
+      with_items: "{{ guests }}"
+      become: true
+      ignore_errors: true
+      when: not ci|bool
+
     - name: define libvirt guest
       virt:
         command: define
         xml: "{{ lookup('template', 'templates/etc/libvirt/qemu/{{ item.type }}.xml.j2') }}"
       with_items: "{{ guests }}"
+      become: true
+      when: not ci|bool
+
+    - name: restart systemd/libvirt services
+      systemd: name={{ item }} enabled=true state=restarted
+      with_items:
+        - systemd-networkd
+        - libvirtd
+        - virtlogd
       become: true
       when: not ci|bool
 
@@ -135,6 +137,19 @@
         - git
         - src
 
+    - name: setup OvS build environment
+      pacman:
+        state: present
+        update_cache: false
+        name:
+          - gcc
+          - make
+          - pkgconf
+          - autoconf
+          - automake
+      become: true
+      when: latest|bool
+
     - name: install the latest Open vSwitch
       import_tasks: tasks/openvswitch.yaml
-
+      when: latest|bool

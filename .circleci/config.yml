@@ -15,10 +15,10 @@ workflows:
       - provision:
           requires:
             - checkout
-      - hv:
+      - hack:
           requires:
             - checkout
-      - hack:
+      - host:
           requires:
             - checkout
       - all:
@@ -26,7 +26,7 @@ workflows:
             - ansible
             - provision
             - hack
-            - hv
+            - host
 jobs:
   checkout:
     <<: *defaults
@@ -57,15 +57,6 @@ jobs:
       - attach_workspace:
           at: .
       - run: SUDO= GOROOT=/usr/lib/go GOPATH=$HOME make ci-provision
-  hv:
-    <<: *defaults
-    steps:
-      - run:
-          name: install tar and other tools to run the test
-          command: pacman -Sy --noconfirm tar make git ansible go
-      - attach_workspace:
-          at: .
-      - run: SUDO= GOROOT=$HOME/git/go GOPATH=$HOME make ci-hv
   hack:
     <<: *defaults
     steps:
@@ -75,6 +66,15 @@ jobs:
       - attach_workspace:
           at: .
       - run: SUDO= GOROOT=$HOME/git/go GOPATH=$HOME make ci-hack
+  host:
+    <<: *defaults
+    steps:
+      - run:
+          name: install tar and other tools to run the test
+          command: pacman -Sy --noconfirm tar make git ansible go
+      - attach_workspace:
+          at: .
+      - run: SUDO= GOROOT=$HOME/git/go GOPATH=$HOME make ci-host
   all:
     <<: *defaults
     steps:

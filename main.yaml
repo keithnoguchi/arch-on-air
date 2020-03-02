@@ -2,15 +2,15 @@
 - name: lay the ground
   import_playbook: provision.yaml
 
-- name: add X
-  import_playbook: x.yaml
-
-- name: make it hypervisor
-  import_playbook: hv.yaml
-
-- name: let's hack!
+- name: let's make it hackable
   import_playbook: hack.yaml
 
-- name: let's game!
+- name: let's make it hypervisor
+  import_playbook: host.yaml
+
+- name: let's add graphics!
+  import_playbook: x.yaml
+
+- name: let's make it game center!
   import_playbook: game.yaml
   when: not ci|bool

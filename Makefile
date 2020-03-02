@@ -1,11 +1,21 @@
 # SPDX-License-Identifier: GPL-2.0
 SUDO   ?= sudo
 GITURL ?= "git@github.com:"
+.PHONY: all ls list
 all:
-	ansible-playbook -vvv main.yaml -e latest=true -c local \
+	@ansible-playbook -vvv main.yaml -e latest=true -c local \
 		-e gitsite=$(GITURL)
 %:
 	@ansible-playbook $*.yaml -e latest=true \
+		-e gitsite=$(GITURL)
+ls list:
+	@$(SUDO) virsh net-list
+	@$(SUDO) virsh list
+
+# Hypervisor related playbook.  Please refer to HV.md for more detail.
+.PHONY: host guest
+host guest:
+	@ansible-playbook -vvv $@.yaml -i inventory.py -e latest=true \
 		-e gitsite=$(GITURL)
 
 .PHONY: clean ansible

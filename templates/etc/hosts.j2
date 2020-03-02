@@ -5,12 +5,19 @@
 #<ip-address>	<hostname.domain.org>	<hostname>
 127.0.0.1	localhost.local	localhost
 ::1		localhost.local	localhost
-127.0.0.1	{{ inventory_hostname_short }}.node.local	{{ inventory_hostname_short }}
-::1		{{ inventory_hostname_short }}.node.local	{{ inventory_hostname_short }}
+127.0.0.1	{{ inventory_hostname_short }}.local	{{ inventory_hostname_short }}
+::1		{{ inventory_hostname_short }}.local	{{ inventory_hostname_short }}
 
 # air.local for the local docker registry
 {{ guest_management_network }}.1	arch01.local	arch01
 {{ guest_management_network }}.2	arch02.local	arch02
+{{ guest_management_network }}.3	arch03.local	arch03
+{{ guest_management_network }}.4	arch04.local	arch04
+{{ guest_management_network }}.5	arch05.local	arch05
+{{ guest_management_network }}.6	arch06.local	arch06
+{{ guest_management_network }}.7	arch07.local	arch07
+{{ guest_management_network }}.8	arch08.local	arch08
+{{ guest_management_network }}.9	arch09.local	arch09
 {{ guest_management_network }}.254	host.local	host
 
 # End of file

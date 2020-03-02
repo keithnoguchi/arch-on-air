@@ -1,11 +1,10 @@
 ---
 - name: archlinux based guest
-  hosts: arch
+  hosts: guest
   gather_facts: false
   vars:
     ci: false
     latest: false
-    guest_management_network: 172.31.255
   tasks:
     - name: update hostname to be in sync with the inventory host name
       hostname: name={{ inventory_hostname_short }}
