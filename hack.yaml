@@ -103,11 +103,12 @@
     - name: install the latest golang
       import_tasks: tasks/golang.yaml
 
-    - name: install the latest gcloud
-      import_tasks: tasks/gcloud.yaml
-
     - name: install the latest asciinema
       import_tasks: tasks/asciinema.yaml
+
+    - name: install the latest gcloud
+      import_tasks: tasks/gcloud.yaml
+      when: full|bool
 
     - name: install the latest ansible
       import_tasks: tasks/ansible.yaml
