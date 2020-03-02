@@ -5,32 +5,7 @@
     ci: false
   gather_facts: false
   tasks:
-    - name: install fundamental developer tools
-      pacman:
-        state: present
-        force: true
-        update_cache: false
-        name:
-          - gcc
-          - make
-          - pkgconf
-          - go
-          - rustup
-          - yasm
-          - clisp
-          - wabt
-          - jdk-openjdk
-          - maven
-          - nodejs
-          - yarn
-          - cpanminus
-          - ruby
-          - ruby-irb
-          - python
-          - python-pip
-      become: true
-
-    - name: install console apps
+    - name: console apps
       pacman:
         state: present
         force: true
@@ -40,10 +15,8 @@
           - git
           - tmux
           - mutt
-          - tree
           - man-db
           - which
-          - cscope
           - irssi
           - elinks
           - acpi
@@ -57,10 +30,9 @@
           - pulseaudio-alsa
           - alsa-utils
           - rng-tools
-          - docker
       become: true
 
-    - name: install network tools
+    - name: network tools
       pacman:
         state: present
         force: true
@@ -86,6 +58,34 @@
           - avahi
           - nss-mdns
           - wireshark-cli
+      become: true
+
+    - name: developer tools
+      pacman:
+        state: present
+        force: true
+        update_cache: false
+        name:
+          - gcc
+          - make
+          - pkgconf
+          - tree
+          - cscope
+          - go
+          - rustup
+          - yasm
+          - clisp
+          - wabt
+          - jdk-openjdk
+          - maven
+          - nodejs
+          - yarn
+          - cpanminus
+          - ruby
+          - ruby-irb
+          - python
+          - python-pip
+          - docker
       become: true
 
     - name: add user to uucp for picocom, wireshark for tshark, docker for docker
