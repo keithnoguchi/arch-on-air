@@ -16,10 +16,6 @@
         name:
           - archiso
           - linux-headers
-          - binutils
-          - bc
-          - bison
-          - flex
           - cpio
           - clang
           - llvm
