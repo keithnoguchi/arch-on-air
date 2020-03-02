@@ -71,7 +71,11 @@
           - flex
           - binutils
           - gcc
+          - gdb
           - make
+          - clang
+          - llvm
+          - lldb
           - bpf
           - pkgconf
           - tree
