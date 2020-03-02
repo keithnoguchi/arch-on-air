@@ -72,6 +72,7 @@
           - binutils
           - gcc
           - make
+          - bpf
           - pkgconf
           - tree
           - cscope
