@@ -41,6 +41,7 @@
           - tmux
           - mutt
           - tree
+          - man-db
           - cscope
           - irssi
           - elinks
