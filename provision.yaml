@@ -14,11 +14,9 @@
           - vim
           - git
           - tmux
-          - mutt
           - man-db
           - which
-          - irssi
-          - elinks
+          - tree
           - acpi
           - dialog
           - aspell
@@ -38,6 +36,9 @@
         force: true
         update_cache: false
         name:
+          - mutt
+          - irssi
+          - elinks
           - wget
           - curl
           - nmap
@@ -73,29 +74,13 @@
           - gcc
           - gdb
           - make
-          - clang
-          - llvm
-          - lldb
-          - bpf
-          - pkgconf
-          - tree
-          - cscope
-          - go
           - rustup
-          - yasm
-          - clisp
-          - wabt
-          - jdk-openjdk
-          - maven
+          - go
           - nodejs
-          - yarn
-          - cpanminus
           - ruby
           - ruby-irb
           - python
-          - python-pip
           - docker
-          - flatbuffers
       become: true
 
     - name: add user to uucp for picocom, wireshark for tshark, docker for docker
