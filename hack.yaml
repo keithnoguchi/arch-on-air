@@ -31,7 +31,6 @@
           - gtest
           - numactl
           - fakeroot
-          - flatbuffers
           - unzip
           - jq
           - asciidoc

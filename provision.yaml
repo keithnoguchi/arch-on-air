@@ -95,6 +95,7 @@
           - python
           - python-pip
           - docker
+          - flatbuffers
       become: true
 
     - name: add user to uucp for picocom, wireshark for tshark, docker for docker
