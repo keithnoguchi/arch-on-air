@@ -7,7 +7,6 @@
     latest: false
     gitsite: "git@github.com:"
     gitpath: "{{ lookup('env', 'HOME') }}/git/"
-    gobootstrap: /usr/lib/go
     guest_emulator: /usr/bin/qemu-system-x86_64
     guest_arch: x86_64
     guest_machine: pc-i440fx-2.11

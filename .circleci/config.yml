@@ -21,12 +21,16 @@ workflows:
       - host:
           requires:
             - checkout
+      - guest:
+          requires:
+            - checkout
       - all:
           requires:
             - ansible
             - provision
             - hack
             - host
+            - guest
 jobs:
   checkout:
     <<: *defaults
@@ -71,10 +75,19 @@ jobs:
     steps:
       - run:
           name: install tar and other tools to run the test
-          command: pacman -Sy --noconfirm tar make git ansible go
+          command: pacman -Sy --noconfirm tar make git ansible
       - attach_workspace:
           at: .
       - run: SUDO= GOROOT=$HOME/git/go GOPATH=$HOME make ci-host
+  guest:
+    <<: *defaults
+    steps:
+      - run:
+          name: install tar and other tools to run the test
+          command: pacman -Sy --noconfirm tar make git ansible
+      - attach_workspace:
+          at: .
+      - run: SUDO= GOROOT=$HOME/git/go GOPATH=$HOME make ci-guest
   all:
     <<: *defaults
     steps:

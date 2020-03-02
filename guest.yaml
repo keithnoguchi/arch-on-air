@@ -20,11 +20,19 @@
         group: root
       with_items:
         - hosts
-        - systemd/network/bond0.netdev
-        - systemd/network/bond0.network
         - systemd/network/ens3.network
         - systemd/network/ens4.network
         - systemd/network/ens5.network
+      become: true
+      when: not ci|bool
+
+    - name: drop bond0 to avoid the systemd-networkd crash
+      file:
+        path: "/etc/{{ item }}"
+        state: absent
+      with_items:
+        - systemd/network/bond0.netdev
+        - systemd/network/bond0.network
       become: true
       when: not ci|bool
 
