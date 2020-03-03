@@ -3,6 +3,7 @@
   pip:
     name:
       - python-dotenv
+      - scapy
       - docker
       - docker-compose
       - py-mysql
