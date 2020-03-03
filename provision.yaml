@@ -69,7 +69,6 @@
         update_cache: false
         name:
           - bc
-          - flex
           - gcc
           - gdb
           - make

@@ -16,6 +16,7 @@
         name:
           - binutils
           - bison
+          - flex
           - clang
           - llvm
           - lldb
