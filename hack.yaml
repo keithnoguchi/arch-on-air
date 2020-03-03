@@ -120,7 +120,6 @@
 
     - name: install bcc for BPF fun
       import_tasks: tasks/bcc.yaml
-      when: full|bool
 
     - name: install bpftrace to trace anything
       import_tasks: tasks/bpftrace.yaml
