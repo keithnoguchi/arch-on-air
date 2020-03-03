@@ -69,9 +69,7 @@
         update_cache: false
         name:
           - bc
-          - bison
           - flex
-          - binutils
           - gcc
           - gdb
           - make

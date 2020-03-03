@@ -14,6 +14,8 @@
         state: present
         update_cache: false
         name:
+          - binutils
+          - bison
           - clang
           - llvm
           - lldb
