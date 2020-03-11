@@ -5,6 +5,7 @@
     - golang.org/x/tools/cmd/godoc
     - golang.org/x/tools/cmd/present
     - golang.org/x/tools/cmd/goimports
+    - github.com/bronze1man/yaml2json
   environment:
     GOROOT: "{{ lookup('env', 'GOROOT') }}"
     GOPATH: "{{ lookup('env', 'GOPATH') }}"
