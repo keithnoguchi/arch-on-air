@@ -29,6 +29,7 @@
           - pulseaudio-alsa
           - alsa-utils
           - rng-tools
+          - graphviz
       become: true
 
     - name: network tools
