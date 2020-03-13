@@ -38,6 +38,7 @@
           - qt5-webengine
           - qt5-quickcontrols2
           - eog
+          - alacritty
       become: true
 
     - name: copy files under /etc
