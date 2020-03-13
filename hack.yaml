@@ -114,14 +114,7 @@
 
     - name: install the latest protobuf
       import_tasks: tasks/protobuf.yaml
-
-    - name: install the latest gcloud
-      import_tasks: tasks/gcloud.yaml
-      when: full|bool
-
-    - name: install the latest ansible
-      import_tasks: tasks/ansible.yaml
-      when: full|bool
+      when: not ci|bool
 
     - name: install ftrace, kernel tracer
       import_tasks: tasks/ftrace.yaml
@@ -132,6 +125,14 @@
 
     - name: install bpftrace to trace anything
       import_tasks: tasks/bpftrace.yaml
+      when: full|bool
+
+    - name: install the latest gcloud
+      import_tasks: tasks/gcloud.yaml
+      when: full|bool
+
+    - name: install the latest ansible
+      import_tasks: tasks/ansible.yaml
       when: full|bool
 
     # https://github.com/rust-lang/rust#building-on-nix
