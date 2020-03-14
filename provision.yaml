@@ -16,6 +16,7 @@
           - git
           - tmux
           - man-db
+          - man-pages
           - which
           - tree
           - acpi
