@@ -57,6 +57,7 @@
         name:
           - time
           - perf
+          - iputils
           - netperf
           - iperf3
           - stress

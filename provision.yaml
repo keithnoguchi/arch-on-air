@@ -48,6 +48,7 @@
           - tcpdump
           - ethtool
           - traceroute
+          - iputils
           - net-tools
           - bind-tools
           - conntrack-tools
