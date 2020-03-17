@@ -113,6 +113,17 @@
     - name: install the latest asciinema
       import_tasks: tasks/asciinema.yaml
 
+    - name: python2 for gcloud...
+      pacman:
+        state: present
+        update_cache: false
+        name:
+          - python2
+      become: true
+
+    - name: install the latest gcloud
+      import_tasks: tasks/gcloud.yaml
+
     - name: install the latest protobuf
       import_tasks: tasks/protobuf.yaml
       when: not ci|bool
@@ -126,10 +137,6 @@
 
     - name: install bpftrace to trace anything
       import_tasks: tasks/bpftrace.yaml
-      when: full|bool
-
-    - name: install the latest gcloud
-      import_tasks: tasks/gcloud.yaml
       when: full|bool
 
     - name: install the latest ansible
