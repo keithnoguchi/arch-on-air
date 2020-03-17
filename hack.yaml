@@ -15,6 +15,7 @@
         update_cache: false
         name:
           - binutils
+          - gettext
           - bison
           - flex
           - clang
