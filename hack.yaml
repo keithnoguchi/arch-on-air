@@ -80,30 +80,17 @@
           - openocd
       become: true
 
-    - name: install local RabbitMQ message broker
-      import_tasks: tasks/rabbit.yaml
-      vars:
-        scheme: amqp
-        username: rabbit
-        password: RabbitMQ
-        cluster: "127.0.0.1:5672"
-        vhost: mx
-        configure_priv: ".*"
-        read_priv: ".*"
-        write_priv: ".*"
-      when: full|bool and not ci|bool
+    - name: install the latest perl packages
+      import_tasks: tasks/perl.yaml
+
+    - name: install the latest python packages
+      import_tasks: tasks/python.yaml
 
     - name: create git and src directories for having fun
       file: path={{ lookup('env', 'HOME') }}/{{ item }} state=directory mode=0700
       with_items:
         - git
         - src
-
-    - name: install the latest perl packages
-      import_tasks: tasks/perl.yaml
-
-    - name: install the latest python packages
-      import_tasks: tasks/python.yaml
 
     - name: install the latest golang
       import_tasks: tasks/golang.yaml
@@ -125,10 +112,6 @@
     - name: install the latest gcloud
       import_tasks: tasks/gcloud.yaml
 
-    - name: install the latest protobuf
-      import_tasks: tasks/protobuf.yaml
-      when: not ci|bool
-
     - name: install ftrace, kernel tracer
       import_tasks: tasks/ftrace.yaml
       when: full|bool
@@ -142,13 +125,30 @@
 
     - name: install the latest ansible
       import_tasks: tasks/ansible.yaml
-      when: full|bool
+      when: full|bool and not ci|bool
 
     # https://github.com/rust-lang/rust#building-on-nix
     - name: install the latest rust
       import_tasks: tasks/rust.yaml
-      when: full|bool
+      when: full|bool and not ci|bool
+
+    - name: install the latest protobuf
+      import_tasks: tasks/protobuf.yaml
+      when: full|bool and not ci|bool
 
     - name: install the latest terraform
       import_tasks: tasks/terraform.yaml
-      when: full|bool
+      when: full|bool and not ci|bool
+
+    - name: install local RabbitMQ message broker
+      import_tasks: tasks/rabbit.yaml
+      vars:
+        scheme: amqp
+        username: rabbit
+        password: RabbitMQ
+        cluster: "127.0.0.1:5672"
+        vhost: mx
+        configure_priv: ".*"
+        read_priv: ".*"
+        write_priv: ".*"
+      when: full|bool and not ci|bool
