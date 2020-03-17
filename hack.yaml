@@ -98,6 +98,9 @@
     - name: install golang tools
       import_tasks: tasks/gopkg.yaml
 
+    - name: install helm
+      import_tasks: tasks/helm.yaml
+
     - name: install the latest asciinema
       import_tasks: tasks/asciinema.yaml
 

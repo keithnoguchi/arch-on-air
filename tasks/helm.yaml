@@ -1,0 +1,27 @@
+---
+- name: clone the latest helm git repo
+  git:
+    repo: "{{ gitsite }}helm/helm"
+    dest: "{{ gitpath }}helm"
+    force: true
+    update: yes
+    ssh_opts: "-o StrictHostKeyChecking=no"
+  register: git
+
+- name: build helm
+  make:
+    chdir: "{{ gitpath }}helm"
+    target: build
+  environment:
+    GOROOT: "{{ lookup('env', 'GOROOT') }}"
+    GOPATH: "{{ lookup('env', 'GOPATH') }}"
+    PATH: "{{ lookup('env', 'GOROOT') }}/bin:{{ lookup('env', 'GOPATH') }}/bin:/usr/bin:/bin"
+  when: git.before != git.after
+
+- name: install helm
+  copy:
+    src: "{{ gitpath }}helm/bin/{{ item }}"
+    dest: "{{ lookup('env', 'GOPATH') }}/bin/{{ item }}"
+    mode: 0755
+  with_items:
+    - helm
