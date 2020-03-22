@@ -15,6 +15,7 @@
         name:
           - gcr
           - libxft
+          - pkgconf
           - libxinerama
           - xf86-video-intel
           - xf86-input-libinput
