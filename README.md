@@ -334,10 +334,10 @@ Server = http://archlinux.polymorf.fr/$repo/os/$arch
 
 ### Install the base packages
 
-Install the *base* package with `pacstrap`:
+Install the *base* and *linux* package with `pacstrap`:
 
 ```
-root@archiso ~ # pacstrap /mnt base
+root@archiso ~ # pacstrap /mnt base linux
 ```
 
 ### Configure the system
