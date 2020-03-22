@@ -16,8 +16,8 @@
         name:
           - binutils
           - gettext
-          - bison
           - flex
+          - bison
           - clang
           - llvm
           - lldb
@@ -29,6 +29,7 @@
           - autoconf
           - automake
           - pkgconf
+          - asciidoc
           - libtool
           - yarn
           - cpanminus
@@ -117,7 +118,6 @@
 
     - name: install ftrace, kernel tracer
       import_tasks: tasks/ftrace.yaml
-      when: full|bool
 
     - name: install bcc for BPF fun
       import_tasks: tasks/bcc.yaml
