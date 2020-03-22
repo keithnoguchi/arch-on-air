@@ -91,6 +91,14 @@
         mode: 0644
       become: true
 
+    - name: enable libvrit system services
+      systemd: name={{ item }} enabled=true state=restarted
+      with_items:
+        - libvirtd
+        - virtlogd
+      become: true
+      when: not ci|bool
+
     - name: undefine libvirt guest network
       virt_net: name=default state=absent
       become: true
