@@ -75,6 +75,8 @@
           - gcc
           - gdb
           - make
+          - flex
+          - bison
           - rustup
           - go
           - nodejs
