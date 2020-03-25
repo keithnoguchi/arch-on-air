@@ -102,6 +102,9 @@
     - name: install helm
       import_tasks: tasks/helm.yaml
 
+    - name: install tendermint
+      import_tasks: tasks/tendermint.yaml
+
     - name: install the latest asciinema
       import_tasks: tasks/asciinema.yaml
 
@@ -154,4 +157,4 @@
         configure_priv: ".*"
         read_priv: ".*"
         write_priv: ".*"
-      when: full|bool and not ci|bool
+      when: not ci|bool

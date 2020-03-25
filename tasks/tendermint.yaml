@@ -1,0 +1,20 @@
+---
+- name: git clone the latest tendermint from github.com
+  git:
+    repo: "{{ gitsite }}tendermint/tendermint"
+    dest: "{{ gitpath }}tendermint"
+    update: yes
+    ssh_opts: "-o StrictHostKeyChecking=no"
+  register: git
+
+- name: download the required go tools/packages
+  make:
+    chdir: "{{ gitpath }}tendermint"
+    target: tools
+  when: git.before != git.after
+
+- name: build tendermint!
+  make:
+    chdir: "{{ gitpath }}tendermint"
+    target: install
+  when: git.before != git.after
