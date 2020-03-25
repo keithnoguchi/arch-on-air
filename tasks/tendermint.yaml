@@ -4,6 +4,7 @@
     repo: "{{ gitsite }}tendermint/tendermint"
     dest: "{{ gitpath }}tendermint"
     update: yes
+    force: yes
     ssh_opts: "-o StrictHostKeyChecking=no"
   register: git
 
