@@ -12,10 +12,18 @@
   make:
     chdir: "{{ gitpath }}tendermint"
     target: tools
+  environment:
+    GOROOT: "{{ lookup('env', 'GOROOT') }}"
+    GOPATH: "{{ lookup('env', 'GOPATH') }}"
+    PATH: "{{ lookup('env', 'GOPATH') }}/bin:{{ lookup('env', 'GOROOT') }}/bin:/usr/bin:/bin"
   when: git.before != git.after
 
 - name: build tendermint!
   make:
     chdir: "{{ gitpath }}tendermint"
     target: install
+  environment:
+    GOROOT: "{{ lookup('env', 'GOROOT') }}"
+    GOPATH: "{{ lookup('env', 'GOPATH') }}"
+    PATH: "{{ lookup('env', 'GOPATH') }}/bin:{{ lookup('env', 'GOROOT') }}/bin:/usr/bin:/bin"
   when: git.before != git.after
