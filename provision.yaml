@@ -54,6 +54,7 @@
           - conntrack-tools
           - gnu-netcat
           - mtr
+          - stunnel
           - rsync
           - ebtables
           - dnsmasq
