@@ -119,6 +119,9 @@
     - name: install the latest gcloud
       import_tasks: tasks/gcloud.yaml
 
+    - name: install liburing, generic kernel I/O interface
+      import_tasks: tasks/liburing.yaml
+
     - name: install ftrace, kernel tracer
       import_tasks: tasks/ftrace.yaml
 

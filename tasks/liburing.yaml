@@ -1,0 +1,30 @@
+- name: clone the liburing git repo
+  git:
+    repo: "https://github.com/axboe/liburing"
+    dest: "{{ gitpath }}liburing"
+    update: yes
+    ssh_opts: "-o StrictHostKeyChecking=no"
+  register: git
+
+- name: build liburing!
+  make:
+    chdir: "{{ gitpath }}liburing"
+    target: "{{ item }}"
+  with_items:
+    - all
+  when: git.before != git.after
+
+- name: configure liburing installation environment
+  shell: ./configure --mandir=/usr/share/man
+  args:
+    chdir: "{{ gitpath }}/liburing"
+  when: git.before != git.after
+
+- name: install liburing command
+  make:
+    chdir: "{{ gitpath }}/liburing"
+    target: "{{ item }}"
+  with_items:
+    - install
+  become: true
+  when: git.before != git.after
