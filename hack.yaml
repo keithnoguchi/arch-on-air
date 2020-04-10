@@ -49,6 +49,7 @@
           - mariadb-clients
           - jdk-openjdk
           - maven
+          - librdkafka
       become: true
 
     # https://wiki.archlinux.org/index.php/improving_performance
