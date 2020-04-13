@@ -12,6 +12,7 @@ based on the official [ArchLinux on MacBook(Air) wifi] and
 - [Pre-installation](#pre-installation)
 - [Installation](#installation)
 - [Post-installation](#post-installation)
+- [References](#references)
 
 Buckle up and let's roll!
 
@@ -1313,5 +1314,9 @@ air$ sudo pacman -U zoom-2.0.63547.0830-1-x86_64.pkg.tar.xz
 ```
 
 > Note that please grab `0830` version or above for the screen sharing!
+
+## References
+
+- [Getting MacBook Pro 2018 T2 to work](https://geeks-world.github.io/articles/472106/index.html)
 
 Happy Hacking!
