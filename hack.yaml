@@ -50,6 +50,7 @@
           - jdk-openjdk
           - maven
           - librdkafka
+          - redis
       become: true
 
     # https://wiki.archlinux.org/index.php/improving_performance
