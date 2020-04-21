@@ -48,7 +48,7 @@ jobs:
     steps:
       - run:
           name: install tar and other tools to build the latest ansible
-          command: pacman -Sy --noconfirm tar make git python python-pip
+          command: pacman -Sy --noconfirm tar make libffi git python python-pip
       - attach_workspace:
           at: .
       - run: SUDO= make ansible
@@ -57,7 +57,7 @@ jobs:
     steps:
       - run:
           name: install tar and other tools to run the test
-          command: pacman -Sy --noconfirm tar make git ansible
+          command: pacman -Sy --noconfirm tar make libffi git ansible
       - attach_workspace:
           at: .
       - run: SUDO= GOROOT=/usr/lib/go GOPATH=$HOME make ci-provision
@@ -66,7 +66,7 @@ jobs:
     steps:
       - run:
           name: install tar and other tools to run the test
-          command: pacman -Sy --noconfirm tar make git ansible go
+          command: pacman -Sy --noconfirm tar make libffi git ansible go
       - attach_workspace:
           at: .
       - run: SUDO= GOROOT=$HOME/git/go GOPATH=$HOME make ci-hack
@@ -75,7 +75,7 @@ jobs:
     steps:
       - run:
           name: install tar and other tools to run the test
-          command: pacman -Sy --noconfirm tar make git ansible
+          command: pacman -Sy --noconfirm tar make libffi git ansible
       - attach_workspace:
           at: .
       - run: SUDO= GOROOT=$HOME/git/go GOPATH=$HOME make ci-host
@@ -84,7 +84,7 @@ jobs:
     steps:
       - run:
           name: install tar and other tools to run the test
-          command: pacman -Sy --noconfirm tar make git ansible
+          command: pacman -Sy --noconfirm tar make libffi git ansible
       - attach_workspace:
           at: .
       - run: SUDO= GOROOT=$HOME/git/go GOPATH=$HOME make ci-guest
@@ -93,7 +93,7 @@ jobs:
     steps:
       - run:
           name: install tar and other tools to run the test
-          command: pacman -Sy --noconfirm tar make git ansible
+          command: pacman -Sy --noconfirm tar make libffi git ansible
       - attach_workspace:
           at: .
       - run: SUDO= GOROOT=$HOME/git/go GOPATH=$HOME make ci-all
