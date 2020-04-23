@@ -85,6 +85,7 @@
 
     - name: install the latest perl packages
       import_tasks: tasks/perl.yaml
+      when: not ci|bool
 
     - name: install the latest python packages
       import_tasks: tasks/python.yaml

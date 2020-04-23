@@ -1,4 +1,7 @@
 ---
+- name: let's provision the machine!
+  import_playbook: provision.yaml
+
 - name: let's make it hackable
   import_playbook: hack.yaml
 
