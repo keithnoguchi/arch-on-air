@@ -75,6 +75,7 @@
           - bc
           - gcc
           - gdb
+          - libffi
           - make
           - flex
           - bison
