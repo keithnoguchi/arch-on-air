@@ -93,7 +93,7 @@ jobs:
     steps:
       - run:
           name: install tar and other tools to run the test
-          command: pacman -Sy --noconfirm tar make libffi git ansible
+          command: pacman -Sy --noconfirm tar make libffi git ansible go
       - attach_workspace:
           at: .
       - run: SUDO= GOROOT=$HOME/git/go GOPATH=$HOME make ci-all
