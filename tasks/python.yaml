@@ -6,6 +6,7 @@
       - scapy
       - docker
       - docker-compose
+      - cloudsmith-cli
       - py-mysql
       - csvkit
   become: true
