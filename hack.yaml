@@ -44,6 +44,7 @@
           - fakeroot
           - unzip
           - jq
+          - capnproto
           - flatbuffers
           - postgresql-libs
           - mariadb-clients
