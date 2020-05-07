@@ -84,6 +84,16 @@
           - openocd
       become: true
 
+    - name: metrics with prometheus
+      pacman:
+        state: present
+        update_cache: false
+        name:
+          - prometheus
+          - prometheus-node-exporter
+          - alertmanager
+      become: true
+
     - name: install the latest perl packages
       import_tasks: tasks/perl.yaml
       when: not ci|bool
