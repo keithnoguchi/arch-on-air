@@ -25,6 +25,7 @@
           - aspell-en
           - picocom
           - moreutils
+          - usbutils
           - dosfstools
           - pulseaudio
           - pulseaudio-alsa
