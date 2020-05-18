@@ -39,6 +39,7 @@
         name:
           - qemu-headless
           - libvirt
+          - dmidecode
           - libvirt-python
           - virt-install
           - virt-viewer
