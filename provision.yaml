@@ -32,6 +32,7 @@
           - alsa-utils
           - rng-tools
           - graphviz
+          - bolt
       become: true
 
     - name: network tools
