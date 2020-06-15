@@ -46,6 +46,7 @@
           - jq
           - capnproto
           - flatbuffers
+          - postgresql
           - postgresql-libs
           - mariadb-clients
           - jdk-openjdk
