@@ -9,4 +9,6 @@
       - cloudsmith-cli
       - py-mysql
       - csvkit
+      - redis
+      - hiredis
   become: true
