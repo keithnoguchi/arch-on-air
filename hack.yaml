@@ -95,6 +95,14 @@
           - alertmanager
       become: true
 
+    - name: add user to postgres group
+      user:
+        name: "{{ lookup('env', 'USER') }}"
+        append: true
+        groups: postgres
+      become: true
+      when: not ci|bool
+
     - name: install the latest perl packages
       import_tasks: tasks/perl.yaml
       when: not ci|bool
