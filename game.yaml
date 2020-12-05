@@ -9,11 +9,12 @@
         - ruby
         - mpg123
         - sdl2_ttf
+        - openal
       become: true
 
     - name: install ruby gems
       gem: name={{ item }} state=present
       with_items:
         - gosu
-        - chipmunk
+        #- chipmunk
       become: true
