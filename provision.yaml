@@ -87,6 +87,7 @@
           - nodejs
           - ruby
           - ruby-irb
+          - ruby-rdoc
           - python
           - docker
       become: true
