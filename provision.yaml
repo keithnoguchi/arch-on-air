@@ -55,6 +55,7 @@
           - net-tools
           - bind-tools
           - conntrack-tools
+          - nfs-utils
           - gnu-netcat
           - mtr
           - stunnel
