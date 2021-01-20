@@ -62,6 +62,7 @@
           - rsync
           - ebtables
           - dnsmasq
+          - openvpn
           - openconnect
           - wpa_supplicant
           - ipcalc
