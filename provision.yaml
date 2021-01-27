@@ -15,6 +15,7 @@
           - vi
           - vim
           - git
+          - htop
           - tmux
           - man-db
           - man-pages
