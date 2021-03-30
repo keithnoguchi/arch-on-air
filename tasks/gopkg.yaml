@@ -9,6 +9,7 @@
     - github.com/roboll/helmfile
     - github.com/google/go-jsonnet/cmd/jsonnet
     - github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb
+    - github.com/bojand/ghz/cmd/ghz
   environment:
     GOROOT: "{{ lookup('env', 'GOROOT') }}"
     GOPATH: "{{ lookup('env', 'GOPATH') }}"
