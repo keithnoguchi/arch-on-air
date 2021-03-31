@@ -32,6 +32,7 @@
           - gnu-free-fonts
           - gtk3
           - webkit2gtk
+          - maim
           - mupdf
           - chromium
           - imagemagick
@@ -39,7 +40,6 @@
           - qt5-webengine
           - qt5-quickcontrols2
           - eog
-          - alacritty
       become: true
 
     - name: copy files under /etc
