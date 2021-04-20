@@ -33,6 +33,7 @@
           - pulseaudio-alsa
           - alsa-utils
           - rng-tools
+          - ripgrep
           - graphviz
           - bolt
       become: true
