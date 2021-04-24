@@ -89,6 +89,7 @@
           - rustup
           - go
           - nodejs
+          - lua
           - ruby
           - ruby-irb
           - ruby-rdoc
