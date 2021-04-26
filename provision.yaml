@@ -17,6 +17,7 @@
           - git
           - htop
           - tmux
+          - util-linux
           - man-db
           - man-pages
           - which
