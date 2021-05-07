@@ -71,7 +71,7 @@
           - ipcalc
           - avahi
           - nss-mdns
-          - wireshark-cli
+          - termshark
       become: true
 
     - name: developer tools
