@@ -94,6 +94,7 @@
           - ruby
           - ruby-irb
           - ruby-rdoc
+          - ruby-bundler
           - python
           - docker
       become: true
