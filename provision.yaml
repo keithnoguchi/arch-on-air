@@ -92,6 +92,7 @@
           - nodejs
           - lua
           - ruby
+          - rubygems
           - ruby-irb
           - ruby-rdoc
           - ruby-docs
