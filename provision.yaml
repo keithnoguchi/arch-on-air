@@ -86,6 +86,7 @@
           - gdb
           - libffi
           - make
+          - docker
           - flex
           - bison
           - rustup
@@ -98,7 +99,7 @@
           - ruby-rdoc
           - ruby-docs
           - python
-          - docker
+          - python-pip
       become: true
 
     - name: add user to uucp for picocom, wireshark for tshark, docker for docker
