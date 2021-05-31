@@ -33,7 +33,6 @@
           - libtool
           - yarn
           - cpanminus
-          - python-pip
           - cscope
           - yasm
           - clisp
