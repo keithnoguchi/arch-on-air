@@ -38,7 +38,7 @@
     - github.com/opentracing/opentracing-go
     - github.com/opentracing-contrib/go-stdlib/nethttp
     - github.com/opentracing-contrib/go-amqp/amqptracer
-    - github.com/openzipkin/zipkin-go-opentracing
+    - github.com/openzipkin-contrib/zipkin-go-opentracing
     - github.com/bg451/opentracing-example
   environment:
     GOROOT: "{{ lookup('env', 'GOROOT') }}"
