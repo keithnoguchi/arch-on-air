@@ -66,8 +66,8 @@
           - iptables-nft
           - ebtables
           - dnsmasq
-          - openvpn
-          - openconnect
+          - wireguard-tools
+          - tailscale
           - wpa_supplicant
           - ipcalc
           - avahi
