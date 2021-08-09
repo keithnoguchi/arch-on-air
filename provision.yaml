@@ -37,6 +37,7 @@
           - ripgrep
           - graphviz
           - bolt
+          - minicom
       become: true
 
     - name: network tools
