@@ -50,7 +50,7 @@
           - irssi
           - elinks
           - wget
-          - curl
+          - curlie
           - nmap
           - tcpdump
           - ethtool
