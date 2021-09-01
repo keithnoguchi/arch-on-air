@@ -64,7 +64,7 @@
           - mtr
           - stunnel
           - rsync
-          - iptables-nft
+          - iptables
           - ebtables
           - dnsmasq
           - wireguard-tools
