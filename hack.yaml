@@ -125,23 +125,6 @@
     - name: install helm
       import_tasks: tasks/helm.yaml
 
-    - name: install tendermint
-      import_tasks: tasks/tendermint.yaml
-
-    - name: install the latest asciinema
-      import_tasks: tasks/asciinema.yaml
-
-    - name: python2 for gcloud...
-      pacman:
-        state: present
-        update_cache: false
-        name:
-          - python2
-      become: true
-
-    - name: install the latest gcloud
-      import_tasks: tasks/gcloud.yaml
-
     - name: install liburing, generic kernel I/O interface
       import_tasks: tasks/liburing.yaml
 
@@ -153,6 +136,27 @@
 
     - name: install bpftrace to trace anything
       import_tasks: tasks/bpftrace.yaml
+      when: full|bool
+
+    - name: install the latest asciinema
+      import_tasks: tasks/asciinema.yaml
+      when: full|bool
+
+    - name: python2 for gcloud...
+      pacman:
+        state: present
+        update_cache: false
+        name:
+          - python2
+      become: true
+      when: full|bool
+
+    - name: install the latest gcloud
+      import_tasks: tasks/gcloud.yaml
+      when: full|bool
+
+    - name: install tendermint
+      import_tasks: tasks/tendermint.yaml
       when: full|bool
 
     - name: install the latest ansible
@@ -171,16 +175,3 @@
     - name: install the latest terraform
       import_tasks: tasks/terraform.yaml
       when: full|bool and not ci|bool
-
-    - name: install local RabbitMQ message broker
-      import_tasks: tasks/rabbit.yaml
-      vars:
-        scheme: amqp
-        username: rabbit
-        password: RabbitMQ
-        cluster: "127.0.0.1:5672"
-        vhost: mx
-        configure_priv: ".*"
-        read_priv: ".*"
-        write_priv: ".*"
-      when: not ci|bool
