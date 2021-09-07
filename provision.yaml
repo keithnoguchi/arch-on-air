@@ -46,6 +46,27 @@
         force: true
         update_cache: false
         name:
+          - iputils
+          - iptables
+          - net-tools
+          - bind-tools
+          - conntrack-tools
+          - ethtool
+          - nfs-utils
+          - dnsmasq
+          - wireguard-tools
+          - tailscale
+          - wpa_supplicant
+          - avahi
+          - nss-mdns
+      become: true
+
+    - name: network apps
+      pacman:
+        state: present
+        force: true
+        update_cache: false
+        name:
           - mutt
           - irssi
           - elinks
@@ -53,27 +74,13 @@
           - curlie
           - nmap
           - tcpdump
-          - ethtool
+          - termshark
           - traceroute
-          - iputils
-          - net-tools
-          - bind-tools
-          - conntrack-tools
-          - nfs-utils
           - gnu-netcat
           - mtr
           - stunnel
           - rsync
-          - iptables
-          - ebtables
-          - dnsmasq
-          - wireguard-tools
-          - tailscale
-          - wpa_supplicant
           - ipcalc
-          - avahi
-          - nss-mdns
-          - termshark
       become: true
 
     - name: developer tools
