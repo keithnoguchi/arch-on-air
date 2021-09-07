@@ -92,6 +92,7 @@
           - bc
           - gcc
           - gdb
+          - cpio
           - libffi
           - make
           - docker
