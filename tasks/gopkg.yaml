@@ -6,6 +6,7 @@
     - golang.org/x/tools/cmd/present
     - golang.org/x/tools/cmd/goimports
     - github.com/bronze1man/yaml2json
+    - github.com/onsi/ginkgo/ginkgo
     - github.com/roboll/helmfile
     - github.com/google/go-jsonnet/cmd/jsonnet
     - github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb
