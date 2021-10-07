@@ -136,7 +136,7 @@
         - systemd-resolved
         - systemd-timesyncd
         - rngd
-        - avahi-daemon
+          #- avahi-daemon
         - docker
       become: true
       when: not ci|bool
