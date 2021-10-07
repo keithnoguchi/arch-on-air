@@ -31,6 +31,7 @@
           - pkgconf
           - asciidoc
           - libtool
+          - pahole
           - yarn
           - cpanminus
           - cscope
