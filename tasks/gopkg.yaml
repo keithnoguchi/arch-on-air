@@ -1,6 +1,6 @@
 ---
 - name: get some useful golang packages and tools
-  command: go get -u {{ item }}
+  command: go install {{ item }}@latest
   with_items:
     - golang.org/x/tools/cmd/godoc
     - golang.org/x/tools/cmd/present
@@ -17,7 +17,7 @@
     PATH: "{{ lookup('env', 'GOPATH') }}/bin:{{ lookup('env', 'GOROOT') }}/bin:/usr/bin:/bin"
 
 - name: get some gRPC related golang packages and tools
-  command: go get -u {{ item }}
+  command: go install {{ item }}@latest
   with_items:
     - google.golang.org/grpc
     - google.golang.org/grpc/cmd/protoc-gen-go-grpc
@@ -34,7 +34,7 @@
     PATH: "{{ lookup('env', 'GOPATH') }}/bin:{{ lookup('env', 'GOROOT') }}/bin:/usr/bin:/bin"
 
 - name: get opentracing related golang packages and tools
-  command: go get -u {{ item }}
+  command: go install {{ item }}@latest
   with_items:
     - github.com/opentracing/opentracing-go
     - github.com/opentracing-contrib/go-stdlib/nethttp
