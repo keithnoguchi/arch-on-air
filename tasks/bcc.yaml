@@ -15,7 +15,8 @@
     - bcc
 
 - name: setup the build environment with cmake
-  command: cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release
+  command: |
+    cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DENABLE_LLVM_SHARED=1
   args:
     chdir: "{{ gitpath }}{{ item }}/build"
   with_items:
