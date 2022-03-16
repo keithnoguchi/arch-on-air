@@ -39,6 +39,7 @@
           - clisp
           - wabt
           - cmake
+          - cereal
           - gtest
           - numactl
           - fakeroot
