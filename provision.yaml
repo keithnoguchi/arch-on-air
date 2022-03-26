@@ -48,6 +48,7 @@
         name:
           - iputils
           - iptables
+          - inetutils
           - net-tools
           - bind-tools
           - conntrack-tools
