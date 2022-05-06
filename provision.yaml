@@ -108,6 +108,7 @@
           - ruby-irb
           - ruby-rdoc
           - ruby-docs
+          - ruby-bundler
           - python
           - python-pip
       become: true
