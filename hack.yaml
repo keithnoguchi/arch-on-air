@@ -74,6 +74,7 @@
           - sysdig
           - fio
           - iotop
+          - hyperfine
       become: true
 
     # https://rust-embedded.github.io/book/intro/install/linux.html
