@@ -76,6 +76,7 @@
           - iotop
           - hyperfine
           - bcc
+          - python-bcc
           - bcc-tools
       become: true
 
