@@ -75,6 +75,8 @@
           - fio
           - iotop
           - hyperfine
+          - bcc
+          - bcc-tools
       become: true
 
     # https://rust-embedded.github.io/book/intro/install/linux.html
