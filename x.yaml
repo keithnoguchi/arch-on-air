@@ -41,6 +41,7 @@
           - qt5-quickcontrols2
           - eog
           - ibus
+          - maim
       become: true
 
     - name: copy files under /etc
