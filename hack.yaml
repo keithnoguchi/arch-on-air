@@ -101,6 +101,14 @@
           - alertmanager
       become: true
 
+    - name: let's do blockchain
+      pacman:
+        state: present
+        update_cache: false
+        name:
+          - solidity
+      become: true
+
     - name: add user to postgres group
       user:
         name: "{{ lookup('env', 'USER') }}"
