@@ -93,6 +93,7 @@
         name:
           - bc
           - gcc
+          - clang
           - gdb
           - cpio
           - libffi
@@ -101,17 +102,10 @@
           - flex
           - bison
           - rustup
-          - go
           - nodejs
-          - lua
-          - ruby
-          - rubygems
-          - ruby-irb
-          - ruby-rdoc
-          - ruby-docs
-          - ruby-bundler
           - python
           - python-pip
+          - go
       become: true
 
     - name: add user to uucp for picocom, wireshark for tshark, docker for docker
