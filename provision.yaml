@@ -85,15 +85,6 @@
           - ipcalc
       become: true
 
-    - name: container tools
-      pacman:
-        state: present
-        force: true
-        update_cache: false
-        name:
-          - kubectl
-      become: true
-
     - name: developer tools
       pacman:
         state: present
@@ -115,6 +106,18 @@
           - python
           - python-pip
           - go
+      become: true
+
+    - name: container tools
+      pacman:
+        state: present
+        force: true
+        update_cache: false
+        name:
+          - kubectl
+          - kubectx
+          - kustomize
+          - skaffold
       become: true
 
     - name: add user to uucp for picocom, wireshark for tshark, docker for docker
