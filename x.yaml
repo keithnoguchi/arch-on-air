@@ -32,7 +32,6 @@
           - gnu-free-fonts
           - gtk3
           - webkit2gtk
-          - maim
           - mupdf
           - chromium
           - imagemagick
